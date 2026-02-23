@@ -32,6 +32,7 @@ export const DrawSteelFeatureBlockZod = z.strictObject({
   name: z.string(),
   type: z.literal("featureblock"),
   featureblock_type: z.union([
+    z.literal("Features"),
     z.literal("+ Malice Features"), // should the "+" be here? I think the level entry existing is sufficient indication that this need to be filtered by level
     z.literal("Malice Features"),
     z.literal("Ajax Feature"),
