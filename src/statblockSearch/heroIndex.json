@@ -11,7 +11,7 @@
     "ancestry": ["Dragon", "Dragon Knight"]
   },
   {
-    "statblock": "Heroes/Valangus/Statblocks/Valangus Cleaver.json",
+    "statblock": "Heroes/Valangus/Statblocks/Valangus.json",
     "features": ["Heroes/Valangus/Features/Valangus Malice.json"],
     "name": "Valangus",
     "level": 4,

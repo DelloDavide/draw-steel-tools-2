@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { parseTokenData } from "../helpers/tokenHelpers";
 import Button from "../components/ui/Button";
 import type { MonsterDataBundle } from "../types/monsterDataBundlesZod";
+import type { HeroDataBundle } from "../types/heroDataBundlesZod";
 import { monsterDataFromStatblockName } from "../helpers/monsterDataFromStatblockName";
+import { heroDataFromStatblockName } from "../helpers/heroDataFromStatblockName";
 import {
   Popover,
   PopoverContent,
@@ -22,13 +24,15 @@ import { getMinionTokenCounts } from "../helpers/getMinionTokenCounts";
 
 const parseMinionGroups = z.array(MinionGroupZod).parse;
 
+type CreatureDataBundle = MonsterDataBundle | HeroDataBundle;
+
 export function StatBlockSwitcher({
   monsterData,
   setMonsterData,
   setCollapsed,
 }: {
-  monsterData: MonsterDataBundle | null;
-  setMonsterData: React.Dispatch<MonsterDataBundle>;
+  monsterData: CreatureDataBundle | null;
+  setMonsterData: React.Dispatch<CreatureDataBundle>;
   setCollapsed: (collapsed: boolean) => void;
 }) {
   const playerRole = usePlayerRole();
@@ -48,15 +52,33 @@ export function StatBlockSwitcher({
         if (!("statblockName" in data)) return;
         const statblockName = data.statblockName;
         if (!(typeof statblockName === "string")) return;
-        monsterDataFromStatblockName(statblockName).then((monsterData) => {
+        (async () => {
+          try {
+            const heroData = await heroDataFromStatblockName(statblockName);
+            document.title = heroData.statblock.name;
+            setMonsterData(heroData);
+            return;
+          } catch {
+            // not a hero statblock, fall back to monsters
+          }
+          const monsterData = await monsterDataFromStatblockName(statblockName);
           document.title = monsterData.statblock.name;
           setMonsterData(monsterData);
-        });
+        })();
       }),
     [setCollapsed, setMonsterData],
   );
 
+  const loadCreatureData = async (statblockName: string) => {
+    try {
+      return await heroDataFromStatblockName(statblockName);
+    } catch {
+      return await monsterDataFromStatblockName(statblockName);
+    }
+  };
+
   let monsterStatblocks: string[] = [];
+  let heroStatblocks: string[] = [];
   items.forEach((item) => {
     const token = parseTokenData(item.metadata);
     if (
@@ -66,8 +88,18 @@ export function StatBlockSwitcher({
     ) {
       monsterStatblocks.push(token.statblockName);
     }
+    if (
+      token.type === "HERO" &&
+      token.statblockName !== "" &&
+      (playerRole === "GM" || !token.gmOnly)
+    ) {
+      heroStatblocks.push(token.statblockName);
+    }
   });
   monsterStatblocks = [...new Set(monsterStatblocks)].sort((a, b) =>
+    a.localeCompare(b),
+  );
+  heroStatblocks = [...new Set(heroStatblocks)].sort((a, b) =>
     a.localeCompare(b),
   );
 
@@ -101,15 +133,34 @@ export function StatBlockSwitcher({
       </PopoverTrigger>
       <PopoverContent align="start" className="overflow-y-auto">
         <div className="space-y-2">
-          {monsterStatblocks.length == 0 && minionStatblocks.length === 0 && (
+          {monsterStatblocks.length == 0 &&
+            heroStatblocks.length === 0 &&
+            minionStatblocks.length === 0 && (
             <>
               <div className="text-sm font-bold">No Stat Blocks Found</div>
               <div className="text-sm">
-                Stat Blocks attached to monster tokens and minion groups in this
-                scene will be listed here
+                Stat Blocks attached to hero tokens, monster tokens and minion
+                groups in this scene will be listed here
               </div>
             </>
           )}
+          {heroStatblocks.length > 0 && (
+            <div className="text-sm font-bold">Heroes</div>
+          )}
+          {heroStatblocks.map((value) => (
+            <PopoverClose key={value} asChild>
+              <Button
+                variant={"ghost"}
+                className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
+                onClick={async () => setMonsterData(await loadCreatureData(value))}
+              >
+                <div className="truncate">{value}</div>
+                {monsterData && monsterData.statblock.name === value && (
+                  <CheckIcon />
+                )}
+              </Button>
+            </PopoverClose>
+          ))}
           {monsterStatblocks.length > 0 && (
             <div className="text-sm font-bold">Monsters</div>
           )}
@@ -118,9 +169,7 @@ export function StatBlockSwitcher({
               <Button
                 variant={"ghost"}
                 className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
-                onClick={async () =>
-                  setMonsterData(await monsterDataFromStatblockName(value))
-                }
+                onClick={async () => setMonsterData(await loadCreatureData(value))}
               >
                 <div className="truncate">{value}</div>
                 {monsterData && monsterData.statblock.name === value && (
@@ -137,9 +186,7 @@ export function StatBlockSwitcher({
               <Button
                 variant={"ghost"}
                 className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
-                onClick={async () =>
-                  setMonsterData(await monsterDataFromStatblockName(value))
-                }
+                onClick={async () => setMonsterData(await loadCreatureData(value))}
               >
                 <div className="truncate">{value}</div>
                 {monsterData && monsterData.statblock.name === value && (

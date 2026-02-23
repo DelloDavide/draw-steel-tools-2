@@ -34,7 +34,6 @@ export function StatblockViewer() {
         setMonsterData(null);
         return;
       }
-
       try {
         const heroData = await heroDataFromStatblockName(statblockName);
         document.title = heroData.statblock.name;

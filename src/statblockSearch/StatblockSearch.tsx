@@ -19,8 +19,10 @@ import { TOKEN_METADATA_KEY } from "../helpers/tokenHelpers";
 import {
   MinionTokenDataZod,
   MonsterTokenDataZod,
+  HeroTokenDataZod,
   type MinionTokenData,
   type MonsterTokenData,
+  type HeroTokenData,
 } from "../types/tokenDataZod";
 import { MinionGroupZod, type MinionGroup } from "../types/minionGroup";
 import { MONSTER_GROUPS_METADATA_KEY } from "../helpers/monsterGroupHelpers";
@@ -31,6 +33,8 @@ import usePlayerRole from "../helpers/usePlayerRole";
 
 const params = new URLSearchParams(document.location.search);
 let groupId = params.get("groupId");
+const type = params.get("type");
+const isHeroSearch = type === "hero";
 
 export default function StatblockSearch({
   monsterIndex,
@@ -142,33 +146,59 @@ export default function StatblockSearch({
                       targetItems.map((item) => item.id),
                       (items) => {
                         items.forEach((item) => {
-                          const existingDataValidation =
-                            MonsterTokenDataZod.safeParse(
-                              items[0].metadata[TOKEN_METADATA_KEY],
-                            );
-                          item.metadata[TOKEN_METADATA_KEY] =
-                            MonsterTokenDataZod.parse({
-                              ...(existingDataValidation.success
-                                ? existingDataValidation.data
-                                : undefined),
-                              type: "MONSTER",
-                              gmOnly: playerRole === "GM" ? true : false,
-                              ...(nameOptions.enabled && nameOptions.nameTag
-                                ? { name: nameOptions.value }
-                                : {}),
-                              ...(staminaOptions.enabled
-                                ? {
-                                    stamina: staminaOptions.value,
-                                    staminaMaximum: staminaOptions.value,
-                                  }
-                                : {}),
-                              statblockName:
-                                typeof appState.selectedIndexBundle === "object"
-                                  ? appState.selectedIndexBundle.name
-                                  : appState.selectedIndexBundle === "NONE"
-                                    ? undefined
-                                    : "",
-                            } satisfies MonsterTokenData);
+                          const statblockName =
+                            typeof appState.selectedIndexBundle === "object"
+                              ? appState.selectedIndexBundle.name
+                              : appState.selectedIndexBundle === "NONE"
+                                ? undefined
+                                : "";
+
+                          if (isHeroSearch) {
+                            const existingDataValidation =
+                              HeroTokenDataZod.safeParse(
+                                items[0].metadata[TOKEN_METADATA_KEY],
+                              );
+                            item.metadata[TOKEN_METADATA_KEY] =
+                              HeroTokenDataZod.parse({
+                                ...(existingDataValidation.success
+                                  ? existingDataValidation.data
+                                  : undefined),
+                                type: "HERO",
+                                ...(nameOptions.enabled && nameOptions.nameTag
+                                  ? { name: nameOptions.value }
+                                  : {}),
+                                ...(staminaOptions.enabled
+                                  ? {
+                                      stamina: staminaOptions.value,
+                                      staminaMaximum: staminaOptions.value,
+                                    }
+                                  : {}),
+                                statblockName,
+                              } satisfies HeroTokenData);
+                          } else {
+                            const existingDataValidation =
+                              MonsterTokenDataZod.safeParse(
+                                items[0].metadata[TOKEN_METADATA_KEY],
+                              );
+                            item.metadata[TOKEN_METADATA_KEY] =
+                              MonsterTokenDataZod.parse({
+                                ...(existingDataValidation.success
+                                  ? existingDataValidation.data
+                                  : undefined),
+                                type: "MONSTER",
+                                gmOnly: playerRole === "GM" ? true : false,
+                                ...(nameOptions.enabled && nameOptions.nameTag
+                                  ? { name: nameOptions.value }
+                                  : {}),
+                                ...(staminaOptions.enabled
+                                  ? {
+                                      stamina: staminaOptions.value,
+                                      staminaMaximum: staminaOptions.value,
+                                    }
+                                  : {}),
+                                statblockName,
+                              } satisfies MonsterTokenData);
+                          }
                           if (nameOptions.enabled) {
                             item.name = nameOptions.value;
                           }

@@ -31,6 +31,7 @@ export const defaultHeroTokenData: DefinedHeroTokenData = {
   heroicResource: 0,
   recoveries: 0,
   surges: 0,
+  statblockName: "",
 };
 
 export const defaultMinionTokenData: DefinedMinionTokenData = {

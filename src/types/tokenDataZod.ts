@@ -10,6 +10,7 @@ export const HeroTokenDataZod = z.object({
   heroicResource: z.number().optional(),
   recoveries: z.number().optional(),
   surges: z.number().optional(),
+  statblockName: z.string().optional(),
 });
 
 export const MonsterTokenDataZod = z.object({
@@ -42,6 +43,7 @@ export const DefinedHeroTokenDataZod = z.object({
   heroicResource: z.number(),
   recoveries: z.number(),
   surges: z.number(),
+  statblockName: z.string(),
 });
 
 export const DefinedMonsterTokenDataZod = z.object({
