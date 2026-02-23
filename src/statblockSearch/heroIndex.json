@@ -1,8 +1,35 @@
 [
   {
+    "statblock": "Heroes/Antares/Statblocks/Antares.json",
+    "features": ["Heroes/Antares/Features/Antares Features.json"],
+    "name": "Antares",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Human", "Humanoid"]
+  },
+  {
+    "statblock": "Heroes/C'eree/Statblocks/C'eree.json",
+    "features": ["Heroes/C'eree/Features/C'eree Features.json"],
+    "name": "C'eree",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Human", "Humanoid"]
+  },
+  {
+    "statblock": "Heroes/Daron/Statblocks/Daron.json",
+    "features": ["Heroes/Daron/Features/Daron Features.json"],
+    "name": "Daron",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Human", "Humanoid"]
+  },
+  {
     "statblock": "Heroes/Degotho/Statblocks/Degotho.json",
     "features": [
-      "Heroes/Degotho/Features/Degotho Malice.json"
+      "Heroes/Degotho/Features/Degotho Features.json"
     ],
     "name": "Degotho",
     "level": 4,
@@ -12,7 +39,7 @@
   },
   {
     "statblock": "Heroes/Valangus/Statblocks/Valangus.json",
-    "features": ["Heroes/Valangus/Features/Valangus Malice.json"],
+    "features": ["Heroes/Valangus/Features/Valangus Features.json"],
     "name": "Valangus",
     "level": 4,
     "ev": "10",
