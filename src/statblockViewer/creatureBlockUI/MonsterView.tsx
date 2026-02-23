@@ -1,4 +1,5 @@
 import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
+import type { HeroDataBundle } from "../../types/heroDataBundlesZod";
 import { FeatureBlock } from "./FeatureBlock";
 import { StatBlock } from "./StatBlock";
 import { ScrollArea } from "../../components/ui/scrollArea";
@@ -8,10 +9,14 @@ import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
 
+type CreatureDataBundle =
+  | (MonsterDataBundle & { kind: "monster" })
+  | (HeroDataBundle & { kind: "hero" });
+
 export default function MonsterView({
   monsterData: monsterData,
 }: {
-  monsterData: MonsterDataBundle;
+  monsterData: CreatureDataBundle;
 }) {
   const url = new URL(window.location.href);
   url.searchParams.delete("statblock");
@@ -30,7 +35,9 @@ export default function MonsterView({
                   featureBlock={item}
                 />
               ))}
-            <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
+            {monsterData.kind === "monster" && (
+              <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
+            )}
           </div>
         </div>
       </ScrollArea>

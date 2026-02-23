@@ -21,7 +21,9 @@ const statblockName = new URLSearchParams(document.location.search).get(
   "statblockName",
 );
 
-type CreatureDataBundle = MonsterDataBundle | HeroDataBundle;
+type CreatureDataBundle =
+  | (MonsterDataBundle & { kind: "monster" })
+  | (HeroDataBundle & { kind: "hero" });
 
 export function StatblockViewer() {
   const [collapsed, setCollapsed] = useState(false);
@@ -37,7 +39,7 @@ export function StatblockViewer() {
       try {
         const heroData = await heroDataFromStatblockName(statblockName);
         document.title = heroData.statblock.name;
-        setMonsterData(heroData);
+        setMonsterData({ ...heroData, kind: "hero" });
         return;
       } catch {
         // If not found in hero index, fall back to monsters.
@@ -45,7 +47,7 @@ export function StatblockViewer() {
 
       const monsterData = await monsterDataFromStatblockName(statblockName);
       document.title = monsterData.statblock.name;
-      setMonsterData(monsterData);
+      setMonsterData({ ...monsterData, kind: "monster" });
     };
 
     void loadData();

@@ -24,7 +24,9 @@ import { getMinionTokenCounts } from "../helpers/getMinionTokenCounts";
 
 const parseMinionGroups = z.array(MinionGroupZod).parse;
 
-type CreatureDataBundle = MonsterDataBundle | HeroDataBundle;
+type CreatureDataBundle =
+  | (MonsterDataBundle & { kind: "monster" })
+  | (HeroDataBundle & { kind: "hero" });
 
 export function StatBlockSwitcher({
   monsterData,
@@ -56,24 +58,26 @@ export function StatBlockSwitcher({
           try {
             const heroData = await heroDataFromStatblockName(statblockName);
             document.title = heroData.statblock.name;
-            setMonsterData(heroData);
+            setMonsterData({ ...heroData, kind: "hero" });
             return;
           } catch {
             // not a hero statblock, fall back to monsters
           }
           const monsterData = await monsterDataFromStatblockName(statblockName);
           document.title = monsterData.statblock.name;
-          setMonsterData(monsterData);
+          setMonsterData({ ...monsterData, kind: "monster" });
         })();
       }),
     [setCollapsed, setMonsterData],
   );
 
-  const loadCreatureData = async (statblockName: string) => {
+  const loadCreatureData = async (statblockName: string): Promise<CreatureDataBundle> => {
     try {
-      return await heroDataFromStatblockName(statblockName);
+      const heroData = await heroDataFromStatblockName(statblockName);
+      return { ...heroData, kind: "hero" };
     } catch {
-      return await monsterDataFromStatblockName(statblockName);
+      const monsterData = await monsterDataFromStatblockName(statblockName);
+      return { ...monsterData, kind: "monster" };
     }
   };
 
