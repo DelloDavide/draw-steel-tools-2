@@ -1,7 +1,9 @@
 [
   {
     "statblock": "Heroes/Antares/Statblocks/Antares.json",
-    "features": ["Heroes/Antares/Features/Antares Features.json"],
+    "features": [
+      "Heroes/Antares/Features/Antares Features.json"
+    ],
     "name": "Antares",
     "level": 4,
     "ev": "10",
@@ -10,7 +12,9 @@
   },
   {
     "statblock": "Heroes/C'eree/Statblocks/C'eree.json",
-    "features": ["Heroes/C'eree/Features/C'eree Features.json"],
+    "features": [
+      "Heroes/C'eree/Features/C'eree Features.json"
+    ],
     "name": "C'eree",
     "level": 4,
     "ev": "10",
@@ -19,7 +23,9 @@
   },
   {
     "statblock": "Heroes/Daron/Statblocks/Daron.json",
-    "features": ["Heroes/Daron/Features/Daron Features.json"],
+    "features": [
+      "Heroes/Daron/Features/Daron Features.json"
+    ],
     "name": "Daron",
     "level": 4,
     "ev": "10",
@@ -38,12 +44,47 @@
     "ancestry": ["Dragon", "Dragon Knight"]
   },
   {
+    "statblock": "Heroes/Kamish/Statblocks/Kamish.json",
+    "features": [
+      "Heroes/Kamish/Features/Kamish Features.json"
+    ],
+    "name": "Kamish",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Dragon Knight"]
+  },
+  {
+    "statblock": "Heroes/Un Cavaliere/Statblocks/Un Cavaliere.json",
+    "features": [
+      "Heroes/Un Cavaliere/Features/Un Cavaliere Features.json"
+    ],
+    "name": "Un Cavaliere",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Dragon Knight"]
+  },
+  {
     "statblock": "Heroes/Valangus/Statblocks/Valangus.json",
-    "features": ["Heroes/Valangus/Features/Valangus Features.json"],
+    "features": [
+      "Heroes/Valangus/Features/Valangus Features.json"
+    ],
     "name": "Valangus",
     "level": 4,
     "ev": "10",
     "roles": ["Solo"],
     "ancestry": ["Human", "Humanoid"]
-  }
+  },
+  {
+    "statblock": "Heroes/Veldrota/Statblocks/Veldrota.json",
+    "features": [
+      "Heroes/Veldrota/Features/Veldrota Features.json"
+    ],
+    "name": "Veldrota",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Dragon Knight"]
+  },
 ]
