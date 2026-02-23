@@ -9,10 +9,16 @@ export function NoMonsterCard({
   variant: "BASIC" | "MINION";
   icon?: React.ReactNode;
 }) {
-  let text = "Monster";
-  let description = "Configure monsters without attaching a statblock";
+  const params = new URLSearchParams(document.location.search);
+  const type = params.get("type");
+  const isHeroSearch = type === "hero";
 
-  if (variant === "MINION") {
+  let text = isHeroSearch ? "Hero" : "Monster";
+  let description = isHeroSearch
+    ? "Configure a hero without attaching a statblock"
+    : "Configure monsters without attaching a statblock";
+
+  if (!isHeroSearch && variant === "MINION") {
     text = "Minion";
     description = "Configure a minion group without attaching a statblock";
   }

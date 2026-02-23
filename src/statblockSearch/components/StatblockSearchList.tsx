@@ -70,12 +70,15 @@ export function StatblockSearchList({
           )
           .map((val) => val.obj);
 
+  const params = new URLSearchParams(document.location.search);
+  const isHeroSearch = params.get("type") === "hero";
+
   if (sortedMonsterIndex.length <= 0 && search.value !== "")
     return <div className="w-full items-center p-4 sm:p-6">No Results</div>;
 
   return (
     <div className="grid h-full gap-3 p-4 sm:p-6 lg:grid-cols-2">
-      {search.value === "" && (
+      {!isHeroSearch && search.value === "" && (
         <NoMonsterCard
           variant="BASIC"
           onActionClick={() =>
@@ -95,7 +98,7 @@ export function StatblockSearchList({
           }
         />
       )}
-      {search.value === "" && (
+      {!isHeroSearch && search.value === "" && (
         <NoMonsterCard
           variant="MINION"
           onActionClick={() =>
