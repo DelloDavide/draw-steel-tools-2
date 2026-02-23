@@ -4,10 +4,12 @@ import Button from "../components/ui/Button.tsx";
 import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "../helpers/getPluginId.ts";
 import type { MonsterDataBundle } from "../types/monsterDataBundlesZod.ts";
+import type { HeroDataBundle } from "../types/heroDataBundlesZod.ts";
 import { Maximize2Icon, Minimize2Icon } from "lucide-react";
 import { StatBlockSwitcher } from "./StatblockSwitcher.tsx";
 import { useEffect, useState } from "react";
 import { monsterDataFromStatblockName } from "../helpers/monsterDataFromStatblockName.ts";
+import { heroDataFromStatblockName } from "../helpers/heroDataFromStatblockName.ts";
 import { cn } from "../helpers/utils.ts";
 import Toggle from "../components/ui/Toggle.tsx";
 import { OpenInNewTab } from "./OpenInNewTabButton.tsx";
@@ -19,20 +21,35 @@ const statblockName = new URLSearchParams(document.location.search).get(
   "statblockName",
 );
 
+type CreatureDataBundle = MonsterDataBundle | HeroDataBundle;
+
 export function StatblockViewer() {
   const [collapsed, setCollapsed] = useState(false);
-  const [monsterData, setMonsterData] = useState<MonsterDataBundle | null>();
+  const [monsterData, setMonsterData] = useState<CreatureDataBundle | null>();
   const [height, setHeight] = useState(57);
 
   useEffect(() => {
-    if (!statblockName) {
-      setMonsterData(null);
-      return;
-    }
-    monsterDataFromStatblockName(statblockName).then((monsterData) => {
+    const loadData = async () => {
+      if (!statblockName) {
+        setMonsterData(null);
+        return;
+      }
+
+      try {
+        const heroData = await heroDataFromStatblockName(statblockName);
+        document.title = heroData.statblock.name;
+        setMonsterData(heroData);
+        return;
+      } catch {
+        // If not found in hero index, fall back to monsters.
+      }
+
+      const monsterData = await monsterDataFromStatblockName(statblockName);
       document.title = monsterData.statblock.name;
       setMonsterData(monsterData);
-    });
+    };
+
+    void loadData();
   }, []);
 
   return (

@@ -8,21 +8,28 @@ import { PluginReadyGate } from "../components/logic/PluginReadyGate.tsx";
 import { DevActionButtons } from "./components/DevScriptButtons.tsx";
 
 import monsterIndex from "./monsterIndex.json";
+import heroIndex from "./heroIndex.json";
 
 syncThemeMode();
 
 const params = new URLSearchParams(document.location.search);
 const devMode = params.get("dev");
+const type = params.get("type");
+const isHeroSearch = type === "hero";
+
+const index = isHeroSearch ? heroIndex : monsterIndex;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <PluginReadyProvider>
       <PluginReadyGate
         alternate={
-          devMode === "true" && <DevActionButtons monsterIndex={monsterIndex} />
+          devMode === "true" && !isHeroSearch && (
+            <DevActionButtons monsterIndex={monsterIndex} />
+          )
         }
       >
-        <StatblockSearch monsterIndex={monsterIndex} />
+        <StatblockSearch monsterIndex={index} />
       </PluginReadyGate>
     </PluginReadyProvider>
   </StrictMode>,

@@ -11,12 +11,14 @@ export default function StatblockControls({
   setStatblockName,
   groupId,
   playerRole,
+  mode = "monster",
 }: {
   label?: string;
   statblockName: string;
   setStatblockName: (statblockName: string) => void;
   groupId?: string;
   playerRole: "PLAYER" | "GM";
+  mode?: "monster" | "hero";
 }) {
   return (
     <div className="text-foreground col-span-2 w-full">
@@ -90,11 +92,14 @@ export default function StatblockControls({
             className="bg-mirage-400/30 dark:bg-mirage-500/30 hover:bg-mirage-400/30 hover:dark:bg-mirage-500/30 group w-full overflow-clip p-0 focus-visible:ring-0"
             onClick={async () => {
               const themeMode = (await OBR.theme.getTheme()).mode;
+              const searchParams = new URLSearchParams();
+              searchParams.set("themeMode", themeMode);
+              if (groupId) searchParams.set("groupId", groupId);
+              if (mode === "hero") searchParams.set("type", "hero");
+
               OBR.popover.open({
                 id: getPluginId("statblockSearch"),
-                url:
-                  `/statblockSearch?themeMode=${themeMode}` +
-                  (groupId ? `&groupId=${groupId}` : ""),
+                url: `/statblockSearch?${searchParams.toString()}`,
                 height: 1000,
                 width: 800,
                 anchorOrigin: { horizontal: "CENTER", vertical: "CENTER" },

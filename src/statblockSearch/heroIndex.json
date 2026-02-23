@@ -1,0 +1,22 @@
+[
+  {
+    "statblock": "Heroes/Degotho/Statblocks/Degotho.json",
+    "features": [
+      "Heroes/Degotho/Features/Degotho Malice.json"
+    ],
+    "name": "Degotho",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Dragon Knight"]
+  },
+  {
+    "statblock": "Heroes/Valangus/Statblocks/Valangus Cleaver.json",
+    "features": ["Heroes/Valangus/Features/Valangus Malice.json"],
+    "name": "Valangus",
+    "level": 4,
+    "ev": "10",
+    "roles": ["Solo"],
+    "ancestry": ["Human", "Humanoid"]
+  }
+]

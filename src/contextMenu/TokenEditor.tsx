@@ -97,11 +97,12 @@ export default function TokenEditor() {
         />
       )}
       <StatEditor token={token} updateToken={updateToken} />
-      {token.type === "MONSTER" && (
+      {(token.type === "MONSTER" || token.type === "HERO") && (
         <StatblockControls
-          statblockName={token.statblockName}
-          setStatblockName={() => updateToken({ statblockName: "" })}
+          statblockName={token.statblockName ?? ""}
+          setStatblockName={(statblockName) => updateToken({ statblockName })}
           playerRole={playerRole}
+          mode={token.type === "HERO" ? "hero" : "monster"}
         />
       )}
       {playerRole === "GM" && (
