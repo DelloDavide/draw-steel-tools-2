@@ -14,7 +14,13 @@ export const DrawSteelEffectZod = z.strictObject({
 export const DrawSteelFeatureZod = z.strictObject({
   name: z.string(),
   type: z.literal("feature"),
-  feature_type: z.union([z.literal("ability"), z.literal("trait")]),
+  feature_type: z.union([
+    z.literal("ability"), 
+    z.literal("trait"), 
+    z.literal("Aspect Feature"),
+    z.literal("Fury Feature"),
+    z.literal("Perk"),
+  ]),
   icon: z.string(),
   usage: z.string().optional(), // says required in schema, appears to be optional
   cost: z.string().optional(),

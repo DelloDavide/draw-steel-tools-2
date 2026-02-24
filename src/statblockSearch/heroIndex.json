@@ -6,8 +6,8 @@
     ],
     "name": "Antares",
     "level": 4,
-    "ev": "10",
-    "roles": ["Solo"],
+    "ev": "72",
+    "roles": ["Hero"],
     "ancestry": ["Human", "Humanoid"]
   },
   {
@@ -17,8 +17,8 @@
     ],
     "name": "C'eree",
     "level": 4,
-    "ev": "10",
-    "roles": ["Solo"],
+    "ev": "72",
+    "roles": ["Hero"],
     "ancestry": ["Human", "Humanoid"]
   },
   {
@@ -28,8 +28,8 @@
     ],
     "name": "Daron",
     "level": 4,
-    "ev": "10",
-    "roles": ["Solo"],
+    "ev": "72",
+    "roles": ["Hero"],
     "ancestry": ["Human", "Humanoid"]
   },
   {
@@ -39,9 +39,9 @@
     ],
     "name": "Degotho",
     "level": 4,
-    "ev": "10",
-    "roles": ["Solo"],
-    "ancestry": ["Dragon", "Dragon Knight"]
+    "ev": "72",
+    "roles": ["Hero"],
+    "ancestry": ["Dragon Knight", "Fury", "Berserker", "Gladiator"]
   },
   {
     "statblock": "Heroes/Kamish/Statblocks/Kamish.json",
@@ -51,7 +51,7 @@
     "name": "Kamish",
     "level": 4,
     "ev": "10",
-    "roles": ["Solo"],
+    "roles": ["Retainer"],
     "ancestry": ["Dragon", "Dragon Knight"]
   },
   {
@@ -62,7 +62,7 @@
     "name": "Un Cavaliere",
     "level": 4,
     "ev": "10",
-    "roles": ["Solo"],
+    "roles": ["Retainer"],
     "ancestry": ["Dragon", "Dragon Knight"]
   },
   {
@@ -72,8 +72,8 @@
     ],
     "name": "Valangus",
     "level": 4,
-    "ev": "10",
-    "roles": ["Solo"],
+    "ev": "72",
+    "roles": ["Hero"],
     "ancestry": ["Human", "Humanoid"]
   },
   {
@@ -84,7 +84,7 @@
     "name": "Veldrota",
     "level": 4,
     "ev": "10",
-    "roles": ["Solo"],
+    "roles": ["Retainer"],
     "ancestry": ["Dragon", "Dragon Knight"]
   }
 ]
