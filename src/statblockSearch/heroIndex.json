@@ -61,9 +61,9 @@
     ],
     "name": "Un Cavaliere",
     "level": 4,
-    "ev": "10",
+    "ev": "72",
     "roles": ["Retainer"],
-    "ancestry": ["Dragon", "Dragon Knight"]
+    "ancestry": ["Memonek", "Censor"]
   },
   {
     "statblock": "Heroes/Valangus/Statblocks/Valangus.json",

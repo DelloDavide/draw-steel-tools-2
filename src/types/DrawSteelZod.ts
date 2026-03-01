@@ -21,6 +21,7 @@ export const DrawSteelFeatureZod = z.strictObject({
     z.literal("Fury Feature"),
     z.literal("Perk"),
     z.literal("Title"),
+    z.literal("Trait"),
   ]),
   icon: z.string(),
   usage: z.string().optional(), // says required in schema, appears to be optional
