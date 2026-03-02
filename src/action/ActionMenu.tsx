@@ -126,9 +126,7 @@ function ActionMenu() {
             <div className="flex flex-wrap items-center justify-between border-t-4 border-black/15 px-4 py-2">
               <div className="font-bold">Power Roll</div>
               <div className="flex gap-2">
-                {result === undefined ? (
-                  <Badge text={"Make a Roll"} />
-                ) : (
+                {result !== undefined && (
                   <>
                     <Badge text={`Total: ${result.total}`} />
                     <Badge

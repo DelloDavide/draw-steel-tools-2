@@ -1,6 +1,6 @@
 ---
 title: Draw Steel Tools
-description: Stamina and resource tracking + power rolls for Draw Steel!
+description: Health bars, resource tracking, power roll automation, minion group management, and stat blocks for Draw Steel!
 author: Seamus Finlayson
 image: https://raw.githubusercontent.com/SeamusFinlayson/draw-steel-tools-2/refs/heads/main/docs/header.webp
 icon: https://draw-steel-tools.seamus-finlayson.ca/logo.svg
@@ -12,7 +12,7 @@ learn-more: https://seamus-finlayson.ca/pages/draw-steel-tools
 
 # Draw Steel Tools
 
-_Stamina and resource tracking + power rolls for Draw Steel!_
+_Health bars, resource tracking, power roll automation, minion group management, and stat blocks for Draw Steel!_
 
 ## How it Works
 

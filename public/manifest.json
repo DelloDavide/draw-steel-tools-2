@@ -5,7 +5,7 @@
   "author": "Dello",
   "homepage_url": "https://github.com/DelloDavide/draw-steel-tools-2",
   "icon": "/logo.svg",
-  "description": "Stamina and resource tracking + power rolls for Draw Steel!",
+  "description": "Health bars, resource tracking, power roll automation, minion group management, and stat blocks for Draw Steel!",
   "background_url": "/background",
   "action": {
     "title": "Draw Steel Tools",
