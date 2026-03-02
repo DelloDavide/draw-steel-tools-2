@@ -3,7 +3,7 @@
   "version": "2.4.2",
   "manifest_version": 1,
   "author": "Dello",
-  "homepage_url": "https://seamus-finlayson.ca/pages/draw-steel-tools",
+  "homepage_url": "https://github.com/DelloDavide/draw-steel-tools-2",
   "icon": "/logo.svg",
   "description": "Stamina and resource tracking + power rolls for Draw Steel!",
   "background_url": "/background",
