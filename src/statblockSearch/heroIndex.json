@@ -8,7 +8,7 @@
     "level": 4,
     "ev": "72",
     "roles": ["Hero"],
-    "ancestry": ["Human", "Humanoid"]
+    "ancestry": ["Revenant", "Elementalist", "Specialization: Fire", "Mage’s Apprentice"]
   },
   {
     "statblock": "Heroes/C'eree/Statblocks/C'eree.json",
@@ -19,7 +19,18 @@
     "level": 4,
     "ev": "72",
     "roles": ["Hero"],
-    "ancestry": ["Human", "Humanoid"]
+    "ancestry": ["Time Raider", "Null", "Metakinetic", "Warden"]
+  },
+  {
+    "statblock": "Heroes/Carabec/Statblocks/Carabec.json",
+    "features": [
+      "Heroes/Carabec/Features/Carabec Features.json"
+    ],
+    "name": "Carabec",
+    "level": 4,
+    "ev": "72",
+    "roles": ["Retainer"],
+    "ancestry": ["Sovaly", "Ambusher"]
   },
   {
     "statblock": "Heroes/Daron/Statblocks/Daron.json",
@@ -30,7 +41,7 @@
     "level": 4,
     "ev": "72",
     "roles": ["Hero"],
-    "ancestry": ["Human", "Humanoid"]
+    "ancestry": ["Devil", "Conduit", "Fate, Trickery", "Aristocrat"]
   },
   {
     "statblock": "Heroes/Degotho/Statblocks/Degotho.json",
@@ -50,9 +61,9 @@
     ],
     "name": "Kamish",
     "level": 4,
-    "ev": "10",
+    "ev": "72",
     "roles": ["Retainer"],
-    "ancestry": ["Dragon", "Dragon Knight"]
+    "ancestry": ["Dragon", "Elemental", "Artillery", "Mount"]
   },
   {
     "statblock": "Heroes/Un Cavaliere/Statblocks/Un Cavaliere.json",
@@ -74,7 +85,7 @@
     "level": 4,
     "ev": "72",
     "roles": ["Hero"],
-    "ancestry": ["Human", "Humanoid"]
+    "ancestry": ["Human", "Tactician", "Vanguard", "Laborer"]
   },
   {
     "statblock": "Heroes/Veldrota/Statblocks/Veldrota.json",
@@ -83,8 +94,8 @@
     ],
     "name": "Veldrota",
     "level": 4,
-    "ev": "10",
+    "ev": "72",
     "roles": ["Retainer"],
-    "ancestry": ["Dragon", "Dragon Knight"]
+    "ancestry": ["Shadow Elf", "Ambusher"]
   }
 ]
