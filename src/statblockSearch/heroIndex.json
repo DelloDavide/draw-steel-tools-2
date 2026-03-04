@@ -88,11 +88,11 @@
     "ancestry": ["Human", "Tactician", "Vanguard", "Laborer"]
   },
   {
-    "statblock": "Heroes/Veldrota/Statblocks/Veldrota.json",
+    "statblock": "Heroes/Vel'drotha/Statblocks/Vel'drotha.json",
     "features": [
-      "Heroes/Veldrota/Features/Veldrota Features.json"
+      "Heroes/Vel'drotha/Features/Vel'drotha Features.json"
     ],
-    "name": "Veldrota",
+    "name": "Vel'drotha",
     "level": 4,
     "ev": "72",
     "roles": ["Retainer"],
