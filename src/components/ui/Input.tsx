@@ -19,7 +19,7 @@ export default function Input({
       type={type}
       data-slot="input"
       className={cn(
-        "file:text-foreground placeholder:text-foreground/50 border-foreground/20 text-foreground flex h-9 min-w-0 rounded-[8px] border bg-transparent px-3 py-1 text-base shadow-xs transition-colors duration-75 outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "file:text-foreground placeholder:text-foreground/50 border-foreground/20 text-foreground flex h-9 min-w-0 rounded-[8px] border bg-transparent px-3 py-1 text-base shadow-xs transition-colors duration-75 outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
         { "focus:border-accent focus:border-2": hasFocusHighlight },
         className,
       )}
