@@ -21,12 +21,6 @@ export function Feature({
   blockName: string;
   feature: DrawSteelFeature;
 }) {
-  let roll: string | undefined = undefined;
-  feature.effects.forEach((val) => {
-    if ("roll" in val && val.roll) {
-      roll = val.roll.replace("Power Roll", "2d10");
-    }
-  });
 
   return (
     <div className="flex gap-1">
