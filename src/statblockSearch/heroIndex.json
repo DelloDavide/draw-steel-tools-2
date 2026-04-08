@@ -4,6 +4,9 @@
     "features": [
       "Heroes/Antares/Features/Antares Features.json"
     ],
+    "skills": [
+      "Heroes/Antares/Skills/Antares Skills.json"
+    ],
     "name": "Antares",
     "level": 4,
     "ev": "72",
@@ -14,6 +17,9 @@
     "statblock": "Heroes/C'eree/Statblocks/C'eree.json",
     "features": [
       "Heroes/C'eree/Features/C'eree Features.json"
+    ],
+    "skills": [
+      "Heroes/C'eree/Skills/C'eree Skills.json"
     ],
     "name": "C'eree",
     "level": 4,
@@ -26,6 +32,9 @@
     "features": [
       "Heroes/Carabec/Features/Carabec Features.json"
     ],
+    "skills": [
+      "Heroes/Carabec/Skills/Carabec Skills.json"
+    ],
     "name": "Carabec",
     "level": 4,
     "ev": "72",
@@ -36,6 +45,9 @@
     "statblock": "Heroes/Daron/Statblocks/Daron.json",
     "features": [
       "Heroes/Daron/Features/Daron Features.json"
+    ],
+    "skills": [
+      "Heroes/Daron/Skills/Daron Skills.json"
     ],
     "name": "Daron",
     "level": 4,
@@ -48,6 +60,9 @@
     "features": [
       "Heroes/Degotho/Features/Degotho Features.json"
     ],
+    "skills": [
+      "Heroes/Degotho/Skills/Degotho Skills.json"
+    ],
     "name": "Degotho",
     "level": 4,
     "ev": "72",
@@ -58,6 +73,9 @@
     "statblock": "Heroes/Kamish/Statblocks/Kamish.json",
     "features": [
       "Heroes/Kamish/Features/Kamish Features.json"
+    ],
+    "skills": [
+      "Heroes/Kamish/Skills/Kamish Skills.json"
     ],
     "name": "Kamish",
     "level": 4,
@@ -70,6 +88,9 @@
     "features": [
       "Heroes/Un Cavaliere/Features/Un Cavaliere Features.json"
     ],
+    "skills": [
+      "Heroes/Un Cavaliere/Skills/Un Cavaliere Skills.json"
+    ],
     "name": "Un Cavaliere",
     "level": 4,
     "ev": "72",
@@ -81,6 +102,9 @@
     "features": [
       "Heroes/Valangus/Features/Valangus Features.json"
     ],
+    "skills": [
+      "Heroes/Valangus/Skills/Valangus Skills.json"
+    ],
     "name": "Valangus",
     "level": 4,
     "ev": "72",
@@ -91,6 +115,9 @@
     "statblock": "Heroes/Vel'drotha/Statblocks/Vel'drotha.json",
     "features": [
       "Heroes/Vel'drotha/Features/Vel'drotha Features.json"
+    ],
+    "skills": [
+      "Heroes/Vel'drotha/Skills/Vel'drotha Skills.json"
     ],
     "name": "Vel'drotha",
     "level": 4,

@@ -36,6 +36,15 @@ export async function generateIndex() {
       )
       .map((val) => val.path);
 
+    const skills = rootTree
+      .filter(
+        (val) =>
+          val.path.startsWith(groups[i].path) &&
+          val.path.includes("Skills/") &&
+          val.path.endsWith(".json"),
+      )
+      .map((val) => val.path);
+
     pathBundles.push(
       ...rootTree
         .filter(
@@ -47,6 +56,7 @@ export async function generateIndex() {
         .map((val) => ({
           statblock: val.path,
           features: malice,
+          skills,
         })),
     );
   }

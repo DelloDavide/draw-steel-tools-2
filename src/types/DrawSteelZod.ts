@@ -84,7 +84,21 @@ export const DrawSteelStatblockZod = z.strictObject({
   features: z.array(DrawSteelFeatureZod).optional(),
 });
 
+export const DrawSteelSkillCategoryZod = z.strictObject({
+  category: z.string(),
+  skills: z.array(z.string()),
+});
+
+export const DrawSteelSkillBlockZod = z.strictObject({
+  name: z.string(),
+  type: z.literal("skillblock"),
+  flavor: z.string(),
+  categories: z.array(DrawSteelSkillCategoryZod),
+});
+
 export type DrawSteelEffect = z.infer<typeof DrawSteelEffectZod>;
 export type DrawSteelFeature = z.infer<typeof DrawSteelFeatureZod>;
 export type DrawSteelFeatureBlock = z.infer<typeof DrawSteelFeatureBlockZod>;
 export type DrawSteelStatblock = z.infer<typeof DrawSteelStatblockZod>;
+export type DrawSteelSkillCategory = z.infer<typeof DrawSteelSkillCategoryZod>;
+export type DrawSteelSkillBlock = z.infer<typeof DrawSteelSkillBlockZod>;

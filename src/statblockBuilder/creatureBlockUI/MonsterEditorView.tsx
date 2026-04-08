@@ -1,5 +1,6 @@
 import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
 import { FeatureBlock } from "./FeatureBlock";
+import { SkillBlock } from "./SkillBlock";
 import { StatBlock } from "./StatBlock";
 import { ScrollArea } from "../../components/ui/scrollArea";
 
@@ -20,6 +21,14 @@ export default function MonsterEditorView({
                 <FeatureBlock
                   key={item.name + item.level}
                   featureBlock={item}
+                />
+              ))}
+
+            {monsterData.skillsBlocks.length > 0 &&
+              monsterData.skillsBlocks.map((item) => (
+                <SkillBlock 
+                  key={item.name} 
+                  skillBlock={item} 
                 />
               ))}
           </div>

@@ -36,18 +36,30 @@ export function StatblockViewer() {
         setMonsterData(null);
         return;
       }
+      const notFoundMessage = "Could not find statblock with name";
+
       try {
         const heroData = await heroDataFromStatblockName(statblockName);
         document.title = heroData.statblock.name;
         setMonsterData({ ...heroData, kind: "hero" });
         return;
-      } catch {
-        // If not found in hero index, fall back to monsters.
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "";
+        if (!message.includes(notFoundMessage)) {
+          console.error(error);
+          setMonsterData(null);
+          return;
+        }
       }
 
-      const monsterData = await monsterDataFromStatblockName(statblockName);
-      document.title = monsterData.statblock.name;
-      setMonsterData({ ...monsterData, kind: "monster" });
+      try {
+        const monsterData = await monsterDataFromStatblockName(statblockName);
+        document.title = monsterData.statblock.name;
+        setMonsterData({ ...monsterData, kind: "monster" });
+      } catch (error) {
+        console.error(error);
+        setMonsterData(null);
+      }
     };
 
     void loadData();

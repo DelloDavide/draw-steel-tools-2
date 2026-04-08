@@ -1,6 +1,7 @@
 import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
 import type { HeroDataBundle } from "../../types/heroDataBundlesZod";
 import { FeatureBlock } from "./FeatureBlock";
+import { SkillBlock } from "../../statblockBuilder/creatureBlockUI/SkillBlock";
 import { StatBlock } from "./StatBlock";
 import { ScrollArea } from "../../components/ui/scrollArea";
 import defaultMalice from "../defaultMalice.json";
@@ -34,6 +35,11 @@ export default function MonsterView({
                   key={item.name + item.level}
                   featureBlock={item}
                 />
+              ))}
+
+            {monsterData.skillsBlocks.length > 0 &&
+              monsterData.skillsBlocks.map((item) => (
+                <SkillBlock key={item.name} skillBlock={item} />
               ))}
             {monsterData.kind === "monster" && (
               <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />

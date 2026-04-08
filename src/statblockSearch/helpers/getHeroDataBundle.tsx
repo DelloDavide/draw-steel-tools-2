@@ -1,6 +1,7 @@
 import {
   DrawSteelStatblockZod,
   DrawSteelFeatureBlockZod,
+  DrawSteelSkillBlockZod,
 } from "../../types/DrawSteelZod";
 import type {
   IndexBundle,
@@ -15,6 +16,9 @@ export async function getHeroDataBundle(
   const statblockUrl = getStatblockUrl(indexBundle.statblock);
   const featureBLockUrls = indexBundle.features.map((item) =>
     getStatblockUrl(item),
+  );  
+  const skillBlockUrls = (indexBundle.skills ?? []).map((item) =>
+    getStatblockUrl(item),
   );
 
   const statblock = await fetchTypedData(
@@ -26,10 +30,14 @@ export async function getHeroDataBundle(
       fetchTypedData(item, DrawSteelFeatureBlockZod.parse),
     ),
   );
+  const skillBlocks = await Promise.all(
+    skillBlockUrls.map((item) => fetchTypedData(item, DrawSteelSkillBlockZod.parse)),
+  );
 
   return {
     key: indexBundle.name,
     statblock,
     featuresBlocks: featureBlocks,
+    skillsBlocks: skillBlocks,
   };
 }
