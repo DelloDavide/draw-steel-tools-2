@@ -6,6 +6,7 @@ import StatblockSearch from "./StatblockSearch.tsx";
 import { PluginReadyProvider } from "../components/logic/PluginReadyProvider.tsx";
 import { PluginReadyGate } from "../components/logic/PluginReadyGate.tsx";
 import { DevActionButtons } from "./components/DevScriptButtons.tsx";
+import type { IndexBundle } from "../types/monsterDataBundlesZod";
 
 import monsterIndex from "./monsterIndex.json";
 import heroIndex from "./heroIndex.json";
@@ -17,7 +18,26 @@ const devMode = params.get("dev");
 const type = params.get("type");
 const isHeroSearch = type === "hero";
 
-const index = isHeroSearch ? heroIndex : monsterIndex;
+const normalizeIndex = (
+  entries: Array<{
+    statblock: string;
+    features: string[];
+    skills?: string[];
+    name: string;
+    level: number;
+    ev: string;
+    roles: string[];
+    ancestry: string[];
+  }>,
+): IndexBundle[] =>
+  entries.map((entry) => ({
+    ...entry,
+    skills: entry.skills ?? [],
+  }));
+
+const normalizedMonsterIndex = normalizeIndex(monsterIndex);
+const normalizedHeroIndex = normalizeIndex(heroIndex);
+const index = isHeroSearch ? normalizedHeroIndex : normalizedMonsterIndex;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -25,7 +45,7 @@ createRoot(document.getElementById("root")!).render(
       <PluginReadyGate
         alternate={
           devMode === "true" && !isHeroSearch && (
-            <DevActionButtons monsterIndex={monsterIndex} />
+            <DevActionButtons monsterIndex={normalizedMonsterIndex} />
           )
         }
       >
