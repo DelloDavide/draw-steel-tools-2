@@ -9,6 +9,7 @@ import { removeCreatureData } from "../helpers/removeCreatureData";
 import type { ThemeMode } from "../types/themeMode";
 import type { MinionGroup } from "../types/minionGroup";
 import { getGmOnlyRestrictions } from "./getGmOnlyRestrictions";
+import { getContextMenuUrl } from "../helpers/getContextMenuUrl";
 
 const VERTICAL_PADDING = 16;
 const NAME_HEIGHT = 36 + 18 + 8;
@@ -16,8 +17,6 @@ const HERO_STATS_HEIGHT = 178;
 const MONSTER_STATS_HEIGHT = 54 + 62;
 const MINION_STATS_HEIGHT = 178;
 const ACCESS_TOGGLE_HEIGHT = 20 + 16 + 8;
-
-const getUrl = (themeMode: string) => `/contextMenu?themeMode=${themeMode}`;
 
 export default async function createContextMenuItems(
   settings: DefinedSettings,
@@ -74,7 +73,7 @@ function createPlayerMenu(
       },
     ],
     embed: {
-      url: getUrl(themeMode),
+      url: getContextMenuUrl(themeMode),
       height:
         (nameTagsEnabled ? NAME_HEIGHT : 0) +
         HERO_STATS_HEIGHT +
@@ -116,7 +115,7 @@ function createPlayerMenu(
       },
     ],
     embed: {
-      url: getUrl(themeMode),
+      url: getContextMenuUrl(themeMode),
       height:
         (nameTagsEnabled ? NAME_HEIGHT : 0) +
         MONSTER_STATS_HEIGHT +
@@ -165,7 +164,7 @@ function createPlayerMenu(
       } satisfies ContextMenuIcon;
     }),
     embed: {
-      url: `${getUrl(themeMode)}&minionEditor=true`,
+      url: `${getContextMenuUrl(themeMode)}&minionEditor=true`,
       height: NAME_HEIGHT + MINION_STATS_HEIGHT + VERTICAL_PADDING,
     },
   });
@@ -209,7 +208,7 @@ function createGmMenu(
       },
     ],
     embed: {
-      url: getUrl(themeMode),
+      url: getContextMenuUrl(themeMode),
       height:
         (nameTagsEnabled ? NAME_HEIGHT : 0) +
         HERO_STATS_HEIGHT +
@@ -246,7 +245,7 @@ function createGmMenu(
       },
     ],
     embed: {
-      url: getUrl(themeMode),
+      url: getContextMenuUrl(themeMode),
       height:
         (nameTagsEnabled ? NAME_HEIGHT : 0) +
         MONSTER_STATS_HEIGHT +
@@ -299,7 +298,7 @@ function createGmMenu(
       } satisfies ContextMenuIcon;
     }),
     embed: {
-      url: `${getUrl(themeMode)}&minionEditor=true`,
+      url: `${getContextMenuUrl(themeMode)}&minionEditor=true`,
       height:
         NAME_HEIGHT +
         MINION_STATS_HEIGHT +

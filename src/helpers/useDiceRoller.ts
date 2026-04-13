@@ -11,78 +11,125 @@ function requestDiceRollerConfig() {
   );
 }
 
+const getFallbackDiceRoller = (): DiceRoller => ({
+  config: undefined,
+  connect: requestDiceRollerConfig,
+  disconnect: () => {},
+  requestRoll: undefined,
+  requestPowerRoll: undefined,
+});
+
 export function useDiceRoller({
   onRollResult,
+  onPowerRollResult,
+  onConnect,
   channel,
 }: {
-  onRollResult: (rollResult: DiceProtocol.PowerRollResult) => void;
+  onRollResult?: (rollResult: DiceProtocol.RollResult) => void;
+  onPowerRollResult?: (rollResult: DiceProtocol.PowerRollResult) => void;
+  onConnect?: (diceRoller: DiceRoller) => void;
   channel?: string;
 }): DiceRoller {
-  const [config, setConfig] = useState<DiceProtocol.DiceRollerConfig>();
-  const rollResultHandler = useEffectEvent(onRollResult);
+  const rollResultHandler = useEffectEvent(
+    onRollResult ? onRollResult : () => {},
+  );
+  const rollReplyChannel =
+    channel === undefined
+      ? DiceProtocol.ROLL_RESULT_CHANNEL
+      : `${DiceProtocol.ROLL_RESULT_CHANNEL}/${channel}`;
+  useEffect(
+    () =>
+      OBR.broadcast.onMessage(rollReplyChannel, (event) => {
+        const data = event.data as DiceProtocol.RollResult;
+        rollResultHandler(data);
+      }),
+    [],
+  );
 
+  const powerRollResultHandler = useEffectEvent(
+    onPowerRollResult ? onPowerRollResult : () => {},
+  );
+  const powerRollReplyChannel =
+    channel === undefined
+      ? DiceProtocol.ROLL_RESULT_CHANNEL + "/powerRoll"
+      : `${DiceProtocol.ROLL_RESULT_CHANNEL}/${channel}` + "/powerRoll";
+  useEffect(
+    () =>
+      OBR.broadcast.onMessage(powerRollReplyChannel, (event) => {
+        const data = event.data as DiceProtocol.PowerRollResult;
+        powerRollResultHandler(data);
+      }),
+    [],
+  );
+
+  const [diceRoller, setDiceRoller] = useState<DiceRoller>(
+    getFallbackDiceRoller(),
+  );
+  const connectHandler = useEffectEvent(onConnect ? onConnect : () => {});
   useEffect(() => {
-    // Automatically connect to dice roller at startup
-    requestDiceRollerConfig();
+    requestDiceRollerConfig(); // Automatically connect to dice roller on mount
 
     return OBR.broadcast.onMessage(
       DiceProtocol.DICE_CLIENT_HELLO_CHANNEL,
       (event) => {
         const data = event.data as DiceProtocol.DiceRollerConfig;
-        if (!data.dieTypes.includes("D10")) {
-          console.error(
-            "Error D10 is not supported by the requested dice roller",
-          );
-          return;
+        ["D3", "D6", "D10"].forEach((value) => {
+          if (!(data.dieTypes as string[]).includes(value)) {
+            throw new Error(
+              `Error ${value} is not supported by the requested dice roller.`,
+            );
+          }
+        });
+
+        const rollRequestChannel = data.rollRequestChannels.find((val) =>
+          val.includes("rollRequest"),
+        );
+        if (rollRequestChannel === undefined) {
+          throw new Error("Channel 'rollrequest' not found.");
         }
-        setConfig(data);
+
+        const powerRollRequestChannel = data.rollRequestChannels.find((val) =>
+          val.includes("powerRollRequest"),
+        );
+        if (powerRollRequestChannel === undefined) {
+          throw new Error("Channel 'powerRollRequest' not found.");
+        }
+
+        const newDiceRoller: DiceRoller = {
+          config: data,
+          connect: requestDiceRollerConfig,
+          disconnect: () => setDiceRoller(getFallbackDiceRoller()),
+          requestRoll: (rollRequest) => {
+            OBR.broadcast.sendMessage(
+              rollRequestChannel,
+              {
+                ...rollRequest,
+                replyChannel: rollReplyChannel,
+              } satisfies DiceProtocol.RollRequest,
+              {
+                destination: "LOCAL",
+              },
+            );
+          },
+          requestPowerRoll: (rollRequest) => {
+            OBR.broadcast.sendMessage(
+              powerRollRequestChannel,
+              {
+                ...rollRequest,
+                replyChannel: powerRollReplyChannel,
+              } satisfies DiceProtocol.PowerRollRequest,
+              {
+                destination: "LOCAL",
+              },
+            );
+          },
+        };
+
+        connectHandler(newDiceRoller);
+        setDiceRoller(newDiceRoller);
       },
     );
   }, []);
 
-  const replyChannel =
-    channel === undefined
-      ? DiceProtocol.ROLL_RESULT_CHANNEL
-      : `${DiceProtocol.ROLL_RESULT_CHANNEL}/${channel}`;
-
-  useEffect(
-    () =>
-      OBR.broadcast.onMessage(replyChannel, (event) => {
-        const data = event.data as DiceProtocol.PowerRollResult;
-        rollResultHandler(data);
-      }),
-    [],
-  );
-  const getUnsetConfig = () => ({
-    config: undefined,
-    connect: requestDiceRollerConfig,
-    disconnect: () => setConfig(undefined),
-    requestRoll: undefined,
-  });
-
-  if (config === undefined) return getUnsetConfig();
-
-  const requestChannel = config.rollRequestChannels.find((val) =>
-    val.includes("powerRollRequest"),
-  );
-
-  if (requestChannel === undefined) return getUnsetConfig();
-
-  return {
-    config,
-    connect: requestDiceRollerConfig,
-    disconnect: () => setConfig(undefined),
-    requestRoll: (rollRequest) => {
-      OBR.broadcast.sendMessage(
-        requestChannel,
-        {
-          ...rollRequest,
-          replyChannel: replyChannel,
-        } satisfies DiceProtocol.PowerRollRequest,
-        {
-          destination: "LOCAL",
-        },
-      );
-    },
-  };
+  return diceRoller;
 }

@@ -1,4 +1,4 @@
-import * as DiceProtocol from "../../diceProtocol";
+import { DiceProtocol } from "../../diceProtocolExport";
 import {
   Dialog,
   DialogClose,

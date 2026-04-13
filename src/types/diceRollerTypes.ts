@@ -1,4 +1,4 @@
-import * as DiceProtocol from "../diceProtocol";
+import { DiceProtocol } from "../diceProtocolExport.ts";
 
 export type DiceOptions = "2d10" | "3d10kh2" | "3d10kl2";
 export type RollVisibility = "shared" | "self";
@@ -34,10 +34,16 @@ export type DiceRoller = {
 } & (
   | {
       config: DiceProtocol.DiceRollerConfig;
-      requestRoll: (rollRequest: DiceProtocol.PowerRollRequest) => void;
+      requestRoll: (
+        rollRequest: Omit<DiceProtocol.RollRequest, "replyChannel">,
+      ) => void;
+      requestPowerRoll: (
+        rollRequest: Omit<DiceProtocol.PowerRollRequest, "replyChannel">,
+      ) => void;
     }
   | {
       config: undefined;
       requestRoll: undefined;
+      requestPowerRoll: undefined;
     }
 );

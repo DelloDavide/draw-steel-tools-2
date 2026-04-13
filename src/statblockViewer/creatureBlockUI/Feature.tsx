@@ -21,12 +21,13 @@ import {
   type DiceDrawer,
 } from "../context/DiceDrawerContext";
 import Button from "../../components/ui/Button";
-import { ResultDropDown } from "./AbilityResultIndicator";
+import { ResultDropDown } from "./ResultDropDown";
 import { MaliceSpender } from "./MaliceSpender";
 import parseNumber from "../../helpers/parseNumber";
 import { MaliceSpentIndicator } from "./MaliceSpentIndicator";
 import { MaliceSpentContext } from "../context/MaliceSpentContext";
 import { FeatureIdContext } from "../context/FeatureIdContext";
+import { RollResultIndicator } from "./RollResultIndicator";
 
 export function Feature({
   blockName,
@@ -41,9 +42,15 @@ export function Feature({
   const maliceSpent = useContext(MaliceSpentContext);
 
   const featureId = blockName + feature.name;
-  const isResultTarget = diceDrawer.resultTargetId === featureId;
+
+  const isPowerRollResultTarget =
+    diceDrawer.powerRollResultTargetId === featureId;
   const highlightTier =
-    isResultTarget && diceDrawer.result ? diceDrawer.result.tier : undefined;
+    isPowerRollResultTarget && diceDrawer.powerRollResult
+      ? diceDrawer.powerRollResult.tier
+      : undefined;
+
+  const isRollResultTarget = diceDrawer.rollResultTargetId === featureId;
 
   let roll: string | undefined = undefined;
   let rollBonus: string = "";
@@ -56,30 +63,30 @@ export function Feature({
 
   return (
     <FeatureIdContext value={featureId}>
-      <div className="flex gap-1">
-        <div className="flex size-[20px] items-center justify-center">
-          {(() => {
-            if (feature.icon === "☠️") return <SkullIcon />;
-            if (feature.icon === "❗️") return <AlertCircleIcon />;
-            if (feature.icon === "🔳") return <Grid3X3Icon />;
-            if (feature.icon === "🗡") return <SwordIcon />;
-            if (feature.icon === "🏹") return <BowArrowIcon />;
-            if (feature.icon === "⭐️") return <StarIcon />;
-            return <UserIcon />;
-          })()}
-        </div>
+      <div className="ml-5 flex">
         <div className="w-full">
           <div className="w-full space-y-2">
             <div>
-              <div className="flex flex-wrap justify-between">
-                <div className="flex flex-wrap gap-1">
+              <div className="flex min-h-6 flex-wrap items-center justify-between">
+                <div className="flex flex-wrap items-center gap-1">
+                  <div className="-ml-6 flex size-[20px] items-center justify-center">
+                    {(() => {
+                      if (feature.icon === "☠️") return <SkullIcon />;
+                      if (feature.icon === "❗️") return <AlertCircleIcon />;
+                      if (feature.icon === "🔳") return <Grid3X3Icon />;
+                      if (feature.icon === "🗡") return <SwordIcon />;
+                      if (feature.icon === "🏹") return <BowArrowIcon />;
+                      if (feature.icon === "⭐️") return <StarIcon />;
+                      return <UserIcon />;
+                    })()}
+                  </div>
                   <div className="font-black">{feature.name}</div>
                   <PluginReadyGate alternate={<div>{roll}</div>}>
                     {roll && (
                       <Button
-                        variant={"secondary"}
+                        variant={"outline"}
                         size={"xs"}
-                        className="-my-0.5 px-3 font-normal text-nowrap"
+                        className="px-3 text-nowrap"
                         onClick={() => {
                           setRollAttributes((prev) => ({
                             ...prev,
@@ -90,8 +97,8 @@ export function Feature({
                               ({
                                 ...prev,
                                 open: true,
-                                rollTargetId: featureId,
-                                rollTargetName: feature.name,
+                                powerRollTargetId: featureId,
+                                powerRollTargetName: feature.name,
                               }) satisfies DiceDrawer,
                           );
                         }}
@@ -108,9 +115,9 @@ export function Feature({
                     <MaliceSpender
                       trigger={
                         <Button
-                          variant={"secondary"}
+                          variant={"outline"}
                           size={"xs"}
-                          className="-my-0.5 font-black"
+                          className="font-black"
                         >
                           {feature.cost}
                         </Button>
@@ -162,7 +169,16 @@ export function Feature({
           {maliceSpent?.target === featureId && (
             <MaliceSpentIndicator maliceSpent={maliceSpent.value} />
           )}
-          <ResultDropDown hidden={isResultTarget} result={diceDrawer.result} />
+          {isRollResultTarget && (
+            <RollResultIndicator
+              rollText={diceDrawer.rollText}
+              rollResult={diceDrawer.rollResult}
+            />
+          )}
+          <ResultDropDown
+            hidden={isPowerRollResultTarget}
+            result={diceDrawer.powerRollResult}
+          />
         </div>
       </div>
     </FeatureIdContext>

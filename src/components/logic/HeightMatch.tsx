@@ -8,7 +8,7 @@ function useHeightMatch(setHeight: (height: number) => void) {
     const resizeObserver = new ResizeObserver((entries) => {
       if (entries.length > 0) {
         const height = entries[0].borderBoxSize[0].blockSize;
-        setHeight(height);
+        setHeight(height + 1);
       }
     });
     resizeObserver.observe(heightReferenceDivRef.current);

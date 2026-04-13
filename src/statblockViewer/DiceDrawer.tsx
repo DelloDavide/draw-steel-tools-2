@@ -2,10 +2,13 @@ import getResetRollAttributes, {
   powerRoll,
 } from "../action/diceRoller/helpers.ts";
 import { useDiceRoller } from "../helpers/useDiceRoller.ts";
-import * as DiceProtocol from "../diceProtocol.ts";
+import { DiceProtocol } from "../diceProtocolExport.ts";
 import { defaultSettings } from "../helpers/settingsHelpers.ts";
-import type { Roll } from "../types/diceRollerTypes.ts";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import type {
+  DiceRoller as DiceRollerType,
+  Roll,
+} from "../types/diceRollerTypes.ts";
+import { useContext, useEffect, useMemo, useState } from "react";
 import {
   RollAttributesContext,
   SetRollAttributesContext,
@@ -41,35 +44,45 @@ export function DiceDrawer() {
   const [diceResultViewerOpen, setDiceResultViewerOpen] = useState(false);
 
   // External dice roller
-  const handleRollResult = useCallback(
-    (data: DiceProtocol.PowerRollResult) => {
-      const rolls = data.result.map((val) => val.result);
-      for (let i = 0; i < rolls.length; i++) {
-        if (rolls[i] === 0) rolls[i] = 10;
-      }
+  const handlePowerRollResult = (data: DiceProtocol.PowerRollResult) => {
+    const rolls = data.result.map((val) => val.result);
+    for (let i = 0; i < rolls.length; i++) {
+      if (rolls[i] === 0) rolls[i] = 10;
+    }
 
-      setDiceDrawer((prev) => ({
-        ...prev,
-        rollStatus: "DONE",
-        result: powerRoll({
-          bonus: data.rollProperties.bonus,
-          hasSkill: data.rollProperties.hasSkill,
-          netEdges: data.rollProperties.netEdges,
-          rollMethod: "givenValues",
-          dieValues: rolls,
-          selectionStrategy:
-            data.rollProperties.dice === "3d10kl2" ? "lowest" : "highest",
-        }),
-      }));
-      setRollAttributes({
-        ...getResetRollAttributes(rollAttributes, definedSettings),
-        style: rollAttributes.style,
+    setDiceDrawer((prev) => ({
+      ...prev,
+      rollStatus: "DONE",
+      powerRollResult: powerRoll({
+        bonus: data.rollProperties.bonus,
+        hasSkill: data.rollProperties.hasSkill,
+        netEdges: data.rollProperties.netEdges,
+        rollMethod: "givenValues",
+        dieValues: rolls,
+        selectionStrategy:
+          data.rollProperties.dice === "3d10kl2" ? "lowest" : "highest",
+      }),
+    }));
+    setRollAttributes({
+      ...getResetRollAttributes(rollAttributes, definedSettings),
+      style: rollAttributes.style,
+    });
+  };
+
+  const diceRoller = useDiceRoller({
+    onConnect: (diceRoller: DiceRollerType) => {
+      if (!diceRoller.config) return;
+      setDiceDrawer({
+        ...diceDrawer,
+        requestRoll: diceRoller.requestRoll,
       });
     },
-    [rollAttributes, rollAttributes, definedSettings],
-  );
-  const diceRoller = useDiceRoller({
-    onRollResult: handleRollResult,
+    onPowerRollResult: handlePowerRollResult,
+    onRollResult: (roll) => {
+      let total = 0;
+      roll.result.forEach((val) => (total += val.result));
+      setDiceDrawer((prev) => ({ ...prev, rollResult: total }));
+    },
     channel: "statblockViewer",
   });
 
@@ -100,7 +113,7 @@ export function DiceDrawer() {
               <Label variant="small" htmlFor="bonusInput">
                 Ability
               </Label>
-              {!diceDrawer.rollTargetId ? (
+              {!diceDrawer.powerRollTargetId ? (
                 <Button
                   className="inert pointer-events-none flex h-[36px] w-full items-center justify-between px-2 pl-4"
                   variant={"secondary"}
@@ -111,20 +124,20 @@ export function DiceDrawer() {
                 <Button
                   className="flex h-[36px] w-full items-center justify-between px-2 pl-4"
                   variant={"secondary"}
-                  title={diceDrawer.rollTargetName}
+                  title={diceDrawer.powerRollTargetName}
                   onClick={() =>
                     setDiceDrawer(
                       (prev) =>
                         ({
                           ...prev,
-                          rollTargetId: undefined,
-                          rollTargetName: undefined,
+                          powerRollTargetId: undefined,
+                          powerRollTargetName: undefined,
                         }) satisfies DiceDrawer,
                     )
                   }
                 >
                   <div className="max-w-[calc(100%-32px)] overflow-clip text-clip">
-                    {diceDrawer.rollTargetName}
+                    {diceDrawer.powerRollTargetName}
                   </div>
                   <XIcon className="shrink-0" />
                 </Button>
@@ -173,6 +186,10 @@ export function DiceDrawer() {
                   variant={"secondary"}
                   onClick={() => {
                     diceRoller.disconnect();
+                    setDiceDrawer((prev) => ({
+                      ...prev,
+                      requestRoll: undefined,
+                    }));
                     setRollAttributes((prev) => ({
                       ...prev,
                       style: undefined,
@@ -189,14 +206,14 @@ export function DiceDrawer() {
           </div>
           <div className="bg-mirage-50 dark:bg-mirage-950 px-4 py-3">
             <DiceRoller
-              autoOpenResultView={diceDrawer.rollTargetId === undefined}
+              autoOpenResultView={diceDrawer.powerRollTargetId === undefined}
               diceResultViewerOpen={diceResultViewerOpen}
               setDiceResultViewerOpen={setDiceResultViewerOpen}
-              result={diceDrawer.result}
+              result={diceDrawer.powerRollResult}
               setResult={(result: Roll | undefined) =>
                 setDiceDrawer((prev) => ({
                   ...prev,
-                  result,
+                  powerRollResult: result,
                   rollStatus: result ? "DONE" : "PENDING",
                 }))
               }
@@ -207,8 +224,8 @@ export function DiceDrawer() {
               onRollClicked={() =>
                 setDiceDrawer((prev) => ({
                   ...prev,
-                  open: prev.rollTargetId ? false : true,
-                  resultTargetId: prev.rollTargetId,
+                  open: prev.powerRollTargetId ? false : true,
+                  powerRollResultTargetId: prev.powerRollTargetId,
                 }))
               }
             />

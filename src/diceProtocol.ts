@@ -12,7 +12,7 @@
 
   The client can request a dice roll by sending a roll request using the RollRequest type formatting to the channel specified in the dice roller config. If a roll is currently in progress the request will be rejected and an error logged in the console.
 
-  # Roll result 
+  # Roll result
 
   The result is sent to the channel that the roll request specified. It might also get sent to a general dice result channel in the future so a general roll log extensions can be made. The result will have the format of the Roll Result type.
 */
@@ -40,7 +40,15 @@ export type DieStyle = {
   color: string; //
 };
 
-export type DieType = "D4" | "D6" | "D8" | "D10" | "D12" | "D20" | "D100";
+export type DieType =
+  | "D3"
+  | "D4"
+  | "D6"
+  | "D8"
+  | "D10"
+  | "D12"
+  | "D20"
+  | "D100";
 
 export type Die = {
   /** The ID associated with this die's result. */

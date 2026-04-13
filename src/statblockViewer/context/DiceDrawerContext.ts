@@ -1,12 +1,19 @@
 import { createContext, type Dispatch, type SetStateAction } from "react";
 import type { Roll } from "../../types/diceRollerTypes";
+import type { DiceProtocol } from "../../diceProtocolExport";
 
 export type DiceDrawer = {
   open: boolean;
-  result?: Roll;
-  rollTargetId?: string;
-  rollTargetName?: string;
-  resultTargetId?: string;
+  powerRollResult?: Roll;
+  powerRollTargetId?: string;
+  powerRollTargetName?: string;
+  powerRollResultTargetId?: string;
+  rollResult?: number;
+  rollText?: string;
+  rollResultTargetId?: string;
+  requestRoll?: (
+    requestRoll: Omit<DiceProtocol.RollRequest, "replyChannel">,
+  ) => void;
 };
 export const defaultDiceDrawer = {
   open: false,

@@ -2,7 +2,7 @@ import parseNumber from "../../helpers/parseNumber";
 import { cn } from "../../helpers/utils";
 import type { DrawSteelEffect } from "../../types/DrawSteelZod";
 import { PluginReadyGate } from "../../components/logic/PluginReadyGate";
-import { applyTextEffects } from "./applyTextEffects";
+import { formatRulesText } from "./insertTextStyling";
 import { MaliceSpender } from "./MaliceSpender";
 
 export function Effect({
@@ -37,7 +37,7 @@ export function Effect({
                 })()}
               </span>
               <span>
-                {applyTextEffects((effect as { [k: string]: string })[key])}
+                {formatRulesText((effect as { [k: string]: string })[key])}
               </span>
             </div>
           )}
@@ -70,7 +70,7 @@ export function Effect({
         {(effect.name || effect.cost) && (
           <span className="font-semibold">{": "}</span>
         )}
-        {effect.effect && <span>{applyTextEffects(effect.effect)}</span>}
+        {effect.effect && <span>{formatRulesText(effect.effect)}</span>}
       </div>
       {PowerRollEntries.length > 0 && (
         <div className="space-y-[1px]">{PowerRollEntries}</div>

@@ -1,3 +1,4 @@
+import { getLastDieStyle } from "../../helpers/lastDiceStyle";
 import type {
   DieResult,
   Roll,
@@ -148,6 +149,7 @@ export const defaultRollAttributes = {
   hasSkill: false,
   diceOptions: "2d10",
   visibility: "shared",
+  style: getLastDieStyle(),
 } satisfies RollAttributes;
 
 export default function getResetRollAttributes(

@@ -36,6 +36,7 @@ import type {
   RollAttributes,
 } from "../../types/diceRollerTypes";
 import type { DefinedSettings } from "../../types/settingsZod";
+import { setLastDieStyle } from "../../helpers/lastDiceStyle";
 
 export default function DiceRoller({
   rollAttributes,
@@ -161,9 +162,10 @@ export default function DiceRoller({
                 </Button>
               }
               dieStyles={diceRoller.config.styles}
-              onStyleClick={(style) =>
-                setRollAttributes((prev) => ({ ...prev, style }))
-              }
+              onStyleClick={(style) => {
+                setLastDieStyle(style);
+                setRollAttributes((prev) => ({ ...prev, style }));
+              }}
             />
           </div>
         )}
@@ -278,7 +280,7 @@ export default function DiceRoller({
               );
             } else {
               setResult(undefined);
-              diceRoller.requestRoll(
+              diceRoller.requestPowerRoll(
                 createRollRequestMessage({
                   bonus: rollAttributes.bonus,
                   netEdges,
@@ -394,7 +396,7 @@ export default function DiceRoller({
                     );
                   } else {
                     setResult(undefined);
-                    diceRoller.requestRoll(
+                    diceRoller.requestPowerRoll(
                       createRollRequestMessage({
                         bonus: rollAttributes.bonus,
                         hasSkill: rollAttributes.hasSkill,

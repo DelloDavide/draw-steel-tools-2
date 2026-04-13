@@ -1,4 +1,4 @@
-import * as DiceProtocol from "../diceProtocol";
+import { DiceProtocol } from "../diceProtocolExport";
 
 export function createRollRequestMessage(args: {
   gmOnly: boolean;
@@ -7,11 +7,10 @@ export function createRollRequestMessage(args: {
   hasSkill: boolean;
   dice: "2d10" | "3d10kh2" | "3d10kl2";
   styleId?: string;
-}): DiceProtocol.PowerRollRequest {
+}): Omit<DiceProtocol.PowerRollRequest, "replyChannel"> {
   const { gmOnly, styleId, ...rollProperties } = args;
   return {
     id: `drawSteelTools-${Date.now()}`,
-    replyChannel: DiceProtocol.ROLL_RESULT_CHANNEL,
     styleId,
     gmOnly,
     rollProperties,

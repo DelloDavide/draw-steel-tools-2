@@ -19,6 +19,14 @@ import NameInput from "./components/NameInput";
 import StatEditor from "./components/StatEditor";
 import StatblockControls from "./components/StatblockControls";
 import VisibilityToggle from "./components/VisibilityToggle";
+import { cn } from "../helpers/utils";
+import Button from "../components/ui/Button";
+import { getPluginId } from "../helpers/getPluginId";
+import Textarea from "./trackerInputs/TokenTextarea";
+
+const params = new URLSearchParams(document.location.search);
+const detailedVale = params.get("detailed");
+const detailed = detailedVale === "true" ? true : false;
 
 export default function TokenEditor() {
   const playerRole = usePlayerRole();
@@ -88,8 +96,13 @@ export default function TokenEditor() {
   };
 
   return (
-    <div className="text-foreground space-y-2 p-2">
-      {definedSettings.nameTagsEnabled && (
+    <div
+      className={cn("text-foreground space-y-2 p-2", {
+        "text-foreground bg-mirage-50 dark:bg-mirage-950 border-mirage-300 dark:border-mirage-700 flex h-screen min-h-screen flex-col gap-2 space-y-0 overflow-y-auto rounded-2xl border p-4 dark:scheme-dark":
+          detailed,
+      })}
+    >
+      {(definedSettings.nameTagsEnabled || detailed) && (
         <NameInput
           value={token.name}
           placeHolder={token.item.name}
@@ -105,11 +118,32 @@ export default function TokenEditor() {
           mode={token.type === "HERO" ? "hero" : "monster"}
         />
       )}
+      {detailed && token.type === "HERO" && (
+        <div className="grow">
+          <Textarea
+            label="Notes"
+            characterLimit={300}
+            parentValue={token.notes}
+            updateHandler={(value) => updateToken({ notes: value })}
+          />
+        </div>
+      )}
       {playerRole === "GM" && (
         <VisibilityToggle
           value={token.gmOnly}
           onClick={() => updateToken({ gmOnly: !token.gmOnly })}
         />
+      )}
+      {detailed && (
+        <div className="flex h-fit shrink-0 items-end">
+          <Button
+            className="w-full"
+            variant={"accentOutline"}
+            onClick={() => OBR.popover.close(getPluginId("hero-popover"))}
+          >
+            Close
+          </Button>
+        </div>
       )}
     </div>
   );

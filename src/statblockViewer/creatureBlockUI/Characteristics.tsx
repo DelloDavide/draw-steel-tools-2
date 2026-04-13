@@ -6,7 +6,7 @@ import {
   type DiceDrawer,
 } from "../context/DiceDrawerContext";
 import { SetRollAttributesContext } from "../context/RollAttributesContext";
-import { ResultDropDown } from "./AbilityResultIndicator";
+import { ResultDropDown } from "./ResultDropDown";
 import Button from "../../components/ui/Button";
 import { PluginReadyGate } from "../../components/logic/PluginReadyGate";
 
@@ -20,7 +20,7 @@ export function Characteristics({
   const setDiceDrawer = useContext(SetDiceDrawerContext);
 
   const characteristicsId = statblock.name;
-  const resultTarget = diceDrawer.resultTargetId;
+  const resultTarget = diceDrawer.powerRollResultTargetId;
   const resultTargetId = resultTarget?.substring(0, resultTarget.indexOf("/"));
   const characteristic = resultTarget?.substring(resultTarget.indexOf("/") + 1);
   const isResultTarget = resultTargetId === characteristicsId;
@@ -62,8 +62,8 @@ export function Characteristics({
                         ({
                           ...prev,
                           open: true,
-                          rollTargetId: `${characteristicsId}/${item.label}`,
-                          rollTargetName: item.label,
+                          powerRollTargetId: `${characteristicsId}/${item.label}`,
+                          powerRollTargetName: item.label,
                         }) satisfies DiceDrawer,
                     );
                   }}
@@ -81,7 +81,7 @@ export function Characteristics({
 
       <ResultDropDown
         hidden={isResultTarget}
-        result={diceDrawer.result}
+        result={diceDrawer.powerRollResult}
         badges={characteristic ? [characteristic] : []}
       />
     </div>

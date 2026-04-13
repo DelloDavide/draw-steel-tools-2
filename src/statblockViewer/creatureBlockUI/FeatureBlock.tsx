@@ -15,7 +15,9 @@ export function FeatureBlock({
             {featureBlock.level && (
               <span>{`Level ${featureBlock.level}+ `}</span>
             )}
-            <span>{featureBlock.featureblock_type}</span>
+            <span>
+              {featureBlock.featureblock_type.replaceAll("+", "").trim()}
+            </span>
           </div>
         </div>
         <div>{featureBlock.flavor}</div>

@@ -27,6 +27,7 @@ import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "../../helpers/getPluginId";
 import usePlayerRole from "../../helpers/usePlayerRole";
 import { useState } from "react";
+import PartyContinuityIcon from "../../components/icons/PartyContinuityIcon";
 
 export default function SideBarMenu() {
   const playerRole = usePlayerRole();
@@ -135,14 +136,21 @@ export default function SideBarMenu() {
               Recommended
             </div>
             <LinkButton
-              name="Token Labels"
-              icon={<TagIcon />}
-              href={"https://seamus-finlayson.ca/pages/token-labels"}
-            />
-            <LinkButton
               name="Connected Dice"
               icon={<ConnectedDiceIcon />}
               href={"https://seamus-finlayson.ca/pages/connected-dice"}
+            />
+            <LinkButton
+              name="Party Continuity"
+              icon={<PartyContinuityIcon />}
+              href={
+                "https://www.patreon.com/posts/new-extension-146279272?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+              }
+            />
+            <LinkButton
+              name="Token Labels"
+              icon={<TagIcon />}
+              href={"https://seamus-finlayson.ca/pages/token-labels"}
             />
             <div
               className={cn("text-foreground-secondary mb-1 px-4 text-sm", {
