@@ -122,10 +122,8 @@ export function StatblockSearchList({
             setAppState((prev) => ({
               ...prev,
               monsterViewerOpen: true,
-              monsterViewerData: undefined,
+              previewIndexBundle: indexBundle,
             }));
-            const monsterViewerData = await getMonsterDataBundle(indexBundle);
-            setAppState((prev) => ({ ...prev, monsterViewerData }));
           }}
           onActionClick={async () => {
             setAppState((prev) => ({
@@ -143,7 +141,8 @@ export function StatblockSearchList({
               .includes("minion");
             setAppState((prev) => ({
               ...prev,
-              monsterViewerData: monsterData,
+              previewIndexBundle: indexBundle,
+              selectedIndexBundle: indexBundle,
               setupOptions: isMinion
                 ? {
                     type: "MINION",

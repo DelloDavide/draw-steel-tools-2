@@ -2344,6 +2344,15 @@
     "ancestry": ["Accursed", "Humanoid", "Minotaur"]
   },
   {
+    "statblock": "Monsters/Noncombatant/Statblocks/Noncombatant.json",
+    "features": [],
+    "name": "Noncombatant",
+    "level": 0,
+    "ev": "-",
+    "roles": [],
+    "ancestry": ["Human or Animal"]
+  },
+  {
     "statblock": "Monsters/Ogres/Statblocks/Cyclops.json",
     "features": ["Monsters/Ogres/Features/Ogre Malice.json"],
     "name": "Cyclops",

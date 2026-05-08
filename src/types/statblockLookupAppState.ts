@@ -1,4 +1,5 @@
-import type { MonsterDataBundle, IndexBundle } from "./monsterDataBundlesZod";
+import type { IndexBundle } from "./monsterDataBundlesZod";
+import { defaultSearchData, type SearchData } from "./statblockSearchData";
 
 export type SetupOptions =
   | {
@@ -13,15 +14,17 @@ export type SetupOptions =
     };
 
 export type AppState = {
+  search: SearchData;
   monsterViewerOpen: boolean;
-  monsterViewerData: MonsterDataBundle | undefined;
+  previewIndexBundle: IndexBundle | undefined;
   selectedIndexBundle: IndexBundle | "NONE" | undefined;
   setupOptions: SetupOptions | undefined;
 };
 
 export const defaultAppState: AppState = {
+  search: defaultSearchData,
   monsterViewerOpen: false,
-  monsterViewerData: undefined,
+  previewIndexBundle: undefined,
   selectedIndexBundle: undefined,
   setupOptions: undefined,
 };

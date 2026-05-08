@@ -1,13 +1,9 @@
-import { useState } from "react";
 import type { IndexBundle } from "../../types/monsterDataBundlesZod";
 import { BrushCleaningIcon, ListFilterIcon, SearchIcon } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Toggle from "../../components/ui/Toggle";
 import { ScrollArea } from "../../components/ui/scrollArea";
-import {
-  defaultSearchData,
-  type SearchData,
-} from "../../types/statblockSearchData";
+import { defaultSearchData } from "../../types/statblockSearchData";
 import { FiltersDropdown } from "./FiltersDropdown";
 import { StatblockSearchList } from "./StatblockSearchList";
 import DebounceInput from "../../components/logic/DebounceInput";
@@ -15,17 +11,21 @@ import type { AppState } from "../../types/statblockLookupAppState";
 
 export default function SearchView({
   monsterIndex,
+  appState,
   setAppState,
   playerRole,
 }: {
   monsterIndex: IndexBundle[];
+  appState: AppState;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   playerRole: "PLAYER" | "GM";
 }) {
-  const [search, setSearch] = useState<SearchData>(defaultSearchData);
-
+  const search = appState.search;
   const updateSearchValue = (value: string) =>
-    setSearch({ ...search, value: value });
+    setAppState((prev) => ({
+      ...prev,
+      search: { ...prev.search, value: value },
+    }));
 
   return (
     <div className="flex grow flex-col">
@@ -34,6 +34,7 @@ export default function SearchView({
           <SearchIcon />
         </div>
         <DebounceInput
+          autoFocus
           className="h-full w-full outline-none"
           placeholder="Search Statblocks"
           duration={300}
@@ -43,7 +44,10 @@ export default function SearchView({
         <Toggle
           pressed={search.filtersOpen}
           onClick={() =>
-            setSearch({ ...search, filtersOpen: !search.filtersOpen })
+            setAppState((prev) => ({
+              ...prev,
+              search: { ...search, filtersOpen: !search.filtersOpen },
+            }))
           }
           size={"icon"}
           variant={"default"}
@@ -67,7 +71,9 @@ export default function SearchView({
           size={"icon"}
           className="mx-2 sm:w-20"
           variant={"secondary"}
-          onClick={() => setSearch(defaultSearchData)}
+          onClick={() =>
+            setAppState((prev) => ({ ...prev, search: defaultSearchData }))
+          }
         >
           <BrushCleaningIcon />
         </Button>
@@ -78,7 +84,9 @@ export default function SearchView({
           <>
             <FiltersDropdown
               search={search}
-              setSearch={setSearch}
+              setSearch={(search) =>
+                setAppState((prev) => ({ ...prev, search }))
+              }
               monsterIndex={monsterIndex}
             />
 

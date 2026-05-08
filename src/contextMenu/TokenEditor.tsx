@@ -122,7 +122,7 @@ export default function TokenEditor() {
         <div className="grow">
           <Textarea
             label="Notes"
-            characterLimit={300}
+            characterLimit={900}
             parentValue={token.notes}
             updateHandler={(value) => updateToken({ notes: value })}
           />

@@ -1,4 +1,4 @@
-import type { DrawSteelStatblock } from "../../types/DrawSteelZod";
+import { DrawSteelStatblockZod } from "../../types/DrawSteelZod";
 import { githubTreeZod } from "../../types/githubZod";
 import {
   IndexBundleZod,
@@ -66,17 +66,26 @@ export async function generateIndex() {
     pathBundles.map(async (pathBundle) => {
       // Get
       const response = await fetch(getStatblockUrl(pathBundle.statblock));
-      const json = (await response.json()) as DrawSteelStatblock;
+      const unvalidatedJson = await response.json();
+      const parseResult = DrawSteelStatblockZod.safeParse(unvalidatedJson); // (await response.json()) as DrawSteelStatblock;
+
+      if (!parseResult.success) {
+        console.error(parseResult.error, "Retrieved data", unvalidatedJson);
+        throw new Error("Parsing error. See above for details.");
+      }
+
+      const json = parseResult.data;
 
       // Format
+      const rolesString = json.roles.at(0);
       const indexBundle = {
         ...pathBundle,
         name: json.name,
         ev: json.ev,
-        roles: json.roles[0].split(" "),
+        roles: rolesString ? rolesString.split(" ") : [],
         ancestry: json.ancestry,
         level: json.level,
-      };
+      } satisfies IndexBundle;
 
       // Special handling for dragons
       if (pathBundle.statblock.startsWith("Monsters/Dragons/Statblocks/")) {

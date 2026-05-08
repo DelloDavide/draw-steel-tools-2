@@ -17,16 +17,8 @@ export function DevActionButtons({
 
   return (
     <div className="space-y-3 p-4">
-      <div className="font-bold">Actions</div>
+      <div className="font-bold">Actions (See Console for Output)</div>
       <div className="flex flex-wrap gap-3">
-        <Button onClick={() => validateStatblocks(monsterIndex)}>
-          Validate Statblocks
-        </Button>
-
-        <Button onClick={() => validateMalice(monsterIndex)}>
-          Validate Malice
-        </Button>
-
         <Button onClick={async () => setIndexDownload(await generateIndex())}>
           Generate Index
         </Button>
@@ -36,6 +28,14 @@ export function DevActionButtons({
             <a {...indexDownload}>Download Index</a>
           </Button>
         )}
+
+        <Button onClick={() => validateStatblocks(monsterIndex)}>
+          Validate Statblocks
+        </Button>
+
+        <Button onClick={() => validateMalice(monsterIndex)}>
+          Validate Malice
+        </Button>
 
         <Button
           onClick={() => {

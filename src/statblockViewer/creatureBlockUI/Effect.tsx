@@ -2,15 +2,17 @@ import parseNumber from "../../helpers/parseNumber";
 import { cn } from "../../helpers/utils";
 import type { DrawSteelEffect } from "../../types/DrawSteelZod";
 import { PluginReadyGate } from "../../components/logic/PluginReadyGate";
-import { formatRulesText } from "./insertTextStyling";
+import { insertTextStyling } from "./insertTextStyling";
 import { MaliceSpender } from "./MaliceSpender";
 
 export function Effect({
   effect,
   highlightTier,
+  noLinking = false,
 }: {
   effect: DrawSteelEffect;
   highlightTier?: number;
+  noLinking?: boolean;
 }) {
   const PowerRollEntries = Object.keys(effect)
     .filter((key) => ["tier1", "tier2", "tier3"].includes(key))
@@ -37,7 +39,10 @@ export function Effect({
                 })()}
               </span>
               <span>
-                {formatRulesText((effect as { [k: string]: string })[key])}
+                {insertTextStyling(
+                  (effect as { [k: string]: string })[key],
+                  noLinking,
+                )}
               </span>
             </div>
           )}
@@ -70,7 +75,9 @@ export function Effect({
         {(effect.name || effect.cost) && (
           <span className="font-semibold">{": "}</span>
         )}
-        {effect.effect && <span>{formatRulesText(effect.effect)}</span>}
+        {effect.effect && (
+          <span>{insertTextStyling(effect.effect, noLinking)}</span>
+        )}
       </div>
       {PowerRollEntries.length > 0 && (
         <div className="space-y-[1px]">{PowerRollEntries}</div>

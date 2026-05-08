@@ -1,32 +1,14 @@
-import type { JSX } from "react";
 import { InlineRollButton } from "./InlineRollButton";
+import { DefinitionDialog } from "./definitionDialog";
+import {
+  characteristicTestRegex,
+  generalDefinitionsRegex,
+  potencyRegex,
+  rollRegex,
+} from "./regex";
+import { replaceWithJsx } from "./replaceWithJsx";
 
-const replaceWithJsx = (
-  array: (string | JSX.Element)[],
-  regExp: RegExp,
-  getElement: (text: string) => JSX.Element,
-) => {
-  const output: (string | JSX.Element)[] = [];
-  array.forEach((item) => {
-    if (typeof item !== "string") {
-      output.push(item);
-      return;
-    }
-    output.push(
-      ...item
-        .split(regExp)
-        .flatMap((val, index) => (index % 2 ? getElement(val) : val)),
-    );
-  });
-  return output;
-};
-
-const potencyRegex = /([MAIRP][ ][<][ ][-]?[\d])+/g;
-const characteristicTestRegex =
-  /((?:Might|Agility|Intuition|Reason|Presence)(?: test))+/g;
-const rollRegex = /((?:\d+)?(?:d\d+)(?:\s*\+\s*\d+)?)+/g;
-
-export function formatRulesText(string: string) {
+export function insertTextStyling(string: string, noRecursion = false) {
   string = string.replaceAll("*", "");
   let key = 0;
   let output = replaceWithJsx([string], potencyRegex, (text) => (
@@ -45,6 +27,19 @@ export function formatRulesText(string: string) {
   output = replaceWithJsx(output, rollRegex, (text) => (
     <InlineRollButton key={key++} text={text} />
   ));
+  output = replaceWithJsx(output, generalDefinitionsRegex, (text) =>
+    noRecursion ? (
+      <span key={key++}>{text}</span>
+    ) : (
+      <DefinitionDialog
+        key={key++}
+        text={text}
+        tags={["condition", "combat", "area"]}
+      >
+        <button className="text-[#866D4B] hover:underline">{text}</button>
+      </DefinitionDialog>
+    ),
+  );
 
   return output;
 }

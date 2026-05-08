@@ -28,6 +28,13 @@ import { MaliceSpentIndicator } from "./MaliceSpentIndicator";
 import { MaliceSpentContext } from "../context/MaliceSpentContext";
 import { FeatureIdContext } from "../context/FeatureIdContext";
 import { RollResultIndicator } from "./RollResultIndicator";
+import { insertTextStyling } from "./insertTextStyling";
+import { replaceWithJsx } from "./replaceWithJsx";
+import { abilityKeywordsRegex, distancesRegex } from "./regex";
+import { DefinitionDialog } from "./definitionDialog";
+import BurstIcon from "../../components/icons/BurstIcon";
+import SpecialIcon from "../../components/icons/SpecialIcon";
+import VersatileIcon from "../../components/icons/VersatileIcon";
 
 export function Feature({
   blockName,
@@ -53,17 +60,19 @@ export function Feature({
   const isRollResultTarget = diceDrawer.rollResultTargetId === featureId;
 
   let roll: string | undefined = undefined;
-  let rollBonus: string = "";
+  let rollBonus: number = 0;
   feature.effects.forEach((val) => {
     if ("roll" in val && val.roll) {
       roll = val.roll.replace("Power Roll", "2d10");
-      rollBonus = val.roll.replace("Power Roll", "").replace(/\s/g, "");
+      rollBonus = parseFloat(
+        val.roll.replace("Power Roll", "").replace(/\s/g, ""),
+      );
     }
   });
 
   return (
     <FeatureIdContext value={featureId}>
-      <div className="ml-5 flex">
+      <div className="ml-6 flex">
         <div className="w-full">
           <div className="w-full space-y-2">
             <div>
@@ -77,12 +86,15 @@ export function Feature({
                       if (feature.icon === "🗡") return <SwordIcon />;
                       if (feature.icon === "🏹") return <BowArrowIcon />;
                       if (feature.icon === "⭐️") return <StarIcon />;
+                      if (feature.icon === "❇️") return <BurstIcon />;
+                      if (feature.icon === "🌀") return <SpecialIcon />;
+                      if (feature.icon === "⚔️") return <VersatileIcon />;
                       return <UserIcon />;
                     })()}
                   </div>
                   <div className="font-black">{feature.name}</div>
                   <PluginReadyGate alternate={<div>{roll}</div>}>
-                    {roll && (
+                    {roll && !Number.isNaN(rollBonus) ? (
                       <Button
                         variant={"outline"}
                         size={"xs"}
@@ -90,7 +102,7 @@ export function Feature({
                         onClick={() => {
                           setRollAttributes((prev) => ({
                             ...prev,
-                            bonus: parseFloat(rollBonus),
+                            bonus: rollBonus,
                           }));
                           setDiceDrawer(
                             (prev) =>
@@ -105,6 +117,8 @@ export function Feature({
                       >
                         {roll}
                       </Button>
+                    ) : (
+                      <div>{roll}</div>
                     )}
                   </PluginReadyGate>
                 </div>
@@ -131,14 +145,47 @@ export function Feature({
                 )}
               </div>
               <div className="flex flex-wrap justify-between">
-                <div>{feature.keywords?.join(", ")}</div>
+                <div>
+                  {feature.keywords &&
+                    replaceWithJsx(
+                      [feature.keywords.join(", ")],
+                      abilityKeywordsRegex,
+                      (text) => (
+                        <DefinitionDialog
+                          key={text}
+                          text={text}
+                          tags={["ability_keywords"]}
+                        >
+                          <button className="hover:underline">{text}</button>
+                        </DefinitionDialog>
+                      ),
+                    )}
+                </div>
                 <div>{feature.usage}</div>
               </div>
               {(feature.distance || feature.target) && (
                 <div className="flex flex-wrap justify-between">
                   <div className="flex items-center gap-1">
                     <Ruler className="size-4" />
-                    <div>{feature.distance}</div>
+                    <div>
+                      {feature.distance
+                        ? replaceWithJsx(
+                            [feature.distance],
+                            distancesRegex,
+                            (text) => (
+                              <DefinitionDialog
+                                key={text}
+                                text={text}
+                                tags={["area", "distance"]}
+                              >
+                                <button className="hover:underline">
+                                  {text}
+                                </button>
+                              </DefinitionDialog>
+                            ),
+                          )
+                        : "-"}
+                    </div>
                   </div>
                   <div className="flex items-center gap-1">
                     <Icon iconNode={targetArrow} className="size-4 shrink-0" />
@@ -150,7 +197,7 @@ export function Feature({
             {feature.trigger && (
               <div>
                 <span className="font-semibold">{"Trigger: "}</span>
-                {feature.trigger}
+                {insertTextStyling(feature.trigger)}
               </div>
             )}
             {feature.effects.length > 0 && (
@@ -160,6 +207,7 @@ export function Feature({
                     key={index}
                     effect={effect}
                     highlightTier={index < 2 ? highlightTier : undefined}
+                    noLinking={blockName === "None"}
                   />
                 ))}
               </div>

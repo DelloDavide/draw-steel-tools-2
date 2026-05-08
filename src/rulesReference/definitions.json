@@ -1,0 +1,438 @@
+[
+  {
+    "title": "Bleeding",
+    "tags": ["condition"],
+    "match": ["bleeding"],
+    "body": [
+      "While a creature is bleeding, whenever they use a main action, use a triggered action, or make a test or ability roll using Might or Agility, they lose Stamina equal to 1d6 + their level after the main action, triggered action, or power roll is resolved. This Stamina loss can’t be prevented in any way, and only happens once per action.",
+      "You take damage from this condition when you use a main action off your turn. For example, a signature ability used as a free triggered action with the assistance of the tactician’s Strike Now ability triggers the damage from the bleeding condition."
+    ]
+  },
+  {
+    "title": "Dazed",
+    "tags": ["condition"],
+    "match": ["dazed"],
+    "body": [
+      "A creature who is dazed can do only one thing on their turn: use a main action, use a maneuver, or use a move action. A dazed creature also can’t use triggered actions, free triggered actions, or free maneuvers."
+    ]
+  },
+  {
+    "title": "Frightened",
+    "tags": ["condition"],
+    "match": ["frightened"],
+    "body": [
+      "When a creature is frightened, any ability roll they make against the source of their fear takes a bane. If that source is a creature, their ability rolls made against the frightened creature gain an edge. A frightened creature can’t willingly move closer to the source of their fear if they know the location of that source. If a creature gains the frightened condition from one source while already frightened by a different source, the new condition replaces the old one."
+    ]
+  },
+  {
+    "title": "Grabbed",
+    "tags": ["condition"],
+    "match": ["escape grab", "grabbed", "grabs", "grab"],
+    "body": [
+      "A creature who is grabbed has speed 0, can’t be force moved except by a creature, object, or effect that has them grabbed, can’t use the Knockback maneuver (see Maneuvers in Chapter 10: Combat), and takes a bane on abilities that don’t target the creature, object, or effect that has them grabbed. If a creature is grabbed by another creature and that creature moves, they bring the grabbed creature with them. If a creature’s size is equal to or less than the size of a creature they have grabbed, their speed is halved while they have that creature grabbed.",
+      "A creature who has another creature grabbed can use a maneuver to move the grabbed creature into an unoccupied space adjacent to them.",
+      "A creature can release a creature they have grabbed at any time to end that condition (no action required). A grabbed creature can attempt to escape being grabbed using the Escape Grab maneuver. If a grabbed creature teleports, or if either the grabbed creature or the creature grabbing them is force moved so that both creatures are not adjacent to each other, that creature is no longer grabbed.",
+      "A creature can grab only creatures of their size or smaller. If a creature’s Might score is 2 or higher, they can grab any creature larger than them with a size equal to or less than their Might score.",
+      "Unless otherwise indicated, a creature can grab only one creature at a time."
+    ]
+  },
+
+  {
+    "title": "Prone",
+    "tags": ["condition"],
+    "match": ["prone"],
+    "append": ["Falling", "Falling Onto Another Creature", "Falling Far"],
+    "body": [
+      "While a creature is prone, they are flat on the ground, any strike they make takes a bane, and melee abilities used against them gain an edge. A prone creature must crawl to move along the ground, which costs 1 additional square of movement for every square crawled. A creature can’t climb, jump, swim, or fly while prone. If they are climbing, flying, or jumping when knocked prone, they fall.",
+      "Unless the ability or effect that imposed the prone condition says otherwise, a prone creature can stand up using the Stand Up maneuver (see Maneuvers in Chapter 10: Combat). A creature adjacent to a willing prone creature can likewise use the Stand Up maneuver to make that creature stand up."
+    ]
+  },
+  {
+    "title": "Restrained",
+    "tags": ["condition"],
+    "match": ["restrained"],
+    "body": [
+      "A creature who is restrained has speed 0, can’t use the Stand Up maneuver, and can’t be force moved. A restrained creature takes a bane on ability rolls and on Might and Agility tests, and abilities used against them gain an edge.",
+      "If a creature teleports while restrained, that condition ends."
+    ]
+  },
+  {
+    "title": "Slowed",
+    "tags": ["condition"],
+    "match": ["slowed"],
+    "body": [
+      "A creature who is slowed has speed 2 unless their speed is already lower, and they can’t shift."
+    ]
+  },
+  {
+    "title": "Taunted",
+    "tags": ["condition"],
+    "match": ["taunted"],
+    "body": [
+      "A creature who is taunted has a double bane on ability rolls for any ability that doesn’t target the creature who taunted them, as long as they have line of effect to that creature. If a creature gains the taunted condition from one source while already taunted by a different source, the new condition replaces the old one."
+    ]
+  },
+  {
+    "title": "Weakened",
+    "tags": ["condition"],
+    "match": ["weakened"],
+    "body": ["A creature who is weakened takes a bane on power rolls."]
+  },
+  {
+    "title": "Hiding",
+    "tags": ["combat", "tests"],
+    "match": ["hiding", "hidden", "hide"],
+    "append": [
+      "Searching for Hidden Creatures",
+      "Sneaking",
+      "Cover",
+      "Concealment"
+    ],
+    "body": [
+      "To hide from a creature, you must have cover or concealment from that creature (see below), who can’t observe you attempting to hide. A creature is observing you if they’re aware of your specific location before you attempt to hide. This means they can pinpoint you with their senses and point a finger (or paw or tentacle) at you as if to shout, “There they are!” If you duck behind a barrel to hide from a foe, your attempt to hide has a chance of succeeding only if your foe doesn’t notice you doing so. If you’re being chased by a hungry dragon, you can hide only if you first move to a location where the dragon can’t observe you—for instance, by turning a sharp corner into a tunnel full of giant stalagmites before the dragon does. You then make your hide attempt.",
+      "When you use the Hide maneuver to hide during combat while you have cover or concealment from a creature who isn’t observing you, you are automatically hidden from them unless the Director deems otherwise. If you hide outside of combat, the Director might ask you to make a test using the Hide skill to determine how well hidden you are.",
+      "While you are hidden from another creature, the creature can’t target you with abilities that don’t have the Area keyword. This benefit ends as soon as you are no longer hidden from that creature.",
+      "Additionally, while you are hidden from another creature, you gain an edge on ability rolls made against that creature. This benefit lasts until the end of the turn in which you are no longer hidden. This means you can be hidden from another creature at the start of your turn, move out of cover or concealment toward them and use an ability against them, and still gain an edge on ability rolls made against the creature as long as you use the ability before the end of that turn.",
+      "You are no longer hidden from a creature if you don’t have cover or concealment from them. If you use an ability, interact with an enemy, move without sneaking, or otherwise make noise or reveal yourself while hidden, you are no longer hidden once the activity that reveals you resolves. For instance, if you are hidden and then make a strike, you resolve the strike first, then are no longer hidden."
+    ]
+  },
+  {
+    "title": "Searching for Hidden Creatures",
+    "tags": [],
+    "match": [],
+    "body": [
+      "You can search for creatures who are hidden from you as long as those creatures are within 10 squares and you have line of effect to them. To do so, you use a maneuver to make an Intuition test using the Search skill, and any hidden creatures within 10 squares of you each make an opposed Agility test using the Hide skill (see Opposed Power Rolls earlier in this chapter). At the Director’s discretion, different charac- teristics and skills can be used in this opposed test. For example, your foe might make a Presence test using the Handle Animals skill to hide among a flock of sheep without disturbing them, or you could make a Reason test using the Eavesdrop skill to pick out the breathing of a creature hidden in the dark.",
+      "If the total of your test is higher than that of a hidden creature, they are no longer hidden from you. Otherwise, they remain hidden from you. As part of the maneuver used to search for hidden creatures, you can point out any creatures you notice to allies within 10 squares of you, making those creatures no longer hidden from those allies.",
+      "If a creature is hidden from your allies but not from you, you can use a maneuver without making a test to point that creature out to your allies."
+    ]
+  },
+  {
+    "title": "Sneaking",
+    "tags": ["combat", "tests"],
+    "match": [],
+    "body": [
+      "While you are hidden from another creature and not in combat, you can attempt to sneak—avoiding the senses of other creatures as you move around them in the open—to remain hidden. While sneaking, your speed is halved. To sneak, you make an Agility test using the Sneak skill with a difficulty set by the Director. If you succeed, you remain hidden during your movement. This test can use another characteristic at the Director’s discretion, such as using Presence to blend in with a crowd on a packed city street."
+    ]
+  },
+  {
+    "title": "Concealment",
+    "tags": ["combat"],
+    "match": ["concealment", "concealed"],
+    "body": [
+      "Darkness, fog, invisibility magic, and any other effect that fully obscures a creature or object but doesn’t protect their physical form grants that creature or object concealment. Even if you have line of effect to such a target, a creature or object has concealment from you if you can’t see or otherwise observe them. You can target a creature or object with concealment using a strike, provided they aren’t hidden (see Hide and Sneak in Chapter 9: Tests). However, strikes against such targets take a bane."
+    ]
+  },
+  {
+    "title": "Cover",
+    "tags": ["combat"],
+    "match": [],
+    "body": [
+      "When you have line of effect to a creature or object but that target has at least half their form blocked by a solid object such as a tree, wall, or overturned table, the target has cover. You take a bane on damage-dealing abilities used against creatures or objects that have cover from you."
+    ]
+  },
+  {
+    "title": "Invisible",
+    "tags": ["combat"],
+    "match": ["invisible"],
+    "append": ["Concealment"],
+    "body": [
+      "Invisible creatures always have concealment from other creatures. If an invisible creature isn’t hidden, they can still be targeted by abilities. The test made to find a hidden creature who is invisible takes a bane."
+    ]
+  },
+  {
+    "title": "Falling",
+    "tags": ["combat"],
+    "match": ["falling", "falls", "fall"],
+    "append": ["Falling Onto Another Creature", "Falling Far"],
+    "body": [
+      "When a creature falls 2 or more squares and lands on the ground, they take 2 damage for each square they fall (to a maximum of 50 damage) and land prone. A creature who falls can reduce the effective height of the fall by a number of squares equal to their Agility score (to a minimum of 0). Falling into liquid that is 1 square or more deep reduces the effective height of a fall by 4 squares (to a minimum of 0).",
+      "Falling is not forced movement, but being force moved downward is considered falling. Movement from falling doesn’t provoke opportunity attacks."
+    ]
+  },
+  {
+    "title": "Falling Onto Another Creature",
+    "tags": [],
+    "match": [],
+    "body": [
+      "A creature who falls and lands on another creature causes that creature to take the same damage from the fall. The falling creature then lands prone in the nearest unoccupied space of their choice. If the falling creature’s size is greater than the Might score of the creature they land on, that creature is knocked prone."
+    ]
+  },
+  {
+    "title": "Falling Far",
+    "tags": [],
+    "match": [],
+    "body": [
+      "When a creature first falls from a great height, they fall 100 squares in the first round. At the end of each subsequent round that they remain falling, they fall another 100 squares."
+    ]
+  },
+  {
+    "title": "Forced Movement",
+    "tags": ["combat"],
+    "regex": "slid(?:es)?(?:e)?(?:ing)?|push(?:ed)?(?:es)?(?:ing)?|pull(?:ed)?(?:s)?(?:ing)?",
+    "match": [
+      "sliding",
+      "slides",
+      "slide",
+      "slid",
+      "pushing",
+      "pushed",
+      "pushes",
+      "push",
+      "pulling",
+      "pulled",
+      "pulls",
+      "pull"
+    ],
+    "append": [
+      "Straight Lines",
+      "Vertical",
+      "Slamming Into Creatures",
+      "Slamming Into Objects",
+      "Hurling Through Objects",
+      "Forced Into a Fall",
+      "Stability",
+      "“When a Creature Moves …”",
+      "Death Effects and Forced Movement",
+      "Falling",
+      "Falling Onto Another Creature",
+      "Falling Far"
+    ],
+    "body": [
+      "Some actions and maneuvers allow a creature to push, pull, or slide a target creature or object a specific distance across the battlefield. Collectively, these types of movement are called forced movement.",
+      "Push X: The creature moves the target up to X squares away from them in a straight line, without moving them vertically. Each square the creature moves the target must put the target farther away from them.",
+      "Pull X: The creature moves the target up to X squares toward them in a straight line, without moving them vertically. Each square the creature moves the target must bring the target closer to them.",
+      "Slide X: The creature moves the target up to X squares in any direction, except for vertically. Unlike a push or a pull, a slide doesn’t need to be a straight line.",
+      "When you force move a target, you can always move that target fewer squares than the number indicated. For example, when the conduit obtains a tier 3 “push 3” outcome with their Call the Thunder Down ability, they can push targets any distance up to 3 squares, including choosing to not move certain targets at all.",
+      "Forced movement ignores difficult terrain and never provokes opportunity attacks. When you force move a target into damaging terrain or into terrain that produces an effect, they are affected as if they had moved into it willingly"
+    ]
+  },
+  {
+    "title": "Vertical",
+    "tags": [],
+    "match": [],
+    "body": [
+      "If a forced movement effect has the word “vertical” in front of it, then the forced movement can move a target up or down in addition to horizontally. For example, if a forced movement effect says “vertical push 5,” then a creature targeted by the effect can be pushed up to 5 squares in any direction, as long as the forced movement is a straight line.",
+      "If a creature who can’t fly is left in midair at the end of a vertical forced move, they fall. Forced movement made against a creature who is flying is always a vertical forced move, whether or not the effect specifies it.",
+      "Though you can’t freely push, pull, or slide a target up and down unless that forced movement specifies “vertical,” you can move them along a physical slope such as a hill or staircase. For a target to be force moved along a slope, each square of the slope can be no more than 1 square higher or lower than the previous square."
+    ]
+  },
+  {
+    "title": "Slamming Into Creatures",
+    "tags": [],
+    "match": [],
+    "body": [
+      "When you force move a creature into another creature, the movement ends and both creatures take 1 damage for each square remaining in the first creature’s forced movement. You can also force move an object into a creature. The object’s movement ends, and the creature takes 1 damage for each square remaining in the object’s forced movement.",
+      "It’s possible to move a creature or object of a larger size into several creatures of a smaller size at the same time. When this happens, the larger creature in the collision takes damage only once, not once for each smaller creature they slam into.",
+      "If a creature is killed by damage from an ability or effect that also force moves them, a second creature they are slammed into still takes damage unless the Director deems otherwise.",
+      "You can force move another creature into yourself with a pull or a slide."
+    ]
+  },
+  {
+    "title": "Slamming Into Objects",
+    "tags": [],
+    "match": [],
+    "body": [
+      "When a creature force moves a target into a stationary object that is the target’s size or larger and the object doesn’t break (see below), the movement ends and the target takes 2 damage plus 1 damage for each square remaining in their forced movement.",
+      "If you force move a creature downward into an object that doesn’t break (including the ground), they also take falling damage as if they had fallen the distance force moved and their Agility score was 0 (see Falling below)."
+    ]
+  },
+  {
+    "title": "Hurling Through Objects",
+    "tags": [],
+    "match": [],
+    "body": [
+      "When you move a creature into a mundane object, the object can break depending on how many squares of forced movement remain. The cost of being slammed into an object is tied to the damage a target takes for being hurled through it: ",
+      "• It costs 1 remaining square of forced movement to destroy 1 square of glass. The creature moved takes 3 damage.",
+      "• It costs 3 remaining squares of forced movement to destroy 1 square of wood. The creature moved takes 5 damage. ",
+      "• It costs 6 remaining squares of forced movement to destroy 1 square of stone. The creature moved takes 8 damage. ",
+      "• It costs 9 remaining squares of forced movement to destroy 1 square of metal. The creature moved takes 11 damage.",
+      "If any forced movement remains after the object is destroyed, you can continue to move the creature who destroyed the object."
+    ]
+  },
+  {
+    "title": "Forced Into a Fall",
+    "tags": [],
+    "match": [],
+    "body": [
+      "If you can’t fly and are force moved across an open space that would cause you to fall, such as being pushed over the edge of a cliff, you continue moving the total distance you were moved first. If you are still in a position to fall when the forced movement ends, you fall."
+    ]
+  },
+  {
+    "title": "Stability",
+    "tags": [],
+    "match": [],
+    "body": [
+      "Each creature has a stability that allows them to resist forced movement. When a creature is force moved, they can reduce that movement up to a number of squares equal to their stability. Heroes start with stability 0 and can increase their stability through ancestry, class, and kit options.",
+      "A creature’s stability can’t be less than 0, even when reduced by a penalty."
+    ]
+  },
+  {
+    "title": "“When a Creature Moves …”",
+    "tags": [],
+    "match": [],
+    "body": [
+      "Certain abilities and effects trigger when a creature moves into a particular area. Forced movement triggers these options unless otherwise noted, including an effect stating that a creature must willingly move to trigger it."
+    ]
+  },
+  {
+    "title": "Death Effects and Forced Movement",
+    "tags": [],
+    "match": [],
+    "body": [
+      "Some creatures have traits or abilities that trigger when they die or are reduced to 0 Stamina. If such a creature is reduced to 0 Stamina by damage from an ability or effect that also force moves them, the forced movement takes place before the triggered effect"
+    ]
+  },
+  {
+    "title": "Aura",
+    "tags": ["area"],
+    "regex": "\\d+ aura",
+    "body": [
+      "When an ability creates an aura, that area is expressed as “X aura.” The number X is the radius of the aura, which always originates from you and moves with you for the duration of the ability that created it. A creature or object must be within X squares of you to be targeted by an aura ability."
+    ]
+  },
+  {
+    "title": "Burst",
+    "tags": ["area"],
+    "regex": "\\d+ burst",
+    "body": [
+      "When an ability creates a burst area, that area is expressed as “X burst. The number X is the radius of the burst, which always originates from you and lasts only for as long as it takes to affect its targets. A creature or object must be within X squares of you to be targeted by a burst ability."
+    ]
+  },
+  {
+    "title": "Cube",
+    "tags": ["area"],
+    "regex": "\\d+ cube",
+    "body": [
+      "When an ability affects a cubic area, that area is expressed as “X cube. The number X is the length of each of the area’s sides. A creature or object must be within the area to be targeted by a cube ability. "
+    ]
+  },
+  {
+    "title": "Line",
+    "tags": ["area"],
+    "regex": "straight line|\\d+ x \\d+ line|line(?! of effect)",
+    "match": ["line", "straight line"],
+    "append": ["Straight Lines"],
+    "body": [
+      "When an ability affects a linear area, that area is expressed as “A × B line.” The number A denotes the line’s length in squares, while the number B equals the line’s width and height in squares. When you create a line area of effect, the squares in that area must be in a straight line. A creature or object must be within the area to be targeted by a line ability."
+    ]
+  },
+  {
+    "title": "Wall",
+    "tags": ["area"],
+    "regex": "\\d+ wall",
+    "body": [
+      "When an ability creates a wall, that area is expressed as “X wall.” The number X is how many squares are used to make the wall. When you place a wall, you can build it one square at a time, but each square must share at least one side (not just a corner) with another square of the wall. A creature or object must be within the area to be targeted by a wall ability.",
+      "You can stack squares on top of each other to make the wall higher. Unless otherwise stated, a wall can’t be placed in occupied squares, and a wall blocks line of effect."
+    ]
+  },
+  {
+    "title": "Straight Lines",
+    "tags": [],
+    "match": [],
+    "body": [
+      "Talking about a straight line area of effect on an encounter map doesn’t mean the line can only be a straight vertical or horizontal line of contiguous squares. It means each square in the line’s length must move in the same direction without bending back in an opposite direction. To make a line area quickly, pick your line’s origin square, then pick each subsquent square in the line one at a time in a single direction without bending back in an opposite direction.",
+      "Likewise, abilities and effects that require a creature to move in a straight line, such as the Charge main action or forced movement that is a push or a pull, don’t have to take the form of a straight series of squares on the grid. Simply move the creature one square at a time in a single direction without ever bending back in a direction opposite to where they’ve already moved."
+    ]
+  },
+  {
+    "title": "Area",
+    "tags": ["ability_keywords"],
+    "match": ["area"],
+    "body": [
+      "Abilities with the Area keyword create an area of effect. Many area abilities deal damage to targets in their area, but such abilities are treated differently than strikes made against specific targets."
+    ]
+  },
+  {
+    "title": "Charge",
+    "tags": ["ability_keywords"],
+    "match": ["charge"],
+    "body": [
+      "Abilities with the Charge keyword can be used with the Charge main action instead of a melee free strike. (The Charge main action is described in Main Actions in Chapter 10: Combat.)"
+    ]
+  },
+  {
+    "title": "Magic",
+    "tags": ["ability_keywords"],
+    "regex": "magic(?!al)",
+    "match": ["magic"],
+    "body": [
+      "Abilities with the Magic keyword are used by characters who can cast spells, have innate magical features, or wield magic treasures. Such abilities do magical things such as create rays of fire, open swirling portals, or summon creatures."
+    ]
+  },
+  {
+    "title": "Melee (Keyword)",
+    "tags": ["ability_keywords"],
+    "match": ["melee"],
+    "body": [
+      "Abilities with the Melee keyword can be used only over very short distances, typically within a character’s reach, because they require a character to make contact with a creature or object with their body, a weapon, or an implement. (An implement is a special object used by characters channeling magic or psionic power, described in Imbue Treasure in Chapter 12: Downtime Projects.)"
+    ]
+  },
+  {
+    "title": "Psionic",
+    "tags": ["ability_keywords"],
+    "match": ["psionic"],
+    "body": [
+      "Abilities with the Psionic keyword are used by characters who can manifest psionic powers, have innate psionic features, or wield psionic items. These abilities might create blasts of psychic energy, move objects with telekinesis, or slow down time with chronopathy."
+    ]
+  },
+  {
+    "title": "Ranged (Keyword)",
+    "tags": ["ability_keywords"],
+    "match": ["ranged"],
+    "body": [
+      "Abilities with the Ranged keyword can be used to affect creatures who are too far away to make contact with."
+    ]
+  },
+  {
+    "title": "Strike",
+    "tags": ["ability_keywords"],
+    "match": ["strike"],
+    "body": [
+      "Abilities with the Strike keyword (often referred to simply as “strikes”) deal damage to or impose a harmful effect on specific creatures or objects."
+    ]
+  },
+  {
+    "title": "Weapon",
+    "tags": ["ability_keywords"],
+    "match": ["weapon"],
+    "body": [
+      "The Weapon keyword is used in abilities that must be used with a blade, a bow, or some other offensive weapon. Weapon abilities also include strikes creatures make with their own bodies, such as a character’s unarmed strikes or a monster’s punches, kicks, bites, tail slaps, and more.",
+      "Your character’s kit determines the types of weapons you wield and use with your weapon abilities (see Chapter 6: Kits)."
+    ]
+  },
+  {
+    "title": "Melee (Distance)",
+    "tags": ["distance"],
+    "regex": "melee \\d+",
+    "body": [
+      "Melee abilities have a distance of “Melee X” and require you to make contact with a creature or object with your body, a weapon, or an implement. The number X is the maximum distance in squares at which you can physically make contact with another creature or object targeted by the ability. For instance, a distance of “Melee 2” can be used to target creatures or objects within 2 squares of you, while “Melee 1” limits you to adjacent targets (those within 1 square)."
+    ]
+  },
+  {
+    "title": "Ranged (Distance)",
+    "tags": ["distance"],
+    "regex": "ranged \\d+",
+    "body": [
+      "Ranged abilities have a distance of “Ranged X” and can be used to target creatures or objects too far away for you to make contact with. The number X is the maximum distance in squares at which a creature or object can be targeted by the ability. For instance, a distance of “Ranged 5” can be used to target creatures or objects within 5 squares of you.",
+      "If you make a ranged strike while any enemy is adjacent to you (within 1 square), you have a bane on the strike’s power roll. (See Edges and Banes in Chapter 1: The Basics.)"
+    ]
+  },
+  {
+    "title": "Melee or Ranged",
+    "tags": ["distance"],
+    "match": ["melee or ranged", "melee, ranged"],
+    "append": ["Melee", "Ranged"],
+    "body": [
+      "Some abilities have a melee distance and a ranged distance. When you use such an ability, you choose whether to use it as a melee or a ranged ability.",
+      "An ability never has both the Melee and Ranged keywords at the same time. For example, if you have the Cloak and Dagger kit, which has a weapon damage bonus to melee abilities and a weapon damage bonus to ranged abilities, only one bonus at a time applies to an ability with both the Melee and Ranged keywords. (See Chapter 6: Kits.)"
+    ]
+  },
+  {
+    "title": "Self",
+    "tags": ["distance"],
+    "match": ["self"],
+    "body": [
+      "If an ability has a distance of “Self,” that ability originates from you, and often affects only you. The ability’s description specifies how it works."
+    ]
+  }
+]
