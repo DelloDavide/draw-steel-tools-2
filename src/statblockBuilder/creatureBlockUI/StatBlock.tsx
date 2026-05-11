@@ -1,11 +1,29 @@
 import FreeWheelInput from "../../components/logic/FreeWheelInput";
 import { cn } from "../../helpers/utils";
 import type { DrawSteelStatblock } from "../../types/DrawSteelZod";
+import type { HeroDataBundle } from "../../types/heroDataBundlesZod";
+import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
 import { Characteristics } from "./Characteristics";
 import { Feature } from "./Feature";
 import { Input } from "./Input";
 
-export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
+type StatBlockData = DrawSteelStatblock | HeroDataBundle | MonsterDataBundle;
+
+function getStatblock(statblockData: StatBlockData): DrawSteelStatblock {
+  if ("statblock" in statblockData) return statblockData.statblock;
+  return statblockData;
+}
+
+export function StatBlock({
+  statblock: statblockData,
+}: {
+  statblock: StatBlockData;
+}) {
+  const statblock = getStatblock(statblockData);
+  const roleTags = statblock.roles.join(" ");
+  const organization = statblock.roles.slice(0, -1).join(" ");
+  const role = statblock.roles.at(-1) ?? "";
+
   return (
     <div className="w-full max-w-2xl space-y-2">
       <div
@@ -13,23 +31,27 @@ export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
           "space-y-2 rounded-md border-zinc-950 bg-gradient-to-b from-neutral-400/60 to-neutral-300/50 p-2",
           {
             "from-[#e9db7d] to-[#e9db7d]/50":
-              statblock.roles[0].includes("Ambusher"),
+              roleTags.includes("Ambusher"),
             "from-[#ccc3d0] to-[#ccc3d0]/50":
-              statblock.roles[0].includes("Artillery"),
+              roleTags.includes("Artillery"),
             "from-[#96b2df] to-[#96b2df]/50":
-              statblock.roles[0].includes("Brute"),
+              roleTags.includes("Brute"),
             "from-[#f49392] to-[#f49392]/50":
-              statblock.roles[0].includes("Controller"),
+              roleTags.includes("Controller"),
             "from-[#cac0a3] to-[#cac0a3]/50":
-              statblock.roles[0].includes("Defender"),
+              roleTags.includes("Defender"),
             "from-[#eac1c0] to-[#eac1c0]/50":
-              statblock.roles[0].includes("Harrier"),
+              roleTags.includes("Harrier"),
             "from-[#d8e0c2] to-[#d8e0c2]/50":
-              statblock.roles[0].includes("Hexer"),
+              roleTags.includes("Hexer"),
             "from-[#b5dae3] to-[#b5dae3]/50":
-              statblock.roles[0].includes("Mount"),
+              roleTags.includes("Mount"),
             "from-[#f0dacc] to-[#f0dacc]/50":
-              statblock.roles[0].includes("Support"),
+              roleTags.includes("Support"),
+            "from-[#c95cff] to-[#c95cff]/50":
+              roleTags.includes("Hero"),
+            "from-[#3aa76d] to-[#3aa76d]/50":
+              roleTags.includes("Retainer"),
           },
         )}
       >
@@ -56,9 +78,7 @@ export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
               <FreeWheelInput
                 className="w-26"
                 placeholder="Organization"
-                value={statblock.roles
-                  .toString()
-                  .substring(0, statblock.roles.toString().indexOf(" "))}
+                value={organization}
                 onUpdate={() => {}}
               />
             </Input>
@@ -66,9 +86,7 @@ export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
               <FreeWheelInput
                 className="w-24"
                 placeholder="Role"
-                value={statblock.roles
-                  .toString()
-                  .substring(statblock.roles.toString().indexOf(" "))}
+                value={role}
                 onUpdate={() => {}}
               />
             </Input>

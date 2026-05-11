@@ -1,13 +1,18 @@
+import type { HeroDataBundle } from "../../types/heroDataBundlesZod";
 import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
 import { FeatureBlock } from "./FeatureBlock";
 import { SkillBlock } from "./SkillBlock";
 import { StatBlock } from "./StatBlock";
 import { ScrollArea } from "../../components/ui/scrollArea";
 
+type CreatureDataBundle =
+  | (MonsterDataBundle & { kind: "monster" })
+  | (HeroDataBundle & { kind: "hero" });
+
 export default function MonsterEditorView({
   monsterData: monsterData,
 }: {
-  monsterData: MonsterDataBundle;
+  monsterData: CreatureDataBundle;
 }) {
   return (
     <div className="flex grow flex-col">

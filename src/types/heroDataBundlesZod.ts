@@ -2,7 +2,7 @@ import z from "zod";
 import {
   DrawSteelFeatureBlockZod,
   DrawSteelStatblockZod,
-  DrawSteelSkillBlockZod
+  DrawSteelSkillBlockZod,
 } from "./DrawSteelZod";
 
 export const PathBundleZod = z.strictObject({
@@ -23,7 +23,7 @@ export const HeroDataBundleZod = z.strictObject({
   key: z.string(),
   statblock: DrawSteelStatblockZod,
   featuresBlocks: z.array(DrawSteelFeatureBlockZod),
-  skillsBlocks: z.array(DrawSteelSkillBlockZod),
+  skillsBlocks: z.array(DrawSteelSkillBlockZod).optional().default([]),
 });
 export type IndexBundle = z.infer<typeof IndexBundleZod>;
 export type PathBundle = z.infer<typeof PathBundleZod>;

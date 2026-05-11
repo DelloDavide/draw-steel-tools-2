@@ -16,7 +16,7 @@ export async function getHeroDataBundle(
   const statblockUrl = getStatblockUrl(indexBundle.statblock);
   const featureBLockUrls = indexBundle.features.map((item) =>
     getStatblockUrl(item),
-  );  
+  );
   const skillBlockUrls = (indexBundle.skills ?? []).map((item) =>
     getStatblockUrl(item),
   );
@@ -31,7 +31,9 @@ export async function getHeroDataBundle(
     ),
   );
   const skillBlocks = await Promise.all(
-    skillBlockUrls.map((item) => fetchTypedData(item, DrawSteelSkillBlockZod.parse)),
+    skillBlockUrls.map((item) =>
+      fetchTypedData(item, DrawSteelSkillBlockZod.parse),
+    ),
   );
 
   return {
