@@ -33,6 +33,7 @@ const normalizeIndex = (
   entries.map((entry) => ({
     ...entry,
     skills: entry.skills ?? [],
+    images: [],
   }));
 
 const normalizedMonsterIndex = normalizeIndex(monsterIndex);

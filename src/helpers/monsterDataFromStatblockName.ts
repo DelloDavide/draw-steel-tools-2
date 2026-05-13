@@ -13,6 +13,8 @@ export const monsterDataFromStatblockName = async (monsterId: string) => {
       "skills" in indexBundle && Array.isArray(indexBundle.skills)
         ? indexBundle.skills
         : [],
+    images:
+      [],
   };
   return await getMonsterDataBundle(normalizedIndexBundle);
 };

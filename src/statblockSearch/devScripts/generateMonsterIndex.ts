@@ -57,6 +57,7 @@ export async function generateIndex() {
           statblock: val.path,
           features: malice,
           skills,
+          images: [],
         })),
     );
   }
