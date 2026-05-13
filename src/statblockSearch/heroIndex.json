@@ -7,6 +7,9 @@
     "skills": [
       "Heroes/Antares/Skills/Antares Skills.json"
     ],
+    "images": [
+      "Heroes/Antares/Images/Placeholder.png"
+    ],
     "name": "Antares",
     "level": 4,
     "ev": "72",
@@ -20,6 +23,9 @@
     ],
     "skills": [
       "Heroes/C'eree/Skills/C'eree Skills.json"
+    ],
+    "images": [
+      "Heroes/C'eree/Images/Placeholder.png"
     ],
     "name": "C'eree",
     "level": 4,
@@ -35,6 +41,9 @@
     "skills": [
       "Heroes/Carabec/Skills/Carabec Skills.json"
     ],
+    "images": [
+      "Heroes/Carabec/Images/Placeholder.png"
+    ],
     "name": "Carabec",
     "level": 4,
     "ev": "72",
@@ -48,6 +57,9 @@
     ],
     "skills": [
       "Heroes/Daron/Skills/Daron Skills.json"
+    ],
+    "images": [
+      "Heroes/Daron/Images/Placeholder.png"
     ],
     "name": "Daron",
     "level": 4,
@@ -63,6 +75,9 @@
     "skills": [
       "Heroes/Degotho/Skills/Degotho Skills.json"
     ],
+    "images": [
+      "Heroes/Degotho/Images/Degotho.png"
+    ],
     "name": "Degotho",
     "level": 4,
     "ev": "72",
@@ -76,6 +91,9 @@
     ],
     "skills": [
       "Heroes/Kamish/Skills/Kamish Skills.json"
+    ],
+    "images": [
+      "Heroes/Kamish/Images/Placeholder.png"
     ],
     "name": "Kamish",
     "level": 4,
@@ -91,6 +109,9 @@
     "skills": [
       "Heroes/Un Cavaliere/Skills/Un Cavaliere Skills.json"
     ],
+    "images": [
+      "Heroes/Un Cavaliere/Images/Placeholder.png"
+    ],
     "name": "Un Cavaliere",
     "level": 4,
     "ev": "72",
@@ -105,6 +126,9 @@
     "skills": [
       "Heroes/Valangus/Skills/Valangus Skills.json"
     ],
+    "images": [
+      "Heroes/Valangus/Images/Placeholder.png"
+    ],
     "name": "Valangus",
     "level": 4,
     "ev": "72",
@@ -118,6 +142,9 @@
     ],
     "skills": [
       "Heroes/Vel'drotha/Skills/Vel'drotha Skills.json"
+    ],
+    "images": [
+      "Heroes/Vel'drotha/Images/Placeholder.png"
     ],
     "name": "Vel'drotha",
     "level": 4,

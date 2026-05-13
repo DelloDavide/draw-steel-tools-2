@@ -3,6 +3,7 @@ import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
 import { FeatureBlock } from "./FeatureBlock";
 import { SkillBlock } from "./SkillBlock";
 import { StatBlock } from "./StatBlock";
+import { Images } from "./Images";
 import { ScrollArea } from "../../components/ui/scrollArea";
 
 type CreatureDataBundle =
@@ -18,6 +19,7 @@ export default function MonsterEditorView({
     <div className="flex grow flex-col">
       <ScrollArea className="grow basis-0">
         <div className="bg-mirage-50 grid justify-items-center gap-y-8 p-4 text-sm text-black">
+          <Images images={monsterData.images} />
           <StatBlock statblock={monsterData.statblock} />
 
           <div className="grid h-fit w-full justify-items-center gap-8">

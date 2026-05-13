@@ -96,9 +96,15 @@ export const DrawSteelSkillBlockZod = z.strictObject({
   categories: z.array(DrawSteelSkillCategoryZod),
 });
 
+export const DrawSteelImageZod = z.strictObject({
+  type: z.literal("image"),
+  src: z.string().url(),
+});
+
 export type DrawSteelEffect = z.infer<typeof DrawSteelEffectZod>;
 export type DrawSteelFeature = z.infer<typeof DrawSteelFeatureZod>;
 export type DrawSteelFeatureBlock = z.infer<typeof DrawSteelFeatureBlockZod>;
 export type DrawSteelStatblock = z.infer<typeof DrawSteelStatblockZod>;
 export type DrawSteelSkillCategory = z.infer<typeof DrawSteelSkillCategoryZod>;
 export type DrawSteelSkillBlock = z.infer<typeof DrawSteelSkillBlockZod>;
+export type DrawSteelImage = z.infer<typeof DrawSteelImageZod>;

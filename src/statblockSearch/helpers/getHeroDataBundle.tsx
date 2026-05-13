@@ -20,6 +20,9 @@ export async function getHeroDataBundle(
   const skillBlockUrls = (indexBundle.skills ?? []).map((item) =>
     getStatblockUrl(item),
   );
+  const imageBlockUrls = (indexBundle.images ?? []).map((item) =>
+    getStatblockUrl(item),
+  );
 
   const statblock = await fetchTypedData(
     statblockUrl,
@@ -35,11 +38,16 @@ export async function getHeroDataBundle(
       fetchTypedData(item, DrawSteelSkillBlockZod.parse),
     ),
   );
+  const imageBlocks = imageBlockUrls.map((url) => ({
+  type: "image" as const,
+  src: url,
+  }));
 
   return {
     key: indexBundle.name,
     statblock,
     featuresBlocks: featureBlocks,
     skillsBlocks: skillBlocks,
+    images: imageBlocks,
   };
 }
