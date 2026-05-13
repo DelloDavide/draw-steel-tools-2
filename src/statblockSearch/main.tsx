@@ -34,7 +34,7 @@ const normalizeIndex = (
     ...entry,
     skills: entry.skills ?? [],
     images: [],
-  }));
+  })); 
 
 const normalizedMonsterIndex = normalizeIndex(monsterIndex);
 const normalizedHeroIndex = normalizeIndex(heroIndex);
