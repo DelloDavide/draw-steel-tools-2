@@ -17,6 +17,23 @@
     "ancestry": ["Revenant", "Elementalist", "Specialization: Fire", "Mage’s Apprentice"]
   },
   {
+    "statblock": "Heroes/Broski Bombi/Statblocks/Broski Bombi.json",
+    "features": [
+      "Heroes/Broski Bombi/Features/Broski Bombi Features.json"
+    ],
+    "skills": [
+      "Heroes/Broski Bombi/Skills/Broski Bombi Skills.json"
+    ],
+    "images": [
+      "Heroes/Broski Bombi/Images/Broski Bombi.jpeg"
+    ],
+    "name": "Broski Bombi",
+    "level": 4,
+    "ev": "72",
+    "roles": ["Retainer"],
+    "ancestry": ["Humanoid", "Kobold", "Defender"]
+  },
+  {
     "statblock": "Heroes/C'eree/Statblocks/C'eree.json",
     "features": [
       "Heroes/C'eree/Features/C'eree Features.json"
