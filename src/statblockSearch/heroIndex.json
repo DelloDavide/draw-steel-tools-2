@@ -8,7 +8,7 @@
       "Heroes/Antares/Skills/Antares Skills.json"
     ],
     "images": [
-      "Heroes/Antares/Images/Antares.png"
+      "Heroes/Antares/Images/Antares.jpeg"
     ],
     "name": "Antares",
     "level": 4,
@@ -25,7 +25,7 @@
       "Heroes/C'eree/Skills/C'eree Skills.json"
     ],
     "images": [
-      "Heroes/C'eree/Images/C'eree.png"
+      "Heroes/C'eree/Images/C'eree.jpeg"
     ],
     "name": "C'eree",
     "level": 4,
@@ -42,7 +42,7 @@
       "Heroes/Carabec/Skills/Carabec Skills.json"
     ],
     "images": [
-      "Heroes/Carabec/Images/Carabec.png"
+      "Heroes/Carabec/Images/Carabec.jpeg"
     ],
     "name": "Carabec",
     "level": 4,
@@ -59,7 +59,7 @@
       "Heroes/Daron/Skills/Daron Skills.json"
     ],
     "images": [
-      "Heroes/Daron/Images/Daron.png"
+      "Heroes/Daron/Images/Daron.jpeg"
     ],
     "name": "Daron",
     "level": 4,
@@ -76,7 +76,7 @@
       "Heroes/Degotho/Skills/Degotho Skills.json"
     ],
     "images": [
-      "Heroes/Degotho/Images/Degotho.png"
+      "Heroes/Degotho/Images/Degotho.jpeg"
     ],
     "name": "Degotho",
     "level": 4,
@@ -93,7 +93,7 @@
       "Heroes/Kamish/Skills/Kamish Skills.json"
     ],
     "images": [
-      "Heroes/Kamish/Images/Kamish.png"
+      "Heroes/Kamish/Images/Kamish.jpeg"
     ],
     "name": "Kamish",
     "level": 4,
@@ -110,7 +110,7 @@
       "Heroes/Un Cavaliere/Skills/Un Cavaliere Skills.json"
     ],
     "images": [
-      "Heroes/Un Cavaliere/Images/Un Cavaliere.png"
+      "Heroes/Un Cavaliere/Images/Un Cavaliere.jpeg"
     ],
     "name": "Un Cavaliere",
     "level": 4,
@@ -127,7 +127,7 @@
       "Heroes/Valangus/Skills/Valangus Skills.json"
     ],
     "images": [
-      "Heroes/Valangus/Images/Valangus.png"
+      "Heroes/Valangus/Images/Valangus.jpeg"
     ],
     "name": "Valangus",
     "level": 4,
@@ -144,7 +144,7 @@
       "Heroes/Vel'drotha/Skills/Vel'drotha Skills.json"
     ],
     "images": [
-      "Heroes/Vel'drotha/Images/Vel'drotha.png"
+      "Heroes/Vel'drotha/Images/Vel'drotha.jpeg"
     ],
     "name": "Vel'drotha",
     "level": 4,
