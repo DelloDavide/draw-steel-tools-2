@@ -119,6 +119,23 @@
     "ancestry": ["Dragon", "Elemental", "Artillery", "Mount"]
   },
   {
+    "statblock": "Heroes/Tairok/Statblocks/Tairok.json",
+    "features": [
+      "Heroes/Tairok/Features/Tairok Features.json"
+    ],
+    "skills": [
+      "Heroes/Tairok/Skills/Tairok Skills.json"
+    ],
+    "images": [
+      "Heroes/Tairok/Images/Tairok.jpeg"
+    ],
+    "name": "Tairok",
+    "level": 4,
+    "ev": "0",
+    "roles": ["Retainer"],
+    "ancestry": ["Dwarf", "Blacksmith", "Artisan"]
+  },
+  {
     "statblock": "Heroes/Un Cavaliere/Statblocks/Un Cavaliere.json",
     "features": [
       "Heroes/Un Cavaliere/Features/Un Cavaliere Features.json"
