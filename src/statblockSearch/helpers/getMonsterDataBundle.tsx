@@ -42,5 +42,6 @@ export async function getMonsterDataBundle(
     featuresBlocks: featureBlocks,
     skillsBlocks: skillBlocks,
     images: [],
+    projectBlocks: [],
   };
 }

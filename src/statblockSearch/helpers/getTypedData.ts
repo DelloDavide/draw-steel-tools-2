@@ -1,8 +1,22 @@
 export default async function fetchTypedData<T>(
   url: string,
-  typeGuard: (json: unknown) => T
+  parser: (data: unknown) => T,
 ): Promise<T> {
-  const response = await fetch(url);
-  const json = await response.json();
-  return typeGuard(json);
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/vnd.github+json",
+    },
+    cache: "no-store",
+  });
+
+  const githubFile = await response.json();
+
+  // GitHub API restituisce content base64
+  const decodedContent = JSON.parse(
+    decodeURIComponent(
+      escape(atob(githubFile.content))
+    )
+  );
+
+  return parser(decodedContent);
 }

@@ -4,6 +4,7 @@ import {
   DrawSteelStatblockZod,
   DrawSteelSkillBlockZod,
   DrawSteelImageZod,
+  DrawSteelProjectBlockZod,
 } from "./DrawSteelZod";
 
 export const PathBundleZod = z.strictObject({
@@ -11,6 +12,7 @@ export const PathBundleZod = z.strictObject({
   features: z.array(z.string()),
   skills: z.array(z.string()).optional().default([]),
   images: z.array(z.string()).optional().default([]),
+  projectBlocks: z.array(z.string()).optional().default([]),
 });
 export const IndexBundleZod = z.strictObject({
   ...PathBundleZod.shape,
@@ -27,6 +29,7 @@ export const HeroDataBundleZod = z.strictObject({
   featuresBlocks: z.array(DrawSteelFeatureBlockZod),
   skillsBlocks: z.array(DrawSteelSkillBlockZod).optional().default([]),
   images: z.array(DrawSteelImageZod).optional().default([]),
+  projectBlocks: z.array(DrawSteelProjectBlockZod).optional().default([]),
 });
 export type IndexBundle = z.infer<typeof IndexBundleZod>;
 export type PathBundle = z.infer<typeof PathBundleZod>;

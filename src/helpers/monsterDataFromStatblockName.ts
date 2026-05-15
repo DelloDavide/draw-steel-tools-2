@@ -15,6 +15,8 @@ export const monsterDataFromStatblockName = async (monsterId: string) => {
         : [],
     images:
       [],
+    projectBlocks:
+      [],
   };
   return await getMonsterDataBundle(normalizedIndexBundle);
 };

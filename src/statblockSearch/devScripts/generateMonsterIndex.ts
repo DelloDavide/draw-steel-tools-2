@@ -58,6 +58,7 @@ export async function generateIndex() {
           features: malice,
           skills,
           images: [],
+          projectBlocks: [],
         })),
     );
   }

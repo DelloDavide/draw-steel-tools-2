@@ -1,0 +1,32 @@
+{
+  "type": "featureblock",
+  "featureblock_type": "Malice Features",
+  "name": "Basic Malice",
+  "flavor": "At the start of any monster’s turn, you can spend Malice to activate one of the following features.",
+  "features": [
+    {
+      "type": "feature",
+      "feature_type": "trait",
+      "name": "Brutal Effectiveness",
+      "icon": "👤",
+      "cost": "3 Malice",
+      "effects": [
+        {
+          "effect": "The monster digs into the enemy’s weak spot. The next ability the monster uses with a potency has that potency increased by 1."
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "feature_type": "trait",
+      "name": "Malicious Strike",
+      "icon": "👤",
+      "cost": "5+ Malice",
+      "effects": [
+        {
+          "effect": "The monster pours all their animosity into their attack. Their next strike deals extra damage to one target equal to the monster's highest characteristic score. The extra damage increases by 1 for each additional Malice spent on this feature (to a maximum of three times the monster's highest characteristic). This feature can't be used two rounds in a row, even by different monsters."
+        }
+      ]
+    }
+  ]
+}

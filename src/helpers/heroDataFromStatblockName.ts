@@ -17,6 +17,10 @@ export const heroDataFromStatblockName = async (heroId: string) => {
       "images" in indexBundle && Array.isArray(indexBundle.images)
         ? indexBundle.images
         : [],
+    projectBlocks:
+      "projects" in indexBundle && Array.isArray(indexBundle.projects)
+        ? indexBundle.projects
+        : [],
   };
   return await getHeroDataBundle(normalizedIndexBundle);
 };

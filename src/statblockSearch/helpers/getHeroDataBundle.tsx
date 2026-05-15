@@ -2,6 +2,7 @@ import {
   DrawSteelStatblockZod,
   DrawSteelFeatureBlockZod,
   DrawSteelSkillBlockZod,
+  DrawSteelProjectBlockZod,
 } from "../../types/DrawSteelZod";
 import type {
   IndexBundle,
@@ -9,6 +10,7 @@ import type {
 } from "../../types/heroDataBundlesZod.ts";
 import fetchTypedData from "./getTypedData";
 import getStatblockUrl from "./getStatblockUrl";
+import getImageUrl from "./getImageUrl";
 
 export async function getHeroDataBundle(
   indexBundle: IndexBundle,
@@ -21,6 +23,9 @@ export async function getHeroDataBundle(
     getStatblockUrl(item),
   );
   const imageBlockUrls = (indexBundle.images ?? []).map((item) =>
+    getImageUrl(item),
+  );
+  const projectBlockUrls = (indexBundle.projectBlocks ?? []).map((item) =>
     getStatblockUrl(item),
   );
 
@@ -42,6 +47,11 @@ export async function getHeroDataBundle(
   type: "image" as const,
   src: url,
   }));
+  const projectBlocks = await Promise.all(
+    projectBlockUrls.map((item) =>
+      fetchTypedData(item, DrawSteelProjectBlockZod.parse),
+    ),
+  );
 
   return {
     key: indexBundle.name,
@@ -49,5 +59,6 @@ export async function getHeroDataBundle(
     featuresBlocks: featureBlocks,
     skillsBlocks: skillBlocks,
     images: imageBlocks,
+    projectBlocks: projectBlocks,
   };
 }

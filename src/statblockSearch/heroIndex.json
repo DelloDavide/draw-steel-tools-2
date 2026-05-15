@@ -95,6 +95,9 @@
     "images": [
       "Heroes/Degotho/Images/Degotho.jpeg"
     ],
+    "projects": [
+      "Heroes/Degotho/Projects/Degotho Projects.json"
+    ],
     "name": "Degotho",
     "level": 4,
     "ev": "72",

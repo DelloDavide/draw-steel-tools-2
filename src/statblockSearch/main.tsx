@@ -34,6 +34,7 @@ const normalizeIndex = (
     ...entry,
     skills: entry.skills ?? [],
     images: [],
+    projectBlocks: [],
   })); 
 
 const normalizedMonsterIndex = normalizeIndex(monsterIndex);
