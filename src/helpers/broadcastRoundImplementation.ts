@@ -4,7 +4,7 @@ import {
   SET_ROUND_CHANNEL,
   type RoundChangeData,
   type SetRoundData,
-} from "../broadcastRoundProtocol";
+} from "../protocols/broadcastRoundProtocol";
 
 // Round change event messaging
 export function broadcastRoundChangeEventMessage(roundNumber: number | null) {

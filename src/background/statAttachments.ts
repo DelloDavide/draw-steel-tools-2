@@ -1,7 +1,12 @@
 import OBR, { type Image, type Item, isImage } from "@owlbear-rodeo/sdk";
 import { hpTextId } from "./overlays/compoundItemHelpers";
 import createContextMenuItems from "./createContextMenuItems";
-import { defaultSettings, getSettings } from "../helpers/settingsHelpers";
+import {
+  defaultSettings,
+  getSettings,
+  SETTINGS_METADATA_KEY,
+  LEGACY_SETTINGS_METADATA_KEY,
+} from "../helpers/settingsHelpers";
 import { TOKEN_METADATA_KEY, parseTokenData } from "../helpers/tokenHelpers";
 import type { MinionTokenData } from "../types/tokenDataZod";
 import { MinionGroupZod, type MinionGroup } from "../types/minionGroup";
@@ -81,6 +86,16 @@ export default async function startBackground() {
     ObrState.attachmentLogs = {};
     ObrState.sceneDpi = sceneDpi;
     ObrState.themeMode = themeMode.mode;
+
+    // Migrate settings from legacy shared key to dedicated key
+    if (
+      roomMetadata[SETTINGS_METADATA_KEY] === undefined &&
+      roomMetadata[LEGACY_SETTINGS_METADATA_KEY] !== undefined
+    ) {
+      OBR.room.setMetadata({
+        [SETTINGS_METADATA_KEY]: roomMetadata[LEGACY_SETTINGS_METADATA_KEY],
+      });
+    }
 
     OBR.player.onChange((player) => {
       if (player.role === ObrState.playerRole) return;

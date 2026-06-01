@@ -1,22 +1,18 @@
+import { supabase } from "../../supabaseClient";
+
 export default async function fetchTypedData<T>(
-  url: string,
+  path: string,
   parser: (data: unknown) => T,
 ): Promise<T> {
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/vnd.github+json",
-    },
-    cache: "no-store",
-  });
+  const { data, error } = await supabase
+    .from("bestiary_documents")
+    .select("content")
+    .eq("path", path)
+    .single();
 
-  const githubFile = await response.json();
+  if (error) {
+    throw new Error(`Supabase fetch error for "${path}": ${error.message}`);
+  }
 
-  // GitHub API restituisce content base64
-  const decodedContent = JSON.parse(
-    decodeURIComponent(
-      escape(atob(githubFile.content))
-    )
-  );
-
-  return parser(decodedContent);
+  return parser(data.content);
 }

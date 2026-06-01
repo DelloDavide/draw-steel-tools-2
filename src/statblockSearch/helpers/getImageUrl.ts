@@ -1,5 +1,5 @@
-import { branchName } from "./branchName";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 
 export default function getImageUrl(path: string) {
-  return `https://raw.githubusercontent.com/DelloDavide/data-bestiary-json/${branchName}/${path}`;
+  return `${supabaseUrl}/storage/v1/object/public/hero-images/${path}`;
 }

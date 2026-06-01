@@ -8,31 +8,22 @@ import type {
   MonsterDataBundle,
 } from "../../types/monsterDataBundlesZod";
 import fetchTypedData from "./getTypedData";
-import getStatblockUrl from "./getStatblockUrl";
 
 export async function getMonsterDataBundle(
   indexBundle: IndexBundle,
 ): Promise<MonsterDataBundle> {
-  const statblockUrl = getStatblockUrl(indexBundle.statblock);
-  const featureBLockUrls = indexBundle.features.map((item) =>
-    getStatblockUrl(item),
-  );
-  const skillBlockUrls = (indexBundle.skills ?? []).map((item) =>
-    getStatblockUrl(item),
-  );
-
   const statblock = await fetchTypedData(
-    statblockUrl,
+    indexBundle.statblock,
     DrawSteelStatblockZod.parse,
   );
   const featureBlocks = await Promise.all(
-    featureBLockUrls.map((item) =>
-      fetchTypedData(item, DrawSteelFeatureBlockZod.parse),
+    indexBundle.features.map((path) =>
+      fetchTypedData(path, DrawSteelFeatureBlockZod.parse),
     ),
   );
   const skillBlocks = await Promise.all(
-    skillBlockUrls.map((item) =>
-      fetchTypedData(item, DrawSteelSkillBlockZod.parse),
+    (indexBundle.skills ?? []).map((path) =>
+      fetchTypedData(path, DrawSteelSkillBlockZod.parse),
     ),
   );
 

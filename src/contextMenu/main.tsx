@@ -5,6 +5,7 @@ import { PluginGate } from "../components/logic/PluginGate.tsx";
 import { syncThemeMode } from "../helpers/syncThemeMode.ts";
 import TokenEditor from "./TokenEditor.tsx";
 import MinionContextMenu from "./MinionContextMenu.tsx";
+import { ErrorBoundary } from "../components/ErrorBoundary.tsx";
 
 syncThemeMode();
 
@@ -13,8 +14,10 @@ let minionEditor = params.get("minionEditor");
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PluginGate>
-      {minionEditor === "true" ? <MinionContextMenu /> : <TokenEditor />}
-    </PluginGate>
+    <ErrorBoundary>
+      <PluginGate>
+        {minionEditor === "true" ? <MinionContextMenu /> : <TokenEditor />}
+      </PluginGate>
+    </ErrorBoundary>
   </StrictMode>,
 );

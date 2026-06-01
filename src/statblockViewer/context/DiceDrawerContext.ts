@@ -1,6 +1,6 @@
 import { createContext, type Dispatch, type SetStateAction } from "react";
 import type { Roll } from "../../types/diceRollerTypes";
-import type { DiceProtocol } from "../../diceProtocolExport";
+import type { DiceProtocol } from "../../protocols/diceProtocolExport";
 
 export type DiceDrawer = {
   open: boolean;

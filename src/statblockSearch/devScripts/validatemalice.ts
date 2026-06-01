@@ -1,11 +1,10 @@
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
 import type { PathBundle } from "../../types/monsterDataBundlesZod";
 import fetchTypedData from "../helpers/getTypedData";
-import getStatblockUrl from "../helpers/getStatblockUrl";
 
 export async function validateMalice(
   pathBundles: PathBundle[],
-  handleBadStatblocks?: (urls: string[]) => void,
+  handleBadStatblocks?: (paths: string[]) => void,
 ) {
   const badStatblocks: {
     file: string;
@@ -15,17 +14,17 @@ export async function validateMalice(
     pathBundles
       .map((val) => val.features)
       .map(async (features) => {
-        const maliceUrls = features.map((item) => getStatblockUrl(item));
         await Promise.all(
-          maliceUrls.map(async (url) => {
-            await fetchTypedData(url, (value) => {
+          features.map(async (featurePath) => {
+            await fetchTypedData(featurePath, (value) => {
               const result = DrawSteelFeatureBlockZod.safeParse(value);
               if (!result.success) {
                 badStatblocks.push({
-                  file: url,
+                  file: featurePath,
                   errors: result.error,
                 });
               }
+              return value;
             });
           }),
         );

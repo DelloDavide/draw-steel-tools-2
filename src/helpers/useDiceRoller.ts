@@ -1,4 +1,4 @@
-import * as DiceProtocol from "../diceProtocol";
+import * as DiceProtocol from "../protocols/diceProtocol";
 import OBR from "@owlbear-rodeo/sdk";
 import { useEffect, useEffectEvent, useState } from "react";
 import type { DiceRoller } from "../types/diceRollerTypes";

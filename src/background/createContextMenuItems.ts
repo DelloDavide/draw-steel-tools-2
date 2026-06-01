@@ -1,4 +1,4 @@
-import OBR, { type ContextMenuIcon, type KeyFilter } from "@owlbear-rodeo/sdk";
+import OBR, { type ContextMenuIcon } from "@owlbear-rodeo/sdk";
 import { getPluginId } from "../helpers/getPluginId";
 import knightHelmetIcon from "./icons/knightHelmetIcon";
 import dragonHeadIcon from "./icons/dragonHeadIcon";
@@ -10,13 +10,23 @@ import type { ThemeMode } from "../types/themeMode";
 import type { MinionGroup } from "../types/minionGroup";
 import { getGmOnlyRestrictions } from "./getGmOnlyRestrictions";
 import { getContextMenuUrl } from "../helpers/getContextMenuUrl";
-
-const VERTICAL_PADDING = 16;
-const NAME_HEIGHT = 36 + 18 + 8;
-const HERO_STATS_HEIGHT = 178;
-const MONSTER_STATS_HEIGHT = 54 + 62;
-const MINION_STATS_HEIGHT = 178;
-const ACCESS_TOGGLE_HEIGHT = 20 + 16 + 8;
+import {
+  VERTICAL_PADDING,
+  NAME_HEIGHT,
+  HERO_STATS_HEIGHT,
+  MONSTER_STATS_HEIGHT,
+  MINION_STATS_HEIGHT,
+  ACCESS_TOGGLE_HEIGHT,
+} from "./contextMenuLayout";
+import {
+  IMAGE_ON_TOKEN_LAYER,
+  HAS_TOKEN_METADATA,
+  NO_TOKEN_METADATA,
+  NOT_GM_ONLY,
+  tokenTypeIs,
+  tokenTypeIsNot,
+  minionGroupIsNot,
+} from "./contextMenuFilters";
 
 export default async function createContextMenuItems(
   settings: DefinedSettings,
@@ -42,29 +52,11 @@ function createPlayerMenu(
         label: "Edit Hero",
         filter: {
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "gmOnly"],
-              value: true,
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MONSTER",
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MINION",
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            NOT_GM_ONLY,
+            tokenTypeIsNot("MONSTER"),
+            tokenTypeIsNot("MINION"),
+            HAS_TOKEN_METADATA,
           ],
           permissions: ["UPDATE"],
           roles: ["PLAYER"],
@@ -89,24 +81,10 @@ function createPlayerMenu(
         label: "Edit Monster",
         filter: {
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "gmOnly"],
-              value: true,
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MONSTER",
-              operator: "==",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            NOT_GM_ONLY,
+            tokenTypeIs("MONSTER"),
+            HAS_TOKEN_METADATA,
           ],
           permissions: ["UPDATE"],
           roles: ["PLAYER"],
@@ -130,14 +108,7 @@ function createPlayerMenu(
     icons: minionGroups.map((group) => {
       const mutualExclusionRestrictions = minionGroups
         .filter((item) => item.id !== group.id)
-        .map(
-          (item) =>
-            ({
-              key: ["metadata", TOKEN_METADATA_KEY, "groupId"],
-              value: item.id,
-              operator: "!=",
-            }) satisfies KeyFilter,
-        );
+        .map((item) => minionGroupIsNot(item.id));
 
       return {
         icon: dragonHeadIcon,
@@ -145,19 +116,9 @@ function createPlayerMenu(
         filter: {
           every: [...mutualExclusionRestrictions, ...gmOnlyRestrictions],
           some: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MINION",
-              operator: "==",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            HAS_TOKEN_METADATA,
+            tokenTypeIs("MINION"),
           ],
           roles: ["PLAYER"],
         },
@@ -183,24 +144,10 @@ function createGmMenu(
         label: "Edit Hero",
         filter: {
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MONSTER",
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MINION",
-              operator: "!=",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            HAS_TOKEN_METADATA,
+            tokenTypeIsNot("MONSTER"),
+            tokenTypeIsNot("MINION"),
           ],
           roles: ["GM"],
           max: 1,
@@ -225,19 +172,9 @@ function createGmMenu(
         label: "Edit Monster",
         filter: {
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MONSTER",
-              operator: "==",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            HAS_TOKEN_METADATA,
+            tokenTypeIs("MONSTER"),
           ],
           roles: ["GM"],
           max: 1,
@@ -259,14 +196,7 @@ function createGmMenu(
     icons: minionGroups.map((group) => {
       const mutualExclusionRestrictions = minionGroups
         .filter((item) => item.id !== group.id)
-        .map(
-          (item) =>
-            ({
-              key: ["metadata", TOKEN_METADATA_KEY, "groupId"],
-              value: item.id,
-              operator: "!=",
-            }) satisfies KeyFilter,
-        );
+        .map((item) => minionGroupIsNot(item.id));
 
       return {
         icon: dragonHeadIcon,
@@ -274,19 +204,9 @@ function createGmMenu(
         filter: {
           every: mutualExclusionRestrictions,
           some: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "type"],
-              value: "MINION",
-              operator: "==",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            HAS_TOKEN_METADATA,
+            tokenTypeIs("MINION"),
             {
               key: ["metadata", TOKEN_METADATA_KEY, "groupId"],
               value: group.id,
@@ -317,14 +237,8 @@ function createAddStats() {
         label: "Add Hero",
         filter: {
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "==",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            NO_TOKEN_METADATA,
           ],
           // roles: ["GM"],
         },
@@ -352,14 +266,8 @@ function createAddStats() {
         filter: {
           max: 1,
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "==",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            NO_TOKEN_METADATA,
           ],
         },
       },
@@ -390,14 +298,8 @@ function createAddStats() {
         filter: {
           min: 2,
           every: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "==",
-            },
+            ...IMAGE_ON_TOKEN_LAYER,
+            NO_TOKEN_METADATA,
           ],
         },
       },
@@ -429,16 +331,7 @@ function createRemoveStats(minionGroups: MinionGroup[]) {
         icon: dragonHeadIcon,
         label: "Remove Character",
         filter: {
-          some: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-          ],
+          some: [...IMAGE_ON_TOKEN_LAYER, HAS_TOKEN_METADATA],
           max: 1,
           roles: ["GM"],
         },
@@ -447,16 +340,7 @@ function createRemoveStats(minionGroups: MinionGroup[]) {
         icon: dragonHeadIcon,
         label: "Remove Characters",
         filter: {
-          some: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-          ],
+          some: [...IMAGE_ON_TOKEN_LAYER, HAS_TOKEN_METADATA],
           min: 2,
           roles: ["GM"],
         },
@@ -465,24 +349,8 @@ function createRemoveStats(minionGroups: MinionGroup[]) {
         icon: dragonHeadIcon,
         label: "Remove Character",
         filter: {
-          some: [
-            { key: "layer", value: "CHARACTER", coordinator: "||" },
-            { key: "layer", value: "MOUNT" },
-            { key: "type", value: "IMAGE" },
-            {
-              key: ["metadata", TOKEN_METADATA_KEY],
-              value: undefined,
-              operator: "!=",
-            },
-          ],
-          every: [
-            {
-              key: ["metadata", TOKEN_METADATA_KEY, "gmOnly"],
-              value: true,
-              operator: "!=",
-            },
-            ...gmOnlyRestrictions,
-          ],
+          some: [...IMAGE_ON_TOKEN_LAYER, HAS_TOKEN_METADATA],
+          every: [NOT_GM_ONLY, ...gmOnlyRestrictions],
           roles: ["PLAYER"],
         },
       },

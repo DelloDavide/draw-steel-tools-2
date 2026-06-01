@@ -7,7 +7,7 @@ import MonsterEditorView from "./creatureBlockUI/MonsterEditorView";
 
 const params = new URLSearchParams(document.location.search);
 const statblockName =
-  params.get("statblockName") ?? params.get("statblock") ?? "Human Blackguard";
+  params.get("statblockName") ?? params.get("statblock") ?? null;
 const statblockType = params.get("type");
 
 type CreatureDataBundle =
@@ -63,7 +63,14 @@ export function StatblockBuilder() {
     void loadData();
   }, []);
 
-  if (!monsterData) return "not found";
+  if (monsterData === undefined) return null;
+  if (monsterData === null)
+    return (
+      <div className="text-foreground flex h-screen items-center justify-center p-4">
+        No statblock selected. Use <code>?statblockName=…&type=hero|monster</code>{" "}
+        in the URL.
+      </div>
+    );
   return (
     <div className="bg-mirage-50 flex h-screen flex-col overflow-hidden">
       <MonsterEditorView monsterData={monsterData} />

@@ -6,6 +6,7 @@ import StatblockSearch from "./StatblockSearch.tsx";
 import { PluginReadyProvider } from "../components/logic/PluginReadyProvider.tsx";
 import { PluginReadyGate } from "../components/logic/PluginReadyGate.tsx";
 import { DevActionButtons } from "./components/DevScriptButtons.tsx";
+import { ErrorBoundary } from "../components/ErrorBoundary.tsx";
 import type { IndexBundle } from "../types/monsterDataBundlesZod";
 
 import monsterIndex from "./monsterIndex.json";
@@ -43,16 +44,18 @@ const index = isHeroSearch ? normalizedHeroIndex : normalizedMonsterIndex;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PluginReadyProvider>
-      <PluginReadyGate
-        alternate={
-          devMode === "true" && !isHeroSearch && (
-            <DevActionButtons monsterIndex={normalizedMonsterIndex} />
-          )
-        }
-      >
-        <StatblockSearch monsterIndex={index} />
-      </PluginReadyGate>
-    </PluginReadyProvider>
+    <ErrorBoundary>
+      <PluginReadyProvider>
+        <PluginReadyGate
+          alternate={
+            devMode === "true" && !isHeroSearch && (
+              <DevActionButtons monsterIndex={normalizedMonsterIndex} />
+            )
+          }
+        >
+          <StatblockSearch monsterIndex={index} />
+        </PluginReadyGate>
+      </PluginReadyProvider>
+    </ErrorBoundary>
   </StrictMode>,
 );

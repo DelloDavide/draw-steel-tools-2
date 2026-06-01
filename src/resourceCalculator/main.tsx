@@ -4,13 +4,16 @@ import "./../index.css";
 import { PluginGate } from "../components/logic/PluginGate.tsx";
 import { syncThemeMode } from "../helpers/syncThemeMode.ts";
 import { ResourceCalculator } from "./ResourceCalculator.tsx";
+import { ErrorBoundary } from "../components/ErrorBoundary.tsx";
 
 syncThemeMode();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PluginGate>
-      <ResourceCalculator />
-    </PluginGate>
+    <ErrorBoundary>
+      <PluginGate>
+        <ResourceCalculator />
+      </PluginGate>
+    </ErrorBoundary>
   </StrictMode>,
 );

@@ -39,7 +39,7 @@ export default function TokenEditor() {
   const [token, setToken] = useState<Token>();
   useEffect(() => {
     const handleItems = (items: Item[]) => {
-      if (items.length !== 1) throw new Error("Too many items selected.");
+      if (items.length !== 1) return;
       const item = items[0];
       const characterData = parseTokenData(item.metadata);
       setToken({ ...characterData, item });
@@ -74,7 +74,7 @@ export default function TokenEditor() {
     OBR.scene.items.updateItems(
       (item) => item.id === token.item.id,
       (items) => {
-        if (items.length !== 1) throw new Error("Too many items selected.");
+        if (items.length !== 1) return;
         if (
           "name" in characterTokenData &&
           characterTokenData?.name &&

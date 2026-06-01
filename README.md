@@ -1,5 +1,9 @@
 [Project Website](https://github.com/DelloDavide/draw-steel-tools-2)
 
+## Architecture
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for an overview of the project structure, entry points, and conventions.
+
 ## Building
 
 This project uses [pnpm](https://pnpm.io/) as a package manager.

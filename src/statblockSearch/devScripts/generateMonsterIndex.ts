@@ -1,138 +1,120 @@
 import { DrawSteelStatblockZod } from "../../types/DrawSteelZod";
-import { githubTreeZod } from "../../types/githubZod";
 import {
   IndexBundleZod,
   type IndexBundle,
   type PathBundle,
 } from "../../types/monsterDataBundlesZod";
-import getGitTreeUrl from "../helpers/getGitTreeUrl";
-import getStatblockUrl from "../helpers/getStatblockUrl";
+import { supabase } from "../../supabaseClient";
 
 export async function generateIndex() {
-  // Get File structure
-  const getGithubTree = async (url: string, recursive = false) => {
-    const request = await fetch(url + (recursive ? "?recursive=1" : ""));
-    const json = await request.json();
-    const tree = githubTreeZod.parse(json.tree);
-    return tree;
-  };
-  const rootTree = await getGithubTree(getGitTreeUrl());
+  // Get all monster documents from Supabase
+  const { data: allDocs, error } = await supabase
+    .from("bestiary_documents")
+    .select("path, content")
+    .like("path", "Monsters/%");
 
-  // Get immediate subdirectories of the monster folder
-  const groups = rootTree.filter(
-    (item) =>
-      item.path.startsWith("Monsters/") && item.path.match(/\//g)?.length === 1,
-  );
-
-  // In the order of the subdirectories create bundles of monster statblocks and relevant features
-  const pathBundles: PathBundle[] = [];
-  for (let i = 0; i < groups.length; i++) {
-    const malice = rootTree
-      .filter(
-        (val) =>
-          val.path.startsWith(groups[i].path) &&
-          val.path.includes("Features/") &&
-          val.path.endsWith(".json"),
-      )
-      .map((val) => val.path);
-
-    const skills = rootTree
-      .filter(
-        (val) =>
-          val.path.startsWith(groups[i].path) &&
-          val.path.includes("Skills/") &&
-          val.path.endsWith(".json"),
-      )
-      .map((val) => val.path);
-
-    pathBundles.push(
-      ...rootTree
-        .filter(
-          (val) =>
-            val.path.startsWith(groups[i].path) &&
-            val.path.includes("Statblocks/") &&
-            val.path.endsWith(".json"),
-        )
-        .map((val) => ({
-          statblock: val.path,
-          features: malice,
-          skills,
-          images: [],
-          projectBlocks: [],
-        })),
-    );
+  if (error) {
+    throw new Error(`Supabase error: ${error.message}`);
   }
 
-  // Add data from each monster statblock to index
-  const indexBundles: IndexBundle[] = await Promise.all(
-    pathBundles.map(async (pathBundle) => {
-      // Get
-      const response = await fetch(getStatblockUrl(pathBundle.statblock));
-      const unvalidatedJson = await response.json();
-      const parseResult = DrawSteelStatblockZod.safeParse(unvalidatedJson); // (await response.json()) as DrawSteelStatblock;
-
-      if (!parseResult.success) {
-        console.error(parseResult.error, "Retrieved data", unvalidatedJson);
-        throw new Error("Parsing error. See above for details.");
-      }
-
-      const json = parseResult.data;
-
-      // Format
-      const rolesString = json.roles.at(0);
-      const indexBundle = {
-        ...pathBundle,
-        name: json.name,
-        ev: json.ev,
-        roles: rolesString ? rolesString.split(" ") : [],
-        ancestry: json.ancestry,
-        level: json.level,
-      } satisfies IndexBundle;
-
-      // Special handling for dragons
-      if (pathBundle.statblock.startsWith("Monsters/Dragons/Statblocks/")) {
-        indexBundle.features = indexBundle.features.filter((feature) =>
-          feature.includes(indexBundle.name),
-        );
-      }
-
-      // Special handling for hobgoblins and bugbears
-      if (
-        pathBundle.statblock.startsWith("Monsters/Hobgoblins/Statblocks/") ||
-        pathBundle.statblock.startsWith("Monsters/Bugbears/Statblocks/")
-      ) {
-        indexBundle.features = [
-          ...indexBundle.features,
-          "Monsters/Goblins/Features/Goblin Malice.json",
-        ];
-      }
-
-      // Special handling for tiered malice
-      if (
-        pathBundle.statblock.startsWith("Monsters/Demons/Statblocks/") ||
-        pathBundle.statblock.startsWith("Monsters/Undead/Statblocks/") ||
-        pathBundle.statblock.startsWith("Monsters/War Dogs/Statblocks/")
-      ) {
-        const firstNumber = (str: string) => {
-          return parseFloat(str.substring(str.search(/\d/)));
-        };
-        indexBundle.features = [...indexBundle.features]
-          .filter((path) => firstNumber(path) <= indexBundle.level)
-          .sort((a, b) => firstNumber(a) - firstNumber(b));
-      }
-
-      // Special handling for rivals
-      if (
-        pathBundle.statblock.startsWith("Monsters/Rivals") &&
-        pathBundle.statblock.includes("/Statblocks/")
-      ) {
-        indexBundle.name = `Level ${indexBundle.level} ${indexBundle.name}`;
-      }
-
-      // Validate
-      return IndexBundleZod.parse(indexBundle);
-    }),
+  // Separate statblocks and features
+  const statblockDocs = allDocs.filter(
+    (d) => d.path.includes("/Statblocks/") && d.path.endsWith(".json"),
   );
+  const featureDocs = allDocs.filter(
+    (d) => d.path.includes("/Features/") && d.path.endsWith(".json"),
+  );
+  const skillDocs = allDocs.filter(
+    (d) => d.path.includes("/Skills/") && d.path.endsWith(".json"),
+  );
+
+  // Group features and skills by monster family
+  const getGroup = (p: string) => {
+    const parts = p.split("/");
+    return parts.length >= 2 ? `Monsters/${parts[1]}` : "";
+  };
+
+  // Build path bundles
+  const pathBundles: PathBundle[] = statblockDocs.map((doc) => {
+    const group = getGroup(doc.path);
+    const malice = featureDocs
+      .filter((f) => f.path.startsWith(group + "/"))
+      .map((f) => f.path);
+    const skills = skillDocs
+      .filter((f) => f.path.startsWith(group + "/"))
+      .map((f) => f.path);
+    return {
+      statblock: doc.path,
+      features: malice,
+      skills,
+      images: [],
+      projectBlocks: [],
+    };
+  });
+
+  // Build index bundles with data from content
+  const indexBundles: IndexBundle[] = pathBundles.map((pathBundle) => {
+    const doc = statblockDocs.find((d) => d.path === pathBundle.statblock)!;
+    const parseResult = DrawSteelStatblockZod.safeParse(doc.content);
+
+    if (!parseResult.success) {
+      console.error(parseResult.error, "Retrieved data", doc.content);
+      throw new Error(`Parsing error for ${pathBundle.statblock}`);
+    }
+
+    const json = parseResult.data;
+    const rolesString = json.roles.at(0);
+    const indexBundle = {
+      ...pathBundle,
+      name: json.name,
+      ev: json.ev,
+      roles: rolesString ? rolesString.split(" ") : [],
+      ancestry: json.ancestry,
+      level: json.level,
+    } satisfies IndexBundle;
+
+    // Special handling for dragons
+    if (pathBundle.statblock.startsWith("Monsters/Dragons/Statblocks/")) {
+      indexBundle.features = indexBundle.features.filter((feature) =>
+        feature.includes(indexBundle.name),
+      );
+    }
+
+    // Special handling for hobgoblins and bugbears
+    if (
+      pathBundle.statblock.startsWith("Monsters/Hobgoblins/Statblocks/") ||
+      pathBundle.statblock.startsWith("Monsters/Bugbears/Statblocks/")
+    ) {
+      indexBundle.features = [
+        ...indexBundle.features,
+        "Monsters/Goblins/Features/Goblin Malice.json",
+      ];
+    }
+
+    // Special handling for tiered malice
+    if (
+      pathBundle.statblock.startsWith("Monsters/Demons/Statblocks/") ||
+      pathBundle.statblock.startsWith("Monsters/Undead/Statblocks/") ||
+      pathBundle.statblock.startsWith("Monsters/War Dogs/Statblocks/")
+    ) {
+      const firstNumber = (str: string) => {
+        return parseFloat(str.substring(str.search(/\d/)));
+      };
+      indexBundle.features = [...indexBundle.features]
+        .filter((path) => firstNumber(path) <= indexBundle.level)
+        .sort((a, b) => firstNumber(a) - firstNumber(b));
+    }
+
+    // Special handling for rivals
+    if (
+      pathBundle.statblock.startsWith("Monsters/Rivals") &&
+      pathBundle.statblock.includes("/Statblocks/")
+    ) {
+      indexBundle.name = `Level ${indexBundle.level} ${indexBundle.name}`;
+    }
+
+    return IndexBundleZod.parse(indexBundle);
+  });
 
   // Convert the JSON data to a string
   const json = JSON.stringify(indexBundles);

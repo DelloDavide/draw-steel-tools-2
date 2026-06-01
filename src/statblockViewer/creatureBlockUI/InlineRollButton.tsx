@@ -6,7 +6,7 @@ import {
 } from "../context/DiceDrawerContext";
 import { FeatureIdContext } from "../context/FeatureIdContext";
 import { generateGroupId } from "../../helpers/generateGroupId";
-import type { DiceProtocol } from "../../diceProtocolExport";
+import type { DiceProtocol } from "../../protocols/diceProtocolExport";
 import { getLastDieStyle } from "../../helpers/lastDiceStyle";
 import parseNumber from "../../helpers/parseNumber";
 

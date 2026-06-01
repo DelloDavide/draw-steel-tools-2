@@ -1,7 +1,7 @@
 import DiceRoller from "./diceRoller/DiceRoller";
 import ResourceTracker from "./resourceTracker/ResourceTracker";
 import { useCallback, useMemo, useState } from "react";
-import { DiceProtocol } from "../diceProtocolExport";
+import { DiceProtocol } from "../protocols/diceProtocolExport";
 import OBR from "@owlbear-rodeo/sdk";
 import usePlayerName from "../helpers/usePlayerName";
 import { useDiceRoller } from "../helpers/useDiceRoller";

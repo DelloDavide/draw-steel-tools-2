@@ -9,7 +9,7 @@ import { ProjectBlock } from "./ProjectBlock";
 import defaultMalice from "../defaultMalice.json";
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
 import { useState } from "react";
-import { capitalizeFirstLetter } from "../../helpers/others";
+import { supabase } from "../../supabaseClient";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
@@ -45,79 +45,59 @@ export default function MonsterView({
     }));
   }
 
-    async function saveToGitHub() {
-      const token = import.meta.env.VITE_GITHUB_TOKEN;
-  
-      if (!token) {
-        alert("Missing GitHub token");
-        return;
-      }
-  
-      const filePath = "Heroes/Degotho/Projects/Degotho Projects.json";
-  
-      const apiUrl = `https://api.github.com/repos/DelloDavide/data-bestiary-json/contents/${filePath}`;
-  
-      try {
-        const getRes = await fetch(apiUrl, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/vnd.github+json",
-          },
-        });
-  
-        const fileData = await getRes.json();
-  
-        const sha = fileData.sha;
-  
-        const decoded = JSON.parse(
-          new TextDecoder().decode(
-            Uint8Array.from(atob(fileData.content), (c) => c.charCodeAt(0)),
-          ),
-        );
-  
+  async function saveProjects() {
+    const heroName = data.statblock.name;
+    const projectPaths = data.projectBlocks.map(
+      () =>
+        `Heroes/${heroName}/Projects/${heroName} Projects.json`,
+    );
+
+    try {
+      for (let i = 0; i < data.projectBlocks.length; i++) {
+        const block = data.projectBlocks[i];
+        const path = projectPaths[i];
+
+        const { data: doc, error: readError } = await supabase
+          .from("bestiary_documents")
+          .select("content")
+          .eq("path", path)
+          .single();
+
+        if (readError) {
+          throw new Error(`Read error: ${readError.message}`);
+        }
+
         const updated = {
-          ...decoded,
-          projects: decoded.projects.map((project: any) => {
-            const localProject = data.projectBlocks
-              .flatMap((b) => b.projects)
-              .find((p) => p.name === project.name);
-  
+          ...doc.content,
+          projects: (doc.content as any).projects.map((project: any) => {
+            const localProject = block.projects.find(
+              (p) => p.name === project.name,
+            );
             return localProject
-              ? {
-                  ...project,
-                  progress: localProject.progress,
-                }
+              ? { ...project, progress: localProject.progress }
               : project;
           }),
         };
-  
-        const encoded = btoa(
-          unescape(encodeURIComponent(JSON.stringify(updated, null, 2))),
-        );
-  
-        const updateRes = await fetch(apiUrl, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/vnd.github+json",
-          },
-          body: JSON.stringify({
-            message: `The ${capitalizeFirstLetter(data.kind)} ${data.statblock.name} Updated Theirs Projects`,
-            content: encoded,
-            sha,
-          }),
-        });
-  
-        if (!updateRes.ok) {
-          throw new Error("GitHub update failed");
+
+        const { error: writeError } = await supabase
+          .from("bestiary_documents")
+          .update({
+            content: updated,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("path", path);
+
+        if (writeError) {
+          throw new Error(`Write error: ${writeError.message}`);
         }
-  
-        alert("Saved successfully!");
-      } catch (err) {
-        console.error(err);
-        alert("Error saving to GitHub");
       }
+
+      alert("Saved successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Error saving projects");
     }
+  }
 
   return (
     <div className="flex grow flex-col">
@@ -153,7 +133,7 @@ export default function MonsterView({
               ))}
 
             {data.projectBlocks.length > 0 && data.kind === "hero" && (
-              <button onClick={saveToGitHub} className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600">
+              <button onClick={saveProjects} className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600">
                 Update Projects Points
               </button>
             )}

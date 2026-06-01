@@ -2,7 +2,7 @@ import getResetRollAttributes, {
   powerRoll,
 } from "../action/diceRoller/helpers.ts";
 import { useDiceRoller } from "../helpers/useDiceRoller.ts";
-import { DiceProtocol } from "../diceProtocolExport.ts";
+import { DiceProtocol } from "../protocols/diceProtocolExport.ts";
 import { defaultSettings } from "../helpers/settingsHelpers.ts";
 import type {
   DiceRoller as DiceRollerType,

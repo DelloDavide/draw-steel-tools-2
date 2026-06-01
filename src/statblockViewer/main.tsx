@@ -10,6 +10,7 @@ import { RoomMetadataProvider } from "./context/RoomMetadataProvider.tsx";
 import { MaliceSpentContextProvider } from "./context/MaliceSpentContextProvider.tsx";
 import { RoomTrackersZod } from "../types/roomTrackersZod.ts";
 import { getPluginId } from "../helpers/getPluginId.ts";
+import { SETTINGS_METADATA_KEY } from "../helpers/settingsHelpers.ts";
 import {
   RoomTrackersContext,
   UpdateRoomTrackersContext,
@@ -19,10 +20,12 @@ import {
   RoomSettingsContext,
   UpdateRoomSettingsContext,
 } from "./context/RoomSettingsContext.ts";
+import { ErrorBoundary } from "../components/ErrorBoundary.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PluginReadyProvider>
+    <ErrorBoundary>
+      <PluginReadyProvider>
       <DiceDrawerProvider>
         <RollAttributesProvider>
           <RoomMetadataProvider
@@ -34,7 +37,7 @@ createRoot(document.getElementById("root")!).render(
           >
             <RoomMetadataProvider
               parser={SettingsZod.parse}
-              metadataKey={getPluginId("metadata")}
+              metadataKey={SETTINGS_METADATA_KEY}
               defaultValue={undefined}
               DataContext={RoomSettingsContext}
               UpdateContext={UpdateRoomSettingsContext}
@@ -47,5 +50,6 @@ createRoot(document.getElementById("root")!).render(
         </RollAttributesProvider>
       </DiceDrawerProvider>
     </PluginReadyProvider>
+    </ErrorBoundary>
   </StrictMode>,
 );
