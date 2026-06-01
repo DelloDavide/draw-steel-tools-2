@@ -8,7 +8,7 @@ import { Images } from "./Images";
 import { ProjectBlock } from "./ProjectBlock";
 import defaultMalice from "../defaultMalice.json";
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
 
 const parsedDefaultMaliceFeatures =
@@ -24,6 +24,10 @@ export default function MonsterView({
   monsterData: CreatureDataBundle;
 }) {
   const [data, setData] = useState(monsterData);
+
+  useEffect(() => {
+    setData(monsterData);
+  }, [monsterData]);
 
   function addProgress(projectName: string, delta: number) {
     setData((prev) => ({
