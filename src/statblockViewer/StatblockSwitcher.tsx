@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { parseTokenData } from "../helpers/tokenHelpers";
 import Button from "../components/ui/Button";
-import type { MonsterDataBundle } from "../types/monsterDataBundlesZod";
-import type { HeroDataBundle } from "../types/heroDataBundlesZod";
 import { monsterDataFromStatblockName } from "../helpers/monsterDataFromStatblockName";
 import { heroDataFromStatblockName } from "../helpers/heroDataFromStatblockName";
+import { dynamicTerrainDataFromStatblockName } from "../helpers/dynamicTerrainDataFromStatblockName";
+import { getCreatureName, type CreatureDataBundle } from "../types/creatureDataBundle";
 import {
   Popover,
   PopoverContent,
@@ -24,17 +24,13 @@ import { getMinionTokenCounts } from "../helpers/getMinionTokenCounts";
 
 const parseMinionGroups = z.array(MinionGroupZod).parse;
 
-type CreatureDataBundle =
-  | (MonsterDataBundle & { kind: "monster" })
-  | (HeroDataBundle & { kind: "hero" });
-
 export function StatBlockSwitcher({
   monsterData,
   setMonsterData,
   setCollapsed,
 }: {
   monsterData: CreatureDataBundle | null;
-  setMonsterData: React.Dispatch<CreatureDataBundle>;
+  setMonsterData: React.Dispatch<React.SetStateAction<CreatureDataBundle | null | undefined>>;
   setCollapsed: (collapsed: boolean) => void;
 }) {
   const playerRole = usePlayerRole();
@@ -63,22 +59,40 @@ export function StatBlockSwitcher({
           } catch {
             // not a hero statblock, fall back to monsters
           }
-          const monsterData = await monsterDataFromStatblockName(statblockName);
-          document.title = monsterData.statblock.name;
-          setMonsterData({ ...monsterData, kind: "monster" });
+          try {
+            const monsterData = await monsterDataFromStatblockName(statblockName);
+            document.title = monsterData.statblock.name;
+            setMonsterData({ ...monsterData, kind: "monster" });
+            return;
+          } catch {
+            // not a monster statblock, fall back to dynamic terrain
+          }
+          const terrainData =
+            await dynamicTerrainDataFromStatblockName(statblockName);
+          document.title = terrainData.terrain.name;
+          setMonsterData({ ...terrainData, kind: "dynamicterrain" });
         })();
       }),
     [setCollapsed, setMonsterData],
   );
 
-  const loadCreatureData = async (statblockName: string): Promise<CreatureDataBundle> => {
+  const loadCreatureData = async (
+    statblockName: string,
+  ): Promise<CreatureDataBundle> => {
     try {
       const heroData = await heroDataFromStatblockName(statblockName);
       return { ...heroData, kind: "hero" };
     } catch {
+      // not a hero statblock
+    }
+    try {
       const monsterData = await monsterDataFromStatblockName(statblockName);
       return { ...monsterData, kind: "monster" };
+    } catch {
+      // not a monster statblock
     }
+    const terrainData = await dynamicTerrainDataFromStatblockName(statblockName);
+    return { ...terrainData, kind: "dynamicterrain" };
   };
 
   let monsterStatblocks: string[] = [];
@@ -130,7 +144,11 @@ export function StatBlockSwitcher({
           className="h-10 w-full justify-between px-2 sm:px-4"
         >
           <div className="truncate text-start font-bold">
-            {monsterData ? monsterData.statblock.name : "Select Stat Block"}
+            {monsterData
+              ? monsterData.kind === "dynamicterrain"
+                ? monsterData.terrain.name
+                : monsterData.statblock.name
+              : "Select Stat Block"}
           </div>
           <ChevronUpIcon className="transition-transform duration-200 ease-out group-data-[state=open]:-rotate-180" />
         </Button>
@@ -159,7 +177,7 @@ export function StatBlockSwitcher({
                 onClick={async () => setMonsterData(await loadCreatureData(value))}
               >
                 <div className="truncate">{value}</div>
-                {monsterData && monsterData.statblock.name === value && (
+                {monsterData && getCreatureName(monsterData) === value && (
                   <CheckIcon />
                 )}
               </Button>
@@ -176,7 +194,7 @@ export function StatBlockSwitcher({
                 onClick={async () => setMonsterData(await loadCreatureData(value))}
               >
                 <div className="truncate">{value}</div>
-                {monsterData && monsterData.statblock.name === value && (
+                {monsterData && getCreatureName(monsterData) === value && (
                   <CheckIcon />
                 )}
               </Button>
@@ -193,7 +211,7 @@ export function StatBlockSwitcher({
                 onClick={async () => setMonsterData(await loadCreatureData(value))}
               >
                 <div className="truncate">{value}</div>
-                {monsterData && monsterData.statblock.name === value && (
+                {monsterData && getCreatureName(monsterData) === value && (
                   <CheckIcon />
                 )}
               </Button>

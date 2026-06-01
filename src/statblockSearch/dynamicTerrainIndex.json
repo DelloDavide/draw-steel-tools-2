@@ -1,0 +1,602 @@
+[
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Angry Beehive.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Angry Beehive",
+    "ev": "2",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Archers Stakes.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Archer's Stakes",
+    "ev": "2",
+    "roles": [
+      "Fortification",
+      "Defender"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Arrow Launcher.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Arrow Launcher",
+    "ev": "8",
+    "roles": [
+      "Siege",
+      "Engine",
+      "Artillery"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Bear Trap.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Bear Trap",
+    "ev": "2",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Boiling Oil Cauldron.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Boiling Oil Cauldron",
+    "ev": "10",
+    "roles": [
+      "Fortification",
+      "Defender"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Brambles.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Brambles",
+    "ev": "1 per 10 x 10 thicket",
+    "roles": [
+      "Hazard",
+      "Defender"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Catapult.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Catapult",
+    "ev": "10",
+    "roles": [
+      "Siege",
+      "Engine",
+      "Artillery"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Column of Blades.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Column of Blades",
+    "ev": "3",
+    "roles": [
+      "Fortification",
+      "Defender"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Corrosive Pool.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Corrosive Pool",
+    "ev": "3 per 10 x 10 pool",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Dart Trap.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Dart Trap",
+    "ev": "1",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Exploding Mill Wheel.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Exploding Mill Wheel",
+    "ev": "10",
+    "roles": [
+      "Siege",
+      "Engine",
+      "Artillery"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Field Ballista.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Field Ballista",
+    "ev": "8",
+    "roles": [
+      "Siege",
+      "Engine",
+      "Artillery"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Flammable Oil.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Flammable Oil",
+    "ev": "2 per 10 x 10 patch",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Frozen Pond.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Frozen Pond",
+    "ev": "1 per 10 x 10 pond",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Hidey Hole.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Hidey-Hole",
+    "ev": "1",
+    "roles": [
+      "Fortification",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Power Fixtures/Holy Idol.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Holy Idol",
+    "ev": "7",
+    "roles": [
+      "Relic",
+      "Support"
+    ],
+    "ancestry": [
+      "Power Fixtures"
+    ],
+    "level": 5
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Iron Dragon.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Iron Dragon",
+    "ev": "12",
+    "roles": [
+      "Siege",
+      "Engine",
+      "Artillery"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 4
+  },
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Lava.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Lava",
+    "ev": "4 per 10 x 10 patch",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Pavise Shield.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Pavise Shield",
+    "ev": "1",
+    "roles": [
+      "Fortification",
+      "Defender"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Pillar.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Pillar",
+    "ev": "3",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Portcullis.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Portcullis",
+    "ev": "4",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Pressure Plate.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Pressure Plate",
+    "ev": "2",
+    "roles": [
+      "Trigger",
+      "Support"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Power Fixtures/Psionic Shard.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Psionic Shard",
+    "ev": "7",
+    "roles": [
+      "Fortification",
+      "Defender"
+    ],
+    "ancestry": [
+      "Power Fixtures"
+    ],
+    "level": 5
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Pulley.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Pulley",
+    "ev": "1",
+    "roles": [
+      "Trigger",
+      "Support"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Quicksand.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Quicksand",
+    "ev": "3 per 10 x 10 patch",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Ram.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Ram",
+    "ev": "3",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Snare Trap.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Snare Trap",
+    "ev": "1",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Fieldworks/Spike Trap.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Spike Trap",
+    "ev": "3",
+    "roles": [
+      "Trap",
+      "Ambusher"
+    ],
+    "ancestry": [
+      "Fieldworks"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Mechanisms/Switch.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Switch",
+    "ev": "1",
+    "roles": [
+      "Trigger",
+      "Support"
+    ],
+    "ancestry": [
+      "Mechanisms"
+    ],
+    "level": 1
+  },
+  {
+    "statblock": "Dynamic Terrain/Supernatural Objects/The Black Obelisk.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "The Black Obelisk",
+    "ev": "20",
+    "roles": [
+      "Relic",
+      "Controller"
+    ],
+    "ancestry": [
+      "Supernatural Objects"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Supernatural Objects/The Chronal Hypercube.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "The Chronal Hypercube",
+    "ev": "20",
+    "roles": [
+      "Relic",
+      "Controller"
+    ],
+    "ancestry": [
+      "Supernatural Objects"
+    ],
+    "level": 3
+  },
+  {
+    "statblock": "Dynamic Terrain/Supernatural Objects/The Throne of A An.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "The Throne of A'An",
+    "ev": "24",
+    "roles": [
+      "Relic",
+      "Controller"
+    ],
+    "ancestry": [
+      "Supernatural Objects"
+    ],
+    "level": 4
+  },
+  {
+    "statblock": "Dynamic Terrain/Environmental Hazards/Toxic Plants.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Toxic Plants",
+    "ev": "2 per 10 x 10 field",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Environmental Hazards"
+    ],
+    "level": 2
+  },
+  {
+    "statblock": "Dynamic Terrain/Power Fixtures/Tree of Might.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Tree of Might",
+    "ev": "14",
+    "roles": [
+      "Hazard",
+      "Hexer"
+    ],
+    "ancestry": [
+      "Power Fixtures"
+    ],
+    "level": 5
+  },
+  {
+    "statblock": "Dynamic Terrain/Siege Engines/Watchtower.json",
+    "features": [],
+    "skills": [],
+    "images": [],
+    "projectBlocks": [],
+    "name": "Watchtower",
+    "ev": "8",
+    "roles": [
+      "Fortification",
+      "Defender"
+    ],
+    "ancestry": [
+      "Siege Engines"
+    ],
+    "level": 2
+  }
+]

@@ -2,7 +2,12 @@ import fuzzysort from "fuzzysort";
 import type { SearchData } from "../../types/statblockSearchData";
 import type { IndexBundle } from "../../types/monsterDataBundlesZod";
 import { MonsterPreviewCard } from "./MonsterPreviewCard";
-import { getMonsterDataBundle } from "../helpers/getMonsterDataBundle";
+import {
+  getIndexBundleName,
+  getIndexBundleStamina,
+  getIndexDataBundle,
+  isIndexBundleMinion,
+} from "../../helpers/getIndexDataBundle";
 import type { AppState } from "../../types/statblockLookupAppState";
 import parseNumber from "../../helpers/parseNumber";
 import { NoMonsterCard } from "./NoMonsterCard";
@@ -130,15 +135,12 @@ export function StatblockSearchList({
               ...prev,
               selectedIndexBundle: indexBundle,
             }));
-            const monsterData = await getMonsterDataBundle(indexBundle);
-            const stamina = parseNumber(monsterData.statblock.stamina, {
+            const monsterData = await getIndexDataBundle(indexBundle);
+            const stamina = parseNumber(getIndexBundleStamina(monsterData), {
               truncate: true,
             });
-            const monsterName = monsterData.statblock.name;
-            const isMinion = monsterData.statblock.roles
-              .join()
-              .toLowerCase()
-              .includes("minion");
+            const monsterName = getIndexBundleName(monsterData);
+            const isMinion = isIndexBundleMinion(monsterData);
             setAppState((prev) => ({
               ...prev,
               previewIndexBundle: indexBundle,

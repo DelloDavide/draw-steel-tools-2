@@ -11,6 +11,7 @@ import type { IndexBundle } from "../types/monsterDataBundlesZod";
 
 import monsterIndex from "./monsterIndex.json";
 import heroIndex from "./heroIndex.json";
+import dynamicTerrainIndex from "./dynamicTerrainIndex.json";
 
 syncThemeMode();
 
@@ -40,7 +41,10 @@ const normalizeIndex = (
 
 const normalizedMonsterIndex = normalizeIndex(monsterIndex);
 const normalizedHeroIndex = normalizeIndex(heroIndex);
-const index = isHeroSearch ? normalizedHeroIndex : normalizedMonsterIndex;
+const normalizedDynamicTerrainIndex = normalizeIndex(dynamicTerrainIndex);
+const index = isHeroSearch
+  ? normalizedHeroIndex
+  : [...normalizedMonsterIndex, ...normalizedDynamicTerrainIndex];
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

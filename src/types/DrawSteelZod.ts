@@ -235,3 +235,26 @@ export type DrawSteelSkillBlock = z.infer<typeof DrawSteelSkillBlockZod>;
 export type DrawSteelImage = z.infer<typeof DrawSteelImageZod>;
 export type DrawSteelProject = z.infer<typeof DrawSteelProjectZod>;
 export type DrawSteelProjectBlock = z.infer<typeof DrawSteelProjectBlockZod>;
+
+export const DrawSteelDynamicTerrainStatZod = z.strictObject({
+  name: z.string(),
+  value: z.string(),
+});
+
+export const DrawSteelDynamicTerrainZod = z.strictObject({
+  type: z.literal("dynamicterrain"),
+  featureblock_type: z.string(),
+  name: z.string(),
+  level: z.number(),
+  ev: z.string(),
+  flavor: z.string(),
+  stamina: z.string(),
+  size: z.string(),
+  stats: z.array(DrawSteelDynamicTerrainStatZod).optional(),
+  features: z.array(DrawSteelFeatureZod),
+});
+
+export type DrawSteelDynamicTerrainStat = z.infer<
+  typeof DrawSteelDynamicTerrainStatZod
+>;
+export type DrawSteelDynamicTerrain = z.infer<typeof DrawSteelDynamicTerrainZod>;

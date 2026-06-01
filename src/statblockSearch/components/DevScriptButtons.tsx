@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { IndexBundle } from "../../types/monsterDataBundlesZod";
 import { generateIndex } from "../devScripts/generateMonsterIndex";
+import { generateDynamicTerrainIndex } from "../devScripts/generateDynamicTerrainIndex";
 import { validateMalice } from "../devScripts/validatemalice";
 import { validateStatblocks } from "../devScripts/validateStatblocks";
 import Button from "../../components/ui/Button";
@@ -14,18 +15,36 @@ export function DevActionButtons({
     href: string;
     download: string;
   }>();
+  const [terrainIndexDownload, setTerrainIndexDownload] = useState<{
+    href: string;
+    download: string;
+  }>();
 
   return (
     <div className="space-y-3 p-4">
       <div className="font-bold">Actions (See Console for Output)</div>
       <div className="flex flex-wrap gap-3">
         <Button onClick={async () => setIndexDownload(await generateIndex())}>
-          Generate Index
+          Generate Monster Index
         </Button>
 
         {indexDownload && (
           <Button asChild>
-            <a {...indexDownload}>Download Index</a>
+            <a {...indexDownload}>Download Monster Index</a>
+          </Button>
+        )}
+
+        <Button
+          onClick={async () =>
+            setTerrainIndexDownload(await generateDynamicTerrainIndex())
+          }
+        >
+          Generate Dynamic Terrain Index
+        </Button>
+
+        {terrainIndexDownload && (
+          <Button asChild>
+            <a {...terrainIndexDownload}>Download Dynamic Terrain Index</a>
           </Button>
         )}
 

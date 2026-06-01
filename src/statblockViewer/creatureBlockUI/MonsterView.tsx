@@ -1,8 +1,8 @@
-import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
-import type { HeroDataBundle } from "../../types/heroDataBundlesZod";
+import type { CreatureDataBundle } from "../../types/creatureDataBundle";
 import { FeatureBlock } from "./FeatureBlock";
 import { SkillBlock } from "./SkillBlock";
 import { StatBlock } from "./StatBlock";
+import { DynamicTerrainStatBlock } from "./DynamicTerrainStatBlock";
 import { ScrollArea } from "../../components/ui/scrollArea";
 import { Images } from "./Images";
 import { ProjectBlock } from "./ProjectBlock";
@@ -14,42 +14,45 @@ import { supabase } from "../../supabaseClient";
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
 
-type CreatureDataBundle =
-  | (MonsterDataBundle & { kind: "monster" })
-  | (HeroDataBundle & { kind: "hero" });
+type ViewDataBundle = CreatureDataBundle;
 
 export default function MonsterView({
   monsterData,
 }: {
-  monsterData: CreatureDataBundle;
+  monsterData: ViewDataBundle;
 }) {
-  const [data, setData] = useState(monsterData);
+  const [data, setData] = useState<ViewDataBundle>(monsterData);
 
   useEffect(() => {
     setData(monsterData);
   }, [monsterData]);
 
   function addProgress(projectName: string, delta: number) {
-    setData((prev) => ({
-      ...prev,
-      projectBlocks: prev.projectBlocks.map((block) => ({
-        ...block,
-        projects: block.projects.map((p) =>
-          p.name === projectName
-            ? {
-                ...p,
-                progress: Math.min(
-                  p.completion,
-                  Math.max(0, p.progress + delta),
-                ),
-              }
-            : p,
-        ),
-      })),
-    }));
+    setData((prev) => {
+      if (prev.kind === "dynamicterrain") return prev;
+      return {
+        ...prev,
+        projectBlocks: prev.projectBlocks.map((block) => ({
+          ...block,
+          projects: block.projects.map((p) =>
+            p.name === projectName
+              ? {
+                  ...p,
+                  progress: Math.min(
+                    p.completion,
+                    Math.max(0, p.progress + delta),
+                  ),
+                }
+              : p,
+          ),
+        })),
+      };
+    });
   }
 
   async function saveProjects() {
+    if (data.kind !== "hero") return;
+
     // Find all project block paths for this hero from the index
     const heroName = data.statblock.name;
     const projectPaths = data.projectBlocks.map(
@@ -110,44 +113,53 @@ export default function MonsterView({
     <div className="flex grow flex-col">
       <ScrollArea className="grow basis-0">
         <div className="bg-mirage-50 grid justify-items-center gap-y-8 p-4 text-sm text-black">
-          <Images images={data.images} />
-          <StatBlock statblock={data.statblock} />
+          {data.kind === "dynamicterrain" ? (
+            <DynamicTerrainStatBlock terrain={data.terrain} />
+          ) : (
+            <>
+              <Images images={data.images} />
+              <StatBlock statblock={data.statblock} />
 
-          <div className="grid h-fit w-full justify-items-center gap-8">
-            {data.featuresBlocks.length > 0 &&
-              data.featuresBlocks.map((item) => (
-                <FeatureBlock
-                  key={item.name + item.level}
-                  featureBlock={item}
-                />
-              ))}
+              <div className="grid h-fit w-full justify-items-center gap-8">
+                {data.featuresBlocks.length > 0 &&
+                  data.featuresBlocks.map((item) => (
+                    <FeatureBlock
+                      key={item.name + item.level}
+                      featureBlock={item}
+                    />
+                  ))}
 
-            {data.skillsBlocks.length > 0 &&
-              data.skillsBlocks.map((item) => (
-                <SkillBlock key={item.name} skillBlock={item} />
-              ))}
+                {data.skillsBlocks.length > 0 &&
+                  data.skillsBlocks.map((item) => (
+                    <SkillBlock key={item.name} skillBlock={item} />
+                  ))}
 
-            <div className="mb-0.5 w-full border-b border-zinc-950" />
+                <div className="mb-0.5 w-full border-b border-zinc-950" />
 
-            {data.projectBlocks.length > 0 &&
-              data.projectBlocks.map((item) => (
-                <ProjectBlock
-                  key={item.name}
-                  projectBlock={item}
-                  onProgress={addProgress}
-                />
-              ))}
+                {data.projectBlocks.length > 0 &&
+                  data.projectBlocks.map((item) => (
+                    <ProjectBlock
+                      key={item.name}
+                      projectBlock={item}
+                      onProgress={addProgress}
+                    />
+                  ))}
 
-            {data.projectBlocks.length > 0 && data.kind === "hero" && (
-              <button onClick={saveProjects} className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600">
-                Update Projects Points
-              </button>
-            )}
+                {data.projectBlocks.length > 0 && data.kind === "hero" && (
+                  <button
+                    onClick={saveProjects}
+                    className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600"
+                  >
+                    Update Projects Points
+                  </button>
+                )}
 
-            {data.kind === "monster" && (
-              <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
-            )}
-          </div>
+                {data.kind === "monster" && (
+                  <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
+                )}
+              </div>
+            </>
+          )}
         </div>
       </ScrollArea>
     </div>

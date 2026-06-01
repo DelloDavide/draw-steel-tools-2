@@ -3,13 +3,16 @@ import MonsterView from "./creatureBlockUI/MonsterView.tsx";
 import Button from "../components/ui/Button.tsx";
 import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "../helpers/getPluginId.ts";
-import type { MonsterDataBundle } from "../types/monsterDataBundlesZod.ts";
-import type { HeroDataBundle } from "../types/heroDataBundlesZod.ts";
 import { Maximize2Icon, Minimize2Icon } from "lucide-react";
 import { StatBlockSwitcher } from "./StatblockSwitcher.tsx";
 import { useEffect, useState } from "react";
 import { monsterDataFromStatblockName } from "../helpers/monsterDataFromStatblockName.ts";
 import { heroDataFromStatblockName } from "../helpers/heroDataFromStatblockName.ts";
+import { dynamicTerrainDataFromStatblockName } from "../helpers/dynamicTerrainDataFromStatblockName.ts";
+import {
+  getCreatureName,
+  type CreatureDataBundle,
+} from "../types/creatureDataBundle.ts";
 import { cn } from "../helpers/utils.ts";
 import Toggle from "../components/ui/Toggle.tsx";
 import { OpenInNewTab } from "./OpenInNewTabButton.tsx";
@@ -20,10 +23,6 @@ import { DiceDrawer } from "./DiceDrawer.tsx";
 const statblockName = new URLSearchParams(document.location.search).get(
   "statblockName",
 );
-
-type CreatureDataBundle =
-  | (MonsterDataBundle & { kind: "monster" })
-  | (HeroDataBundle & { kind: "hero" });
 
 export function StatblockViewer() {
   const [collapsed, setCollapsed] = useState(false);
@@ -56,6 +55,21 @@ export function StatblockViewer() {
         const monsterData = await monsterDataFromStatblockName(statblockName);
         document.title = monsterData.statblock.name;
         setMonsterData({ ...monsterData, kind: "monster" });
+        return;
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "";
+        if (!message.includes(notFoundMessage)) {
+          console.error(error);
+          setMonsterData(null);
+          return;
+        }
+      }
+
+      try {
+        const terrainData =
+          await dynamicTerrainDataFromStatblockName(statblockName);
+        document.title = terrainData.terrain.name;
+        setMonsterData({ ...terrainData, kind: "dynamicterrain" });
       } catch (error) {
         console.error(error);
         setMonsterData(null);
@@ -108,7 +122,7 @@ export function StatblockViewer() {
                 )}
               >
                 {!collapsed && (
-                  <OpenInNewTab statblockName={monsterData?.statblock.name} />
+                  <OpenInNewTab statblockName={getCreatureName(monsterData)} />
                 )}
                 <Toggle
                   variant={"default"}
