@@ -279,6 +279,7 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 | N15 | **Aria/A11y review**: audit dei componenti UI custom (focus ring, label, role). | Diversi input usano placeholder come label. |
 | N16 | **CI GitHub Actions**: lint + build + (futuri) test ad ogni push, deploy su tag. | Manca workflow. |
 | N17 | **CHANGELOG.md** automatico (release-please o changesets). | Versione manifest cresce a mano. |
+| N18 | **Tracker risorsa di classe per eroe** (Ferocity, Focus, Pyre, …) | ✅ Implementato: `classResourcePools` sui token eroe, overlay multi-bubble, spend da statblock viewer (`HeroResourceSpender`), tracker nel context menu e barra risorse nel viewer. |
 
 ### 10.4 DX / repository hygiene
 

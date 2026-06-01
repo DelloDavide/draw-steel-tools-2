@@ -5,7 +5,7 @@ import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "../helpers/getPluginId.ts";
 import { Maximize2Icon, Minimize2Icon } from "lucide-react";
 import { StatBlockSwitcher } from "./StatblockSwitcher.tsx";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { monsterDataFromStatblockName } from "../helpers/monsterDataFromStatblockName.ts";
 import { heroDataFromStatblockName } from "../helpers/heroDataFromStatblockName.ts";
 import { dynamicTerrainDataFromStatblockName } from "../helpers/dynamicTerrainDataFromStatblockName.ts";
@@ -19,10 +19,15 @@ import { OpenInNewTab } from "./OpenInNewTabButton.tsx";
 import HeightMatch from "../components/logic/HeightMatch.tsx";
 import { PluginReadyGate } from "../components/logic/PluginReadyGate.tsx";
 import { DiceDrawer } from "./DiceDrawer.tsx";
+import { ClassResourceBar } from "./ClassResourceBar.tsx";
+import { HeroTokenProvider } from "./context/HeroTokenProvider.tsx";
+import { HeroClassResourceNamesContext } from "./context/HeroClassResourceNamesContext.ts";
+import { extractClassResourceNamesFromHeroBundle } from "../helpers/classResourceHelpers.ts";
 
-const statblockName = new URLSearchParams(document.location.search).get(
+const initialStatblockName = new URLSearchParams(document.location.search).get(
   "statblockName",
 );
+const itemIdParam = new URLSearchParams(document.location.search).get("itemId");
 
 export function StatblockViewer() {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,14 +36,14 @@ export function StatblockViewer() {
 
   useEffect(() => {
     const loadData = async () => {
-      if (!statblockName) {
+      if (!initialStatblockName) {
         setMonsterData(null);
         return;
       }
       const notFoundMessage = "Could not find statblock with name";
 
       try {
-        const heroData = await heroDataFromStatblockName(statblockName);
+        const heroData = await heroDataFromStatblockName(initialStatblockName);
         document.title = heroData.statblock.name;
         setMonsterData({ ...heroData, kind: "hero" });
         return;
@@ -52,7 +57,7 @@ export function StatblockViewer() {
       }
 
       try {
-        const monsterData = await monsterDataFromStatblockName(statblockName);
+        const monsterData = await monsterDataFromStatblockName(initialStatblockName);
         document.title = monsterData.statblock.name;
         setMonsterData({ ...monsterData, kind: "monster" });
         return;
@@ -67,7 +72,7 @@ export function StatblockViewer() {
 
       try {
         const terrainData =
-          await dynamicTerrainDataFromStatblockName(statblockName);
+          await dynamicTerrainDataFromStatblockName(initialStatblockName);
         document.title = terrainData.terrain.name;
         setMonsterData({ ...terrainData, kind: "dynamicterrain" });
       } catch (error) {
@@ -79,8 +84,23 @@ export function StatblockViewer() {
     void loadData();
   }, []);
 
+  const activeStatblockName = getCreatureName(monsterData) ?? null;
+  const heroClassResourceNames = useMemo(
+    () =>
+      monsterData?.kind === "hero"
+        ? extractClassResourceNamesFromHeroBundle(monsterData)
+        : [],
+    [monsterData],
+  );
+
   return (
-    <div className="bg-mirage-50 flex h-screen flex-col overflow-hidden">
+    <HeroTokenProvider
+      key={activeStatblockName ?? "none"}
+      statblockName={activeStatblockName}
+      itemId={itemIdParam}
+    >
+      <HeroClassResourceNamesContext value={heroClassResourceNames}>
+        <div className="bg-mirage-50 flex h-screen flex-col overflow-hidden">
       {collapsed ? (
         <></>
       ) : monsterData === undefined ? (
@@ -105,6 +125,9 @@ export function StatblockViewer() {
             >
               {monsterData !== undefined && (
                 <div className={cn({ hidden: collapsed }, "max-w-full grow")}>
+                  {!collapsed && monsterData?.kind === "hero" && (
+                    <ClassResourceBar key={activeStatblockName ?? "none"} />
+                  )}
                   <StatBlockSwitcher
                     monsterData={monsterData}
                     setMonsterData={setMonsterData}
@@ -168,6 +191,8 @@ export function StatblockViewer() {
           </HeightMatch>
         </div>
       </PluginReadyGate>
-    </div>
+        </div>
+      </HeroClassResourceNamesContext>
+    </HeroTokenProvider>
   );
 }

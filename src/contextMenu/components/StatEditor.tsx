@@ -13,6 +13,7 @@ import CounterTracker from "../trackerInputs/CounterTrackerInput";
 import ValueButtonTrackerInput from "../trackerInputs/ValueButtonTrackerInput";
 import Button from "../../components/ui/Button";
 import { HeroicResourceRoller } from "./HeroicResourceRoller";
+import { ClassResourceTrackers } from "./ClassResourceTrackers";
 import OBR from "@owlbear-rodeo/sdk";
 import { getContextMenuUrl } from "../../helpers/getContextMenuUrl";
 import { getPluginId } from "../../helpers/getPluginId";
@@ -21,6 +22,7 @@ import { useState } from "react";
 import { Label } from "../trackerInputs/Label";
 import { ToggleGroup, ToggleGroupItem } from "../../components/ui/toggleGroup";
 import Input from "../../components/ui/Input";
+import { updateClassResourcePool } from "../../helpers/classResourceHelpers";
 import FreeWheelInput from "../../components/logic/FreeWheelInput";
 
 const params = new URLSearchParams(document.location.search);
@@ -106,39 +108,7 @@ export default function StatEditor({
         </div>
         {token.type === "HERO" && (
           <>
-            <div className="col-span-2">
-              <CounterTracker
-                label={
-                  token.heroicResourceName !== ""
-                    ? token.heroicResourceName
-                    : "Heroic Resource"
-                }
-                color="BLUE"
-                parentValue={token.heroicResource}
-                updateHandler={(target) =>
-                  updateToken({
-                    heroicResource: parseNumber(target.value, {
-                      min: -999,
-                      max: 999,
-                      truncate: true,
-                      inlineMath: { previousValue: token.heroicResource },
-                    }),
-                  })
-                }
-                incrementHandler={() => {
-                  if (token.heroicResource >= 999) return;
-                  updateToken({
-                    heroicResource: token.heroicResource + 1,
-                  });
-                }}
-                decrementHandler={() => {
-                  if (token.heroicResource <= -999) return;
-                  updateToken({
-                    heroicResource: token.heroicResource - 1,
-                  });
-                }}
-              />
-            </div>
+            <ClassResourceTrackers token={token} updateToken={updateToken} />
             <div className="col-span-2">
               <CounterTracker
                 label={"Surges"}
@@ -168,7 +138,13 @@ export default function StatEditor({
             <HeroicResourceRoller
               variant={token.heroicResourceButton}
               onResult={(result) =>
-                updateToken({ heroicResource: token.heroicResource + result })
+                updateToken(
+                  updateClassResourcePool(
+                    token,
+                    token.heroicResourceName || "Heroic Resource",
+                    token.heroicResource + result,
+                  ),
+                )
               }
             />
 

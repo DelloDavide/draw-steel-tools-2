@@ -3,6 +3,7 @@ import {
   CharacterTokenDataZod,
   DefinedCharacterTokenDataZod,
   type DefinedCharacterTokenData,
+  type DefinedHeroTokenData,
 } from "../types/tokenDataZod";
 import OBR, { type Item } from "@owlbear-rodeo/sdk";
 import { getSelectedItems } from "../helpers/getSelectedItem";
@@ -23,6 +24,11 @@ import { cn } from "../helpers/utils";
 import Button from "../components/ui/Button";
 import { getPluginId } from "../helpers/getPluginId";
 import Textarea from "./trackerInputs/TokenTextarea";
+import { heroDataFromStatblockName } from "../helpers/heroDataFromStatblockName";
+import {
+  buildInitialClassResourcePools,
+  extractClassResourceNamesFromHeroBundle,
+} from "../helpers/classResourceHelpers";
 
 const params = new URLSearchParams(document.location.search);
 const detailedVale = params.get("detailed");
@@ -37,12 +43,67 @@ export default function TokenEditor() {
   );
 
   const [token, setToken] = useState<Token>();
+
+  const applyTokenPatch = (
+    current: Token,
+    characterTokenData: Partial<DefinedCharacterTokenData>,
+  ): Token => {
+    const updated = DefinedCharacterTokenDataZod.parse({
+      ...current,
+      ...characterTokenData,
+    });
+    OBR.scene.items.updateItems(
+      (item) => item.id === current.item.id,
+      (items) => {
+        if (items.length !== 1) return;
+        if (
+          "name" in characterTokenData &&
+          characterTokenData?.name &&
+          characterTokenData.name.length > 0
+        ) {
+          items[0].name = characterTokenData.name;
+        }
+        const existingDataValidation = CharacterTokenDataZod.safeParse(
+          items[0].metadata[TOKEN_METADATA_KEY],
+        );
+        items[0].metadata[TOKEN_METADATA_KEY] = CharacterTokenDataZod.parse({
+          ...(existingDataValidation.success
+            ? existingDataValidation.data
+            : undefined),
+          ...characterTokenData,
+        });
+      },
+    );
+    return { ...updated, item: current.item };
+  };
+
+  const syncClassResourcePools = async (heroToken: DefinedHeroTokenData) => {
+    if (heroToken.statblockName === "") return;
+
+    try {
+      const heroData = await heroDataFromStatblockName(heroToken.statblockName);
+      const resourceNames = extractClassResourceNamesFromHeroBundle(heroData);
+      setToken((current) => {
+        if (!current || current.type !== "HERO") return current;
+        if (current.statblockName !== heroToken.statblockName) return current;
+
+        const patch = buildInitialClassResourcePools(current, resourceNames);
+        return patch ? applyTokenPatch(current, patch) : current;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const handleItems = (items: Item[]) => {
       if (items.length !== 1) return;
       const item = items[0];
       const characterData = parseTokenData(item.metadata);
       setToken({ ...characterData, item });
+      if (characterData.type === "HERO" && characterData.statblockName !== "") {
+        void syncClassResourcePools(characterData);
+      }
     };
     getSelectedItems().then(handleItems);
     return OBR.scene.items.onChange((items) => {
@@ -64,35 +125,19 @@ export default function TokenEditor() {
   const updateToken = (
     characterTokenData: Partial<DefinedCharacterTokenData>,
   ) => {
-    setToken({
-      ...DefinedCharacterTokenDataZod.parse({
-        ...token,
-        ...characterTokenData,
-      }),
-      item: token.item,
-    });
-    OBR.scene.items.updateItems(
-      (item) => item.id === token.item.id,
-      (items) => {
-        if (items.length !== 1) return;
-        if (
-          "name" in characterTokenData &&
-          characterTokenData?.name &&
-          characterTokenData.name.length > 0
-        ) {
-          items[0].name = characterTokenData.name;
-        }
-        const existingDataValidation = CharacterTokenDataZod.safeParse(
-          items[0].metadata[TOKEN_METADATA_KEY],
-        );
-        items[0].metadata[TOKEN_METADATA_KEY] = CharacterTokenDataZod.parse({
-          ...(existingDataValidation.success
-            ? existingDataValidation.data
-            : undefined),
-          ...characterTokenData,
-        });
-      },
+    setToken((current) =>
+      current ? applyTokenPatch(current, characterTokenData) : current,
     );
+  };
+
+  const setStatblockName = (statblockName: string) => {
+    updateToken({ statblockName });
+    if (token.type === "HERO" && statblockName !== "") {
+      void syncClassResourcePools({
+        ...token,
+        statblockName,
+      });
+    }
   };
 
   return (
@@ -113,9 +158,10 @@ export default function TokenEditor() {
       {(token.type === "MONSTER" || token.type === "HERO") && (
         <StatblockControls
           statblockName={token.statblockName ?? ""}
-          setStatblockName={(statblockName) => updateToken({ statblockName })}
+          setStatblockName={setStatblockName}
           playerRole={playerRole}
           mode={token.type === "HERO" ? "hero" : "monster"}
+          itemId={token.item.id}
         />
       )}
       {detailed && token.type === "HERO" && (

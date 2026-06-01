@@ -34,6 +34,7 @@ export const defaultHeroTokenData: DefinedHeroTokenData = {
   statblockName: "",
   heroicResourceButton: "D3",
   heroicResourceName: "",
+  classResourcePools: {},
   notes: "",
 };
 
@@ -58,6 +59,10 @@ export function parseTokenData(metadata: Metadata): DefinedCharacterTokenData {
     return {
       ...defaultHeroTokenData,
       ...characterData,
+      classResourcePools: {
+        ...defaultHeroTokenData.classResourcePools,
+        ...characterData?.classResourcePools,
+      },
     } as DefinedCharacterTokenData;
   }
   throw new Error("Unhandled character data type.");

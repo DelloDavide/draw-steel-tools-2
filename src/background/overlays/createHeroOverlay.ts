@@ -3,6 +3,10 @@ import type { DefinedHeroTokenData } from "../../types/tokenDataZod";
 
 import type { DefinedSettings } from "../../types/settingsZod";
 import { createTokenOverlay } from "./createTokenOverlay";
+import {
+  classResourceColor,
+  getMergedClassResourcePools,
+} from "../../helpers/classResourceHelpers";
 
 export function createHeroOverlay(
   image: Image,
@@ -11,6 +15,15 @@ export function createHeroOverlay(
   dpi: number,
   settings: DefinedSettings,
 ): Item[] {
+  const classResourcePools = getMergedClassResourcePools(token);
+  const classResourceBubbles = Object.entries(classResourcePools)
+    .filter(([, value]) => value !== 0)
+    .map(([name, value]) => ({
+      color: classResourceColor(name),
+      value,
+      display: role === "GM" || !token.gmOnly,
+    }));
+
   return createTokenOverlay(
     {
       bars: [
@@ -37,12 +50,7 @@ export function createHeroOverlay(
           value: token.surges,
           display: (role === "GM" || !token.gmOnly) && token.surges > 0,
         },
-        {
-          color: "cornflowerblue",
-          value: token.heroicResource,
-          display:
-            (role === "GM" || !token.gmOnly) && token.heroicResource !== 0,
-        },
+        ...classResourceBubbles,
         {
           color: "olivedrab",
           value: token.temporaryStamina,

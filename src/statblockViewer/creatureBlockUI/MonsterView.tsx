@@ -1,4 +1,7 @@
 import type { CreatureDataBundle } from "../../types/creatureDataBundle";
+import { extractClassResourceNamesFromHeroBundle } from "../../helpers/classResourceHelpers";
+import { HeroClassResourceNamesContext } from "../context/HeroClassResourceNamesContext";
+import { useMemo } from "react";
 import { FeatureBlock } from "./FeatureBlock";
 import { SkillBlock } from "./SkillBlock";
 import { StatBlock } from "./StatBlock";
@@ -10,6 +13,7 @@ import defaultMalice from "../defaultMalice.json";
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
 import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
+import { setTypedDataCache } from "../../statblockSearch/helpers/getTypedData";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
@@ -26,6 +30,14 @@ export default function MonsterView({
   useEffect(() => {
     setData(monsterData);
   }, [monsterData]);
+
+  const heroClassResourceNames = useMemo(
+    () =>
+      data.kind === "hero"
+        ? extractClassResourceNamesFromHeroBundle(data)
+        : [],
+    [data],
+  );
 
   function addProgress(projectName: string, delta: number) {
     setData((prev) => {
@@ -64,29 +76,9 @@ export default function MonsterView({
       for (let i = 0; i < data.projectBlocks.length; i++) {
         const block = data.projectBlocks[i];
         const path = projectPaths[i];
-
-        // Read current content from Supabase
-        const { data: doc, error: readError } = await supabase
-          .from("bestiary_documents")
-          .select("content")
-          .eq("path", path)
-          .single();
-
-        if (readError) {
-          throw new Error(`Read error: ${readError.message}`);
-        }
-
-        // Update project progress in the content
         const updated = {
-          ...doc.content,
-          projects: (doc.content as any).projects.map((project: any) => {
-            const localProject = block.projects.find(
-              (p) => p.name === project.name,
-            );
-            return localProject
-              ? { ...project, progress: localProject.progress }
-              : project;
-          }),
+          ...block,
+          updated_at: new Date().toISOString(),
         };
 
         const { error: writeError } = await supabase
@@ -100,6 +92,8 @@ export default function MonsterView({
         if (writeError) {
           throw new Error(`Write error: ${writeError.message}`);
         }
+
+        setTypedDataCache(path, updated);
       }
 
       alert("Saved successfully!");
@@ -110,7 +104,8 @@ export default function MonsterView({
   }
 
   return (
-    <div className="flex grow flex-col">
+    <HeroClassResourceNamesContext value={heroClassResourceNames}>
+      <div className="flex grow flex-col">
       <ScrollArea className="grow basis-0">
         <div className="bg-mirage-50 grid justify-items-center gap-y-8 p-4 text-sm text-black">
           {data.kind === "dynamicterrain" ? (
@@ -163,5 +158,6 @@ export default function MonsterView({
         </div>
       </ScrollArea>
     </div>
+    </HeroClassResourceNamesContext>
   );
 }

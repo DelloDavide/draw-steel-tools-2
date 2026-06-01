@@ -28,6 +28,7 @@ import Button from "../components/ui/Button.tsx";
 import Label from "../components/ui/Label.tsx";
 import ConnectedDiceIcon from "../components/icons/ConnectedDiceIcon.tsx";
 import { RoomSettingsContext } from "./context/RoomSettingsContext.ts";
+import { useCommitPendingResourceSpend } from "./hooks/useCommitPendingResourceSpend.ts";
 
 export function DiceDrawer() {
   const diceDrawer = useContext(DiceDrawerContext);
@@ -42,6 +43,10 @@ export function DiceDrawer() {
   );
 
   const [diceResultViewerOpen, setDiceResultViewerOpen] = useState(false);
+  const commitPendingResourceSpend = useCommitPendingResourceSpend(
+    diceDrawer,
+    setDiceDrawer,
+  );
 
   // External dice roller
   const handlePowerRollResult = (data: DiceProtocol.PowerRollResult) => {
@@ -132,6 +137,7 @@ export function DiceDrawer() {
                           ...prev,
                           powerRollTargetId: undefined,
                           powerRollTargetName: undefined,
+                          pendingResourceSpend: undefined,
                         }) satisfies DiceDrawer,
                     )
                   }
@@ -221,13 +227,14 @@ export function DiceDrawer() {
               setRollAttributes={setRollAttributes}
               diceRoller={diceRoller}
               settings={definedSettings}
-              onRollClicked={() =>
+              onRollClicked={() => {
+                commitPendingResourceSpend();
                 setDiceDrawer((prev) => ({
                   ...prev,
                   open: prev.powerRollTargetId ? false : true,
                   powerRollResultTargetId: prev.powerRollTargetId,
-                }))
-              }
+                }));
+              }}
             />
           </div>
         </CollapsibleContent>

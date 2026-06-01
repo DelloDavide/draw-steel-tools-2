@@ -20,6 +20,7 @@ export const HeroTokenDataZod = z.object({
     ])
     .optional(),
   heroicResourceName: z.string().optional(),
+  classResourcePools: z.record(z.string(), z.number()).optional(),
   notes: z.string().optional(),
 });
 
@@ -61,6 +62,7 @@ export const DefinedHeroTokenDataZod = z.object({
     z.literal("+3"),
   ]),
   heroicResourceName: z.string(),
+  classResourcePools: z.record(z.string(), z.number()),
   notes: z.string(),
 });
 

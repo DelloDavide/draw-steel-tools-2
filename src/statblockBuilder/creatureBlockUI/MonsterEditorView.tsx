@@ -10,6 +10,7 @@ import defaultMalice from "../defaultMalice.json";
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
 import { useState } from "react";
 import { supabase } from "../../supabaseClient";
+import { setTypedDataCache } from "../../statblockSearch/helpers/getTypedData";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
@@ -56,27 +57,9 @@ export default function MonsterView({
       for (let i = 0; i < data.projectBlocks.length; i++) {
         const block = data.projectBlocks[i];
         const path = projectPaths[i];
-
-        const { data: doc, error: readError } = await supabase
-          .from("bestiary_documents")
-          .select("content")
-          .eq("path", path)
-          .single();
-
-        if (readError) {
-          throw new Error(`Read error: ${readError.message}`);
-        }
-
         const updated = {
-          ...doc.content,
-          projects: (doc.content as any).projects.map((project: any) => {
-            const localProject = block.projects.find(
-              (p) => p.name === project.name,
-            );
-            return localProject
-              ? { ...project, progress: localProject.progress }
-              : project;
-          }),
+          ...block,
+          updated_at: new Date().toISOString(),
         };
 
         const { error: writeError } = await supabase
@@ -90,6 +73,8 @@ export default function MonsterView({
         if (writeError) {
           throw new Error(`Write error: ${writeError.message}`);
         }
+
+        setTypedDataCache(path, updated);
       }
 
       alert("Saved successfully!");

@@ -12,6 +12,7 @@ export default function StatblockControls({
   groupId,
   playerRole,
   mode = "monster",
+  itemId,
 }: {
   label?: string;
   statblockName: string;
@@ -19,6 +20,7 @@ export default function StatblockControls({
   groupId?: string;
   playerRole: "PLAYER" | "GM";
   mode?: "monster" | "hero";
+  itemId?: string;
 }) {
   return (
     <div className="text-foreground col-span-2 w-full">
@@ -50,6 +52,7 @@ export default function StatblockControls({
                         window.location.origin,
                       );
                       url.searchParams.set("statblockName", statblockName);
+                      if (itemId) url.searchParams.set("itemId", itemId);
                       return url.toString();
                     })(),
                     height: 2000,

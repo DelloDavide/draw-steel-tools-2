@@ -23,9 +23,16 @@ import {
 import Button from "../../components/ui/Button";
 import { ResultDropDown } from "./ResultDropDown";
 import { MaliceSpender } from "./MaliceSpender";
-import parseNumber from "../../helpers/parseNumber";
+import { HeroResourceSpender } from "./HeroResourceSpender";
+import {
+  isMaliceResourceCost,
+  parseResourceCost,
+} from "../../helpers/parseResourceCost";
 import { MaliceSpentIndicator } from "./MaliceSpentIndicator";
+import { HeroResourceSpentIndicator } from "./HeroResourceSpentIndicator";
 import { MaliceSpentContext } from "../context/MaliceSpentContext";
+import { HeroResourceSpentContext } from "../context/HeroTokenContext";
+import { HeroClassResourceNamesContext } from "../context/HeroClassResourceNamesContext";
 import { FeatureIdContext } from "../context/FeatureIdContext";
 import { RollResultIndicator } from "./RollResultIndicator";
 import { insertTextStyling } from "./insertTextStyling";
@@ -47,8 +54,16 @@ export function Feature({
   const diceDrawer = useContext(DiceDrawerContext);
   const setDiceDrawer = useContext(SetDiceDrawerContext);
   const maliceSpent = useContext(MaliceSpentContext);
+  const heroResourceSpent = useContext(HeroResourceSpentContext);
+  const heroClassResourceNames = useContext(HeroClassResourceNamesContext);
 
   const featureId = blockName + feature.name;
+  const parsedCost = feature.cost ? parseResourceCost(feature.cost) : undefined;
+  const isHeroClassResourceCost =
+    parsedCost !== undefined &&
+    heroClassResourceNames.some(
+      (name) => name.toLowerCase() === parsedCost.resourceName.toLowerCase(),
+    );
 
   const isPowerRollResultTarget =
     diceDrawer.powerRollResultTargetId === featureId;
@@ -104,15 +119,33 @@ export function Feature({
                             ...prev,
                             bonus: rollBonus,
                           }));
-                          setDiceDrawer(
-                            (prev) =>
-                              ({
-                                ...prev,
-                                open: true,
-                                powerRollTargetId: featureId,
-                                powerRollTargetName: feature.name,
-                              }) satisfies DiceDrawer,
-                          );
+                          setDiceDrawer((prev) => {
+                            const pendingResourceSpend =
+                              parsedCost && isHeroClassResourceCost
+                                ? {
+                                    featureId,
+                                    resourceName: parsedCost.resourceName,
+                                    amount: parsedCost.amount,
+                                    type: "hero" as const,
+                                  }
+                                : parsedCost &&
+                                    isMaliceResourceCost(feature.cost!)
+                                  ? {
+                                      featureId,
+                                      resourceName: parsedCost.resourceName,
+                                      amount: parsedCost.amount,
+                                      type: "malice" as const,
+                                    }
+                                  : undefined;
+
+                            return {
+                              ...prev,
+                              open: true,
+                              powerRollTargetId: featureId,
+                              powerRollTargetName: feature.name,
+                              pendingResourceSpend,
+                            } satisfies DiceDrawer;
+                          });
                         }}
                       >
                         {roll}
@@ -126,18 +159,36 @@ export function Feature({
                   <PluginReadyGate
                     alternate={<div className="font-black">{feature.cost}</div>}
                   >
-                    <MaliceSpender
-                      trigger={
-                        <Button
-                          variant={"outline"}
-                          size={"xs"}
-                          className="font-black"
-                        >
-                          {feature.cost}
-                        </Button>
-                      }
-                      cost={parseNumber(feature.cost)}
-                    />
+                    {parsedCost && isMaliceResourceCost(feature.cost) ? (
+                      <MaliceSpender
+                        trigger={
+                          <Button
+                            variant={"outline"}
+                            size={"xs"}
+                            className="font-black"
+                          >
+                            {feature.cost}
+                          </Button>
+                        }
+                        cost={parsedCost.amount}
+                      />
+                    ) : parsedCost && isHeroClassResourceCost ? (
+                      <HeroResourceSpender
+                        trigger={
+                          <Button
+                            variant={"outline"}
+                            size={"xs"}
+                            className="font-black"
+                          >
+                            {feature.cost}
+                          </Button>
+                        }
+                        cost={parsedCost.amount}
+                        resourceName={parsedCost.resourceName}
+                      />
+                    ) : (
+                      <div className="font-black">{feature.cost}</div>
+                    )}
                   </PluginReadyGate>
                 )}
                 {feature.ability_type && (
@@ -216,6 +267,12 @@ export function Feature({
           </div>
           {maliceSpent?.target === featureId && (
             <MaliceSpentIndicator maliceSpent={maliceSpent.value} />
+          )}
+          {heroResourceSpent?.target === featureId && (
+            <HeroResourceSpentIndicator
+              resourceName={heroResourceSpent.resourceName}
+              value={heroResourceSpent.value}
+            />
           )}
           {isRollResultTarget && (
             <RollResultIndicator
