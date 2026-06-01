@@ -18,7 +18,7 @@
 - Integrazione opzionale con la **Connected Dice extension** tramite un protocollo broadcast condiviso (`diceProtocol`).
 - Interoperabilità con **Pretty Sordid** per il cambio round (`broadcastRoundProtocol`).
 
-Il pacchetto è una **fork / estensione** del progetto upstream `SeamusFinlayson/draw-steel-tools-2` (vedi `README.md`). L'autore corrente del manifest è `Dello`. Versione manifest: `2.7.6`.
+Il pacchetto è una **fork / estensione** del progetto upstream `SeamusFinlayson/draw-steel-tools-2` (vedi `README.md`). L'autore corrente del manifest è `Dello`. Versione manifest: `2.8.0`.
 
 ---
 
