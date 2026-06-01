@@ -9,8 +9,11 @@ import { ProjectBlock } from "./ProjectBlock";
 import defaultMalice from "../defaultMalice.json";
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
 import { useState } from "react";
-import { supabase } from "../../supabaseClient";
-import { setTypedDataCache } from "../../statblockSearch/helpers/getTypedData";
+import { capitalizeFirstLetter } from "../../helpers/others";
+import {
+  saveHeroProjectsToGitHub,
+  saveHeroProjectsToSupabase,
+} from "../../helpers/saveHeroProjects";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
@@ -37,50 +40,42 @@ export default function MonsterView({
                 ...p,
                 progress: Math.min(
                   p.completion,
-                  Math.max(0, p.progress + delta)
+                  Math.max(0, p.progress + delta),
                 ),
               }
-            : p
+            : p,
         ),
       })),
     }));
   }
 
   async function saveProjects() {
+    if (data.kind !== "hero") return;
+
     const heroName = data.statblock.name;
-    const projectPaths = data.projectBlocks.map(
-      () =>
-        `Heroes/${heroName}/Projects/${heroName} Projects.json`,
-    );
+    const updatedAt = new Date().toISOString();
 
     try {
-      for (let i = 0; i < data.projectBlocks.length; i++) {
-        const block = data.projectBlocks[i];
-        const path = projectPaths[i];
-        const updated = {
-          ...block,
-          updated_at: new Date().toISOString(),
-        };
+      await saveHeroProjectsToGitHub(
+        data.statblock.name,
+        data.projectBlocks,
+        updatedAt,
+      );
 
-        const { error: writeError } = await supabase
-          .from("bestiary_documents")
-          .update({
-            content: updated,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("path", path);
+      await saveHeroProjectsToSupabase(
+        heroName,
+        data.projectBlocks,
+        updatedAt
+      );
 
-        if (writeError) {
-          throw new Error(`Write error: ${writeError.message}`);
-        }
-
-        setTypedDataCache(path, updated);
-      }
-
-      alert("Saved successfully!");
+      alert(
+        `The ${capitalizeFirstLetter(data.kind)} ${data.statblock.name} Updated Their Projects Successfully!`,
+      );
     } catch (err) {
       console.error(err);
-      alert("Error saving projects");
+      alert(
+        `Error saving projects for the ${capitalizeFirstLetter(data.kind)} ${data.statblock.name}`,
+      );
     }
   }
 
@@ -110,15 +105,15 @@ export default function MonsterView({
             {data.projectBlocks.length > 0 &&
               data.projectBlocks.map((item) => (
                 <div key={item.name} className="w-full">
-                  <ProjectBlock
-                    projectBlock={item}
-                    onProgress={addProgress}
-                  />
+                  <ProjectBlock projectBlock={item} onProgress={addProgress} />
                 </div>
               ))}
 
             {data.projectBlocks.length > 0 && data.kind === "hero" && (
-              <button onClick={saveProjects} className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600">
+              <button
+                onClick={saveProjects}
+                className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600"
+              >
                 Update Projects Points
               </button>
             )}
