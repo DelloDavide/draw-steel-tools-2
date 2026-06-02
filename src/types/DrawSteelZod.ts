@@ -80,6 +80,8 @@ export const DrawSteelStatblockZod = z.strictObject({
   reason: z.int(),
   intuition: z.int(),
   presence: z.int(),
+  wealth: z.int().optional(),
+  renown: z.int().optional(),
   with_captain: z.string().optional(),
   features: z.array(DrawSteelFeatureZod).optional(),
 });
@@ -89,11 +91,17 @@ export const DrawSteelSkillCategoryZod = z.strictObject({
   skills: z.array(z.string()),
 });
 
+export const DrawSteelSkillLanguageZod = z.strictObject({
+  name: z.string(),
+  description: z.string(),
+});
+
 export const DrawSteelSkillBlockZod = z.strictObject({
   name: z.string(),
   type: z.literal("skillblock"),
   flavor: z.string(),
   categories: z.array(DrawSteelSkillCategoryZod),
+  languages: z.array(DrawSteelSkillLanguageZod),
 });
 
 export const DrawSteelImageZod = z.strictObject({
