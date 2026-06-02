@@ -52,7 +52,7 @@ Il workflow CI non valida il contenuto: si limita a creare uno zip dell'intero r
 │       ├── Statblocks/        # <Eroe>.json (scheda completa)
 │       ├── Features/          # <Eroe> Features.json (talenti/feature di classe)
 │       ├── Skills/            # <Eroe> Skills.json (lista skill per categoria)
-│       ├── Images/            # <Eroe>.{jpeg|png|...} (token/portrait)
+│       ├── Images/            # <Eroe>.{png|...} (token/portrait)
 │       └── Projects/          # opzionale: <Eroe> Projects.json (downtime)
 │
 └── Dynamic Terrain/           # Oggetti/terreno dinamico
@@ -195,7 +195,7 @@ File aggregato di sole `features[]`, con `type: "featureblock"`, `featureblock_t
 ```
 
 ### 5.7 Immagini eroi
-Solo asset binari (`.jpeg`/`.png`). Risolte dal plugin tramite `getImageUrl(name)`.
+Solo asset binari (`.png`). Risolte dal plugin tramite `getImageUrl(name)`.
 
 ---
 

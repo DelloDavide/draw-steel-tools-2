@@ -8,7 +8,7 @@
       "Heroes/Antares/Skills/Antares Skills.json"
     ],
     "images": [
-      "Heroes/Antares/Images/Antares.jpeg"
+      "Heroes/Antares/Images/Antares.png"
     ],
     "name": "Antares",
     "level": 4,
@@ -42,7 +42,7 @@
       "Heroes/C'eree/Skills/C'eree Skills.json"
     ],
     "images": [
-      "Heroes/C'eree/Images/C'eree.jpeg"
+      "Heroes/C'eree/Images/C'eree.png"
     ],
     "name": "C'eree",
     "level": 4,
@@ -59,7 +59,7 @@
       "Heroes/Carabec/Skills/Carabec Skills.json"
     ],
     "images": [
-      "Heroes/Carabec/Images/Carabec.jpeg"
+      "Heroes/Carabec/Images/Carabec.png"
     ],
     "name": "Carabec",
     "level": 4,
@@ -76,7 +76,7 @@
       "Heroes/Daron/Skills/Daron Skills.json"
     ],
     "images": [
-      "Heroes/Daron/Images/Daron.jpeg"
+      "Heroes/Daron/Images/Daron.png"
     ],
     "name": "Daron",
     "level": 4,
@@ -93,7 +93,7 @@
       "Heroes/Degotho/Skills/Degotho Skills.json"
     ],
     "images": [
-      "Heroes/Degotho/Images/Degotho.jpeg"
+      "Heroes/Degotho/Images/Degotho.png"
     ],
     "projects": [
       "Heroes/Degotho/Projects/Degotho Projects.json"
@@ -113,7 +113,7 @@
       "Heroes/Kamish/Skills/Kamish Skills.json"
     ],
     "images": [
-      "Heroes/Kamish/Images/Kamish.jpeg"
+      "Heroes/Kamish/Images/Kamish.png"
     ],
     "name": "Kamish",
     "level": 4,
@@ -130,7 +130,7 @@
       "Heroes/Tairok/Skills/Tairok Skills.json"
     ],
     "images": [
-      "Heroes/Tairok/Images/Tairok.jpeg"
+      "Heroes/Tairok/Images/Tairok.png"
     ],
     "name": "Tairok",
     "level": 4,
@@ -147,7 +147,7 @@
       "Heroes/Un Cavaliere/Skills/Un Cavaliere Skills.json"
     ],
     "images": [
-      "Heroes/Un Cavaliere/Images/Un Cavaliere.jpeg"
+      "Heroes/Un Cavaliere/Images/Un Cavaliere.png"
     ],
     "name": "Un Cavaliere",
     "level": 4,
@@ -164,7 +164,7 @@
       "Heroes/Valangus/Skills/Valangus Skills.json"
     ],
     "images": [
-      "Heroes/Valangus/Images/Valangus.jpeg"
+      "Heroes/Valangus/Images/Valangus.png"
     ],
     "name": "Valangus",
     "level": 4,
@@ -181,7 +181,7 @@
       "Heroes/Vel'drotha/Skills/Vel'drotha Skills.json"
     ],
     "images": [
-      "Heroes/Vel'drotha/Images/Vel'drotha.jpeg"
+      "Heroes/Vel'drotha/Images/Vel'drotha.png"
     ],
     "name": "Vel'drotha",
     "level": 4,
