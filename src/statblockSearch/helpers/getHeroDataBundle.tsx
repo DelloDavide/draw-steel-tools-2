@@ -3,6 +3,7 @@ import {
   DrawSteelFeatureBlockZod,
   DrawSteelSkillBlockZod,
   DrawSteelProjectBlockZod,
+  DrawSteelInventoryBlockZod,
 } from "../../types/DrawSteelZod";
 import type {
   IndexBundle,
@@ -32,6 +33,11 @@ export async function getHeroDataBundle(
       fetchTypedData(path, DrawSteelSkillBlockZod.parse),
     ),
   );
+  const inventoryBlocks = await Promise.all(
+    (indexBundle.inventoryBlocks ?? []).map((path) =>
+      fetchTypedData(path, DrawSteelInventoryBlockZod.parse),
+    ),
+  );
   const imageBlocks = imageBlockUrls.map((url) => ({
   type: "image" as const,
   src: url,
@@ -49,5 +55,6 @@ export async function getHeroDataBundle(
     skillsBlocks: skillBlocks,
     images: imageBlocks,
     projectBlocks: projectBlocks,
+    inventoryBlocks: inventoryBlocks, // Inventory blocks are not included in the index bundle, so we return an empty array here.
   };
 }

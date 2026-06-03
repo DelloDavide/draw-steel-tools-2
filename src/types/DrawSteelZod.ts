@@ -109,6 +109,35 @@ export const DrawSteelImageZod = z.strictObject({
   src: z.string().url(),
 });
 
+export const DrawSteelInventoryItemZod = z.strictObject({
+  name: z.string(),
+  quantity: z.number().int().nonnegative(),
+  notes: z.array(z.string()).optional(),
+});
+
+export const DrawSteelEquipmentItemZod = z.strictObject({
+  name: z.string(),
+  slot: z.string(),
+  type: z.string().optional(),
+  keywords: z.array(z.string()).optional(),
+  notes: z.array(z.string()).optional(),
+});
+
+export const DrawSteelInventoryBlockZod = z.strictObject({
+  type: z.literal("inventoryblock"),
+  inventoryblock_type: z.literal("Inventory"),
+
+  name: z.string(),
+  flavor: z.string(),
+
+  inventory: z.array(DrawSteelInventoryItemZod).default([]),
+
+  equipment: z.array(DrawSteelEquipmentItemZod).default([]),
+
+  created_at: z.string().datetime().optional(),
+  updated_at: z.string().datetime().optional(),
+});
+
 const ProjectTypeZod = z.string().pipe(
   z.enum([
     "Build Airship",
@@ -240,6 +269,7 @@ export type DrawSteelFeatureBlock = z.infer<typeof DrawSteelFeatureBlockZod>;
 export type DrawSteelStatblock = z.infer<typeof DrawSteelStatblockZod>;
 export type DrawSteelSkillCategory = z.infer<typeof DrawSteelSkillCategoryZod>;
 export type DrawSteelSkillBlock = z.infer<typeof DrawSteelSkillBlockZod>;
+export type DrawSteelInventoryBlock = z.infer<typeof DrawSteelInventoryBlockZod>;
 export type DrawSteelImage = z.infer<typeof DrawSteelImageZod>;
 export type DrawSteelProject = z.infer<typeof DrawSteelProjectZod>;
 export type DrawSteelProjectBlock = z.infer<typeof DrawSteelProjectBlockZod>;

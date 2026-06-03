@@ -3,6 +3,7 @@ import { extractClassResourceNamesFromHeroBundle } from "../../helpers/classReso
 import { HeroClassResourceNamesContext } from "../context/HeroClassResourceNamesContext";
 import { FeatureBlock } from "./FeatureBlock";
 import { SkillBlock } from "./SkillBlock";
+import { InventoryBlock } from "./InventoryBlock";
 import { StatBlock } from "./StatBlock";
 import { DynamicTerrainStatBlock } from "./DynamicTerrainStatBlock";
 import { ScrollArea } from "../../components/ui/scrollArea";
@@ -75,11 +76,7 @@ export default function MonsterView({
         updatedAt,
       );
 
-      await saveHeroProjectsToSupabase(
-        heroName,
-        data.projectBlocks,
-        updatedAt
-      );
+      await saveHeroProjectsToSupabase(heroName, data.projectBlocks, updatedAt);
 
       alert(
         `The ${capitalizeFirstLetter(data.kind)} ${data.statblock.name} Updated Their Projects Successfully!`,
@@ -118,7 +115,14 @@ export default function MonsterView({
                       <SkillBlock key={item.name} skillBlock={item} />
                     ))}
 
-                  <div className="mb-0.5 w-full border-b border-zinc-950" />
+                  <div className="mb-0.5 w-full border-b border-mirage-950" />
+
+                  {data.inventoryBlocks.length > 0 &&
+                    data.inventoryBlocks.map((item) => (
+                      <InventoryBlock key={item.name} inventoryBlock={item} />
+                    ))}
+
+                  <div className="mb-0.5 w-full border-b border-mirage-950" />
 
                   {data.projectBlocks.length > 0 &&
                     data.projectBlocks.map((item) => (

@@ -34,5 +34,6 @@ export async function getMonsterDataBundle(
     skillsBlocks: skillBlocks,
     images: [],
     projectBlocks: [],
+    inventoryBlocks: [], // Inventory blocks are not included in the index bundle, so we return an empty array here.
   };
 }

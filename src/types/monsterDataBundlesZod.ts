@@ -3,6 +3,7 @@ import {
   DrawSteelFeatureBlockZod,
   DrawSteelStatblockZod,
   DrawSteelSkillBlockZod,
+  DrawSteelInventoryBlockZod,
   DrawSteelImageZod,
   DrawSteelProjectBlockZod,
 } from "./DrawSteelZod";
@@ -30,6 +31,7 @@ export const MonsterDataBundleZod = z.strictObject({
   skillsBlocks: z.array(DrawSteelSkillBlockZod).optional().default([]),
   projectBlocks: z.array(DrawSteelProjectBlockZod).optional().default([]),
   images: z.array(DrawSteelImageZod).optional().default([]),
+  inventoryBlocks: z.array(DrawSteelInventoryBlockZod).optional().default([]),
 });
 export type IndexBundle = z.infer<typeof IndexBundleZod>;
 export type PathBundle = z.infer<typeof PathBundleZod>;
