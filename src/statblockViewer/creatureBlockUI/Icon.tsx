@@ -10,6 +10,7 @@ import {
   HammerIcon,
   ShieldIcon,
   AlertTriangleIcon,
+  MapIcon
 } from "lucide-react";
 
 const iconMap = {
@@ -23,6 +24,7 @@ const iconMap = {
   grid: Grid3X3Icon,
   hammer: HammerIcon,
   shield: ShieldIcon,
+  map: MapIcon,
 } as const;
 
 type IconKey = keyof typeof iconMap;
@@ -49,6 +51,8 @@ function resolveIcon(icon?: string) {
       return AlertTriangleIcon;
     case "👤":
       return UserIcon;
+    case "🗺️":
+      return MapIcon;
     default:
       return StarIcon;
   }
