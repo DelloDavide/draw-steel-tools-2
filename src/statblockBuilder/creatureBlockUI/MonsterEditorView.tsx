@@ -13,6 +13,7 @@ import defaultMalice from "../defaultMalice.json";
 import {
   DrawSteelFeatureBlockZod,
   type DrawSteelInventoryBlock,
+  type DrawSteelProjectBlock,
   type DrawSteelSkillBlock,
 } from "../../types/DrawSteelZod";
 import { useEffect, useState, useMemo } from "react";
@@ -46,9 +47,9 @@ export default function MonsterView({
     monsterData.kind === "dynamicterrain" ? [] : monsterData.skillsBlocks,
   );
 
-  const [, setOriginalInventoryBlocks] = useState<
-    DrawSteelInventoryBlock[]
-  >(monsterData.kind === "dynamicterrain" ? [] : monsterData.inventoryBlocks);
+  const [, setOriginalInventoryBlocks] = useState<DrawSteelInventoryBlock[]>(
+    monsterData.kind === "dynamicterrain" ? [] : monsterData.inventoryBlocks,
+  );
 
   const [originalProjectBlocks, setOriginalProjectBlocks] = useState(
     monsterData.kind === "dynamicterrain" ? [] : monsterData.projectBlocks,
@@ -174,7 +175,7 @@ export default function MonsterView({
     }
   }
 
-  async function saveProjects() {
+  async function saveProjectsPoints() {
     if (data.kind !== "hero") return;
 
     const heroName = data.statblock.name;
@@ -198,6 +199,41 @@ export default function MonsterView({
       console.error(err);
       alert(
         `Error saving projects for the ${capitalizeFirstLetter(data.kind)} ${data.statblock.name}`,
+      );
+    }
+  }
+
+  async function saveProjectBlock(updatedBlock: DrawSteelProjectBlock) {
+    if (data.kind !== "hero") return;
+
+    const heroName = data.statblock.name;
+    const updatedAt = new Date().toISOString();
+
+    try {
+      await saveHeroProjectsToGitHub(heroName, [updatedBlock], updatedAt);
+      await saveHeroProjectsToSupabase(heroName, [updatedBlock], updatedAt);
+
+      setData((prev) => {
+        if (prev.kind === "dynamicterrain") return prev;
+        return {
+          ...prev,
+          projectBlocks: prev.projectBlocks.map((b) =>
+            b.name === updatedBlock.name ? updatedBlock : b,
+          ),
+        };
+      });
+
+      setOriginalProjectBlocks((prev) =>
+        prev.map((b) => (b.name === updatedBlock.name ? updatedBlock : b)),
+      );
+
+      alert(
+        `The ${capitalizeFirstLetter(data.kind)} ${heroName} Updated Their Projects Successfully!`,
+      );
+    } catch (err) {
+      console.error(err);
+      alert(
+        `Error saving projects for the ${capitalizeFirstLetter(data.kind)} ${heroName}`,
       );
     }
   }
@@ -251,12 +287,13 @@ export default function MonsterView({
                         key={item.name}
                         projectBlock={item}
                         onProgress={addProgress}
+                        onSave={saveProjectBlock}
                       />
                     ))}
 
                   {data.projectBlocks.length > 0 && data.kind === "hero" && (
                     <button
-                      onClick={saveProjects}
+                      onClick={saveProjectsPoints}
                       disabled={!hasProjectChanges}
                       className={`rounded px-3 py-2 text-white ${
                         hasProjectChanges
