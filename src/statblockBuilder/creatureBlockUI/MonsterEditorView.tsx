@@ -133,14 +133,14 @@ export default function MonsterView({
                       <SkillBlock key={item.name} skillBlock={item} />
                     ))}
 
-                  <div className="border-mirage-950 border-b p-2 pl-0" />
+                  <div className="mb-0.5 w-full max-w-lg justify-self-center border-b border-mirage-950" />
 
                   {data.inventoryBlocks.length > 0 &&
                     data.inventoryBlocks.map((item) => (
                       <InventoryBlock key={item.name} inventoryBlock={item} />
                     ))}
 
-                  <div className="border-mirage-950 border-b p-2 pl-0" />
+                  <div className="mb-0.5 w-full max-w-lg justify-self-center border-b border-mirage-950" />
 
                   {data.projectBlocks.length > 0 &&
                     data.projectBlocks.map((item) => (

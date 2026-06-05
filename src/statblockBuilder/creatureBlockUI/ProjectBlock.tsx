@@ -3,7 +3,22 @@ import { Icon } from "./Icon";
 import { getProjectMilestones } from "../../helpers/milestones";
 
 function progressPercentage(progress: number, completion: number) {
-  return Math.min(100, Math.floor((progress / completion) * 100));
+  if (
+    !Number.isFinite(progress) ||
+    !Number.isFinite(completion) ||
+    completion <= 0
+  ) {
+    return 0;
+  }
+
+  const percentage = (progress / completion) * 100;
+
+  if (!Number.isFinite(percentage)) return 0;
+
+  return Math.max(
+    0,
+    Math.min(100, Number(percentage.toFixed(2)))
+  );
 }
 
 function statusColor(status: string) {

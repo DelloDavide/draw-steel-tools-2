@@ -19,10 +19,7 @@ export function InventoryBlock({
             </div>
 
             {item.notes?.map((note) => (
-              <div
-                key={note}
-                className="ml-4 text-xs leading-snug italic"
-              >
+              <div key={note} className="ml-4 text-xs leading-snug italic">
                 ({note})
               </div>
             ))}
@@ -43,10 +40,7 @@ export function InventoryBlock({
                   ["Armor", "Weapon/Implement"].includes(item.slot),
                 )
                 .map((item) => (
-                  <div
-                    key={item.name}
-                    className="bg-[#dfe5f4] px-1 py-0.5"
-                  >
+                  <div key={item.name} className="bg-[#dfe5f4] px-1 py-0.5">
                     <div>{item.name}</div>
 
                     <div className="border-t border-zinc-300 text-xs">
@@ -59,17 +53,26 @@ export function InventoryBlock({
             <div className="space-y-0.5">
               {inventoryBlock.equipment
                 .filter(
-                  (item) =>
-                    !["Armor", "Weapon/Implement"].includes(item.slot),
+                  (item) => !["Armor", "Weapon/Implement"].includes(item.slot),
                 )
                 .map((item) => (
                   <div key={item.name}>
-                    • {item.name}
-                    {item.type && ` - ${item.type}`}
-                    {item.keywords?.length
-                      ? ` (${item.keywords.join(", ")})`
-                      : ""}
-                    {item.slot ? `, ${item.slot}` : ""}
+                    <div>
+                      • {item.name}
+                      {item.type && ` - ${item.type}`}
+                      {item.keywords?.length
+                        ? ` (${item.keywords.join(", ")})`
+                        : ""}
+                      {item.slot ? `, ${item.slot}` : ""}
+                    </div>
+                    {item.notes?.map((note) => (
+                      <div
+                        key={note}
+                        className="ml-4 text-xs leading-snug italic"
+                      >
+                        ({note})
+                      </div>
+                    ))}
                   </div>
                 ))}
             </div>

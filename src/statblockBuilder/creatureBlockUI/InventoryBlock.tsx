@@ -8,8 +8,8 @@ export function InventoryBlock({
   return (
     <div className="w-full max-w-sm border border-zinc-950 bg-[#e8edf9] p-2 text-sm text-zinc-950">
       <div
-            key={inventoryBlock.name}
-            className="border-mirage-950 border-b p-2 pl-0"
+        key={inventoryBlock.name}
+        className="border-mirage-950 border-b p-2 pl-0"
       ></div>
       <div className="border-b border-zinc-400 pb-1 text-center font-bold uppercase">
         {inventoryBlock.inventoryblock_type}
@@ -23,10 +23,7 @@ export function InventoryBlock({
             </div>
 
             {item.notes?.map((note) => (
-              <div
-                key={note}
-                className="ml-4 text-xs leading-snug italic"
-              >
+              <div key={note} className="ml-4 text-xs leading-snug italic">
                 ({note})
               </div>
             ))}
@@ -47,10 +44,7 @@ export function InventoryBlock({
                   ["Armor", "Weapon/Implement"].includes(item.slot),
                 )
                 .map((item) => (
-                  <div
-                    key={item.name}
-                    className="bg-[#dfe5f4] px-1 py-0.5"
-                  >
+                  <div key={item.name} className="bg-[#dfe5f4] px-1 py-0.5">
                     <div>{item.name}</div>
 
                     <div className="border-t border-zinc-300 text-xs">
@@ -63,17 +57,26 @@ export function InventoryBlock({
             <div className="space-y-0.5">
               {inventoryBlock.equipment
                 .filter(
-                  (item) =>
-                    !["Armor", "Weapon/Implement"].includes(item.slot),
+                  (item) => !["Armor", "Weapon/Implement"].includes(item.slot),
                 )
                 .map((item) => (
                   <div key={item.name}>
-                    • {item.name}
-                    {item.type && ` - ${item.type}`}
-                    {item.keywords?.length
-                      ? ` (${item.keywords.join(", ")})`
-                      : ""}
-                    {item.slot ? `, ${item.slot}` : ""}
+                    <div>
+                      • {item.name}
+                      {item.type && ` - ${item.type}`}
+                      {item.keywords?.length
+                        ? ` (${item.keywords.join(", ")})`
+                        : ""}
+                      {item.slot ? `, ${item.slot}` : ""}
+                    </div>
+                    {item.notes?.map((note) => (
+                      <div
+                        key={note}
+                        className="ml-4 text-xs leading-snug italic"
+                      >
+                        ({note})
+                      </div>
+                    ))}
                   </div>
                 ))}
             </div>
