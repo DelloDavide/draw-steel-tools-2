@@ -1,5 +1,7 @@
-import type { MonsterDataBundle } from "../../types/monsterDataBundlesZod";
-import type { HeroDataBundle } from "../../types/heroDataBundlesZod";
+import type { CreatureDataBundle } from "../../types/creatureDataBundle";
+import { extractClassResourceNamesFromHeroBundle } from "../../helpers/classResourceHelpers";
+import { HeroClassResourceNamesContext } from "../context/HeroClassResourceNamesContext";
+import { DynamicTerrainStatBlock } from "./DynamicTerrainStatBlock";
 import { FeatureBlock } from "./FeatureBlock";
 import { SkillBlock } from "./SkillBlock";
 import { InventoryBlock } from "./InventoryBlock";
@@ -9,7 +11,7 @@ import { Images } from "./Images";
 import { ProjectBlock } from "./ProjectBlock";
 import defaultMalice from "../defaultMalice.json";
 import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { capitalizeFirstLetter } from "../../helpers/others";
 import {
   saveHeroProjectsToGitHub,
@@ -19,35 +21,62 @@ import {
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
 
-type CreatureDataBundle =
-  | (MonsterDataBundle & { kind: "monster" })
-  | (HeroDataBundle & { kind: "hero" });
+type ViewDataBundle = CreatureDataBundle;
 
 export default function MonsterView({
   monsterData,
 }: {
-  monsterData: CreatureDataBundle;
+  monsterData: ViewDataBundle;
 }) {
-  const [data, setData] = useState(monsterData);
+  const [data, setData] = useState<ViewDataBundle>(monsterData);
+
+  const [originalProjectBlocks, setOriginalProjectBlocks] = useState(
+    monsterData.kind === "dynamicterrain" ? [] : monsterData.projectBlocks,
+  );
+
+  useEffect(() => {
+    setData(monsterData);
+
+    if (monsterData.kind !== "dynamicterrain") {
+      setOriginalProjectBlocks(monsterData.projectBlocks);
+    }
+  }, [monsterData]);
+
+  const heroClassResourceNames = useMemo(
+    () =>
+      data.kind === "hero" ? extractClassResourceNamesFromHeroBundle(data) : [],
+    [data],
+  );
+  const hasProjectChanges = useMemo(() => {
+    if (data.kind !== "hero") return false;
+
+    return (
+      JSON.stringify(data.projectBlocks) !==
+      JSON.stringify(originalProjectBlocks)
+    );
+  }, [data, originalProjectBlocks]);
 
   function addProgress(projectName: string, delta: number) {
-    setData((prev) => ({
-      ...prev,
-      projectBlocks: prev.projectBlocks.map((block) => ({
-        ...block,
-        projects: block.projects.map((p) =>
-          p.name === projectName
-            ? {
-                ...p,
-                progress: Math.min(
-                  p.completion,
-                  Math.max(0, p.progress + delta),
-                ),
-              }
-            : p,
-        ),
-      })),
-    }));
+    setData((prev) => {
+      if (prev.kind === "dynamicterrain") return prev;
+      return {
+        ...prev,
+        projectBlocks: prev.projectBlocks.map((block) => ({
+          ...block,
+          projects: block.projects.map((p) =>
+            p.name === projectName
+              ? {
+                  ...p,
+                  progress: Math.min(
+                    p.completion,
+                    Math.max(0, p.progress + delta),
+                  ),
+                }
+              : p,
+          ),
+        })),
+      };
+    });
   }
 
   async function saveProjects() {
@@ -65,6 +94,8 @@ export default function MonsterView({
 
       await saveHeroProjectsToSupabase(heroName, data.projectBlocks, updatedAt);
 
+      setOriginalProjectBlocks(structuredClone(data.projectBlocks));
+
       alert(
         `The ${capitalizeFirstLetter(data.kind)} ${data.statblock.name} Updated Their Projects Successfully!`,
       );
@@ -77,57 +108,72 @@ export default function MonsterView({
   }
 
   return (
-    <div className="flex grow flex-col">
-      <ScrollArea className="grow basis-0">
-        <div className="bg-mirage-50 grid justify-items-center gap-y-8 p-4 text-sm text-black">
-          <Images images={data.images} />
-          <StatBlock statblock={data.statblock} />
+    <HeroClassResourceNamesContext value={heroClassResourceNames}>
+      <div className="flex grow flex-col">
+        <ScrollArea className="grow basis-0">
+          <div className="bg-mirage-50 grid justify-items-center gap-y-8 p-4 text-sm text-black">
+            {data.kind === "dynamicterrain" ? (
+              <DynamicTerrainStatBlock terrain={data.terrain} />
+            ) : (
+              <>
+                <Images images={data.images} />
+                <StatBlock statblock={data.statblock} />
 
-          <div className="grid h-fit w-full justify-items-center gap-8">
-            {data.featuresBlocks.length > 0 &&
-              data.featuresBlocks.map((item) => (
-                <FeatureBlock
-                  key={item.name + item.level}
-                  featureBlock={item}
-                />
-              ))}
+                <div className="grid h-fit w-full justify-items-center gap-8">
+                  {data.featuresBlocks.length > 0 &&
+                    data.featuresBlocks.map((item) => (
+                      <FeatureBlock
+                        key={item.name + item.level}
+                        featureBlock={item}
+                      />
+                    ))}
 
-            {data.skillsBlocks.length > 0 &&
-              data.skillsBlocks.map((item) => (
-                <SkillBlock key={item.name} skillBlock={item} />
-              ))}
+                  {data.skillsBlocks.length > 0 &&
+                    data.skillsBlocks.map((item) => (
+                      <SkillBlock key={item.name} skillBlock={item} />
+                    ))}
 
-            <div className="mb-0.5 w-full border-b border-mirage-950" />
+                  <div className="border-mirage-950 border-b p-2 pl-0" />
 
-            {data.inventoryBlocks.length > 0 &&
-              data.inventoryBlocks.map((item) => (
-                <InventoryBlock key={item.name} inventoryBlock={item} />
-              ))}
+                  {data.inventoryBlocks.length > 0 &&
+                    data.inventoryBlocks.map((item) => (
+                      <InventoryBlock key={item.name} inventoryBlock={item} />
+                    ))}
 
-            <div className="mb-0.5 w-full border-b border-mirage-950" />
+                  <div className="border-mirage-950 border-b p-2 pl-0" />
 
-            {data.projectBlocks.length > 0 &&
-              data.projectBlocks.map((item) => (
-                <div key={item.name} className="w-full">
-                  <ProjectBlock projectBlock={item} onProgress={addProgress} />
+                  {data.projectBlocks.length > 0 &&
+                    data.projectBlocks.map((item) => (
+                      <ProjectBlock
+                        key={item.name}
+                        projectBlock={item}
+                        onProgress={addProgress}
+                      />
+                    ))}
+
+                  {data.projectBlocks.length > 0 && data.kind === "hero" && (
+                    <button
+                      onClick={saveProjects}
+                      disabled={!hasProjectChanges}
+                      className={`rounded px-3 py-2 text-white ${
+                        hasProjectChanges
+                          ? "bg-green-700 hover:bg-green-600"
+                          : "cursor-not-allowed bg-gray-500"
+                      }`}
+                    >
+                      Update Projects Points
+                    </button>
+                  )}
+
+                  {data.kind === "monster" && (
+                    <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
+                  )}
                 </div>
-              ))}
-
-            {data.projectBlocks.length > 0 && data.kind === "hero" && (
-              <button
-                onClick={saveProjects}
-                className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600"
-              >
-                Update Projects Points
-              </button>
-            )}
-
-            {data.kind === "monster" && (
-              <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
+              </>
             )}
           </div>
-        </div>
-      </ScrollArea>
-    </div>
+        </ScrollArea>
+      </div>
+    </HeroClassResourceNamesContext>
   );
 }

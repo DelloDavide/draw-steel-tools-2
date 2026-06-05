@@ -30,8 +30,16 @@ export default function MonsterView({
 }) {
   const [data, setData] = useState<ViewDataBundle>(monsterData);
 
+  const [originalProjectBlocks, setOriginalProjectBlocks] = useState(
+    monsterData.kind === "dynamicterrain" ? [] : monsterData.projectBlocks,
+  );
+
   useEffect(() => {
     setData(monsterData);
+
+    if (monsterData.kind !== "dynamicterrain") {
+      setOriginalProjectBlocks(monsterData.projectBlocks);
+    }
   }, [monsterData]);
 
   const heroClassResourceNames = useMemo(
@@ -39,6 +47,15 @@ export default function MonsterView({
       data.kind === "hero" ? extractClassResourceNamesFromHeroBundle(data) : [],
     [data],
   );
+
+  const hasProjectChanges = useMemo(() => {
+    if (data.kind !== "hero") return false;
+
+    return (
+      JSON.stringify(data.projectBlocks) !==
+      JSON.stringify(originalProjectBlocks)
+    );
+  }, [data, originalProjectBlocks]);
 
   function addProgress(projectName: string, delta: number) {
     setData((prev) => {
@@ -78,6 +95,8 @@ export default function MonsterView({
 
       await saveHeroProjectsToSupabase(heroName, data.projectBlocks, updatedAt);
 
+      setOriginalProjectBlocks(data.projectBlocks);
+
       alert(
         `The ${capitalizeFirstLetter(data.kind)} ${data.statblock.name} Updated Their Projects Successfully!`,
       );
@@ -115,14 +134,14 @@ export default function MonsterView({
                       <SkillBlock key={item.name} skillBlock={item} />
                     ))}
 
-                  <div className="mb-0.5 w-full border-b border-mirage-950" />
+                  <div className="border-mirage-950 border-b p-2 pl-0" />
 
                   {data.inventoryBlocks.length > 0 &&
                     data.inventoryBlocks.map((item) => (
                       <InventoryBlock key={item.name} inventoryBlock={item} />
                     ))}
 
-                  <div className="mb-0.5 w-full border-b border-mirage-950" />
+                  <div className="border-mirage-950 border-b p-2 pl-0" />
 
                   {data.projectBlocks.length > 0 &&
                     data.projectBlocks.map((item) => (
@@ -136,7 +155,12 @@ export default function MonsterView({
                   {data.projectBlocks.length > 0 && data.kind === "hero" && (
                     <button
                       onClick={saveProjects}
-                      className="rounded bg-green-700 px-3 py-2 text-white hover:bg-green-600"
+                      disabled={!hasProjectChanges}
+                      className={`rounded px-3 py-2 text-white ${
+                        hasProjectChanges
+                          ? "bg-green-700 hover:bg-green-600"
+                          : "cursor-not-allowed bg-gray-500"
+                      }`}
                     >
                       Update Projects Points
                     </button>
