@@ -102,6 +102,7 @@ export const DrawSteelSkillBlockZod = z.strictObject({
   flavor: z.string(),
   categories: z.array(DrawSteelSkillCategoryZod),
   languages: z.array(DrawSteelSkillLanguageZod),
+  updated_at: z.string().datetime().optional(),
 });
 
 export const DrawSteelImageZod = z.strictObject({

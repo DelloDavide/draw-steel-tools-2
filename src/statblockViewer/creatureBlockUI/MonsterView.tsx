@@ -13,6 +13,7 @@ import defaultMalice from "../defaultMalice.json";
 import {
   DrawSteelFeatureBlockZod,
   type DrawSteelInventoryBlock,
+  type DrawSteelSkillBlock,
 } from "../../types/DrawSteelZod";
 import { useEffect, useState, useMemo } from "react";
 import { capitalizeFirstLetter } from "../../helpers/others";
@@ -24,6 +25,10 @@ import {
   saveInventoryToGitHub,
   saveInventoryToSupabase,
 } from "../../helpers/saveHeroInventory";
+import {
+  saveSkillsToGitHub,
+  saveSkillsToSupabase,
+} from "../../helpers/saveHeroSkills";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
@@ -37,7 +42,11 @@ export default function MonsterView({
 }) {
   const [data, setData] = useState<ViewDataBundle>(monsterData);
 
-  const [originalInventoryBlocks, setOriginalInventoryBlocks] = useState<
+  const [, setOriginalSkillsBlocks] = useState(
+    monsterData.kind === "dynamicterrain" ? [] : monsterData.skillsBlocks,
+  );
+
+  const [, setOriginalInventoryBlocks] = useState<
     DrawSteelInventoryBlock[]
   >(monsterData.kind === "dynamicterrain" ? [] : monsterData.inventoryBlocks);
 
@@ -49,6 +58,7 @@ export default function MonsterView({
     setData(monsterData);
 
     if (monsterData.kind !== "dynamicterrain") {
+      setOriginalSkillsBlocks(monsterData.skillsBlocks);
       setOriginalProjectBlocks(monsterData.projectBlocks);
       setOriginalInventoryBlocks(monsterData.inventoryBlocks);
     }
@@ -68,15 +78,6 @@ export default function MonsterView({
       JSON.stringify(originalProjectBlocks)
     );
   }, [data, originalProjectBlocks]);
-
-  const hasInventoryChanges = useMemo(() => {
-    if (data.kind !== "hero") return false;
-
-    return (
-      JSON.stringify(data.inventoryBlocks) !==
-      JSON.stringify(originalInventoryBlocks)
-    );
-  }, [data, originalInventoryBlocks]);
 
   function addProgress(projectName: string, delta: number) {
     setData((prev) => {
@@ -99,6 +100,41 @@ export default function MonsterView({
         })),
       };
     });
+  }
+
+  async function saveSkills(updatedBlock: DrawSteelSkillBlock) {
+    if (data.kind !== "hero") return;
+
+    const heroName = data.statblock.name;
+    const updatedAt = new Date().toISOString();
+
+    try {
+      await saveSkillsToGitHub(heroName, updatedBlock, updatedAt);
+      await saveSkillsToSupabase(heroName, updatedBlock, updatedAt);
+
+      setData((prev) => {
+        if (prev.kind === "dynamicterrain") return prev;
+        return {
+          ...prev,
+          skillsBlocks: prev.skillsBlocks.map((b) =>
+            b.name === updatedBlock.name ? updatedBlock : b,
+          ),
+        };
+      });
+
+      setOriginalSkillsBlocks((prev) =>
+        prev.map((b) => (b.name === updatedBlock.name ? updatedBlock : b)),
+      );
+
+      alert(
+        `The ${capitalizeFirstLetter(data.kind)} ${heroName} Updated Their Skills Successfully!`,
+      );
+    } catch (err) {
+      console.error(err);
+      alert(
+        `Error saving skills for the ${capitalizeFirstLetter(data.kind)} ${heroName}`,
+      );
+    }
   }
 
   async function saveInventory(updatedBlock: DrawSteelInventoryBlock) {
@@ -189,7 +225,11 @@ export default function MonsterView({
 
                   {data.skillsBlocks.length > 0 &&
                     data.skillsBlocks.map((item) => (
-                      <SkillBlock key={item.name} skillBlock={item} />
+                      <SkillBlock
+                        key={item.name}
+                        skillBlock={item}
+                        onSave={saveSkills}
+                      />
                     ))}
 
                   <div className="border-mirage-950 mb-0.5 w-full max-w-lg justify-self-center border-b" />
