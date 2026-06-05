@@ -10,13 +10,20 @@ import { ScrollArea } from "../../components/ui/scrollArea";
 import { Images } from "./Images";
 import { ProjectBlock } from "./ProjectBlock";
 import defaultMalice from "../defaultMalice.json";
-import { DrawSteelFeatureBlockZod } from "../../types/DrawSteelZod";
+import {
+  DrawSteelFeatureBlockZod,
+  type DrawSteelInventoryBlock,
+} from "../../types/DrawSteelZod";
 import { useEffect, useState, useMemo } from "react";
 import { capitalizeFirstLetter } from "../../helpers/others";
 import {
   saveHeroProjectsToGitHub,
   saveHeroProjectsToSupabase,
 } from "../../helpers/saveHeroProjects";
+import {
+  saveInventoryToGitHub,
+  saveInventoryToSupabase,
+} from "../../helpers/saveHeroInventory";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
@@ -30,6 +37,10 @@ export default function MonsterView({
 }) {
   const [data, setData] = useState<ViewDataBundle>(monsterData);
 
+  const [originalInventoryBlocks, setOriginalInventoryBlocks] = useState<
+    DrawSteelInventoryBlock[]
+  >(monsterData.kind === "dynamicterrain" ? [] : monsterData.inventoryBlocks);
+
   const [originalProjectBlocks, setOriginalProjectBlocks] = useState(
     monsterData.kind === "dynamicterrain" ? [] : monsterData.projectBlocks,
   );
@@ -39,6 +50,7 @@ export default function MonsterView({
 
     if (monsterData.kind !== "dynamicterrain") {
       setOriginalProjectBlocks(monsterData.projectBlocks);
+      setOriginalInventoryBlocks(monsterData.inventoryBlocks);
     }
   }, [monsterData]);
 
@@ -56,6 +68,15 @@ export default function MonsterView({
       JSON.stringify(originalProjectBlocks)
     );
   }, [data, originalProjectBlocks]);
+
+  const hasInventoryChanges = useMemo(() => {
+    if (data.kind !== "hero") return false;
+
+    return (
+      JSON.stringify(data.inventoryBlocks) !==
+      JSON.stringify(originalInventoryBlocks)
+    );
+  }, [data, originalInventoryBlocks]);
 
   function addProgress(projectName: string, delta: number) {
     setData((prev) => {
@@ -78,6 +99,43 @@ export default function MonsterView({
         })),
       };
     });
+  }
+
+  async function saveInventory(updatedBlock: DrawSteelInventoryBlock) {
+    if (data.kind !== "hero") return;
+
+    const heroName = data.statblock.name;
+    const updatedAt = new Date().toISOString();
+
+    try {
+      await saveInventoryToGitHub(heroName, updatedBlock, updatedAt);
+      await saveInventoryToSupabase(heroName, updatedBlock, updatedAt);
+
+      // aggiorna lo stato locale con il blocco salvato
+      setData((prev) => {
+        if (prev.kind === "dynamicterrain") return prev;
+        return {
+          ...prev,
+          inventoryBlocks: prev.inventoryBlocks.map((b) =>
+            b.name === updatedBlock.name ? updatedBlock : b,
+          ),
+        };
+      });
+
+      // sincronizza l'originale così il componente torna "non modificato"
+      setOriginalInventoryBlocks((prev) =>
+        prev.map((b) => (b.name === updatedBlock.name ? updatedBlock : b)),
+      );
+
+      alert(
+        `The ${capitalizeFirstLetter(data.kind)} ${heroName} Updated Their Inventory Successfully!`,
+      );
+    } catch (err) {
+      console.error(err);
+      alert(
+        `Error saving inventory for the ${capitalizeFirstLetter(data.kind)} ${heroName}`,
+      );
+    }
   }
 
   async function saveProjects() {
@@ -134,14 +192,18 @@ export default function MonsterView({
                       <SkillBlock key={item.name} skillBlock={item} />
                     ))}
 
-                  <div className="mb-0.5 w-full max-w-lg justify-self-center border-b border-mirage-950" />
+                  <div className="border-mirage-950 mb-0.5 w-full max-w-lg justify-self-center border-b" />
 
                   {data.inventoryBlocks.length > 0 &&
                     data.inventoryBlocks.map((item) => (
-                      <InventoryBlock key={item.name} inventoryBlock={item} />
+                      <InventoryBlock
+                        key={item.name}
+                        inventoryBlock={item}
+                        onSave={saveInventory}
+                      />
                     ))}
 
-                  <div className="mb-0.5 w-full max-w-lg justify-self-center border-b border-mirage-950" />
+                  <div className="border-mirage-950 mb-0.5 w-full max-w-lg justify-self-center border-b" />
 
                   {data.projectBlocks.length > 0 &&
                     data.projectBlocks.map((item) => (
