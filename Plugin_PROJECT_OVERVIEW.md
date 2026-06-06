@@ -91,17 +91,31 @@ Lo script di background:
 ### 4.3 `contextMenu/` — Editor per singolo token
 [src/contextMenu/TokenEditor.tsx](src/contextMenu/TokenEditor.tsx) gestisce token Hero/Monster; [src/contextMenu/MinionContextMenu.tsx](src/contextMenu/MinionContextMenu.tsx) i token di tipo Minion (delegando a `MinionGroupEditor`). Sotto-cartelle:
 
-- `components/`: `NameInput`, `StatEditor`, `StatblockControls`, `VisibilityToggle`, `MinionGroupEditor`, `HeroicResourceRoller`.
+- `components/`: `NameInput`, `StatEditor`, `StatblockControls`, `VisibilityToggle`, `MinionGroupEditor`, `HeroicResourceRoller`, `ClassResourceTrackers`.
 - `trackerInputs/`: input numerici specializzati con **inline math** (BarTrackerInput, CounterTrackerInput, ValueButtonTrackerInput, TokenTextarea, Label).
 
 ### 4.4 `statblockSearch/` — Ricerca statblock
-- [src/statblockSearch/StatblockSearch.tsx](src/statblockSearch/StatblockSearch.tsx) + `components/SearchView`, `OptionsView`, `StatblockSearchList`, `MonsterPreviewCard`, `FiltersDropdown`, `DevScriptButtons`.
-- Indici locali: [src/statblockSearch/heroIndex.json](src/statblockSearch/heroIndex.json), [src/statblockSearch/monsterIndex.json](src/statblockSearch/monsterIndex.json).
-- `helpers/` recupera i bundle reali da **Supabase**: [src/statblockSearch/helpers/getTypedData.ts](src/statblockSearch/helpers/getTypedData.ts) (query su `bestiary_documents`), `getHeroDataBundle`, `getMonsterDataBundle`, `getImageUrl` (bucket Supabase Storage `hero-images`). Il client è inizializzato in [src/supabaseClient.ts](src/supabaseClient.ts).
+- [src/statblockSearch/StatblockSearch.tsx](src/statblockSearch/StatblockSearch.tsx) + `components/SearchView`, `OptionsView`, `StatblockSearchList`, `MonsterPreviewCard`, `NoMonsterCard`, `FiltersDropdown`, `DevScriptButtons`.
+- Indici locali: [src/statblockSearch/heroIndex.json](src/statblockSearch/heroIndex.json), [src/statblockSearch/monsterIndex.json](src/statblockSearch/monsterIndex.json), [src/statblockSearch/dynamicTerrainIndex.json](src/statblockSearch/dynamicTerrainIndex.json).
+- `helpers/` recupera i bundle reali da **Supabase**: [src/statblockSearch/helpers/getTypedData.ts](src/statblockSearch/helpers/getTypedData.ts) (query su `bestiary_documents`, con **in-memory cache** tramite `typedDataCache`; espone `setTypedDataCache` / `invalidateTypedDataCache` per gli helper di write-back), `getHeroDataBundle`, `getMonsterDataBundle`, `getDynamicTerrainDataBundle`, `getImageUrl` (bucket Supabase Storage `hero-images`). Il client è inizializzato in [src/supabaseClient.ts](src/supabaseClient.ts).
+- `devScripts/` contiene `generateMonsterIndex.ts`, `generateDynamicTerrainIndex.ts`, `validateStatblocks.ts`, `validatemalice.ts`.
 - Modalità **dev** (`?dev=true`) abilita pulsanti per validare/generare/scaricare gli indici.
 
-### 4.5 `statblockViewer/` — Vista read-only
-[src/statblockViewer/StatblockViewer.tsx](src/statblockViewer/StatblockViewer.tsx) carica per nome (cerca prima fra gli eroi, poi fra i mostri), renderizza il blocco con i componenti in `creatureBlockUI/` (`MonsterView`, `StatBlock`, `Feature`, `ProjectBlock`, `SkillBlock`, `Effect`, `Characteristics`, `MaliceSpender`, `RollResultIndicator`, `ResultDropDown`, ecc.). Include `DiceDrawer`, `StatblockSwitcher`, `OpenInNewTabButton`. Definizioni di regole inline da [src/rulesReference/definitions.json](src/rulesReference/definitions.json).
+### 4.5 `statblockViewer/` — Visualizzatore statblock
+[src/statblockViewer/StatblockViewer.tsx](src/statblockViewer/StatblockViewer.tsx) carica per nome (cerca prima fra gli eroi, poi fra i mostri, poi fra i **Dynamic Terrain**), renderizza il blocco con i componenti in `creatureBlockUI/` (`MonsterView`, `StatBlock`, `Feature`, `FeatureBlock`, `DynamicTerrainStatBlock`, `ProjectBlock`, `SkillBlock`, `InventoryBlock`, `Images`, `Effect`, `Characteristics`, `MaliceSpender`, `HeroResourceSpender`, `HeroResourceSpentIndicator`, `RollResultIndicator`, `ResultDropDown`, `InlineRollButton`, ecc.). Include `DiceDrawer`, `ClassResourceBar`, `StatblockSwitcher`, `OpenInNewTabButton`. Definizioni di regole inline da [src/rulesReference/definitions.json](src/rulesReference/definitions.json).
+
+Architettura context (cartella `context/`):
+- `HeroTokenContext` + `HeroTokenProvider`: collegamento a un token Hero in scena per nome statblock (aggiorna `classResourcePools` in tempo reale via `OBR.scene.items.onChange`).
+- `DiceDrawerContext` / `DiceDrawerContextProvider`: gestione apertura drawer dadi.
+- `MaliceSpentContext` / `MaliceSpentContextProvider`: stato della spesa Malice corrente.
+- `RollAttributesContext` / `RollAttributesProvider`: attributi del power roll.
+- `RoomMetadataProvider`: provider generico per metadata di stanza (usato per trackers e settings).
+- `RoomSettingsContext`, `RoomTrackersContext`: contesti derivati da `RoomMetadataProvider`.
+- `FeatureIdContext`, `HeroClassResourceNamesContext`: contesti di dettaglio per feature e risorse di classe.
+
+Hook (`hooks/`): `useCommitPendingResourceSpend.ts` — gestisce il commit della spesa risorsa pendente.
+
+`SkillBlock`, `ProjectBlock` e `InventoryBlock` sono componenti di visualizzazione **e editing** inline, con salvataggio verso GitHub e Supabase tramite i rispettivi helper (`saveHeroSkills`, `saveHeroProjects`, `saveHeroInventory`).
 
 ### 4.6 `statblockBuilder/` — Editor di statblock
 [src/statblockBuilder/StatblockBuilder.tsx](src/statblockBuilder/StatblockBuilder.tsx) + `creatureBlockUI/MonsterEditorView`, `Input`, `StatBlock`, ecc. Si aspetta `?statblockName=...&type=hero|monster`.
@@ -116,7 +130,7 @@ Calcolatore standalone di Malice e Hero Tokens (vedi [src/resourceCalculator/Res
 
 ### 4.9 `components/`
 - `ui/`: wrappers stilizzati per Radix (Accordion, Dialog, Popover, ScrollArea, Sheet, Slider, Switch, Toggle, ToggleGroup, Tooltip, Checkbox, RadioGroup, Collapsible, Separator, Label, Badge), più `Button`/`buttonVariants`, `Input`, `DropDownInput`, `UnderlineDropDown`, `toggleVariants`.
-- `logic/`: `DebounceInput`, `FreeWheelInput`, `FreeWheelTextarea` (input non controllati con commit on blur/Enter, supportano inline math), `HeightMatch` (osserva l'altezza dei figli e propaga via callback per ridimensionare popover), `PluginGate` / `PluginReadyGate` / `PluginReadyContext` / `PluginReadyProvider` (gating sull'`OBR.onReady`).
+- `logic/`: `DebounceInput`, `FreeWheelInput`, `FreeWheelTextarea` (input non controllati con commit on blur/Enter, supportano inline math), `HeightMatch` (osserva l'altezza dei figli e propaga via callback per ridimensionare popover), `ImageCarousel` (visualizzatore immagini con navigazione frecce e zoom da tastiera), `PluginGate` / `PluginReadyGate` / `PluginReadyContext` / `PluginReadyProvider` (gating sull'`OBR.onReady`).
 - `icons/`: SVG inline.
 
 ### 4.10 `helpers/`
@@ -125,13 +139,15 @@ Cuore della logica condivisa. Notabili:
 - **Plugin / metadata**: `getPluginId`, `parseMetadata`, `localStorageHelpers`, `useRoomMetadata`, `useSceneMetadata` (hook generici tipizzati con parser zod), `settingsHelpers`, `tokenHelpers` (inclusi default per Hero/Monster/Minion), `monsterGroupHelpers`.
 - **Token / item**: `getSelectedItem(s)`, `useItems`, `useMinionGroupItems`, `getMinionTokenCounts`, `removeCreatureData`, `usePlayerName/Role/Selection`.
 - **Roll / dadi**: `useDiceRoller`, `createRollRequestMessage`, `lastDiceStyle`, `milestones`.
-- **Statblock fetch**: `heroDataFromStatblockName`, `monsterDataFromStatblockName`.
+- **Statblock fetch**: `heroDataFromStatblockName`, `monsterDataFromStatblockName`, `dynamicTerrainDataFromStatblockName`, `isDynamicTerrainIndexEntry`.
+- **Class resources**: `classResourceHelpers` (`extractClassResourceNamesFromHeroBundle`, `getMergedClassResourcePools`, `updateClassResourcePool`), `updateHeroTokenClassResource` (aggiorna `classResourcePools` direttamente sul token OBR).
+- **Hero data write-back**: `saveHeroInventory` (`saveInventoryToGitHub` + `saveInventoryToSupabase`), `saveHeroProjects` (`saveHeroProjectsToGitHub` + `saveHeroProjectsToSupabase`), `saveHeroSkills` (`saveSkillsToGitHub` + `saveSkillsToSupabase`), `githubClient` (client per GitHub API: `getGitHubApiUrl`, `getGitHubHeaders`, `getGitHubFileSha`, `putGitHubFile`, path helpers per hero data).
 - **Round**: `broadcastRoundImplementation`, `useRoundMessageHandler`.
 - **Logging**: `logger` — logger configurabile con livelli (debug/info/warn/error/silent).
 - **Misc**: `parseNumber` (inline math: prefissi `=`, `+`, `-`), `setDifference`, `syncThemeMode`, `getContextMenuUrl`, `generateGroupId`, `others`, `utils` (ha `cn` per Tailwind).
 
 ### 4.11 `types/`
-Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `roomTrackersZod`, `minionGroup`, `heroDataBundlesZod`, `monsterDataBundlesZod`, `DrawSteelZod`, `githubZod`, `diceRollerTypes`, `localStorageKey`, `themeMode`, `contextMenuToken`, `statblockLookupAppState`, `statblockSearchData`.
+Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `roomTrackersZod`, `minionGroup`, `heroDataBundlesZod` (include `inventoryBlocks` e `projectBlocks`), `monsterDataBundlesZod`, `dynamicTerrainDataBundlesZod`, `creatureDataBundle` (union tipo `hero|monster|dynamicterrain`), `DrawSteelZod` (include `DrawSteelInventoryBlock`, `DrawSteelProjectBlock`, `DrawSteelSkillBlock`, `DrawSteelDynamicTerrain`), `githubZod`, `diceRollerTypes`, `localStorageKey`, `themeMode`, `contextMenuToken`, `statblockLookupAppState`, `statblockSearchData`.
 
 ### 4.12 `protocols/` — Protocolli broadcast
 - [src/protocols/diceProtocol.ts](src/protocols/diceProtocol.ts) + [src/protocols/diceProtocolExport.ts](src/protocols/diceProtocolExport.ts): protocollo "Connected Dice" (canali `general.diceRoller.hello` / `general.diceClient.hello`, `RollRequest`, `RollResult`, `PowerRollRequest`, `PowerRollResult`).
@@ -151,10 +167,8 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 | **Room metadata** | `getPluginId("trackers")` | `RoomTrackersZod` (Malice + Hero Tokens) |
 | **Local storage** | varie (vedi `localStorageHelpers`, `lastDiceStyle`) | tipizzato in `localStorageKey` |
 
-> ✅ **Risolto:** i settings ora usano `getPluginId("settings")` (= `SETTINGS_METADATA_KEY`), distinto da `TOKEN_METADATA_KEY`. Il background esegue migrazione automatica dalla chiave legacy.
-
 ### 5.2 Token types
-- `HERO`: `name, gmOnly, stamina, staminaMaximum, temporaryStamina, heroicResource, recoveries, surges, statblockName, heroicResourceButton ("D3"|"D3+1"|"+2"|"+3"), heroicResourceName, notes`.
+- `HERO`: `name, gmOnly, stamina, staminaMaximum, temporaryStamina, heroicResource, recoveries, surges, statblockName, heroicResourceButton ("D3"|"D3+1"|"+2"|"+3"), heroicResourceName, classResourcePools (Record<string,number>), notes`.
 - `MONSTER`: subset di Hero senza heroic resource/surges/recoveries/notes.
 - `MINION`: solo `groupId` — tutto il resto è nel `MinionGroup` di scena.
 
@@ -183,7 +197,7 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 - `pnpm install` → `pnpm dev` (Vite dev server con CORS aperto solo verso `https://www.owlbear.rodeo`).
 - Per testare l'estensione in OBR: caricare il manifest dal dev URL (es. `http://localhost:5173/manifest.json`) come custom extension nella stanza.
 - `pnpm build` produce `dist/` da pubblicare statico.
-- Aggiornare l'**indice mostri**: in dev mode (`?dev=true`) lo script `generateMonsterIndex` interroga Supabase per ricostruire `monsterIndex.json`. I dati vanno prima caricati in Supabase tramite lo script `scripts/migrateToSupabase.ts`.
+- Aggiornare gli **indici mostri / terrain**: in dev mode (`?dev=true`) gli script `generateMonsterIndex` e `generateDynamicTerrainIndex` interrogano Supabase per ricostruire `monsterIndex.json` / `dynamicTerrainIndex.json`. Lo script `scripts/writeDynamicTerrainIndex.ts` può essere eseguito anche stand-alone. I dati vanno prima caricati in Supabase tramite lo script `scripts/migrateToSupabase.ts`.
 
 ### 7.2 Stack di deploy (produzione)
 
@@ -212,6 +226,7 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 ## 8. Dipendenze esterne / integrazioni
 
 - **Supabase** (tabella `bestiary_documents` + bucket `hero-images`): sorgente dati per tutti gli statblock JSON e le immagini degli eroi. I dati originali provengono dal repo GitHub `DelloDavide/data-bestiary-json` e vengono migrati con `scripts/migrateToSupabase.ts`. Setup documentato in [docs/supabase-setup.md](docs/supabase-setup.md).
+- **GitHub API** (write-back): gli helper `saveHeroInventory`, `saveHeroProjects`, `saveHeroSkills` scrivono direttamente sul repo `DelloDavide/data-bestiary-json` tramite `githubClient.ts`. Richiede la variabile env `VITE_GITHUB_TOKEN` (PAT con scope `contents:write`). Il client aggiorna anche la cache in-memory Supabase via `setTypedDataCache`.
 - **Connected Dice** (estensione opzionale OBR): se installata, sostituisce i power roll testuali con simulazione fisica.
 - **Pretty Sordid** (estensione OBR): sincronizza il numero di round.
 - **Owlbear Rodeo SDK** (`@owlbear-rodeo/sdk`): tutte le API per scene, items, room, player, theme, contextMenu, popover, action, broadcast.
@@ -220,16 +235,12 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 
 ## 9. Aree di rischio note (osservate leggendo il codice)
 
-1. ~~**Confronto isChanged in `getSettings`**~~: corretto (era `===` invece di `!==`). ✅
-2. ~~**Condivisione della chiave metadata**~~: risolto — `SETTINGS_METADATA_KEY` ora usa `getPluginId("settings")` con migrazione retrocompatibile nel background. ✅
-3. ~~**`throw new Error("Too many items selected.")`**~~: sostituito con early-return in `TokenEditor`. ✅
-4. **Sincronizzazione Supabase ↔ repo GitHub**: i dati in Supabase vanno aggiornati manualmente (via `scripts/migrateToSupabase.ts`) quando il repo `data-bestiary-json` cambia. Nessuna sincronizzazione automatica.
-5. ~~**`StatblockBuilder` fallback non chiaro**~~: rimosso default `"Human Blackguard"`, ora mostra UI di fallback se `statblockName` manca. ✅
-6. ~~**Allineamento heightcalc context menu**~~: costanti estratte in [src/background/contextMenuLayout.ts](src/background/contextMenuLayout.ts) con commenti. ✅
-7. **Strict mode + React 19**: `useEffect` con dipendenze `[]` per le sottoscrizioni OBR — corretto, ma da non ricontrollare in StrictMode dev (double-invoke può registrare due listener temporaneamente; verificare se i `return unsubscribe` sono sempre restituiti).
-8. **Validazioni Zod parse vs safeParse**: in molti hook si usa `parse` (lancia eccezioni). Un dato di stanza corrotto può crashare l'iframe.
-9. **`fetch("/manifest.json")` in console version log**: dipende dal fatto che il server espone `/manifest.json` come root (vero in OBR, vero in Vite dev se file in `public/`).
-10. **i18n**: tutte le stringhe sono hard-coded in inglese.
+1. **Sincronizzazione Supabase ↔ repo GitHub**: i dati in Supabase vanno aggiornati manualmente (via `scripts/migrateToSupabase.ts`) quando il repo `data-bestiary-json` cambia. Il write-back con `VITE_GITHUB_TOKEN` aggiorna direttamente singoli file hero ma non riesegue la migrazione globale.
+2. **Strict mode + React 19**: `useEffect` con dipendenze `[]` per le sottoscrizioni OBR — corretto, ma in StrictMode dev il double-invoke registra due listener temporaneamente. Verificare che i `return unsubscribe` siano sempre restituiti nei nuovi `useEffect`.
+3. **Validazioni Zod parse vs safeParse**: in molti hook si usa `parse` (lancia eccezioni). Un dato di stanza corrotto può crashare l'iframe.
+4. **`fetch("/manifest.json")` in console version log**: dipende dal fatto che il server espone `/manifest.json` come root (vero in OBR, vero in Vite dev se file in `public/`).
+5. **i18n**: tutte le stringhe sono hard-coded in inglese.
+6. **`VITE_GITHUB_TOKEN` nel frontend**: il token GitHub è esposto nel bundle JS lato client (variabile `VITE_`). Va usato un PAT con scope minimale (`contents:write` solo sul repo `data-bestiary-json`) e revocato se compromesso.
 
 ---
 
@@ -237,26 +248,13 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 
 ### 10.1 Bug fix consigliati
 
-| # | File | Descrizione | Stato |
-| --- | --- | --- | --- |
-| F1 | [src/helpers/settingsHelpers.ts](src/helpers/settingsHelpers.ts) | ~~Invertire la condizione di `isChanged`: usare `!==` invece di `===`.~~ | ✅ Fatto |
-| F2 | [src/contextMenu/TokenEditor.tsx](src/contextMenu/TokenEditor.tsx) | ~~Sostituire i `throw new Error("Too many items selected.")` con early-return.~~ | ✅ Fatto |
-| F3 | [src/helpers/parseMetadata.ts](src/helpers/parseMetadata.ts) | ~~Non è un bug~~: `parseMetadata` wrappa già `parser()` in try-catch, proteggendo da crash. | ✅ Non necessario |
-| F4 | [src/background/contextMenuLayout.ts](src/background/contextMenuLayout.ts) | ~~Estrarre costanti di layout in file dedicato con commenti.~~ | ✅ Fatto |
-| F5 | [src/statblockBuilder/StatblockBuilder.tsx](src/statblockBuilder/StatblockBuilder.tsx) | ~~Gestire `statblockName` mancante con UI di fallback anziché caricare `Human Blackguard`.~~ | ✅ Fatto |
-| F6 | Diversi hook | ~~Verificare cleanup listener OBR.~~ Tutti i `useEffect` restituiscono correttamente l'unsubscribe. I listener in `statAttachments.ts` e `syncThemeMode.ts` sono singleton intenzionali. | ✅ Verificato |
-| F7 | [src/helpers/settingsHelpers.ts](src/helpers/settingsHelpers.ts) | ~~Differenziare le chiavi: `getPluginId("settings")` per i settings di stanza.~~ Migrazione retrocompatibile nel background. | ✅ Fatto |
+Nessun bug fix noto in sospeso al momento.
 
 ### 10.2 Refactor / qualità
 
-- ✅ **Test**: aggiunto **Vitest** (`vitest.config.ts`, env `jsdom`) con 39 test unitari per `parseNumber`, `powerRoll`, `getSettings` in [tests/](tests/).
-- ✅ **ESLint stricter**: abilitato `tseslint.configs.recommendedTypeChecked` con `projectService` e `react-hooks/exhaustive-deps` come error.
-- ✅ **Error boundary**: aggiunto `ErrorBoundary` globale ([src/components/ErrorBoundary.tsx](src/components/ErrorBoundary.tsx)) a tutti e 7 gli entry point React.
-- ✅ **Type-safety nei filtri context menu**: estratti helper tipizzati in [`src/background/contextMenuFilters.ts`](src/background/contextMenuFilters.ts); tutti i blocchi `KeyFilter` duplicati in `createContextMenuItems.ts` e `getGmOnlyRestrictions.ts` ora usano gli helper.
-- ✅ **Estrarre i protocolli broadcast**: spostati `diceProtocol.ts`, `diceProtocolExport.ts`, `broadcastRoundProtocol.ts` in [`src/protocols/`](src/protocols/) con tutti gli import aggiornati.
 - **State management**: la maggior parte dello stato vive in `useState` e custom hook. Per `ActionMenu` la combinazione di `rollAttributes`, `result`, `diceRoller`, `settings`, `trackers` rende il file complesso — valutare un piccolo store (Zustand è già "leggero", oppure `useReducer` locale).
 - **Performance overlay**: `refreshAllAttachments` rifà tutti gli overlay quando `playerRole`/`settings` cambiano. Si potrebbe diffare per `image.id`.
-- ✅ **Logging**: aggiunto logger configurabile con livelli (debug/info/warn/error/silent) in [`src/helpers/logger.ts`](src/helpers/logger.ts).
+- **Zod `parse` vs `safeParse`**: in molti hook si usa `parse` che lancia eccezioni — valutare migrazione a `safeParse` con fallback graceful per evitare crash da dati corrotti.
 
 ### 10.3 Nuove feature
 
@@ -271,7 +269,7 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 | N7 | **Localizzazione i18n** (almeno IT/EN) tramite `react-i18next`. | Stringhe sono ora hard-coded. |
 | N8 | **Autosave/migrations** dei metadata: vector di versione + funzioni di migrazione, così cambi futuri allo schema non rompono dati esistenti. | Zod facilita l'aggiunta di un campo `schemaVersion`. |
 | N9 | **Macro / Quick actions** (set definizione di abilità ricorrenti) accessibili dal contextMenu. | Nuovo tipo di metadata. |
-| N10 | **Modalità offline / cache statblock**: salvare in `localStorage` (o IndexedDB) i bundle scaricati per evitare fetch Supabase al refresh. | Migliora UX offline. |
+| N10 | **Modalità offline / cache statblock**: cache in-memory dei fetch Supabase già implementata in `getTypedData.ts` (`typedDataCache`). Manca ancora la persistenza su `localStorage`/IndexedDB tra refresh. | Cache in-memory attiva; persistenza cross-refresh ancora mancante. |
 | N11 | **Token aura** (zone d'effetto circolari) renderizzate come overlay. | Estende `createTokenOverlay`. |
 | N12 | **Player handouts** per i bundle hero (mostra al giocatore una scheda compatta). | Nuovo entry HTML opzionale. |
 | N13 | **Rollog**: log persistente dei power roll della sessione, esportabile. | Extension to `useRoundMessageHandler`. |
@@ -279,15 +277,11 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 | N15 | **Aria/A11y review**: audit dei componenti UI custom (focus ring, label, role). | Diversi input usano placeholder come label. |
 | N16 | **CI GitHub Actions**: lint + build + (futuri) test ad ogni push, deploy su tag. | Manca workflow. |
 | N17 | **CHANGELOG.md** automatico (release-please o changesets). | Versione manifest cresce a mano. |
-| N18 | **Tracker risorsa di classe per eroe** (Ferocity, Focus, Pyre, …) | ✅ Implementato: `classResourcePools` sui token eroe, overlay multi-bubble, spend da statblock viewer (`HeroResourceSpender`), tracker nel context menu e barra risorse nel viewer. |
 
 ### 10.4 DX / repository hygiene
 
-- ✅ Aggiunto [`CONTRIBUTING.md`](CONTRIBUTING.md) con workflow `pnpm dev` / `pnpm lint` / branch.
-- ✅ Aggiunto [`.editorconfig`](.editorconfig) (2-space indent, LF, UTF-8).
-- ✅ Aggiunto [`.nvmrc`](.nvmrc) (Node 22) e `engines` in `package.json`.
-- ✅ Documentati in [`docs/broadcast-protocols.md`](docs/broadcast-protocols.md) i protocolli broadcast come specifica pubblica.
-- ✅ Aggiunto [`ARCHITECTURE.md`](ARCHITECTURE.md) con overview struttura e referenziato dal `README.md`.
+- **CI GitHub Actions**: lint + build + test ad ogni push, deploy su tag. Manca ancora un workflow `.github/workflows/`.
+- **CHANGELOG.md** automatico (release-please o changesets): la versione manifest cresce a mano.
 
 ---
 
@@ -313,7 +307,9 @@ Tutti gli schemi **Zod** + i type derivati: `tokenDataZod`, `settingsZod`, `room
 - Vuoi cambiare l'aspetto delle bar/etichette in scena? → [src/background/overlays/](src/background/overlays/) + costanti in `createContextMenuItems`.
 - Vuoi aggiungere un nuovo tracker condiviso? → [src/types/roomTrackersZod.ts](src/types/roomTrackersZod.ts) + [src/action/resourceTracker/ResourceTracker.tsx](src/action/resourceTracker/ResourceTracker.tsx) + [src/resourceCalculator/](src/resourceCalculator/).
 - Vuoi cambiare la logica del Power Roll? → [src/action/diceRoller/helpers.ts](src/action/diceRoller/helpers.ts) (`powerRoll`).
-- Vuoi cambiare/integrare la sorgente statblock? → [src/supabaseClient.ts](src/supabaseClient.ts), [src/statblockSearch/helpers/getTypedData.ts](src/statblockSearch/helpers/getTypedData.ts) e [src/helpers/heroDataFromStatblockName.ts](src/helpers/heroDataFromStatblockName.ts) / [src/helpers/monsterDataFromStatblockName.ts](src/helpers/monsterDataFromStatblockName.ts).
+- Vuoi cambiare/integrare la sorgente statblock? → [src/supabaseClient.ts](src/supabaseClient.ts), [src/statblockSearch/helpers/getTypedData.ts](src/statblockSearch/helpers/getTypedData.ts) e [src/helpers/heroDataFromStatblockName.ts](src/helpers/heroDataFromStatblockName.ts) / [src/helpers/monsterDataFromStatblockName.ts](src/helpers/monsterDataFromStatblockName.ts) / [src/helpers/dynamicTerrainDataFromStatblockName.ts](src/helpers/dynamicTerrainDataFromStatblockName.ts).
+- Vuoi modificare il write-back di hero data (skills/projects/inventory)? → [src/helpers/saveHeroSkills.ts](src/helpers/saveHeroSkills.ts), [src/helpers/saveHeroProjects.ts](src/helpers/saveHeroProjects.ts), [src/helpers/saveHeroInventory.ts](src/helpers/saveHeroInventory.ts), [src/helpers/githubClient.ts](src/helpers/githubClient.ts).
+- Vuoi aggiungere un tipo di terreno dinamico? → [src/statblockSearch/dynamicTerrainIndex.json](src/statblockSearch/dynamicTerrainIndex.json) + [src/types/dynamicTerrainDataBundlesZod.ts](src/types/dynamicTerrainDataBundlesZod.ts) + `scripts/writeDynamicTerrainIndex.ts`.
 - Vuoi aggiungere un setting? → estendi [src/types/settingsZod.ts](src/types/settingsZod.ts), aggiorna `defaultSettings` in [src/helpers/settingsHelpers.ts](src/helpers/settingsHelpers.ts), aggiungi una riga in [src/settings/SettingsList.tsx](src/settings/SettingsList.tsx), e (se influisce sugli overlay) consumalo in `background/statAttachments.ts`.
 - Vuoi nuove voci di context menu? → [src/background/createContextMenuItems.ts](src/background/createContextMenuItems.ts).
 

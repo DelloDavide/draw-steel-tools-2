@@ -41,19 +41,28 @@ Il workflow CI non valida il contenuto: si limita a creare uno zip dell'intero r
 ├── Plugin_PROJECT_OVERVIEW.md # Doc del plugin consumatore (companion)
 ├── .github/workflows/ci.yml   # Build & release automatico (zip)
 │
-├── Monsters/                  # Mostri ufficiali, raggruppati per famiglia
+├── Monsters/                  # Mostri ufficiali + custom, raggruppati per famiglia
 │   ├── statblocks.json        # Indice/aggregato di tutti i mostri (legacy/full export)
 │   └── <Famiglia>/
-│       ├── Statblocks/        # Un .json per creatura
-│       └── Features/          # <Famiglia> Malice.json (malice features comuni)
+│       ├── Statblocks/        # Un .json per creatura (quasi tutte le famiglie)
+│       └── Features/          # 1..N featureblock (Malice e, in alcuni casi, extra)
+│
+│   # Eccezione: Rivals usa un livello annidato per echelon
+│   └── Rivals/
+│       ├── Features/
+│       ├── 1st Echelon/Statblocks/
+│       ├── 2nd Echelon/Statblocks/
+│       ├── 3rd Echelon/Statblocks/
+│       └── 4th Echelon/Statblocks/
 │
 ├── Heroes/                    # Eroi della campagna (custom)
 │   └── <Eroe>/
 │       ├── Statblocks/        # <Eroe>.json (scheda completa)
 │       ├── Features/          # <Eroe> Features.json (talenti/feature di classe)
 │       ├── Skills/            # <Eroe> Skills.json (lista skill per categoria)
-│       ├── Images/            # <Eroe>.{png|...} (token/portrait)
-│       └── Projects/          # opzionale: <Eroe> Projects.json (downtime)
+|       ├── Inventory/         # <Eroe> Inventory.json (Inventario)
+│       ├── Images/            # token/portrait (immagine rappresentativa dell'eroe)
+│       └── Projects/          # opzionale a livello schema (attualmente presente per tutti gli eroi)
 │
 └── Dynamic Terrain/           # Oggetti/terreno dinamico
     ├── Environmental Hazards/ # Lava, Quicksand, Brambles, ...
@@ -64,7 +73,18 @@ Il workflow CI non valida il contenuto: si limita a creare uno zip dell'intero r
     └── Supernatural Objects/  # The Black Obelisk, The Chronal Hypercube, ...
 ```
 
-**Convenzione di naming**: il nome del file (senza estensione) coincide con il campo `name` interno e con la chiave usata dagli indici lato plugin (`monsterIndex.json`, `heroIndex.json`). Spazi e apostrofi sono ammessi (es. `C'eree`, `Un Cavaliere`).
+**Convenzione di naming (de facto)**: per statblock/features/skills/inventory/projects il nome del file tende a coincidere con il campo `name` interno e con la chiave usata dagli indici lato plugin (`monsterIndex.json`, `heroIndex.json`). Spazi e apostrofi sono ammessi (es. `C'eree`, `Un Cavaliere`).
+
+### 3.1 Snapshot struttura (aggiornato al 2026-06-06)
+
+- Mostri: 52 cartelle top-level in `Monsters/`.
+- Statblock mostri: 416 file `Monsters/**/Statblocks/*.json`.
+- Featureblock mostri: 64 file `Monsters/**/Features/*.json`.
+- Famiglie con `Statblocks/` diretto: 51 (eccezione: `Rivals`, con struttura per echelon).
+- Famiglie con `Features/`: 50; famiglie senza `Features/`: `Animals`, `Noncombatant`.
+- Eroi: 11 cartelle in `Heroes/`.
+- Bundle eroi presenti: 11 `Statblocks`, 11 `Features`, 11 `Skills`, 11 `Inventory`, 11 `Projects`, 11 immagini.
+- Dynamic Terrain: 35 file totali, distribuiti in 6 categorie (7/7/8/3/7/3).
 
 ---
 
@@ -72,14 +92,14 @@ Il workflow CI non valida il contenuto: si limita a creare uno zip dell'intero r
 
 ### 4.1 `Monsters/`
 - Una sotto-cartella per **famiglia/archetipo** (Goblins, Dragons, Demons, ...) o per **boss unico** (Ajax the Invincible, Lord Syuul, Xorannox the Tyract, ...).
-- `Statblocks/<Nome>.json` → singola creatura, schema `type: "statblock"`.
-- `Features/<Famiglia> Malice.json` → blocco di feature di Malice condivise dalla famiglia, schema `type: "featureblock"`, `featureblock_type: "Malice Features"`.
+- `Statblocks/<Nome>.json` → singola creatura, schema `type: "statblock"` (oppure struttura annidata per `Rivals/* Echelon/Statblocks/`).
+- `Features/*.json` → blocchi `type: "featureblock"`; spesso Malice condivisa di famiglia, ma in alcuni casi ci sono piu' file per livello (es. `Demons`, `Undead`, `War Dogs`) o file addizionali non-Malice.
 - `Monsters/statblocks.json` → file aggregato (array `monsters: [...]`) che sembra una vecchia esportazione completa o un fallback. **Possibile duplicazione** rispetto ai singoli file (vedi §7).
 
 ### 4.2 `Heroes/`
 - Una sotto-cartella per ciascun PG della campagna.
-- Bundle a quattro componenti fissi (`Statblocks`, `Features`, `Skills`, `Images`) + `Projects` opzionale.
-- Schemi: `type: "statblock"` (con `roles: ["Hero"]`), `"featureblock"`, `"skillblock"`, `"projectblock"`.
+- Bundle a quattro componenti fissi (`Statblocks`, `Features`, `Skills`, `Inventory`, `Images`) + `Projects` opzionale a schema ma attualmente presente per tutti gli 11 eroi.
+- Schemi: `type: "statblock"` (con `roles: ["Hero"]`), `"featureblock"`, `"skillblock"`, `Inventoryblock`, `"projectblock"`.
 
 ### 4.3 `Dynamic Terrain/`
 - Sei categorie tematiche.
@@ -151,7 +171,25 @@ File aggregato di sole `features[]`, con `type: "featureblock"`, `featureblock_t
 }
 ```
 
-### 5.5 ProjectBlock (eroi, opzionale)
+### 5.5 InventoryBlock (eroi)
+```jsonc
+{
+  "type": "inventoryblock",
+  "inventoryblock_type": "Inventory",
+  "name": "...'s Inventory",
+  "flavor": "...",
+  "inventory": [
+    { "name": "Potion", "quantity": 1, "notes": ["Healing", "Consumable"] },
+    { "name": "Cards", "quantity": 2, "notes": ["Trinket", ...] }
+  ],
+  "equipmnet": [
+    { "name": "Rose Necklace", "slot": "Neck", "type": "Treasure", "keywords": ["Magic", "Angelic"], "notes": ["Rose", "Long"] },
+    { "name": "Leg Armor", "slot": "Legs", "type": "Armor", "keywords": ["Defense", "Metal"], "notes": ["Robust", ...] },
+  ]
+}
+```
+
+### 5.6 ProjectBlock (eroi, opzionale)
 ```jsonc
 {
   "type": "projectblock",
@@ -204,8 +242,8 @@ Solo asset binari (`.png`). Risolte dal plugin tramite `getImageUrl(name)`.
 1. **Index lookup** (a build/dev time): il plugin mantiene `src/statblockSearch/{heroIndex,monsterIndex}.json` con i nomi e i path. Aggiornato manualmente con i `DevScriptButtons` (`?dev=true`).
 2. **Risoluzione URL** (a runtime): `getStatblockUrl(name, type)` costruisce un URL raw sul branch configurato in `branchName.ts` puntando a questo repo.
 3. **Bundle fetch**:
-   - `getHeroDataBundle(name)` → scarica in parallelo `Statblocks`, `Features`, `Skills`, `Images`, e (se presente) `Projects`.
-   - `getMonsterDataBundle(name)` → scarica `Statblocks/<Nome>.json` + `Features/<Famiglia> Malice.json` se esistente, e usa la GitHub **Tree API** per scoprire le risorse della famiglia.
+   - `getHeroDataBundle(name)` → scarica in parallelo `Statblocks`, `Features`, `Skills`, `Inventory`, `Images`, e (se presente) `Projects`.
+  - `getMonsterDataBundle(name)` → scarica `Statblocks/<Nome>.json` e risolve i file in `Features/` della famiglia (pattern non sempre 1:1 con `<Famiglia> Malice.json`), usando la GitHub **Tree API** per scoprire le risorse disponibili.
 4. **Validazione**: tutti i payload vengono parsati con gli schemi **Zod** del plugin. Un campo non conforme → render fallback / errore visibile nel viewer/builder.
 5. **Caching**: nessuno lato repo; lato plugin oggi è limitato (vedi feature N10 nel doc plugin).
 
@@ -218,10 +256,10 @@ Solo asset binari (`.png`). Risolte dal plugin tramite `getImageUrl(name)`.
 1. **`Monsters/statblocks.json` aggregato**: probabilmente una snapshot legacy. Rischio di **drift** rispetto ai singoli file `Monsters/<Famiglia>/Statblocks/*.json`. Andrebbe rigenerato automaticamente o rimosso.
 2. **Nessuna validazione in CI**: il workflow `ci.yml` non fa `jq` né schema-check. Un JSON malformato finisce in produzione e crasha il viewer (Zod `parse` lato plugin).
 3. **Naming sensibile**: nomi file con apostrofi (`C'eree`), spazi (`Un Cavaliere`) e caratteri non ASCII richiedono URL-encoding corretto lato plugin. Errori di encoding rompono solo specifiche entry.
-4. **Indice del plugin disallineato**: i due `*Index.json` lato plugin vanno tenuti in sync con i contenuti di questo repo. Una nuova creatura aggiunta qui **non è scopribile** finché l'indice non è rigenerato.
+4. . **Indice del plugin disallineato**: i due `*Index.json` lato plugin vanno tenuti in sync con i contenuti di questo repo. Una nuova creatura aggiunta qui **non è scopribile** finché l'indice non è rigenerato.
 5. **Schema implicito**: lo "schema" è lo schema Zod del plugin, non dichiarato in questo repo. Modifiche allo schema lato plugin possono invalidare dati esistenti senza nessun controllo automatico.
-6. **Heroes/Projects opzionale ma non documentato**: solo `Degotho` ha la cartella `Projects/`. La presenza/assenza non è descritta da un manifesto.
-7. **Mix di mostri ufficiali e custom**: `Monsters/` contiene sia famiglie del Monsters Book sia boss/PNG di campagna (es. `Lord Syuul`, `Count Rhodar Von Glauer`). Difficile distinguere "ufficiale" da "custom" senza convenzione.
+6. **Mix di mostri ufficiali e custom**: `Monsters/` contiene sia famiglie del Monsters Book sia boss/PNG di campagna (es. `Lord Syuul`, `Count Rhodar Von Glauer`). Difficile distinguere "ufficiale" da "custom" senza convenzione.
+7. **Struttura non perfettamente omogenea**: `Rivals` usa directory annidate per echelon; `Animals` e `Noncombatant` non hanno `Features/`. Script o tooling che assumono pattern fisso possono fallire.
 8. **Release ZIP non versionata semanticamente**: il tag è `<branch>.<timestamp>`. Nessun changelog, nessun `latest` stabile.
 9. **Caratteri speciali nei testi degli effetti**: presenza mista di apostrofi tipografici (`'`) vs ASCII (`'`) e di emoji come `icon` → potenziali problemi di render/diff.
 10. **`ev` / `stamina` come stringa**: il plugin parsa come stringa per accomodare unità (`"12 per square"`, `"4 per 10 x 10 patch"`). Cambiare a numero romperebbe il dynamic terrain.
@@ -246,7 +284,7 @@ Solo asset binari (`.png`). Risolte dal plugin tramite `getImageUrl(name)`.
 - **JSON Schema pubblico**: pubblicare uno **schema JSON** (o gli schemi Zod esportati dal plugin) sotto `schemas/` in questo repo, così editor (VS Code) possono fare autocompletion e validazione live tramite `$schema`.
 - **Pre-commit hook**: `husky` + `lint-staged` con `ajv-cli` o `zod`-runner per validare i file modificati prima del commit.
 - **Manifest indice**: generare in CI un `index.json` (o `manifest.json`) di repo che elenca tutti gli statblock con `path`, `type`, `level`, `roles`, `ancestry`, `family`. Sostituirebbe `Monsters/statblocks.json` e renderebbe la scoperta lato plugin O(1) senza GitHub Tree API.
-- **Split bundle eroi**: oggi `Statblocks/`, `Features/`, `Skills/`, `Images/`, `Projects/` sono cartelle separate per un singolo file ciascuna. Si potrebbe collassare in un unico `<Hero>.json` con sub-oggetti, o tenere com'è e documentare meglio. Pro/contro da pesare.
+- **Split bundle eroi**: oggi `Statblocks/`, `Features/`, `Skills/`, `Images/`, `Inventory/`, `Projects/` sono cartelle separate per un singolo file ciascuna. Si potrebbe collassare in un unico `<Hero>.json` con sub-oggetti, o tenere com'è e documentare meglio. Pro/contro da pesare.
 - **Copertura test minima**: file `__tests__/structure.test.ts` (o equivalente in Python) che verifichi la presenza dei file attesi per ogni eroe.
 - **Branch policy**: documentare cosa va su `main` vs `backer` vs `patron` (oggi solo CI li menziona).
 
@@ -299,8 +337,8 @@ Solo asset binari (`.png`). Risolte dal plugin tramite `getImageUrl(name)`.
 
 ## 10. Punti di partenza consigliati per un agente
 
-- Vuoi **aggiungere un nuovo mostro**? → crea `Monsters/<Famiglia>/Statblocks/<Nome>.json`, aggiorna o crea `Monsters/<Famiglia>/Features/<Famiglia> Malice.json`, poi rigenera `monsterIndex.json` lato plugin (dev mode).
-- Vuoi **aggiungere un eroe**? → crea `Heroes/<Nome>/{Statblocks,Features,Skills,Images}/...`, opzionale `Projects/`. Aggiorna `heroIndex.json` lato plugin.
+- Vuoi **aggiungere un nuovo mostro**? → crea `Monsters/<Famiglia>/Statblocks/<Nome>.json`, aggiorna o crea i file opportuni in `Monsters/<Famiglia>/Features/` (attenzione: in alcune famiglie la Malice e' separata per level band), poi rigenera `monsterIndex.json` lato plugin (dev mode).
+- Vuoi **aggiungere un eroe**? → crea `Heroes/<Nome>/{Statblocks,Features,Skills,Images,Inventory}/...`, con `Projects/` fortemente consigliato per coerenza col dataset attuale. Aggiorna `heroIndex.json` lato plugin.
 - Vuoi **uniformare gli statblock**? → parti da uno schema Zod del plugin e produci uno **JSON Schema** in `schemas/`, poi aggiungi step di validazione in [.github/workflows/ci.yml](.github/workflows/ci.yml).
 - Vuoi **automatizzare l'indice**? → script Node/Python che cammina `Monsters/**/Statblocks/*.json` e `Heroes/*/Statblocks/*.json` ed emette `index.json` globale; pubblicalo come release artifact.
 - Vuoi **modificare lo schema**? → coordina con il plugin (`src/types/*Zod.ts`); è una **breaking change** per i consumer.
