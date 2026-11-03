@@ -2,9 +2,65 @@ import { cn } from "../../helpers/utils";
 import type { DrawSteelStatblock } from "../../types/DrawSteelZod";
 import { Characteristics } from "./Characteristics";
 import { Feature } from "./Feature";
+import { useState } from "react";
+import { MinusIcon, PencilIcon, PlusIcon, SaveIcon, XIcon } from "lucide-react";
+import Button from "../../components/ui/Button";
 
-export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
+type ProgressionStats = {
+  victories: number;
+  experience_points: number;
+};
+
+export function StatBlock({
+  statblock,
+  onSaveProgression,
+}: {
+  statblock: DrawSteelStatblock;
+  onSaveProgression?: (stats: ProgressionStats) => Promise<void>;
+}) {
   const roleTags = statblock.roles.join(" ");
+  const isHero = roleTags.includes("Hero");
+  const [editingProgression, setEditingProgression] = useState(false);
+  const [savingProgression, setSavingProgression] = useState(false);
+  const [saveError, setSaveError] = useState<string>();
+  const [progressionDraft, setProgressionDraft] = useState<ProgressionStats>({
+    victories: statblock.victories ?? 0,
+    experience_points: statblock.experience_points ?? 0,
+  });
+
+  function startEditingProgression() {
+    setProgressionDraft({
+      victories: statblock.victories ?? 0,
+      experience_points: statblock.experience_points ?? 0,
+    });
+    setSaveError(undefined);
+    setEditingProgression(true);
+  }
+
+  async function saveProgression() {
+    if (!onSaveProgression) return;
+    setSavingProgression(true);
+    setSaveError(undefined);
+    try {
+      await onSaveProgression(progressionDraft);
+      setEditingProgression(false);
+    } catch (error) {
+      console.error("Could not save hero progression stats", error);
+      setSaveError("Could not save changes. Please try again.");
+    } finally {
+      setSavingProgression(false);
+    }
+  }
+
+  function updateProgression(
+    key: keyof ProgressionStats,
+    amount: number,
+  ) {
+    setProgressionDraft((current) => ({
+      ...current,
+      [key]: Math.max(0, current[key] + amount),
+    }));
+  }
 
   return (
     <div className="w-full max-w-lg space-y-2">
@@ -52,10 +108,19 @@ export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
               </div>
             ))}
           </div>
-          <div className="flex justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
             {[
               { label: "Wealth", value: statblock.wealth ?? "—" },
               { label: "Renown", value: statblock.renown ?? "—" },
+              ...(isHero
+                ? [
+                    {
+                      label: "XP",
+                      value: statblock.experience_points ?? "—",
+                    },
+                    { label: "Victories", value: statblock.victories ?? "—" },
+                  ]
+                : []),
             ].map((item) => (
               <div className="min-w-16 text-center" key={item.label}>
                 <div className="text-lg">{item.value}</div>
@@ -63,6 +128,83 @@ export function StatBlock({ statblock }: { statblock: DrawSteelStatblock }) {
               </div>
             ))}
           </div>
+          {isHero && onSaveProgression && (
+            <div className="flex flex-col items-center gap-2">
+              {editingProgression ? (
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {(
+                    [
+                      ["experience_points", "XP"],
+                      ["victories", "Victories"],
+                    ] as const
+                  ).map(([key, label]) => (
+                    <div className="flex items-center gap-1" key={key}>
+                      <span className="text-sm font-bold">{label}</span>
+                      <Button
+                        type="button"
+                        size="icon"
+                        variant="outline"
+                        className="size-7"
+                        aria-label={`Decrease ${label}`}
+                        disabled={progressionDraft[key] <= 0 || savingProgression}
+                        onClick={() => updateProgression(key, -1)}
+                      >
+                        <MinusIcon className="size-3" />
+                      </Button>
+                      <span className="min-w-6 text-center font-semibold">
+                        {progressionDraft[key]}
+                      </span>
+                      <Button
+                        type="button"
+                        size="icon"
+                        variant="outline"
+                        className="size-7"
+                        aria-label={`Increase ${label}`}
+                        disabled={savingProgression}
+                        onClick={() => updateProgression(key, 1)}
+                      >
+                        <PlusIcon className="size-3" />
+                      </Button>
+                    </div>
+                  ))}
+                  <Button
+                    type="button"
+                    size="sm"
+                    disabled={savingProgression}
+                    onClick={() => void saveProgression()}
+                  >
+                    <SaveIcon className="mr-1 size-4" />
+                    Save
+                  </Button>
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="outline"
+                    aria-label="Cancel changes"
+                    disabled={savingProgression}
+                    onClick={() => setEditingProgression(false)}
+                  >
+                    <XIcon className="size-4" />
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={startEditingProgression}
+                >
+                  <PencilIcon className="mr-1 size-4" />
+                  Edit XP and Victories
+                </Button>
+              )}
+              {saveError && (
+                <div className="text-sm text-red-700" role="alert">
+                  {saveError}
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <div>
           <div className="flex flex-wrap justify-between">

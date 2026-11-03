@@ -16,6 +16,7 @@ import {
   type DrawSteelInventoryBlock,
   type DrawSteelProjectBlock,
   type DrawSteelSkillBlock,
+  type DrawSteelStatblock,
 } from "../../types/DrawSteelZod";
 import { useEffect, useState, useMemo } from "react";
 import { capitalizeFirstLetter } from "../../helpers/others";
@@ -31,6 +32,7 @@ import {
   saveSkillsToGitHub,
   saveSkillsToSupabase,
 } from "../../helpers/saveHeroSkills";
+import { saveHeroProgressionStats } from "../../helpers/saveHeroProgressionStats";
 import { ResourceTypeAdaptor } from "./ResourceTypeAdapter";
 
 const parsedDefaultMaliceFeatures =
@@ -203,6 +205,20 @@ function LegacyMonsterView({
     }
   }
 
+  async function saveProgressionStats(
+    stats: Pick<DrawSteelStatblock, "victories" | "experience_points">,
+  ) {
+    if (data.kind !== "hero") return;
+
+    const updatedStatblock = { ...data.statblock, ...stats };
+    await saveHeroProgressionStats(data.statblock.name, updatedStatblock);
+    setData((current) =>
+      current.kind === "hero"
+        ? { ...current, statblock: updatedStatblock }
+        : current,
+    );
+  }
+
   async function saveProjectBlock(updatedBlock: DrawSteelProjectBlock) {
     if (data.kind !== "hero") return;
 
@@ -248,7 +264,12 @@ function LegacyMonsterView({
             ) : (
               <>
                 <Images images={data.images} />
-                <StatBlock statblock={data.statblock} />
+                <StatBlock
+                  statblock={data.statblock}
+                  onSaveProgression={
+                    data.kind === "hero" ? saveProgressionStats : undefined
+                  }
+                />
 
                 <div className="grid h-fit w-full justify-items-center gap-8">
                   {data.featuresBlocks.length > 0 &&

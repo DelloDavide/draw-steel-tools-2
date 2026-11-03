@@ -82,6 +82,8 @@ export const DrawSteelStatblockZod = z.strictObject({
   presence: z.int(),
   wealth: z.int().optional(),
   renown: z.int().optional(),
+  victories: z.int().optional(),
+  experience_points: z.int().optional(),
   with_captain: z.string().optional(),
   features: z.array(DrawSteelFeatureZod).optional(),
 });
