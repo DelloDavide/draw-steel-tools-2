@@ -3,9 +3,9 @@
  * Uso: npx tsx scripts/smokeTestSupabase.ts
  */
 import { createClient } from "@supabase/supabase-js";
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +20,10 @@ for (const line of envContent.split("\n")) {
   env[t.slice(0, i)] = t.slice(i + 1);
 }
 
-const supabase = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY);
+const supabase = createClient(
+  env.VITE_SUPABASE_URL,
+  env.VITE_SUPABASE_ANON_KEY,
+);
 
 async function main() {
   console.log("=== Supabase smoke test ===");
@@ -93,7 +96,9 @@ async function main() {
   console.log("\n=== OK ===");
 }
 
-main().catch((e) => {
+try {
+  await main();
+} catch (e) {
   console.error("Smoke test FALLITO:", e);
   process.exit(1);
-});
+}

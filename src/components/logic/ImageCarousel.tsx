@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -12,7 +12,15 @@ export function ImageCarousel({
 }: Readonly<{ images: DrawSteelImage[] }>) {
   const [index, setIndex] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const zoomDialogRef = useRef<HTMLDialogElement>(null);
   const total = images.length;
+
+  useEffect(() => {
+    const dialog = zoomDialogRef.current;
+    if (!zoomed || total === 0 || !dialog) return;
+    dialog.showModal();
+    return () => dialog.close();
+  }, [zoomed, total]);
 
   const prev = useCallback(
     () => setIndex((i) => (i - 1 + total) % total),
@@ -42,10 +50,7 @@ export function ImageCarousel({
       } else if (total > 1 && e.key === "ArrowRight") {
         e.preventDefault();
         next();
-      } else if (
-        !zoomed &&
-        (e.key === "+" || e.key === "z" || e.key === "Z")
-      ) {
+      } else if (!zoomed && (e.key === "+" || e.key === "z" || e.key === "Z")) {
         e.preventDefault();
         setZoomed(true);
       }
@@ -85,11 +90,7 @@ export function ImageCarousel({
             onClick={() => setZoomed(true)}
             aria-label="Ingrandisci immagine"
             title="Ingrandisci (Z)"
-            className="
-              absolute right-2 top-2 z-10 grid place-items-center
-              size-9 rounded-full bg-black/60 text-white shadow-lg ring-1 ring-white/30
-              hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
-            "
+            className="absolute top-2 right-2 z-10 grid size-9 place-items-center rounded-full bg-black/60 text-white shadow-lg ring-1 ring-white/30 hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <Maximize2Icon className="size-4" />
           </button>
@@ -142,11 +143,14 @@ export function ImageCarousel({
       </section>
 
       {zoomed && (
-        <div
-          role="dialog"
-          aria-modal="true"
+        <dialog
+          ref={zoomDialogRef}
+          onCancel={(event) => {
+            event.preventDefault();
+            setZoomed(false);
+          }}
           aria-label="Immagine ingrandita"
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 m-0 h-screen max-h-none w-screen max-w-none items-center justify-center border-0 bg-black/90 p-4 open:flex"
         >
           <button
             type="button"
@@ -166,11 +170,7 @@ export function ImageCarousel({
             onClick={() => setZoomed(false)}
             aria-label="Chiudi"
             title="Chiudi (Esc)"
-            className="
-              absolute right-4 top-4 z-20 grid place-items-center
-              size-10 rounded-full bg-white/10 text-white ring-1 ring-white/30
-              hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
-            "
+            className="absolute top-4 right-4 z-20 grid size-10 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/30 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <XIcon className="size-5" />
           </button>
@@ -205,7 +205,7 @@ export function ImageCarousel({
               {index + 1} / {total}
             </div>
           )}
-        </div>
+        </dialog>
       )}
     </>
   );

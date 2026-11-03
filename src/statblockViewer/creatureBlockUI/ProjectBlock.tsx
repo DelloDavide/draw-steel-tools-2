@@ -1,5 +1,8 @@
 import { useState, useMemo } from "react";
-import type { DrawSteelProjectBlock, DrawSteelProject } from "../../types/DrawSteelZod";
+import type {
+  DrawSteelProjectBlock,
+  DrawSteelProject,
+} from "../../types/DrawSteelZod";
 import { Icon } from "./Icon";
 import { getProjectMilestones } from "../../helpers/milestones";
 
@@ -46,7 +49,12 @@ const CHARACTERISTICS = [
 // ── helpers ────────────────────────────────────────────────────────────────────
 
 function progressPercentage(progress: number, completion: number) {
-  if (!Number.isFinite(progress) || !Number.isFinite(completion) || completion <= 0) return 0;
+  if (
+    !Number.isFinite(progress) ||
+    !Number.isFinite(completion) ||
+    completion <= 0
+  )
+    return 0;
   const percentage = (progress / completion) * 100;
   if (!Number.isFinite(percentage)) return 0;
   return Math.max(0, Math.min(100, Number(percentage.toFixed(2))));
@@ -54,20 +62,29 @@ function progressPercentage(progress: number, completion: number) {
 
 function statusColor(status: string) {
   switch (status) {
-    case "Completed": return "bg-green-700";
-    case "Paused": return "bg-yellow-600";
-    case "Abandoned": return "bg-red-700";
-    case "Not Started": return "bg-zinc-500";
-    default: return "bg-blue-700";
+    case "Completed":
+      return "bg-green-700";
+    case "Paused":
+      return "bg-yellow-600";
+    case "Abandoned":
+      return "bg-red-700";
+    case "Not Started":
+      return "bg-zinc-500";
+    default:
+      return "bg-blue-700";
   }
 }
 
 function priorityColor(priority: string) {
   switch (priority) {
-    case "Critical": return "text-red-700";
-    case "High": return "text-orange-700";
-    case "Medium": return "text-yellow-700";
-    default: return "text-zinc-600";
+    case "Critical":
+      return "text-red-700";
+    case "High":
+      return "text-orange-700";
+    case "Medium":
+      return "text-yellow-700";
+    default:
+      return "text-zinc-600";
   }
 }
 
@@ -87,6 +104,13 @@ function emptyProject(): DrawSteelProject {
   };
 }
 
+function createDraftKeys(block: DrawSteelProjectBlock) {
+  return {
+    projects: block.projects.map(() => crypto.randomUUID()),
+    notes: block.notes.map(() => crypto.randomUUID()),
+  };
+}
+
 // ── sub-components ─────────────────────────────────────────────────────────────
 
 function InlineInput({
@@ -95,10 +119,10 @@ function InlineInput({
   placeholder,
   className = "",
 }: {
-  value: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-  className?: string;
+  readonly value: string;
+  readonly onChange: (v: string) => void;
+  readonly placeholder?: string;
+  readonly className?: string;
 }) {
   return (
     <input
@@ -118,11 +142,11 @@ function IconButton({
   className = "",
   disabled = false,
 }: {
-  onClick: () => void;
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
+  readonly onClick: () => void;
+  readonly title: string;
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly disabled?: boolean;
 }) {
   return (
     <button
@@ -144,10 +168,25 @@ function ProjectEditForm({
   onChange,
   onRemove,
 }: {
-  project: DrawSteelProject;
-  onChange: (patch: Partial<DrawSteelProject>) => void;
-  onRemove: () => void;
+  readonly project: DrawSteelProject;
+  readonly onChange: (patch: Partial<DrawSteelProject>) => void;
+  readonly onRemove: () => void;
 }) {
+  const [noteKeys, setNoteKeys] = useState(() =>
+    project.notes.map(() => crypto.randomUUID()),
+  );
+
+  function addNote() {
+    const id = crypto.randomUUID();
+    setNoteKeys((keys) => [...keys, id]);
+    onChange({ notes: [...project.notes, ""] });
+  }
+
+  function removeNote(index: number) {
+    setNoteKeys((keys) => keys.filter((_, i) => i !== index));
+    onChange({ notes: project.notes.filter((_, i) => i !== index) });
+  }
+
   return (
     <div className="space-y-2 rounded border border-zinc-400 bg-[#dfe5f4] p-2">
       {/* name + remove */}
@@ -169,15 +208,19 @@ function ProjectEditForm({
 
       {/* type */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Type</span>
+        <span className="text-[10px] text-zinc-500 uppercase">Type</span>
         <select
           title={project.type}
           value={project.type}
-          onChange={(e) => onChange({ type: e.target.value as DrawSteelProject["type"] })}
+          onChange={(e) =>
+            onChange({ type: e.target.value as DrawSteelProject["type"] })
+          }
           className="border border-zinc-400 bg-white px-1 py-0.5 text-xs outline-none focus:border-zinc-700"
         >
           {PROJECT_TYPES.map((t) => (
-            <option key={t} value={t}>{t}</option>
+            <option key={t} value={t}>
+              {t}
+            </option>
           ))}
         </select>
       </div>
@@ -185,28 +228,38 @@ function ProjectEditForm({
       {/* status + priority */}
       <div className="grid grid-cols-2 gap-2">
         <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] uppercase text-zinc-500">Status</span>
+          <span className="text-[10px] text-zinc-500 uppercase">Status</span>
           <select
             title={project.status}
             value={project.status}
-            onChange={(e) => onChange({ status: e.target.value as DrawSteelProject["status"] })}
+            onChange={(e) =>
+              onChange({ status: e.target.value as DrawSteelProject["status"] })
+            }
             className="border border-zinc-400 bg-white px-1 py-0.5 text-xs outline-none focus:border-zinc-700"
           >
             {PROJECT_STATUSES.map((s) => (
-              <option key={s} value={s}>{s}</option>
+              <option key={s} value={s}>
+                {s}
+              </option>
             ))}
           </select>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] uppercase text-zinc-500">Priority</span>
+          <span className="text-[10px] text-zinc-500 uppercase">Priority</span>
           <select
             title={project.priority}
             value={project.priority}
-            onChange={(e) => onChange({ priority: e.target.value as DrawSteelProject["priority"] })}
+            onChange={(e) =>
+              onChange({
+                priority: e.target.value as DrawSteelProject["priority"],
+              })
+            }
             className="border border-zinc-400 bg-white px-1 py-0.5 text-xs outline-none focus:border-zinc-700"
           >
             {PROJECT_PRIORITIES.map((p) => (
-              <option key={p} value={p}>{p}</option>
+              <option key={p} value={p}>
+                {p}
+              </option>
             ))}
           </select>
         </div>
@@ -215,7 +268,7 @@ function ProjectEditForm({
       {/* progress + completion */}
       <div className="grid grid-cols-2 gap-2">
         <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] uppercase text-zinc-500">Progress</span>
+          <span className="text-[10px] text-zinc-500 uppercase">Progress</span>
           <input
             title={`Project ${project.name} Progress`}
             type="number"
@@ -223,20 +276,32 @@ function ProjectEditForm({
             max={project.completion}
             value={project.progress}
             onChange={(e) =>
-              onChange({ progress: Math.max(0, Math.min(project.completion, parseInt(e.target.value) || 0)) })
+              onChange({
+                progress: Math.max(
+                  0,
+                  Math.min(
+                    project.completion,
+                    Number.parseInt(e.target.value) || 0,
+                  ),
+                ),
+              })
             }
             className="border-b border-zinc-400 bg-transparent text-center outline-none focus:border-zinc-700"
           />
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] uppercase text-zinc-500">Completion</span>
+          <span className="text-[10px] text-zinc-500 uppercase">
+            Completion
+          </span>
           <input
             title={`Project ${project.name} Completion`}
             type="number"
             min={1}
             value={project.completion}
             onChange={(e) =>
-              onChange({ completion: Math.max(1, parseInt(e.target.value) || 1) })
+              onChange({
+                completion: Math.max(1, Number.parseInt(e.target.value) || 1),
+              })
             }
             className="border-b border-zinc-400 bg-transparent text-center outline-none focus:border-zinc-700"
           />
@@ -245,7 +310,7 @@ function ProjectEditForm({
 
       {/* description */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Description</span>
+        <span className="text-[10px] text-zinc-500 uppercase">Description</span>
         <InlineInput
           value={project.description ?? ""}
           placeholder="Description…"
@@ -256,12 +321,18 @@ function ProjectEditForm({
 
       {/* roll characteristics */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Roll Characteristics</span>
+        <span className="text-[10px] text-zinc-500 uppercase">
+          Roll Characteristics
+        </span>
         <div className="flex flex-wrap gap-1">
           {CHARACTERISTICS.map((c) => {
-            const checked = project.project_roll_characteristic?.includes(c) ?? false;
+            const checked =
+              project.project_roll_characteristic?.includes(c) ?? false;
             return (
-              <label key={c} className="flex items-center gap-0.5 text-xs cursor-pointer">
+              <label
+                key={c}
+                className="flex cursor-pointer items-center gap-0.5 text-xs"
+              >
                 <input
                   type="checkbox"
                   checked={checked}
@@ -283,7 +354,7 @@ function ProjectEditForm({
 
       {/* source */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Source</span>
+        <span className="text-[10px] text-zinc-500 uppercase">Source</span>
         <InlineInput
           value={project.project_source ?? ""}
           placeholder="Source…"
@@ -294,13 +365,18 @@ function ProjectEditForm({
 
       {/* contributors */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Contributors (comma-separated)</span>
+        <span className="text-[10px] text-zinc-500 uppercase">
+          Contributors (comma-separated)
+        </span>
         <InlineInput
           value={project.contributors.join(", ")}
           placeholder="e.g. Aldric, Serana"
           onChange={(v) =>
             onChange({
-              contributors: v.split(",").map((x) => x.trim()).filter(Boolean),
+              contributors: v
+                .split(",")
+                .map((x) => x.trim())
+                .filter(Boolean),
             })
           }
           className="w-full text-xs"
@@ -309,13 +385,18 @@ function ProjectEditForm({
 
       {/* tags */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Tags (comma-separated)</span>
+        <span className="text-[10px] text-zinc-500 uppercase">
+          Tags (comma-separated)
+        </span>
         <InlineInput
           value={project.tags.join(", ")}
           placeholder="e.g. crafting, magic"
           onChange={(v) =>
             onChange({
-              tags: v.split(",").map((x) => x.trim()).filter(Boolean),
+              tags: v
+                .split(",")
+                .map((x) => x.trim())
+                .filter(Boolean),
             })
           }
           className="w-full text-xs"
@@ -324,9 +405,9 @@ function ProjectEditForm({
 
       {/* notes */}
       <div className="flex flex-col gap-0.5">
-        <span className="text-[10px] uppercase text-zinc-500">Notes</span>
+        <span className="text-[10px] text-zinc-500 uppercase">Notes</span>
         {project.notes.map((note, ni) => (
-          <div key={ni} className="flex items-center gap-1">
+          <div key={noteKeys[ni]} className="flex items-center gap-1">
             <InlineInput
               value={note}
               placeholder="Note…"
@@ -338,9 +419,7 @@ function ProjectEditForm({
               className="flex-1 text-xs"
             />
             <IconButton
-              onClick={() =>
-                onChange({ notes: project.notes.filter((_, i) => i !== ni) })
-              }
+              onClick={() => removeNote(ni)}
               title="Remove note"
               className="text-red-500 hover:bg-red-100"
             >
@@ -350,7 +429,7 @@ function ProjectEditForm({
         ))}
         <button
           type="button"
-          onClick={() => onChange({ notes: [...project.notes, ""] })}
+          onClick={addNote}
           className="text-left text-xs text-zinc-500 hover:text-zinc-800"
         >
           + add note
@@ -367,12 +446,15 @@ export function ProjectBlock({
   onProgress,
   onSave,
 }: {
-  projectBlock: DrawSteelProjectBlock;
-  onProgress?: (projectName: string, delta: number) => void;
-  onSave?: (updated: DrawSteelProjectBlock) => Promise<void> | void;
+  readonly projectBlock: DrawSteelProjectBlock;
+  readonly onProgress?: (projectName: string, delta: number) => void;
+  readonly onSave?: (updated: DrawSteelProjectBlock) => Promise<void> | void;
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState<DrawSteelProjectBlock>(projectBlock);
+  const [draftKeys, setDraftKeys] = useState(() =>
+    createDraftKeys(projectBlock),
+  );
   const [saving, setSaving] = useState(false);
 
   const hasDraftChanges = useMemo(
@@ -384,6 +466,7 @@ export function ProjectBlock({
 
   function startEdit() {
     setDraft(projectBlock);
+    setDraftKeys(createDraftKeys(projectBlock));
     setEditing(true);
   }
 
@@ -392,7 +475,10 @@ export function ProjectBlock({
   }
 
   async function handleSave() {
-    if (!onSave) { setEditing(false); return; }
+    if (!onSave) {
+      setEditing(false);
+      return;
+    }
     setSaving(true);
     try {
       await onSave(draft);
@@ -407,13 +493,13 @@ export function ProjectBlock({
   function updateProject(idx: number, patch: Partial<DrawSteelProject>) {
     setDraft((d) => ({
       ...d,
-      projects: d.projects.map((p, i) =>
-        i === idx ? { ...p, ...patch } : p,
-      ),
+      projects: d.projects.map((p, i) => (i === idx ? { ...p, ...patch } : p)),
     }));
   }
 
   function addProject() {
+    const id = crypto.randomUUID();
+    setDraftKeys((keys) => ({ ...keys, projects: [...keys.projects, id] }));
     setDraft((d) => ({
       ...d,
       projects: [...d.projects, emptyProject()],
@@ -421,6 +507,10 @@ export function ProjectBlock({
   }
 
   function removeProject(idx: number) {
+    setDraftKeys((keys) => ({
+      ...keys,
+      projects: keys.projects.filter((_, i) => i !== idx),
+    }));
     setDraft((d) => ({
       ...d,
       projects: d.projects.filter((_, i) => i !== idx),
@@ -437,10 +527,16 @@ export function ProjectBlock({
   }
 
   function addBlockNote() {
+    const id = crypto.randomUUID();
+    setDraftKeys((keys) => ({ ...keys, notes: [...keys.notes, id] }));
     setDraft((d) => ({ ...d, notes: [...d.notes, ""] }));
   }
 
   function removeBlockNote(idx: number) {
+    setDraftKeys((keys) => ({
+      ...keys,
+      notes: keys.notes.filter((_, i) => i !== idx),
+    }));
     setDraft((d) => ({ ...d, notes: d.notes.filter((_, i) => i !== idx) }));
   }
 
@@ -463,7 +559,7 @@ export function ProjectBlock({
             {editing ? (
               <>
                 <IconButton
-                  onClick={handleSave}
+                  onClick={() => void handleSave()}
                   title="Save changes"
                   disabled={!canSave}
                   className={`text-white ${
@@ -520,7 +616,7 @@ export function ProjectBlock({
           <>
             {draft.projects.map((project, idx) => (
               <ProjectEditForm
-                key={idx}
+                key={draftKeys.projects[idx]}
                 project={project}
                 onChange={(patch) => updateProject(idx, patch)}
                 onRemove={() => removeProject(idx)}
@@ -536,7 +632,10 @@ export function ProjectBlock({
           </>
         ) : (
           projectBlock.projects.map((project) => {
-            const percentage = progressPercentage(project.progress, project.completion);
+            const percentage = progressPercentage(
+              project.progress,
+              project.completion,
+            );
             const completed = project.progress >= project.completion;
             const milestones = getProjectMilestones(project.completion);
 
@@ -556,7 +655,9 @@ export function ProjectBlock({
                   </div>
 
                   <div className="flex flex-col items-end gap-1 text-[10px] font-semibold">
-                    <span className={`px-2 py-0.5 text-white ${statusColor(project.status)}`}>
+                    <span
+                      className={`px-2 py-0.5 text-white ${statusColor(project.status)}`}
+                    >
                       {project.status}
                     </span>
                     <span className={priorityColor(project.priority)}>
@@ -576,7 +677,9 @@ export function ProjectBlock({
                 <div className="mt-3">
                   <div className="mb-1 flex justify-between text-[11px] font-semibold">
                     <span>Progress</span>
-                    <span>{project.progress} / {project.completion}</span>
+                    <span>
+                      {project.progress} / {project.completion}
+                    </span>
                   </div>
 
                   <div className="relative h-3 w-full overflow-hidden border border-zinc-950 bg-zinc-200">
@@ -584,12 +687,12 @@ export function ProjectBlock({
                       className="h-full bg-blue-700 transition-all"
                       style={{ width: `${percentage}%` }}
                     />
-                    {milestones.map((m, i) => {
+                    {milestones.map((m) => {
                       const pos = (m / project.completion) * 100;
                       return (
                         <div
-                          key={i}
-                          className="absolute top-0 h-full w-[2px] bg-zinc-900"
+                          key={m}
+                          className="absolute top-0 h-full w-0.5 bg-zinc-900"
                           style={{ left: `${pos}%` }}
                         />
                       );
@@ -598,11 +701,11 @@ export function ProjectBlock({
 
                   {milestones.length > 0 && (
                     <div className="relative mt-1 h-3 text-[9px] text-zinc-600">
-                      {milestones.map((m, i) => {
+                      {milestones.map((m) => {
                         const pos = (m / project.completion) * 100;
                         return (
                           <div
-                            key={i}
+                            key={m}
                             className="absolute -translate-x-1/2"
                             style={{ left: `${pos}%` }}
                           >
@@ -631,8 +734,12 @@ export function ProjectBlock({
                             : "hover:bg-zinc-200"
                         }`}
                         onMouseDown={(e) => {
-                          let interval: any;
-                          const start = () => { interval = setInterval(() => { onProgress(project.name, -1); }, 200); };
+                          let interval: ReturnType<typeof setInterval>;
+                          const start = () => {
+                            interval = setInterval(() => {
+                              onProgress(project.name, -1);
+                            }, 200);
+                          };
                           const stop = () => clearInterval(interval);
                           e.currentTarget.onmouseup = stop;
                           e.currentTarget.onmouseleave = stop;
@@ -641,7 +748,7 @@ export function ProjectBlock({
                       >
                         −
                       </button>
-                      <div className="min-w-[70px] px-3 py-1 text-center text-xs font-semibold">
+                      <div className="min-w-17.5 px-3 py-1 text-center text-xs font-semibold">
                         {project.progress}
                       </div>
                       <button
@@ -653,8 +760,12 @@ export function ProjectBlock({
                             : "hover:bg-zinc-200"
                         }`}
                         onMouseDown={(e) => {
-                          let interval: any;
-                          const start = () => { interval = setInterval(() => { onProgress(project.name, +1); }, 200); };
+                          let interval: ReturnType<typeof setInterval>;
+                          const start = () => {
+                            interval = setInterval(() => {
+                              onProgress(project.name, +1);
+                            }, 200);
+                          };
                           const stop = () => clearInterval(interval);
                           e.currentTarget.onmouseup = stop;
                           e.currentTarget.onmouseleave = stop;
@@ -664,12 +775,16 @@ export function ProjectBlock({
                         +
                       </button>
                     </div>
-                    <div className="text-[10px] text-zinc-600">/ {project.completion}</div>
+                    <div className="text-[10px] text-zinc-600">
+                      / {project.completion}
+                    </div>
                   </div>
                 )}
 
                 {/* Mechanics */}
-                {(project.project_roll_characteristic || project.item_prerequisite?.length || project.project_source) && (
+                {(project.project_roll_characteristic ||
+                  project.item_prerequisite?.length ||
+                  project.project_source) && (
                   <div className="mt-3 space-y-1 text-xs">
                     {project.project_roll_characteristic && (
                       <div>
@@ -683,16 +798,17 @@ export function ProjectBlock({
                         {project.project_source}
                       </div>
                     )}
-                    {project.item_prerequisite && project.item_prerequisite.length > 0 && (
-                      <div>
-                        <span className="font-semibold">Prerequisites:</span>
-                        <ul className="ml-5 list-disc">
-                          {project.item_prerequisite.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    {project.item_prerequisite &&
+                      project.item_prerequisite.length > 0 && (
+                        <div>
+                          <span className="font-semibold">Prerequisites:</span>
+                          <ul className="ml-5 list-disc">
+                            {project.item_prerequisite.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                   </div>
                 )}
 
@@ -740,7 +856,7 @@ export function ProjectBlock({
         <div className="border-t border-zinc-950 bg-white px-3 py-2">
           <div className="mb-1 text-xs font-bold">Campaign Notes</div>
           {draft.notes.map((note, idx) => (
-            <div key={idx} className="flex items-center gap-1">
+            <div key={draftKeys.notes[idx]} className="flex items-center gap-1">
               <InlineInput
                 value={note}
                 placeholder="Note…"

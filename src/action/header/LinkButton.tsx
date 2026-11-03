@@ -7,10 +7,10 @@ export default function LinkButton({
   href,
   className,
 }: {
-  name: string;
-  icon: React.JSX.Element;
-  href: string;
-  className?: string;
+  readonly name: string;
+  readonly icon: React.JSX.Element;
+  readonly href: string;
+  readonly className?: string;
 }): React.JSX.Element {
   return (
     <Button

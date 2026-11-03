@@ -1,6 +1,20 @@
 import { useState, useMemo } from "react";
 import type { DrawSteelInventoryBlock } from "../../types/DrawSteelZod";
 
+function createRowKeys(notes: readonly string[] = []) {
+  return {
+    id: crypto.randomUUID(),
+    notes: notes.map(() => crypto.randomUUID()),
+  };
+}
+
+function createDraftKeys(block: DrawSteelInventoryBlock) {
+  return {
+    inventory: block.inventory.map((item) => createRowKeys(item.notes)),
+    equipment: block.equipment.map((item) => createRowKeys(item.notes)),
+  };
+}
+
 // ── tiny helpers ──────────────────────────────────────────────────────────────
 
 function IconButton({
@@ -10,11 +24,11 @@ function IconButton({
   className = "",
   disabled = false,
 }: {
-  onClick: () => void;
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
+  readonly onClick: () => void;
+  readonly title: string;
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly disabled?: boolean;
 }) {
   return (
     <button
@@ -35,10 +49,10 @@ function InlineInput({
   placeholder,
   className = "",
 }: {
-  value: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-  className?: string;
+  readonly value: string;
+  readonly onChange: (v: string) => void;
+  readonly placeholder?: string;
+  readonly className?: string;
 }) {
   return (
     <input
@@ -57,18 +71,21 @@ export function InventoryBlock({
   inventoryBlock,
   onSave,
 }: {
-  inventoryBlock: DrawSteelInventoryBlock;
-  onSave?: (updated: DrawSteelInventoryBlock) => Promise<void> | void;
-  hasChanges?: boolean;
+  readonly inventoryBlock: DrawSteelInventoryBlock;
+  readonly onSave?: (updated: DrawSteelInventoryBlock) => Promise<void> | void;
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState<DrawSteelInventoryBlock>(inventoryBlock);
+  const [draftKeys, setDraftKeys] = useState(() =>
+    createDraftKeys(inventoryBlock),
+  );
   const [saving, setSaving] = useState(false);
 
   // reset draft whenever the prop changes (e.g. parent reloads data)
   // and we are NOT currently editing
   function startEdit() {
     setDraft(inventoryBlock);
+    setDraftKeys(createDraftKeys(inventoryBlock));
     setEditing(true);
   }
 
@@ -105,6 +122,11 @@ export function InventoryBlock({
   }
 
   function addInventoryItem() {
+    const keys = createRowKeys();
+    setDraftKeys((prev) => ({
+      ...prev,
+      inventory: [...prev.inventory, keys],
+    }));
     setDraft((d) => ({
       ...d,
       inventory: [...d.inventory, { name: "", quantity: 1, notes: [] }],
@@ -112,6 +134,10 @@ export function InventoryBlock({
   }
 
   function removeInventoryItem(idx: number) {
+    setDraftKeys((prev) => ({
+      ...prev,
+      inventory: prev.inventory.filter((_, i) => i !== idx),
+    }));
     setDraft((d) => ({
       ...d,
       inventory: d.inventory.filter((_, i) => i !== idx),
@@ -139,6 +165,13 @@ export function InventoryBlock({
   }
 
   function addInventoryNote(itemIdx: number) {
+    const id = crypto.randomUUID();
+    setDraftKeys((prev) => ({
+      ...prev,
+      inventory: prev.inventory.map((keys, i) =>
+        i === itemIdx ? { ...keys, notes: [...keys.notes, id] } : keys,
+      ),
+    }));
     setDraft((d) => ({
       ...d,
       inventory: d.inventory.map((item, i) =>
@@ -148,6 +181,14 @@ export function InventoryBlock({
   }
 
   function removeInventoryNote(itemIdx: number, noteIdx: number) {
+    setDraftKeys((prev) => ({
+      ...prev,
+      inventory: prev.inventory.map((keys, i) =>
+        i === itemIdx
+          ? { ...keys, notes: keys.notes.filter((_, ni) => ni !== noteIdx) }
+          : keys,
+      ),
+    }));
     setDraft((d) => ({
       ...d,
       inventory: d.inventory.map((item, i) =>
@@ -176,6 +217,11 @@ export function InventoryBlock({
   }
 
   function addEquipmentItem() {
+    const keys = createRowKeys();
+    setDraftKeys((prev) => ({
+      ...prev,
+      equipment: [...prev.equipment, keys],
+    }));
     setDraft((d) => ({
       ...d,
       equipment: [
@@ -186,6 +232,10 @@ export function InventoryBlock({
   }
 
   function removeEquipmentItem(idx: number) {
+    setDraftKeys((prev) => ({
+      ...prev,
+      equipment: prev.equipment.filter((_, i) => i !== idx),
+    }));
     setDraft((d) => ({
       ...d,
       equipment: d.equipment.filter((_, i) => i !== idx),
@@ -213,6 +263,13 @@ export function InventoryBlock({
   }
 
   function addEquipmentNote(itemIdx: number) {
+    const id = crypto.randomUUID();
+    setDraftKeys((prev) => ({
+      ...prev,
+      equipment: prev.equipment.map((keys, i) =>
+        i === itemIdx ? { ...keys, notes: [...keys.notes, id] } : keys,
+      ),
+    }));
     setDraft((d) => ({
       ...d,
       equipment: d.equipment.map((item, i) =>
@@ -222,6 +279,14 @@ export function InventoryBlock({
   }
 
   function removeEquipmentNote(itemIdx: number, noteIdx: number) {
+    setDraftKeys((prev) => ({
+      ...prev,
+      equipment: prev.equipment.map((keys, i) =>
+        i === itemIdx
+          ? { ...keys, notes: keys.notes.filter((_, ni) => ni !== noteIdx) }
+          : keys,
+      ),
+    }));
     setDraft((d) => ({
       ...d,
       equipment: d.equipment.map((item, i) =>
@@ -256,12 +321,12 @@ export function InventoryBlock({
 
   const data = editing ? draft : inventoryBlock;
 
-  const armorWeaponSlots = ["Armor", "Weapon/Implement"];
+  const armorWeaponSlots = new Set(["Armor", "Weapon/Implement"]);
   const armorWeapon = data.equipment.filter((item) =>
-    armorWeaponSlots.includes(item.slot),
+    armorWeaponSlots.has(item.slot),
   );
   const otherEquipment = data.equipment.filter(
-    (item) => !armorWeaponSlots.includes(item.slot),
+    (item) => !armorWeaponSlots.has(item.slot),
   );
 
   const hasDraftChanges = useMemo(
@@ -270,7 +335,6 @@ export function InventoryBlock({
   );
 
   const canSave = hasDraftChanges && !saving;
-
 
   // ── JSX ────────────────────────────────────────────────────────────────────
 
@@ -318,7 +382,10 @@ export function InventoryBlock({
       <div className="mt-2 space-y-2">
         {data.inventory.map((item, idx) =>
           editing ? (
-            <div key={idx} className="space-y-1 rounded bg-[#dfe5f4] p-1.5">
+            <div
+              key={draftKeys.inventory[idx].id}
+              className="space-y-1 rounded bg-[#dfe5f4] p-1.5"
+            >
               <div className="flex items-center gap-1">
                 <input
                   title="Quantity"
@@ -327,7 +394,10 @@ export function InventoryBlock({
                   value={item.quantity}
                   onChange={(e) =>
                     updateInventoryItem(idx, {
-                      quantity: Math.max(0, parseInt(e.target.value) || 0),
+                      quantity: Math.max(
+                        0,
+                        Number.parseInt(e.target.value) || 0,
+                      ),
                     })
                   }
                   className="w-12 border-b border-zinc-400 bg-transparent text-center outline-none focus:border-zinc-700"
@@ -349,7 +419,10 @@ export function InventoryBlock({
 
               {/* notes */}
               {(item.notes ?? []).map((note, ni) => (
-                <div key={ni} className="ml-3 flex items-center gap-1">
+                <div
+                  key={draftKeys.inventory[idx].notes[ni]}
+                  className="ml-3 flex items-center gap-1"
+                >
                   <span className="text-xs text-zinc-500">note:</span>
                   <InlineInput
                     value={note}
@@ -410,7 +483,10 @@ export function InventoryBlock({
             /* edit mode: flat list */
             <div className="mt-2 space-y-2">
               {data.equipment.map((item, idx) => (
-                <div key={idx} className="space-y-1 rounded bg-[#dfe5f4] p-1.5">
+                <div
+                  key={draftKeys.equipment[idx].id}
+                  className="space-y-1 rounded bg-[#dfe5f4] p-1.5"
+                >
                   <div className="flex items-center gap-1">
                     <InlineInput
                       value={item.name}
@@ -463,7 +539,10 @@ export function InventoryBlock({
 
                   {/* equipment notes */}
                   {(item.notes ?? []).map((note, ni) => (
-                    <div key={ni} className="ml-2 flex items-center gap-1">
+                    <div
+                      key={draftKeys.equipment[idx].notes[ni]}
+                      className="ml-2 flex items-center gap-1"
+                    >
                       <span className="text-xs text-zinc-500">note:</span>
                       <InlineInput
                         value={note}

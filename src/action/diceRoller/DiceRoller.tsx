@@ -50,16 +50,18 @@ export default function DiceRoller({
   settings,
   onRollClicked,
 }: {
-  rollAttributes: RollAttributes;
-  setRollAttributes: React.Dispatch<React.SetStateAction<RollAttributes>>;
-  diceRoller: DiceRoller;
-  result: Roll | undefined;
-  setResult: (result: Roll | undefined) => void;
-  diceResultViewerOpen: boolean;
-  setDiceResultViewerOpen: (diceRollerOpen: boolean) => void;
-  autoOpenResultView?: boolean;
-  settings?: DefinedSettings;
-  onRollClicked?: () => void;
+  readonly rollAttributes: RollAttributes;
+  readonly setRollAttributes: React.Dispatch<
+    React.SetStateAction<RollAttributes>
+  >;
+  readonly diceRoller: DiceRoller;
+  readonly result: Roll | undefined;
+  readonly setResult: (result: Roll | undefined) => void;
+  readonly diceResultViewerOpen: boolean;
+  readonly setDiceResultViewerOpen: (diceRollerOpen: boolean) => void;
+  readonly autoOpenResultView?: boolean;
+  readonly settings?: DefinedSettings;
+  readonly onRollClicked?: () => void;
 }) {
   const netEdges = rollAttributes.edges - rollAttributes.banes;
 
@@ -184,7 +186,7 @@ export default function DiceRoller({
             onValueChange={(val) =>
               setRollAttributes((prev) => ({
                 ...prev,
-                edges: val === "" ? 0 : parseFloat(val),
+                edges: val === "" ? 0 : Number.parseFloat(val),
               }))
             }
           >
@@ -208,7 +210,7 @@ export default function DiceRoller({
             onValueChange={(val) =>
               setRollAttributes((prev) => ({
                 ...prev,
-                banes: val === "" ? 0 : parseFloat(val),
+                banes: val === "" ? 0 : Number.parseFloat(val),
               }))
             }
           >

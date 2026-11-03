@@ -9,9 +9,11 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import { Buffer } from "node:buffer";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
+import { z } from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,15 +63,26 @@ async function getGitHubTree(): Promise<
   Array<{ path: string; type: string; size?: number }>
 > {
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1`;
-  const data = await githubFetch(url);
+  const data = z
+    .object({
+      tree: z.array(
+        z.object({
+          path: z.string(),
+          type: z.string(),
+          size: z.number().optional(),
+        }),
+      ),
+    })
+    .parse(await githubFetch(url));
   return data.tree;
 }
 
 async function getFileContent(filePath: string): Promise<unknown> {
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${encodeURIComponent(filePath)}?ref=${GITHUB_BRANCH}`;
-  const data = await githubFetch(url);
+  const data = z.object({ content: z.string() }).parse(await githubFetch(url));
+  const bytes = Buffer.from(atob(data.content.replaceAll("\n", "")), "latin1");
   const decoded = JSON.parse(
-    decodeURIComponent(escape(atob(data.content.replace(/\n/g, "")))),
+    new TextDecoder("utf-8", { fatal: true }).decode(bytes),
   );
   return decoded;
 }
@@ -91,9 +104,7 @@ function inferName(content: any, filePath: string): string {
   return base;
 }
 
-async function migrateJsonFiles(
-  tree: Array<{ path: string; type: string }>,
-) {
+async function migrateJsonFiles(tree: Array<{ path: string; type: string }>) {
   const jsonFiles = tree.filter(
     (item) =>
       item.type === "blob" &&
@@ -119,18 +130,16 @@ async function migrateJsonFiles(
           const type = inferType(content);
           const name = inferName(content, file.path);
 
-          const { error } = await supabase
-            .from("bestiary_documents")
-            .upsert(
-              {
-                path: file.path,
-                type,
-                name,
-                content,
-                updated_at: new Date().toISOString(),
-              },
-              { onConflict: "path" },
-            );
+          const { error } = await supabase.from("bestiary_documents").upsert(
+            {
+              path: file.path,
+              type,
+              name,
+              content,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: "path" },
+          );
 
           if (error) {
             console.error(`  ERRORE Supabase per ${file.path}:`, error.message);
@@ -162,9 +171,7 @@ async function migrateJsonFiles(
   );
 }
 
-async function migrateImages(
-  tree: Array<{ path: string; type: string }>,
-) {
+async function migrateImages(tree: Array<{ path: string; type: string }>) {
   const imageFiles = tree.filter(
     (item) =>
       item.type === "blob" &&
@@ -182,14 +189,12 @@ async function migrateImages(
     try {
       const buffer = await getRawFile(file.path);
       const ext = path.extname(file.path).toLowerCase();
-      const contentType =
-        ext === ".png"
-          ? "image/png"
-          : ext === ".webp"
-            ? "image/webp"
-            : ext === ".gif"
-              ? "image/gif"
-              : "image/jpeg";
+      const contentTypes: Record<string, string> = {
+        ".png": "image/png",
+        ".webp": "image/webp",
+        ".gif": "image/gif",
+      };
+      const contentType = contentTypes[ext] ?? "image/jpeg";
 
       const { error } = await supabase.storage
         .from("hero-images")
@@ -231,7 +236,9 @@ async function main() {
   console.log("\n=== Migrazione completata! ===");
 }
 
-main().catch((err) => {
+try {
+  await main();
+} catch (err) {
   console.error("Errore fatale:", err);
   process.exit(1);
-});
+}

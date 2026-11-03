@@ -15,9 +15,9 @@ export default function DiceStylePicker({
   onStyleClick,
   dialogTrigger,
 }: {
-  dieStyles: DiceProtocol.DieStyle[];
-  onStyleClick: (style: DiceProtocol.DieStyle) => void;
-  dialogTrigger: React.ReactNode;
+  readonly dieStyles: DiceProtocol.DieStyle[];
+  readonly onStyleClick: (style: DiceProtocol.DieStyle) => void;
+  readonly dialogTrigger: React.ReactNode;
 }) {
   return (
     <Dialog>

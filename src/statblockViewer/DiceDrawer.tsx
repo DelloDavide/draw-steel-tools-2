@@ -120,14 +120,14 @@ export function DiceDrawer() {
               </Label>
               {!diceDrawer.powerRollTargetId ? (
                 <Button
-                  className="inert pointer-events-none flex h-[36px] w-full items-center justify-between px-2 pl-4"
+                  className="inert pointer-events-none flex h-9 w-full items-center justify-between px-2 pl-4"
                   variant={"secondary"}
                 >
                   <div className="overflow-clip">None</div>
                 </Button>
               ) : (
                 <Button
-                  className="flex h-[36px] w-full items-center justify-between px-2 pl-4"
+                  className="flex h-9 w-full items-center justify-between px-2 pl-4"
                   variant={"secondary"}
                   title={diceDrawer.powerRollTargetName}
                   onClick={() =>
@@ -153,61 +153,69 @@ export function DiceDrawer() {
               <Label variant="small" htmlFor="bonusInput">
                 Dice Roller
               </Label>
-              {noDiceRollersFound ? (
-                <div className="flex gap-2">
-                  <div className="bg-mirage-100 flex h-9 grow items-center rounded-full pl-4">
-                    Internal
-                  </div>
-                  <Button
-                    asChild
-                    className="size-9"
-                    variant={"secondary"}
-                    size={"icon"}
-                  >
-                    <a
-                      href="https://seamus-finlayson.ca/pages/connected-dice"
-                      target="_blank"
-                      rel="noopener noreferrer"
+              {(() => {
+                if (noDiceRollersFound) {
+                  return (
+                    <div className="flex gap-2">
+                      <div className="bg-mirage-100 flex h-9 grow items-center rounded-full pl-4">
+                        Internal
+                      </div>
+                      <Button
+                        asChild
+                        className="size-9"
+                        variant={"secondary"}
+                        size={"icon"}
+                      >
+                        <a
+                          href="https://seamus-finlayson.ca/pages/connected-dice"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ConnectedDiceIcon className="stroke-black dark:stroke-white" />
+                        </a>
+                      </Button>
+                    </div>
+                  );
+                }
+                if (diceRoller.config === undefined) {
+                  return (
+                    <Button
+                      className="flex h-9 w-full items-center justify-between px-2 pl-4"
+                      variant={"secondary"}
+                      onClick={() => {
+                        diceRoller.connect();
+                      }}
                     >
-                      <ConnectedDiceIcon className="stroke-black dark:stroke-white" />
-                    </a>
+                      <div className="max-w-[calc(100%-32px)] overflow-clip text-clip">
+                        Connect
+                      </div>
+                      <PlugZap />
+                    </Button>
+                  );
+                }
+                return (
+                  <Button
+                    className="flex h-9 w-full items-center justify-between px-2 pl-4"
+                    variant={"secondary"}
+                    onClick={() => {
+                      diceRoller.disconnect();
+                      setDiceDrawer((prev) => ({
+                        ...prev,
+                        requestRoll: undefined,
+                      }));
+                      setRollAttributes((prev) => ({
+                        ...prev,
+                        style: undefined,
+                      }));
+                    }}
+                  >
+                    <div className="max-w-[calc(100%-32px)] overflow-clip text-clip">
+                      Connected
+                    </div>
+                    <CheckIcon />
                   </Button>
-                </div>
-              ) : diceRoller.config === undefined ? (
-                <Button
-                  className="flex h-[36px] w-full items-center justify-between px-2 pl-4"
-                  variant={"secondary"}
-                  onClick={() => {
-                    diceRoller.connect();
-                  }}
-                >
-                  <div className="max-w-[calc(100%-32px)] overflow-clip text-clip">
-                    Connect
-                  </div>
-                  <PlugZap />
-                </Button>
-              ) : (
-                <Button
-                  className="flex h-[36px] w-full items-center justify-between px-2 pl-4"
-                  variant={"secondary"}
-                  onClick={() => {
-                    diceRoller.disconnect();
-                    setDiceDrawer((prev) => ({
-                      ...prev,
-                      requestRoll: undefined,
-                    }));
-                    setRollAttributes((prev) => ({
-                      ...prev,
-                      style: undefined,
-                    }));
-                  }}
-                >
-                  <div className="max-w-[calc(100%-32px)] overflow-clip text-clip">
-                    Connected
-                  </div>
-                  <CheckIcon />
-                </Button>
-              )}
+                );
+              })()}
             </div>
           </div>
           <div className="bg-mirage-50 dark:bg-mirage-950 px-4 py-3">
@@ -231,7 +239,7 @@ export function DiceDrawer() {
                 commitPendingResourceSpend();
                 setDiceDrawer((prev) => ({
                   ...prev,
-                  open: prev.powerRollTargetId ? false : true,
+                  open: !prev.powerRollTargetId,
                   powerRollResultTargetId: prev.powerRollTargetId,
                 }));
               }}

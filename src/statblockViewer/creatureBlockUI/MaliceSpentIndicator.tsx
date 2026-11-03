@@ -1,4 +1,8 @@
-export function MaliceSpentIndicator({ maliceSpent }: { maliceSpent: number }) {
+export function MaliceSpentIndicator({
+  maliceSpent,
+}: {
+  readonly maliceSpent: number;
+}) {
   if (maliceSpent === 0) return <></>;
   return (
     <div className="pt-2">

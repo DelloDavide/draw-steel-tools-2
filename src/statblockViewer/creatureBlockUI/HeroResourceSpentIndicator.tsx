@@ -2,8 +2,8 @@ export function HeroResourceSpentIndicator({
   resourceName,
   value,
 }: {
-  resourceName: string;
-  value: number;
+  readonly resourceName: string;
+  readonly value: number;
 }) {
   if (value === 0) return <></>;
   return (

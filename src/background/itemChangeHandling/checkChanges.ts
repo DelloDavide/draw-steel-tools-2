@@ -1,4 +1,10 @@
-import { isImage, isShape, type Item } from "@owlbear-rodeo/sdk";
+import {
+  isImage,
+  isShape,
+  type Image,
+  type Item,
+  type Shape,
+} from "@owlbear-rodeo/sdk";
 import type { DefinedCharacterTokenData } from "../../types/tokenDataZod";
 
 export function checkNeedsRefresh(
@@ -17,16 +23,32 @@ export function checkItemChanges(item: Item, prev: Item) {
   if (prev.position.x !== item.position.x) return true;
   if (prev.position.y !== item.position.y) return true;
   if (prev.visible !== item.visible) return true;
-  if (isImage(item) && isImage(prev)) {
-    if (prev.grid.offset.x !== item.grid.offset.x) return true;
-    if (prev.grid.offset.y !== item.grid.offset.y) return true;
-    if (prev.grid.dpi !== item.grid.dpi) return true;
-  }
-  if (isShape(item) && isShape(prev)) {
-    if (prev.height !== item.height) return true;
-    if (prev.width !== item.width) return true;
-  }
+  if (isImage(item) && isImage(prev)) return checkImageGridChanges(item, prev);
+  if (isShape(item) && isShape(prev)) return checkShapeSizeChanges(item, prev);
   return false;
+}
+
+function checkImageGridChanges(item: Image, prev: Image) {
+  return (
+    prev.grid.offset.x !== item.grid.offset.x ||
+    prev.grid.offset.y !== item.grid.offset.y ||
+    prev.grid.dpi !== item.grid.dpi
+  );
+}
+
+function checkShapeSizeChanges(item: Shape, prev: Shape) {
+  return prev.height !== item.height || prev.width !== item.width;
+}
+
+type NamedTokenData = Exclude<DefinedCharacterTokenData, { type: "MINION" }>;
+
+function checkNamedTokenChanges(item: NamedTokenData, prev: NamedTokenData) {
+  return (
+    item.name !== prev.name ||
+    item.gmOnly !== prev.gmOnly ||
+    item.stamina !== prev.stamina ||
+    item.staminaMaximum !== prev.staminaMaximum
+  );
 }
 
 export function checkMetadataChanges(
@@ -35,29 +57,24 @@ export function checkMetadataChanges(
 ) {
   if (item.type !== prev.type) return true;
   if (item.type === "HERO" && prev.type === "HERO") {
-    if (item.name !== prev.name) return true;
-    if (item.gmOnly !== prev.gmOnly) return true;
-    if (item.stamina !== prev.stamina) return true;
-    if (item.staminaMaximum !== prev.staminaMaximum) return true;
-    if (item.temporaryStamina !== prev.temporaryStamina) return true;
-    if (item.heroicResource !== prev.heroicResource) return true;
-    if (item.surges !== prev.surges) return true;
+    return (
+      checkNamedTokenChanges(item, prev) ||
+      item.temporaryStamina !== prev.temporaryStamina ||
+      item.heroicResource !== prev.heroicResource ||
+      item.surges !== prev.surges
+    );
   }
   if (item.type === "MONSTER" && prev.type === "MONSTER") {
-    if (item.name !== prev.name) return true;
-    if (item.gmOnly !== prev.gmOnly) return true;
-    if (item.stamina !== prev.stamina) return true;
-    if (item.staminaMaximum !== prev.staminaMaximum) return true;
-    if (item.temporaryStamina !== prev.temporaryStamina) return true;
+    return (
+      checkNamedTokenChanges(item, prev) ||
+      item.temporaryStamina !== prev.temporaryStamina
+    );
   }
   if (item.type === "TERRAIN" && prev.type === "TERRAIN") {
-    if (item.name !== prev.name) return true;
-    if (item.gmOnly !== prev.gmOnly) return true;
-    if (item.stamina !== prev.stamina) return true;
-    if (item.staminaMaximum !== prev.staminaMaximum) return true;
+    return checkNamedTokenChanges(item, prev);
   }
   if (item.type === "MINION" && prev.type === "MINION") {
-    if (item.groupId !== prev.groupId) return true;
+    return item.groupId !== prev.groupId;
   }
 
   return false;

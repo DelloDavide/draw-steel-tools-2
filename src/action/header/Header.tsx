@@ -11,16 +11,55 @@ import {
 import SideBarMenu from "./SideBarMenu";
 
 export function Header({
-  setRollAttributes: setRollAttributes,
+  setRollAttributes,
   diceRoller,
 }: {
-  setRollAttributes: React.Dispatch<React.SetStateAction<RollAttributes>>;
-  diceRoller: DiceRoller;
+  readonly setRollAttributes: React.Dispatch<
+    React.SetStateAction<RollAttributes>
+  >;
+  readonly diceRoller: DiceRoller;
 }) {
   const [noDiceRollersFound, setNoDiceRollersFound] = useState(true);
   useEffect(() => {
     if (diceRoller.config) setNoDiceRollersFound(false);
   }, [diceRoller]);
+
+  const connectionControl =
+    diceRoller.config === undefined ? (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            onClick={() => {
+              diceRoller.connect();
+            }}
+            variant={"ghost"}
+            size={"icon"}
+          >
+            <PlugZap />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">Connect Dice Roller</TooltipContent>
+      </Tooltip>
+    ) : (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            onClick={() => {
+              diceRoller.disconnect();
+              setRollAttributes((prev) => ({
+                ...prev,
+                style: undefined,
+              }));
+            }}
+            variant={"ghost"}
+            size={"icon"}
+          >
+            <UnplugIcon />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">Disconnect Dice Roller</TooltipContent>
+      </Tooltip>
+    );
 
   return (
     <div className="flex h-14 items-center gap-2 px-4">
@@ -42,42 +81,8 @@ export function Header({
             </TooltipTrigger>
             <TooltipContent side="bottom">Get Connected Dice</TooltipContent>
           </Tooltip>
-        ) : diceRoller.config === undefined ? (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                onClick={() => {
-                  diceRoller.connect();
-                }}
-                variant={"ghost"}
-                size={"icon"}
-              >
-                <PlugZap />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom">Connect Dice Roller</TooltipContent>
-          </Tooltip>
         ) : (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                onClick={() => {
-                  diceRoller.disconnect();
-                  setRollAttributes((prev) => ({
-                    ...prev,
-                    style: undefined,
-                  }));
-                }}
-                variant={"ghost"}
-                size={"icon"}
-              >
-                <UnplugIcon />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom">
-              Disconnect Dice Roller
-            </TooltipContent>
-          </Tooltip>
+          connectionControl
         )}
 
         <SideBarMenu />

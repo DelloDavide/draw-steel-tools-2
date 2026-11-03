@@ -20,10 +20,10 @@ export default function SearchView({
   setAppState,
   playerRole,
 }: {
-  monsterIndex: IndexBundle[];
-  appState: AppState;
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
-  playerRole: "PLAYER" | "GM";
+  readonly monsterIndex: IndexBundle[];
+  readonly appState: AppState;
+  readonly setAppState: React.Dispatch<React.SetStateAction<AppState>>;
+  readonly playerRole: "PLAYER" | "GM";
 }) {
   const search = appState.search;
   const updateSearchValue = (value: string) =>

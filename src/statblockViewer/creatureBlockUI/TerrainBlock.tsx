@@ -5,13 +5,13 @@ import { Feature } from "./Feature";
 export function TerrainBlock({
   terrainBlock,
 }: {
-  terrainBlock: DrawSteelDynamicTerrain;
+  readonly terrainBlock: DrawSteelDynamicTerrain;
 }) {
   return (
     <div className="w-full max-w-lg">
       <div
         className={cn(
-          "rounded-md border-zinc-950 bg-gradient-to-b from-neutral-400/60 to-neutral-300/50 p-2",
+          "rounded-md border-zinc-950 bg-linear-to-b from-neutral-400/60 to-neutral-300/50 p-2",
           {
             "from-[#e9db7d] to-[#e9db7d]/50":
               terrainBlock.featureblock_type.includes("Ambusher"),

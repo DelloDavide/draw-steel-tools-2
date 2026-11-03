@@ -10,7 +10,7 @@ import {
   HammerIcon,
   ShieldIcon,
   AlertTriangleIcon,
-  MapIcon
+  MapIcon,
 } from "lucide-react";
 
 const iconMap = {
@@ -62,8 +62,8 @@ export function Icon({
   name,
   className = "h-5 w-5",
 }: {
-  name?: string;
-  className?: string;
+  readonly name?: string;
+  readonly className?: string;
 }) {
   const LucideIcon = resolveIcon(name);
 

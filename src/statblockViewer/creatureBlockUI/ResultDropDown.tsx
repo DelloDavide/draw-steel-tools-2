@@ -14,9 +14,9 @@ export function ResultDropDown({
   hidden,
   result,
 }: {
-  badges?: string[];
-  hidden: boolean;
-  result: Roll | undefined;
+  readonly badges?: string[];
+  readonly hidden: boolean;
+  readonly result: Roll | undefined;
 }) {
   const [resultOpen, setResultOpen] = useState(false);
 

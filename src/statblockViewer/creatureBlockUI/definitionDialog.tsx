@@ -21,9 +21,9 @@ export function DefinitionDialog({
   text,
   tags,
 }: {
-  children: React.ReactNode;
-  text: string;
-  tags: string[];
+  readonly children: React.ReactNode;
+  readonly text: string;
+  readonly tags: string[];
 }) {
   const title = titleRegexList
     .filter((definition) => definition.tags.some((tag) => tags.includes(tag)))
@@ -46,28 +46,25 @@ export function DefinitionDialog({
           {definition.body.map((val) => (
             <p key={key++}>{insertTextStyling(val, true)}</p>
           ))}
-          {definition.append &&
-            definition.append.map((text) => {
-              const subDefinition = definitions.find(
-                (val) => val.title === text,
-              );
-              if (!subDefinition) {
-                return (
-                  <div
-                    key={key++}
-                  >{`Could not find definition for ${text}.`}</div>
-                );
-              }
-
+          {definition.append?.map((text) => {
+            const subDefinition = definitions.find((val) => val.title === text);
+            if (!subDefinition) {
               return (
-                <div key={key++} className="space-y-3">
-                  <h1 className="font-bold">{text}</h1>
-                  {subDefinition.body.map((val) => (
-                    <p key={key++}>{insertTextStyling(val, true)}</p>
-                  ))}
-                </div>
+                <div
+                  key={key++}
+                >{`Could not find definition for ${text}.`}</div>
               );
-            })}
+            }
+
+            return (
+              <div key={key++} className="space-y-3">
+                <h1 className="font-bold">{text}</h1>
+                {subDefinition.body.map((val) => (
+                  <p key={key++}>{insertTextStyling(val, true)}</p>
+                ))}
+              </div>
+            );
+          })}
 
           {definition.title === "Grabbed" && (
             <div className="border-t pt-2">

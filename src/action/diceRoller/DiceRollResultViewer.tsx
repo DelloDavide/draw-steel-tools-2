@@ -1,17 +1,28 @@
-import type { Roll } from "../../types/diceRollerTypes";
+import type { DieResult, Roll } from "../../types/diceRollerTypes";
 import { netEdgesTextAndLabel } from "./helpers";
 import D10Icon from "../../components/icons/D10Icon";
 import { cn } from "../../helpers/utils";
 import { Separator } from "../../components/ui/Separator";
+
+const dieKeys = new WeakMap<DieResult, string>();
+
+function getDieKey(die: DieResult) {
+  let key = dieKeys.get(die);
+  if (key === undefined) {
+    key = crypto.randomUUID();
+    dieKeys.set(die, key);
+  }
+  return key;
+}
 
 export const DiceRollResultViewer = ({ result }: { result: Roll }) => (
   <div className="space-y-4 pt-[0.5px]">
     <div className="flex flex-col items-center space-y-1.5">
       <div className="text-foreground-secondary text-xs">Roll</div>
       <div className="flex items-center justify-center gap-4">
-        {result.dieResults.map((val, index) => (
+        {result.dieResults.map((val) => (
           <div
-            key={index}
+            key={getDieKey(val)}
             className={cn(
               "flex items-center gap-1 stroke-black dark:stroke-white",
               {

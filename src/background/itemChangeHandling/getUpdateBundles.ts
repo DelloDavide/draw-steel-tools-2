@@ -34,45 +34,63 @@ export function getUpdateBundles(
   obrState: ObrState,
   changed: ChangedData,
 ): UpdateBundle[] {
-  const items = changed.items ? changed.items : obrState.items;
+  const items = changed.items ?? obrState.items;
 
-  return items.map((item: Item) => {
-    const log = obrState.attachmentLogs[item.id];
-    const prev: PreviousItemData | undefined = log
-      ? { item: log.item, data: log.data }
-      : undefined;
+  return items.map((item) => getItemBundle(item, obrState, changed));
+}
 
-    const hasMetadata = checkHasPluginData(item);
-    if (!hasMetadata)
-      return bundleCatagory(prev ? "REMOVE" : "UNTRACKED", item);
+function getItemBundle(
+  item: Item,
+  obrState: ObrState,
+  changed: ChangedData,
+): UpdateBundle {
+  const log = obrState.attachmentLogs[item.id];
+  const prev: PreviousItemData | undefined = log
+    ? { item: log.item, data: log.data }
+    : undefined;
 
-    const validPluginItemTypes = getValidPluginTypes(item);
+  const hasMetadata = checkHasPluginData(item);
+  if (!hasMetadata) return bundleCatagory(prev ? "REMOVE" : "UNTRACKED", item);
 
-    if (validPluginItemTypes.length === 0)
-      return bundleCatagory(prev ? "REMOVE" : "UNTRACKED", item);
+  const validPluginItemTypes = getValidPluginTypes(item);
 
-    const data = parseTokenData(item.metadata);
+  if (validPluginItemTypes.length === 0)
+    return bundleCatagory(prev ? "REMOVE" : "UNTRACKED", item);
 
-    // Mismatch between metadata and valid target types
-    if (!validPluginItemTypes.includes(data.type))
-      return bundleCatagory(prev ? "REMOVE" : "UNTRACKED", item);
+  const data = parseTokenData(item.metadata);
 
-    if (!prev) return bundleCatagory("ADD", item, data);
+  // Mismatch between metadata and valid target types
+  if (!validPluginItemTypes.includes(data.type))
+    return bundleCatagory(prev ? "REMOVE" : "UNTRACKED", item);
 
-    if (changed.settings) return bundleCatagory("UPDATE", item, data, prev);
-    if (changed.role) return bundleCatagory("UPDATE", item, data, prev);
-    if (changed.minions && data.type === "MINION")
-      return bundleCatagory("UPDATE", item, data, prev);
+  if (!prev) return bundleCatagory("ADD", item, data);
 
-    if (item.lastModified <= prev.item.lastModified)
-      return bundleCatagory("UNCHANGED", item, data, prev);
-    if (checkNeedsRefresh(item, prev.item, obrState.settings.nameTagsEnabled))
-      return bundleCatagory("REFRESH", item, data, prev);
-    if (checkItemChanges(item, prev.item))
-      return bundleCatagory("UPDATE", item, data, prev);
-    if (checkMetadataChanges(data, prev.data))
-      return bundleCatagory("UPDATE", item, data, prev);
+  return bundleCatagory(
+    getTrackedCatagory(item, data, prev, obrState, changed),
+    item,
+    data,
+    prev,
+  );
+}
 
-    return bundleCatagory("UNCHANGED", item, data, prev);
-  });
+function getTrackedCatagory(
+  item: Item,
+  data: DefinedCharacterTokenData,
+  prev: PreviousItemData,
+  obrState: ObrState,
+  changed: ChangedData,
+): "UPDATE" | "REFRESH" | "UNCHANGED" {
+  if (
+    changed.settings ||
+    changed.role ||
+    (changed.minions && data.type === "MINION")
+  )
+    return "UPDATE";
+  if (item.lastModified <= prev.item.lastModified) return "UNCHANGED";
+  if (checkNeedsRefresh(item, prev.item, obrState.settings.nameTagsEnabled))
+    return "REFRESH";
+  if (checkItemChanges(item, prev.item)) return "UPDATE";
+  if (checkMetadataChanges(data, prev.data)) return "UPDATE";
+
+  return "UNCHANGED";
 }

@@ -6,7 +6,11 @@ import {
   SetRollAttributesContext,
 } from "./RollAttributesContext";
 
-export function RollAttributesProvider({ children }: { children: any }) {
+export function RollAttributesProvider({
+  children,
+}: {
+  readonly children: any;
+}) {
   const [rollAttributes, setRollAttributes] = useState<RollAttributes>(
     defaultRollAttributes,
   );

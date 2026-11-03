@@ -9,21 +9,21 @@ export default function ResourceTracker({
   setTrackers,
   playerRole,
 }: {
-  trackers:
+  readonly trackers:
     | {
-        malice?: number | undefined;
-        heroTokens?: number | undefined;
+        malice?: number;
+        heroTokens?: number;
       }
     | undefined;
-  setTrackers: (
+  readonly setTrackers: (
     newValue:
       | {
-          malice?: number | undefined;
-          heroTokens?: number | undefined;
+          malice?: number;
+          heroTokens?: number;
         }
       | undefined,
   ) => void;
-  playerRole: "GM" | "PLAYER";
+  readonly playerRole: "GM" | "PLAYER";
 }) {
   const malice = trackers?.malice ? trackers.malice : 0;
   const heroTokens = trackers?.heroTokens ? trackers.heroTokens : 0;
@@ -63,7 +63,7 @@ export default function ResourceTracker({
                 inlineMath: { previousValue: heroTokens },
               }),
             });
-            OBR.room.setMetadata({
+            void OBR.room.setMetadata({
               [getPluginId("trackers")]: value,
             });
             setTrackers(value);

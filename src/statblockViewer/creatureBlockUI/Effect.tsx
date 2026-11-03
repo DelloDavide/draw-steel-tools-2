@@ -10,14 +10,14 @@ export function Effect({
   highlightTier,
   noLinking = false,
 }: {
-  effect: DrawSteelEffect;
-  highlightTier?: number;
-  noLinking?: boolean;
+  readonly effect: DrawSteelEffect;
+  readonly highlightTier?: number;
+  readonly noLinking?: boolean;
 }) {
   const PowerRollEntries = Object.keys(effect)
     .filter((key) => ["tier1", "tier2", "tier3"].includes(key))
     .map((key) => {
-      const tier = parseFloat(key.replace("tier", ""));
+      const tier = Number.parseFloat(key.replace("tier", ""));
       const highlight = tier === highlightTier;
 
       return (

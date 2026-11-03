@@ -45,10 +45,10 @@ import VersatileIcon from "../../components/icons/VersatileIcon";
 
 export function Feature({
   blockName,
-  feature: feature,
+  feature,
 }: {
-  blockName: string;
-  feature: DrawSteelFeature;
+  readonly blockName: string;
+  readonly feature: DrawSteelFeature;
 }) {
   const setRollAttributes = useContext(SetRollAttributesContext);
   const diceDrawer = useContext(DiceDrawerContext);
@@ -79,7 +79,7 @@ export function Feature({
   feature.effects.forEach((val) => {
     if ("roll" in val && val.roll) {
       roll = val.roll.replace("Power Roll", "2d10");
-      rollBonus = parseFloat(
+      rollBonus = Number.parseFloat(
         val.roll.replace("Power Roll", "").replace(/\s/g, ""),
       );
     }
@@ -120,23 +120,26 @@ export function Feature({
                             bonus: rollBonus,
                           }));
                           setDiceDrawer((prev) => {
-                            const pendingResourceSpend =
-                              parsedCost && isHeroClassResourceCost
-                                ? {
-                                    featureId,
-                                    resourceName: parsedCost.resourceName,
-                                    amount: parsedCost.amount,
-                                    type: "hero" as const,
-                                  }
-                                : parsedCost &&
-                                    isMaliceResourceCost(feature.cost!)
-                                  ? {
-                                      featureId,
-                                      resourceName: parsedCost.resourceName,
-                                      amount: parsedCost.amount,
-                                      type: "malice" as const,
-                                    }
-                                  : undefined;
+                            let pendingResourceSpend: DiceDrawer["pendingResourceSpend"];
+                            if (parsedCost && isHeroClassResourceCost) {
+                              pendingResourceSpend = {
+                                featureId,
+                                resourceName: parsedCost.resourceName,
+                                amount: parsedCost.amount,
+                                type: "hero",
+                              };
+                            } else if (
+                              parsedCost &&
+                              feature.cost &&
+                              isMaliceResourceCost(feature.cost)
+                            ) {
+                              pendingResourceSpend = {
+                                featureId,
+                                resourceName: parsedCost.resourceName,
+                                amount: parsedCost.amount,
+                                type: "malice",
+                              };
+                            }
 
                             return {
                               ...prev,
@@ -159,36 +162,42 @@ export function Feature({
                   <PluginReadyGate
                     alternate={<div className="font-black">{feature.cost}</div>}
                   >
-                    {parsedCost && isMaliceResourceCost(feature.cost) ? (
-                      <MaliceSpender
-                        trigger={
-                          <Button
-                            variant={"outline"}
-                            size={"xs"}
-                            className="font-black"
-                          >
-                            {feature.cost}
-                          </Button>
-                        }
-                        cost={parsedCost.amount}
-                      />
-                    ) : parsedCost && isHeroClassResourceCost ? (
-                      <HeroResourceSpender
-                        trigger={
-                          <Button
-                            variant={"outline"}
-                            size={"xs"}
-                            className="font-black"
-                          >
-                            {feature.cost}
-                          </Button>
-                        }
-                        cost={parsedCost.amount}
-                        resourceName={parsedCost.resourceName}
-                      />
-                    ) : (
-                      <div className="font-black">{feature.cost}</div>
-                    )}
+                    {(() => {
+                      if (parsedCost && isMaliceResourceCost(feature.cost)) {
+                        return (
+                          <MaliceSpender
+                            trigger={
+                              <Button
+                                variant={"outline"}
+                                size={"xs"}
+                                className="font-black"
+                              >
+                                {feature.cost}
+                              </Button>
+                            }
+                            cost={parsedCost.amount}
+                          />
+                        );
+                      }
+                      if (parsedCost && isHeroClassResourceCost) {
+                        return (
+                          <HeroResourceSpender
+                            trigger={
+                              <Button
+                                variant={"outline"}
+                                size={"xs"}
+                                className="font-black"
+                              >
+                                {feature.cost}
+                              </Button>
+                            }
+                            cost={parsedCost.amount}
+                            resourceName={parsedCost.resourceName}
+                          />
+                        );
+                      }
+                      return <div className="font-black">{feature.cost}</div>;
+                    })()}
                   </PluginReadyGate>
                 )}
                 {feature.ability_type && (

@@ -6,7 +6,7 @@ import {
   type DiceDrawer,
 } from "./DiceDrawerContext";
 
-export function DiceDrawerProvider({ children }: { children: any }) {
+export function DiceDrawerProvider({ children }: { readonly children: any }) {
   const [diceDrawer, setDiceDrawer] = useState<DiceDrawer>(defaultDiceDrawer);
 
   return (

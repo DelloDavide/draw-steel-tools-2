@@ -66,7 +66,7 @@ export function createStatBubble(
       x: position.x - DIAMETER / 2,
       y: position.y - DIAMETER / 2 + TEXT_VERTICAL_OFFSET + 0.8,
     })
-    .plainText(valueText.length > 3 ? String.fromCharCode(0x2026) : valueText)
+    .plainText(valueText.length > 3 ? String.fromCodePoint(0x2026) : valueText)
     .textAlign("CENTER")
     .textAlignVertical("MIDDLE")
     .fontSize(
@@ -101,12 +101,20 @@ const BAR_CORNER_RADIUS = FULL_BAR_HEIGHT / 2;
 export function createHealthBar(
   item: Item,
   bounds: { width: number; height: number },
-  health: number,
-  maxHealth: number,
-  lightBackground: boolean,
   origin: { x: number; y: number },
-  variant: "full" | "short" = "full",
-  segments = 0,
+  {
+    health,
+    maxHealth,
+    lightBackground,
+    variant = "full",
+    segments = 0,
+  }: {
+    health: number;
+    maxHealth: number;
+    lightBackground: boolean;
+    variant?: "full" | "short";
+    segments?: number;
+  },
 ): Item[] {
   let barHeight: number;
   if (variant === "short") {
@@ -146,10 +154,9 @@ export function createHealthBar(
     .build();
 
   const fillPortion = getFillPortion(health, maxHealth, segments);
-  const fillColor = health >= 0 ? "red" : "red";
 
   const fillShape = buildCurve()
-    .fillColor(fillColor)
+    .fillColor("red")
     .fillOpacity(HEALTH_OPACITY)
     .zIndex(20000)
     .position({ x: position.x, y: position.y })

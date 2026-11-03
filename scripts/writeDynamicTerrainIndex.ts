@@ -4,9 +4,9 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -47,9 +47,7 @@ const DrawSteelDynamicTerrainZod = z.object({
   flavor: z.string(),
   stamina: z.string(),
   size: z.string(),
-  stats: z
-    .array(z.object({ name: z.string(), value: z.string() }))
-    .optional(),
+  stats: z.array(z.object({ name: z.string(), value: z.string() })).optional(),
   features: z.array(DrawSteelFeatureZod),
 });
 

@@ -49,11 +49,11 @@ export function StatBlockSwitcher({
   setMonsterData,
   setCollapsed,
 }: {
-  monsterData: ViewerData | null;
-  setMonsterData: React.Dispatch<
+  readonly monsterData: ViewerData | null;
+  readonly setMonsterData: React.Dispatch<
     React.SetStateAction<ViewerData | null | undefined>
   >;
-  setCollapsed: (collapsed: boolean) => void;
+  readonly setCollapsed: (collapsed: boolean) => void;
 }) {
   const playerRole = usePlayerRole();
   const items = useItems();
@@ -189,7 +189,7 @@ export function StatBlockSwitcher({
             <PopoverClose key={name} asChild>
               <Button
                 variant={"ghost"}
-                className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
+                className="hover:bg-mirage-100/70 w-full justify-between rounded-lg px-2"
                 onClick={() => void loadHero(name)}
               >
                 <div className="truncate">{name}</div>
@@ -205,7 +205,7 @@ export function StatBlockSwitcher({
             <PopoverClose key={resource.id} asChild>
               <Button
                 variant={"ghost"}
-                className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
+                className="hover:bg-mirage-100/70 w-full justify-between rounded-lg px-2"
                 onClick={() =>
                   void dataFromBestiaryIndexId(resource.id).then(setMonsterData)
                 }
@@ -224,7 +224,7 @@ export function StatBlockSwitcher({
             <PopoverClose key={resource.id} asChild>
               <Button
                 variant={"ghost"}
-                className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
+                className="hover:bg-mirage-100/70 w-full justify-between rounded-lg px-2"
                 onClick={() =>
                   void dataFromBestiaryIndexId(resource.id).then(setMonsterData)
                 }
@@ -243,7 +243,7 @@ export function StatBlockSwitcher({
             <PopoverClose key={resource.id} asChild>
               <Button
                 variant={"ghost"}
-                className="hover:bg-mirage-100/70 w-full justify-between rounded-[8px] px-2"
+                className="hover:bg-mirage-100/70 w-full justify-between rounded-lg px-2"
                 onClick={() =>
                   void dataFromBestiaryIndexId(resource.id).then(setMonsterData)
                 }

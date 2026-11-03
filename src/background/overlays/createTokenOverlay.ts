@@ -1,4 +1,10 @@
-import { isCurve, isImage, isShape, type Item } from "@owlbear-rodeo/sdk";
+import {
+  isCurve,
+  isImage,
+  isShape,
+  type Item,
+  type Vector2,
+} from "@owlbear-rodeo/sdk";
 import { getOriginAndBounds } from "./mathHelpers";
 import type { DefinedSettings } from "../../types/settingsZod";
 import {
@@ -64,25 +70,7 @@ export function createTokenOverlay(
     y: origin.y,
   };
 
-  if (!!bars) {
-    for (let i = 0; i < bars.length; i++) {
-      const bar = bars[i];
-      if (bar.display) {
-        overlayAttachments.push(
-          ...createHealthBar(
-            item,
-            bounds,
-            bar.value,
-            bar.maximum,
-            bar.lightBackground,
-            origin,
-            bar.variant,
-            bar.segments,
-          ),
-        );
-      }
-    }
-  }
+  overlayAttachments.push(...createBars(bars, item, bounds, origin));
 
   if (settings.justifyHealthBarsTop) bubblePosition.y += DIAMETER + MARGIN;
   const displayedBars = bars?.filter((bar) => bar.display);
@@ -97,25 +85,7 @@ export function createTokenOverlay(
     bubblePosition.y += -shortBars.length * (SHORT_BAR_HEIGHT + MARGIN);
   }
 
-  if (!!bubbles) {
-    for (let i = 0; i < bubbles.length; i++) {
-      const bubble = bubbles[i];
-      if (bubble.display) {
-        overlayAttachments.push(
-          ...createStatBubble(
-            item,
-            bubble.value,
-            bubble.color,
-            bubblePosition,
-            bubbleBackgroundId(item.id, i),
-            bubbleTextId(item.id, i),
-          ),
-        );
-
-        bubblePosition.x -= DIAMETER + MARGIN;
-      }
-    }
-  }
+  overlayAttachments.push(...createBubbles(bubbles, item, bubblePosition));
 
   if (settings.justifyHealthBarsTop) nameTagPosition.y -= MARGIN;
   if (
@@ -129,22 +99,86 @@ export function createTokenOverlay(
     nameTagPosition.y -= shortBars.length * (SHORT_BAR_HEIGHT + MARGIN);
   }
 
-  if (!!nameTags) {
-    for (let i = 0; i < nameTags.length; i++) {
-      const nameTag = nameTags[i];
-      if (nameTags[i].display) {
-        overlayAttachments.push(
-          ...createNameTag(
-            item,
-            dpi,
-            nameTag.text,
-            nameTagPosition,
-            settings.justifyHealthBarsTop ? "DOWN" : "UP",
-          ),
-        );
-      }
-    }
-  }
+  overlayAttachments.push(
+    ...createNameTags(
+      nameTags,
+      item,
+      dpi,
+      nameTagPosition,
+      settings.justifyHealthBarsTop,
+    ),
+  );
 
   return overlayAttachments;
+}
+
+function createBars(
+  bars: Bar[] | undefined,
+  item: Item,
+  bounds: { width: number; height: number },
+  origin: Vector2,
+) {
+  const attachments: Item[] = [];
+  for (const bar of bars ?? []) {
+    if (bar.display) {
+      attachments.push(
+        ...createHealthBar(item, bounds, origin, {
+          health: bar.value,
+          maxHealth: bar.maximum,
+          lightBackground: bar.lightBackground,
+          variant: bar.variant,
+          segments: bar.segments,
+        }),
+      );
+    }
+  }
+  return attachments;
+}
+
+function createBubbles(
+  bubbles: Bubble[] | undefined,
+  item: Item,
+  position: Vector2,
+) {
+  const attachments: Item[] = [];
+  for (const [i, bubble] of (bubbles ?? []).entries()) {
+    if (bubble.display) {
+      attachments.push(
+        ...createStatBubble(
+          item,
+          bubble.value,
+          bubble.color,
+          position,
+          bubbleBackgroundId(item.id, i),
+          bubbleTextId(item.id, i),
+        ),
+      );
+      position.x -= DIAMETER + MARGIN;
+    }
+  }
+  return attachments;
+}
+
+function createNameTags(
+  nameTags: NameTag[] | undefined,
+  item: Item,
+  dpi: number,
+  position: Vector2,
+  justifyTop: boolean,
+) {
+  const attachments: Item[] = [];
+  for (const nameTag of nameTags ?? []) {
+    if (nameTag.display) {
+      attachments.push(
+        ...createNameTag(
+          item,
+          dpi,
+          nameTag.text,
+          position,
+          justifyTop ? "DOWN" : "UP",
+        ),
+      );
+    }
+  }
+  return attachments;
 }

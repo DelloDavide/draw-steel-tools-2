@@ -5,7 +5,7 @@ import { Feature } from "./Feature";
 export function DynamicTerrainStatBlock({
   terrain,
 }: {
-  terrain: DrawSteelDynamicTerrain;
+  readonly terrain: DrawSteelDynamicTerrain;
 }) {
   const roleTags = terrain.featureblock_type;
 
@@ -13,7 +13,7 @@ export function DynamicTerrainStatBlock({
     <div className="w-full max-w-lg space-y-2">
       <div
         className={cn(
-          "rounded-md border-zinc-950 bg-gradient-to-b from-neutral-400/60 to-neutral-300/50 p-2",
+          "rounded-md border-zinc-950 bg-linear-to-b from-neutral-400/60 to-neutral-300/50 p-2",
           {
             "from-[#d8e0c2] to-[#d8e0c2]/50": roleTags.includes("Hexer"),
             "from-[#cac0a3] to-[#cac0a3]/50": roleTags.includes("Defender"),

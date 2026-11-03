@@ -20,9 +20,9 @@ export function HeroTokenProvider({
   itemId,
   children,
 }: {
-  statblockName: string | null;
-  itemId: string | null;
-  children: ReactNode;
+  readonly statblockName: string | null;
+  readonly itemId: string | null;
+  readonly children: ReactNode;
 }) {
   const pluginReady = useContext(PluginReadyContext);
   const [linkedHeroToken, setLinkedHeroToken] = useState<

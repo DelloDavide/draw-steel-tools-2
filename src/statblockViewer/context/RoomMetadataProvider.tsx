@@ -10,12 +10,12 @@ export function RoomMetadataProvider<T>({
   DataContext,
   UpdateContext,
 }: {
-  children: React.ReactNode;
-  metadataKey: string;
-  parser: (value: unknown) => T;
-  defaultValue: T;
-  DataContext: Context<T>;
-  UpdateContext: Context<(value: T) => void>;
+  readonly children: React.ReactNode;
+  readonly metadataKey: string;
+  readonly parser: (value: unknown) => T;
+  readonly defaultValue: T;
+  readonly DataContext: Context<T>;
+  readonly UpdateContext: Context<(value: T) => void>;
 }) {
   const [obrReady, setObrReady] = useState(false);
   useEffect(() => {
@@ -32,7 +32,7 @@ export function RoomMetadataProvider<T>({
       if (parsed === undefined) setValue(defaultValue);
       else setValue(parsed);
     };
-    OBR.room.getMetadata().then(handleRoomMetadata);
+    void OBR.room.getMetadata().then(handleRoomMetadata);
     return OBR.room.onMetadataChange(handleRoomMetadata);
   }, [metadataKey, parser, obrReady]);
 
@@ -40,7 +40,7 @@ export function RoomMetadataProvider<T>({
   const updateValue = useCallback(
     (newValue: T) => {
       setValue(newValue);
-      OBR.room.setMetadata({
+      void OBR.room.setMetadata({
         [metadataKey]: newValue,
       });
     },

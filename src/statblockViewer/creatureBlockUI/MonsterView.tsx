@@ -41,17 +41,9 @@ const parsedDefaultMaliceFeatures =
 function LegacyMonsterView({
   monsterData,
 }: {
-  monsterData: CreatureDataBundle;
+  readonly monsterData: CreatureDataBundle;
 }) {
   const [data, setData] = useState<CreatureDataBundle>(monsterData);
-
-  const [, setOriginalSkillsBlocks] = useState(
-    monsterData.kind === "dynamicterrain" ? [] : monsterData.skillsBlocks,
-  );
-
-  const [, setOriginalInventoryBlocks] = useState<DrawSteelInventoryBlock[]>(
-    monsterData.kind === "dynamicterrain" ? [] : monsterData.inventoryBlocks,
-  );
 
   const [originalProjectBlocks, setOriginalProjectBlocks] = useState(
     monsterData.kind === "dynamicterrain" ? [] : monsterData.projectBlocks,
@@ -61,9 +53,7 @@ function LegacyMonsterView({
     setData(monsterData);
 
     if (monsterData.kind !== "dynamicterrain") {
-      setOriginalSkillsBlocks(monsterData.skillsBlocks);
       setOriginalProjectBlocks(monsterData.projectBlocks);
-      setOriginalInventoryBlocks(monsterData.inventoryBlocks);
     }
   }, [monsterData]);
 
@@ -125,10 +115,6 @@ function LegacyMonsterView({
         };
       });
 
-      setOriginalSkillsBlocks((prev) =>
-        prev.map((b) => (b.name === updatedBlock.name ? updatedBlock : b)),
-      );
-
       alert(
         `The ${capitalizeFirstLetter(data.kind)} ${heroName} Updated Their Skills Successfully!`,
       );
@@ -160,11 +146,6 @@ function LegacyMonsterView({
           ),
         };
       });
-
-      // sincronizza l'originale così il componente torna "non modificato"
-      setOriginalInventoryBlocks((prev) =>
-        prev.map((b) => (b.name === updatedBlock.name ? updatedBlock : b)),
-      );
 
       alert(
         `The ${capitalizeFirstLetter(data.kind)} ${heroName} Updated Their Inventory Successfully!`,
@@ -339,7 +320,11 @@ function LegacyMonsterView({
   );
 }
 
-function ResourceBundleView({ bundle }: { bundle: DrawSteelResourceBundle }) {
+function ResourceBundleView({
+  bundle,
+}: {
+  readonly bundle: DrawSteelResourceBundle;
+}) {
   return (
     <div className="flex grow flex-col">
       <ScrollArea className="grow basis-0">
@@ -368,7 +353,7 @@ function ResourceBundleView({ bundle }: { bundle: DrawSteelResourceBundle }) {
 export default function MonsterView({
   bundle,
 }: {
-  bundle: CreatureDataBundle | DrawSteelResourceBundle;
+  readonly bundle: CreatureDataBundle | DrawSteelResourceBundle;
 }) {
   return "kind" in bundle ? (
     <LegacyMonsterView monsterData={bundle} />

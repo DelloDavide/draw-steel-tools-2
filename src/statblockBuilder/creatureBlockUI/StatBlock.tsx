@@ -17,7 +17,7 @@ function getStatblock(statblockData: StatBlockData): DrawSteelStatblock {
 export function StatBlock({
   statblock: statblockData,
 }: {
-  statblock: StatBlockData;
+  readonly statblock: StatBlockData;
 }) {
   const statblock = getStatblock(statblockData);
   const roleTags = statblock.roles.join(" ");
@@ -28,7 +28,7 @@ export function StatBlock({
     <div className="w-full max-w-2xl space-y-2">
       <div
         className={cn(
-          "space-y-2 rounded-md border-zinc-950 bg-gradient-to-b from-neutral-400/60 to-neutral-300/50 p-2",
+          "space-y-2 rounded-md border-zinc-950 bg-linear-to-b from-neutral-400/60 to-neutral-300/50 p-2",
           {
             "from-[#e9db7d] to-[#e9db7d]/50": roleTags.includes("Ambusher"),
             "from-[#ccc3d0] to-[#ccc3d0]/50": roleTags.includes("Artillery"),

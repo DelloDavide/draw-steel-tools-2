@@ -34,11 +34,15 @@ function getViewerDataName(data: ViewerData | null | undefined) {
   return "kind" in data ? getCreatureName(data) : data.resource.name;
 }
 
-function isHeroData(data: ViewerData | null | undefined): data is Extract<
-  CreatureDataBundle,
-  { kind: "hero" }
-> {
-  return data !== null && data !== undefined && "kind" in data && data.kind === "hero";
+function isHeroData(
+  data: ViewerData | null | undefined,
+): data is Extract<CreatureDataBundle, { kind: "hero" }> {
+  return (
+    data !== null &&
+    data !== undefined &&
+    "kind" in data &&
+    data.kind === "hero"
+  );
 }
 
 export function StatblockViewer() {
@@ -77,27 +81,34 @@ export function StatblockViewer() {
       ? monsterData.key
       : undefined;
 
+  let statblockContent = <></>;
+  if (!collapsed) {
+    if (monsterData === undefined) {
+      statblockContent = (
+        <div className="text-foreground-secondary grow p-4">Loading...</div>
+      );
+    } else if (monsterData === null) {
+      statblockContent = (
+        <div className="text-foreground-secondary grow p-4">
+          Failed to Load.
+        </div>
+      );
+    } else {
+      statblockContent = <MonsterView bundle={monsterData} />;
+    }
+  }
+
   return (
     <HeroTokenProvider
       key={activeStatblockName ?? "none"}
       statblockName={
-        isHeroData(monsterData) ? activeStatblockName ?? null : null
+        isHeroData(monsterData) ? (activeStatblockName ?? null) : null
       }
       itemId={itemIdParam}
     >
       <HeroClassResourceNamesContext value={heroClassResourceNames}>
         <div className="bg-mirage-50 flex h-screen flex-col overflow-hidden">
-          {collapsed ? (
-            <></>
-          ) : monsterData === undefined ? (
-            <div className="text-foreground-secondary grow p-4">Loading...</div>
-          ) : monsterData === null ? (
-            <div className="text-foreground-secondary grow p-4">
-              Failed to Load.
-            </div>
-          ) : (
-            <MonsterView bundle={monsterData} />
-          )}
+          {statblockContent}
 
           <PluginReadyGate>
             <div style={{ height }} />
@@ -112,7 +123,9 @@ export function StatblockViewer() {
                   )}
                 >
                   {monsterData !== undefined && (
-                    <div className={cn({ hidden: collapsed }, "max-w-full grow")}>
+                    <div
+                      className={cn({ hidden: collapsed }, "max-w-full grow")}
+                    >
                       {!collapsed && isHeroData(monsterData) && (
                         <ClassResourceBar key={activeStatblockName ?? "none"} />
                       )}

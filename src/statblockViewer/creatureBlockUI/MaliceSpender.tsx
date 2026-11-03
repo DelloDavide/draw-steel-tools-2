@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -25,16 +25,17 @@ export function MaliceSpender({
   side = "top",
   alignOffset,
 }: {
-  trigger: React.ReactNode;
-  cost: number;
-  align?: "end" | "center" | "start" | undefined;
-  side?: "top" | "right" | "bottom" | "left" | undefined;
-  alignOffset?: number | undefined;
+  readonly trigger: React.ReactNode;
+  readonly cost: number;
+  readonly align?: "end" | "center" | "start";
+  readonly side?: "top" | "right" | "bottom" | "left";
+  readonly alignOffset?: number;
 }) {
   const trackerMetadata = useContext(RoomTrackersContext);
   const updateTrackerMetadata = useContext(UpdateRoomTrackersContext);
   const setMaliceSpent = useContext(SetMaliceSpentContext);
   const featureId = useContext(FeatureIdContext);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const [configuredCost, setConfiguredCost] = useState(cost);
   const malice = trackerMetadata?.malice ? trackerMetadata.malice : 0;
@@ -48,12 +49,16 @@ export function MaliceSpender({
     >
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent
+        ref={contentRef}
         side={side}
         align={align}
         alignOffset={alignOffset}
         className="w-fit rounded-2xl"
+        onOpenAutoFocus={(event) => {
+          event.preventDefault();
+          contentRef.current?.focus();
+        }}
       >
-        <div aria-label="open focus target" tabIndex={1} />
         <div className="space-y-2">
           <div className="flex items-end gap-2">
             <div className="space-y-1">

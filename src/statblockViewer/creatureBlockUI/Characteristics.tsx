@@ -13,7 +13,7 @@ import { PluginReadyGate } from "../../components/logic/PluginReadyGate";
 export function Characteristics({
   statblock,
 }: {
-  statblock: DrawSteelStatblock;
+  readonly statblock: DrawSteelStatblock;
 }) {
   const setRollAttributes = useContext(SetRollAttributesContext);
   const diceDrawer = useContext(DiceDrawerContext);

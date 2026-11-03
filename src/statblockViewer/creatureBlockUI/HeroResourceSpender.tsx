@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -27,17 +27,18 @@ export function HeroResourceSpender({
   side = "top",
   alignOffset,
 }: {
-  trigger: React.ReactNode;
-  cost: number;
-  resourceName: string;
-  align?: "end" | "center" | "start" | undefined;
-  side?: "top" | "right" | "bottom" | "left" | undefined;
-  alignOffset?: number | undefined;
+  readonly trigger: React.ReactNode;
+  readonly cost: number;
+  readonly resourceName: string;
+  readonly align?: "end" | "center" | "start";
+  readonly side?: "top" | "right" | "bottom" | "left";
+  readonly alignOffset?: number;
 }) {
   const linkedHeroToken = useContext(HeroTokenContext);
   const updateClassResource = useContext(UpdateHeroClassResourceContext);
   const setHeroResourceSpent = useContext(SetHeroResourceSpentContext);
   const featureId = useContext(FeatureIdContext);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const [configuredCost, setConfiguredCost] = useState(cost);
 
@@ -55,12 +56,16 @@ export function HeroResourceSpender({
     >
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent
+        ref={contentRef}
         side={side}
         align={align}
         alignOffset={alignOffset}
         className="w-fit rounded-2xl"
+        onOpenAutoFocus={(event) => {
+          event.preventDefault();
+          contentRef.current?.focus();
+        }}
       >
-        <div aria-label="open focus target" tabIndex={1} />
         <div className="space-y-2">
           <div className="text-sm font-bold">{resourceName}</div>
           <div className="flex items-end gap-2">

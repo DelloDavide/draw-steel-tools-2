@@ -53,22 +53,7 @@ export function powerRoll(
     (args.hasSkill ? 2 : 0);
   const total = naturalResult + totalBonus;
 
-  // Get tier
-  let tier = 0;
-  if (critical) tier = 3;
-  else if (total < 12) tier = 1;
-  else if (total < 17) tier = 2;
-  else tier = 3;
-
-  // Apply double edges
-  switch (args.netEdges) {
-    case -2:
-      if (tier > 1) tier -= 1;
-      break;
-    case 2:
-      if (tier < 3) tier += 1;
-      break;
-  }
+  const tier = getPowerRollTier(total, critical, args.netEdges);
 
   return {
     timeStamp: Date.now(),
@@ -80,6 +65,25 @@ export function powerRoll(
     total,
     dieResults,
   };
+}
+
+function getPowerRollTier(total: number, critical: boolean, netEdges: number) {
+  let tier = 0;
+  if (critical) tier = 3;
+  else if (total < 12) tier = 1;
+  else if (total < 17) tier = 2;
+  else tier = 3;
+
+  switch (netEdges) {
+    case -2:
+      if (tier > 1) tier -= 1;
+      break;
+    case 2:
+      if (tier < 3) tier += 1;
+      break;
+  }
+
+  return tier;
 }
 
 export function getBonusFromNetEdges(netEdges: number) {
@@ -111,15 +115,14 @@ function getDieResults(
   dieValues: number[],
   selectionStrategy: "highest" | "lowest",
 ): DieResult[] {
-  return dieValues
-    .sort((a, b) => a - b)
-    .map((val, index) => ({
-      value: val,
-      dropped:
-        selectionStrategy === "lowest"
-          ? index >= 2
-          : index < dieValues.length - 2,
-    }));
+  dieValues.sort((a, b) => a - b);
+  return dieValues.map((val, index) => ({
+    value: val,
+    dropped:
+      selectionStrategy === "lowest"
+        ? index >= 2
+        : index < dieValues.length - 2,
+  }));
 }
 
 export const netEdgesTextAndLabel = (

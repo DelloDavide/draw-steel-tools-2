@@ -5,8 +5,8 @@ export function OpenInNewTab({
   resourceId,
   statblockName,
 }: {
-  resourceId?: string;
-  statblockName?: string;
+  readonly resourceId?: string;
+  readonly statblockName?: string;
 }) {
   if (!resourceId && !statblockName) return <></>;
 

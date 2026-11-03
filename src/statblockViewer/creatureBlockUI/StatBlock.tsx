@@ -15,8 +15,8 @@ export function StatBlock({
   statblock,
   onSaveProgression,
 }: {
-  statblock: DrawSteelStatblock;
-  onSaveProgression?: (stats: ProgressionStats) => Promise<void>;
+  readonly statblock: DrawSteelStatblock;
+  readonly onSaveProgression?: (stats: ProgressionStats) => Promise<void>;
 }) {
   const roleTags = statblock.roles.join(" ");
   const isHero = roleTags.includes("Hero");
@@ -66,7 +66,7 @@ export function StatBlock({
     <div className="w-full max-w-lg space-y-2">
       <div
         className={cn(
-          "rounded-md border-zinc-950 bg-gradient-to-b from-neutral-400/60 to-neutral-300/50 p-2",
+          "rounded-md border-zinc-950 bg-linear-to-b from-neutral-400/60 to-neutral-300/50 p-2",
           {
             "from-[#e9db7d] to-[#e9db7d]/50": roleTags.includes("Ambusher"),
             "from-[#ccc3d0] to-[#ccc3d0]/50": roleTags.includes("Artillery"),

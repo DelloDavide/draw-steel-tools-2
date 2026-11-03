@@ -52,7 +52,7 @@ function ActionMenu() {
   // External dice roller
   const handleRollResult = useCallback(
     (data: DiceProtocol.PowerRollResult) => {
-      OBR.action.open();
+      void OBR.action.open();
       const rolls = data.result.map((val) => val.result);
       for (let i = 0; i < rolls.length; i++) {
         if (rolls[i] === 0) rolls[i] = 10;
@@ -102,7 +102,7 @@ function ActionMenu() {
                   size={"xs"}
                   onClick={async () => {
                     const themeMode = (await OBR.theme.getTheme()).mode;
-                    OBR.popover.open({
+                    void OBR.popover.open({
                       id: getPluginId("resourceCalculator"),
                       height: 400,
                       width: 300,

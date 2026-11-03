@@ -73,7 +73,7 @@ export default function SideBarMenu() {
                   onClick={async () => {
                     const themeMode = (await OBR.theme.getTheme()).mode;
 
-                    OBR.popover.open({
+                    void OBR.popover.open({
                       id: getPluginId("settings"),
                       url: `/settings?themeMode=${themeMode}`,
                       height: 590,
@@ -91,13 +91,13 @@ export default function SideBarMenu() {
                 <Button
                   variant={"ghost"}
                   className="h-10 w-full items-center justify-start gap-4 rounded-none px-4 active:rounded-none"
-                  onClick={async () => {
-                    OBR.broadcast.sendMessage(
+                  onClick={() => {
+                    void OBR.broadcast.sendMessage(
                       getPluginId("set-viewer-statblock"),
                       {},
                       { destination: "LOCAL" },
                     );
-                    OBR.popover.open({
+                    void OBR.popover.open({
                       id: getPluginId("statblockViewer"),
                       url: (() => {
                         const url = new URL(
@@ -161,7 +161,7 @@ export default function SideBarMenu() {
             </div>
             <LinkButton
               name="Patreon"
-              icon={<PatreonIcon className="size-[19px]" />}
+              icon={<PatreonIcon className="size-4.75" />}
               href={"https://www.patreon.com/SeamusFinlayson"}
             />
             <LinkButton

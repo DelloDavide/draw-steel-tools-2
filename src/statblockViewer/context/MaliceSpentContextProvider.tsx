@@ -5,7 +5,11 @@ import {
   type MaliceSpent,
 } from "./MaliceSpentContext";
 
-export function MaliceSpentContextProvider({ children }: { children: any }) {
+export function MaliceSpentContextProvider({
+  children,
+}: {
+  readonly children: any;
+}) {
   const [maliceSpent, setMaliceSpent] = useState<MaliceSpent>();
 
   return (
