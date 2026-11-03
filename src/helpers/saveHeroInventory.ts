@@ -1,6 +1,6 @@
 import type { DrawSteelInventoryBlock } from "../types/DrawSteelZod";
 import { supabase } from "../supabaseClient";
-import { setTypedDataCache } from "../statblockSearch/helpers/getTypedData";
+import { setTypedDataCache } from "../statblockSearch/devScriptButtons/helpers/fetchTypedData";
 import { getGitHubApiUrl, getGitHubHeaders, getGitHubFileSha, putGitHubFile, getHeroInventoryPath } from "./githubClient";
 
 export async function saveInventoryToGitHub(

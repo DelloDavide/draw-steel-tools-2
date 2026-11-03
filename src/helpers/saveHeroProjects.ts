@@ -1,6 +1,6 @@
 import type { DrawSteelProjectBlock } from "../types/DrawSteelZod";
 import { supabase } from "../supabaseClient";
-import { setTypedDataCache } from "../statblockSearch/helpers/getTypedData";
+import { setTypedDataCache } from "../statblockSearch/devScriptButtons/helpers/fetchTypedData";
 import { getGitHubApiUrl, getGitHubHeaders, getGitHubFileSha, putGitHubFile, getHeroProjectsPath,  } from "./githubClient";
 
 export async function saveHeroProjectsToGitHub(

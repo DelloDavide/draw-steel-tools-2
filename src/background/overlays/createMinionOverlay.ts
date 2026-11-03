@@ -1,4 +1,4 @@
-import type { Image, Item } from "@owlbear-rodeo/sdk";
+import type { Item } from "@owlbear-rodeo/sdk";
 import type { DefinedMinionTokenData } from "../../types/tokenDataZod";
 
 import type { DefinedSettings } from "../../types/settingsZod";
@@ -6,7 +6,7 @@ import { createTokenOverlay } from "./createTokenOverlay";
 import type { MinionGroup } from "../../types/minionGroup";
 
 export function createMinionOverlay(
-  image: Image,
+  item: Item,
   token: DefinedMinionTokenData,
   minionGroups: MinionGroup[],
   role: "PLAYER" | "GM",
@@ -24,15 +24,15 @@ export function createMinionOverlay(
       minionGroupTokenCounts[minionGroup.id],
   );
 
+  const playerVisible = "gmOnly" in minionGroup && minionGroup.gmOnly === false;
+
   return createTokenOverlay(
     {
       bubbles: [
         {
-          color: "#a0201f",
+          color: playerVisible ? "#d6484b" : "#a0201f",
           value: minionGroup.individualStamina,
-          display:
-            role === "GM" ||
-            ("gmOnly" in minionGroup && minionGroup.gmOnly === false),
+          display: role === "GM" || playerVisible,
         },
         {
           color: "black",
@@ -54,7 +54,7 @@ export function createMinionOverlay(
         },
       ],
     },
-    image,
+    item,
     dpi,
     settings,
   );

@@ -130,16 +130,6 @@ export default function TokenEditor() {
     );
   };
 
-  const setStatblockName = (statblockName: string) => {
-    updateToken({ statblockName });
-    if (token.type === "HERO" && statblockName !== "") {
-      void syncClassResourcePools({
-        ...token,
-        statblockName,
-      });
-    }
-  };
-
   return (
     <div
       className={cn("text-foreground space-y-2 p-2", {
@@ -158,10 +148,28 @@ export default function TokenEditor() {
       {(token.type === "MONSTER" || token.type === "HERO") && (
         <StatblockControls
           statblockName={token.statblockName ?? ""}
-          setStatblockName={setStatblockName}
+          resourceId={token.type === "MONSTER" ? (token.resourceId ?? "") : ""}
+          removeStatblock={() =>
+            updateToken(
+              token.type === "HERO"
+                ? { statblockName: "" }
+                : { statblockName: "", resourceId: "" },
+            )
+          }
           playerRole={playerRole}
           mode={token.type === "HERO" ? "hero" : "monster"}
           itemId={token.item.id}
+        />
+      )}
+      {token.type === "TERRAIN" && (
+        <StatblockControls
+          statblockName={token.statblockName}
+          resourceId={token.resourceId}
+          removeStatblock={() =>
+            updateToken({ statblockName: "", resourceId: "" })
+          }
+          playerRole={playerRole}
+          organization="TERRAIN"
         />
       )}
       {detailed && token.type === "HERO" && (

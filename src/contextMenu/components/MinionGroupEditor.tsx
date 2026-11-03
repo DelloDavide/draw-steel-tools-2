@@ -1,31 +1,34 @@
-import { CirclePlus, EyeIcon, EyeOffIcon, XIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, Minimize2Icon } from "lucide-react";
 import { type MinionGroup } from "../../types/minionGroup";
 import ValueButtonTrackerInput from "../trackerInputs/ValueButtonTrackerInput";
 import parseNumber from "../../helpers/parseNumber";
-import OBR from "@owlbear-rodeo/sdk";
+import OBR, { type Image } from "@owlbear-rodeo/sdk";
 import { Label } from "../trackerInputs/Label";
-import { useMinionGroupItems } from "../../helpers/useMinionGroupItems";
 import NameInput from "./NameInput";
 import StatblockControls from "./StatblockControls";
-import InputBackground from "../trackerInputs/InputBackground";
 import type { DefinedSettings } from "../../types/settingsZod";
-import usePlayerRole from "../../helpers/usePlayerRole";
 import { useRef } from "react";
-import Button from "../../components/ui/Button";
 import VisibilityToggle from "./VisibilityToggle";
+import { MinionsImageRow } from "./MinionsImageRow";
+import { ContextMenuButton } from "./ContextMenuButton";
 
 export default function MinionGroupEditor({
   minionGroup,
   setMinionGroup,
   settings,
+  groupItems,
+  handleMinimize,
+  showMinimize = false,
+  playerRole,
 }: {
   minionGroup: MinionGroup;
   setMinionGroup: (minionGroup: MinionGroup) => void;
   settings: DefinedSettings;
+  groupItems: Image[];
+  handleMinimize: () => void;
+  showMinimize?: boolean;
+  playerRole: "PLAYER" | "GM";
 }) {
-  const groupItems = useMinionGroupItems(minionGroup.id);
-  const playerRole = usePlayerRole();
-
   const staminaInputRef = useRef<HTMLInputElement>(null);
 
   const gmOnly = minionGroup.gmOnly || minionGroup.gmOnly === undefined;
@@ -34,29 +37,32 @@ export default function MinionGroupEditor({
     <div className="space-y-2">
       <div className="flex items-end gap-x-0.5">
         <NameInput
-          label="Squad Name"
+          label="Squad"
           value={minionGroup.name}
           updateName={(name) => setMinionGroup({ ...minionGroup, name })}
           placeHolder=""
           hideButton
         />
         {settings.nameTagsEnabled && (
-          <InputBackground
-            color="DEFAULT"
-            className="grid size-9 shrink-0 place-items-center overflow-clip rounded-l-[18px] rounded-r-[18px]"
+          <ContextMenuButton
+            className="aspect-square"
+            onClick={() => {
+              setMinionGroup({
+                ...minionGroup,
+                nameTagsEnabled: !minionGroup.nameTagsEnabled,
+              });
+            }}
           >
-            <button
-              className="hover:bg-foreground/7 focus-visible:bg-foreground/7 flex size-9 shrink-0 items-center justify-center outline-hidden transition-colors"
-              onClick={() => {
-                setMinionGroup({
-                  ...minionGroup,
-                  nameTagsEnabled: !minionGroup.nameTagsEnabled,
-                });
-              }}
-            >
-              {minionGroup.nameTagsEnabled ? <EyeIcon /> : <EyeOffIcon />}
-            </button>
-          </InputBackground>
+            {minionGroup.nameTagsEnabled ? <EyeIcon /> : <EyeOffIcon />}
+          </ContextMenuButton>
+        )}
+        {showMinimize && (
+          <ContextMenuButton
+            className="ml-1.5 aspect-square"
+            onClick={handleMinimize}
+          >
+            <Minimize2Icon />
+          </ContextMenuButton>
         )}
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -70,7 +76,7 @@ export default function MinionGroupEditor({
           }}
           ref={staminaInputRef}
           color="RED"
-          label="Squad Stamina"
+          label="Stamina"
           parentValue={minionGroup.currentStamina}
           updateHandler={(target) => {
             setMinionGroup({
@@ -116,58 +122,28 @@ export default function MinionGroupEditor({
         <Label name="Tokens" />
       </div>
 
-      <Button
-        variant={"secondary"}
-        className="bg-mirage-400/30 dark:bg-mirage-500/30 hover:bg-mirage-400/30 hover:dark:bg-mirage-500/30 group w-full basis-40 overflow-clip p-0 focus-visible:ring-0"
+      <ContextMenuButton
+        className="w-full"
         onClick={() => OBR.player.select(groupItems.map((item) => item.id))}
       >
-        <div className="group-hover:bg-foreground/7 flex size-full w-full grow items-center-safe justify-start gap-1.5 px-2 text-sm duration-150">
-          {groupItems.map((item, index) => {
-            const dropped =
-              index * minionGroup.individualStamina >=
-              minionGroup.currentStamina;
-            return (
-              <div key={item.id} className="grid basis-6 place-items-center">
-                <img
-                  src={item.image.url}
-                  data-dropped={dropped}
-                  className="pointer-events-none col-start-1 row-start-1 data-[dropped=true]:opacity-40"
-                />
-                {dropped && (
-                  <XIcon className="z-50 col-start-1 row-start-1 size-full" />
-                )}
-              </div>
-            );
-          })}
-          {(() => {
-            const extraItems = [];
-            for (
-              let i = 0;
-              i <
-              Math.ceil(
-                minionGroup.currentStamina / minionGroup.individualStamina,
-              ) -
-                groupItems.length;
-              i++
-            ) {
-              extraItems.push(
-                <div key={`extra-${i}`} className="basis-6">
-                  <CirclePlus className="size-full" key={i} />
-                </div>,
-              );
-            }
-            return extraItems;
-          })()}
+        <div className="w-full px-2 py-1">
+          <MinionsImageRow minionGroup={minionGroup} groupItems={groupItems} />
         </div>
-      </Button>
+      </ContextMenuButton>
 
       <StatblockControls
-        statblockName={!minionGroup.statblock ? "" : minionGroup.statblock}
-        setStatblockName={(statblockName) =>
-          setMinionGroup({ ...minionGroup, statblock: statblockName })
+        statblockName={minionGroup.statblock ? minionGroup.statblock : ""}
+        resourceId={minionGroup.resourceId ? minionGroup.resourceId : ""}
+        removeStatblock={() =>
+          setMinionGroup({
+            ...minionGroup,
+            statblock: "",
+            resourceId: "",
+          })
         }
         groupId={minionGroup.id}
         playerRole={playerRole}
+        organization="MINION"
       />
 
       {playerRole === "GM" && (

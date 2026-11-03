@@ -6,6 +6,7 @@ import { SkillBlock } from "./SkillBlock";
 import { InventoryBlock } from "./InventoryBlock";
 import { StatBlock } from "./StatBlock";
 import { DynamicTerrainStatBlock } from "./DynamicTerrainStatBlock";
+import type { DrawSteelResourceBundle } from "../../types/monsterDataBundlesZod";
 import { ScrollArea } from "../../components/ui/scrollArea";
 import { Images } from "./Images";
 import { ProjectBlock } from "./ProjectBlock";
@@ -30,18 +31,17 @@ import {
   saveSkillsToGitHub,
   saveSkillsToSupabase,
 } from "../../helpers/saveHeroSkills";
+import { ResourceTypeAdaptor } from "./ResourceTypeAdapter";
 
 const parsedDefaultMaliceFeatures =
   DrawSteelFeatureBlockZod.parse(defaultMalice);
 
-type ViewDataBundle = CreatureDataBundle;
-
-export default function MonsterView({
+function LegacyMonsterView({
   monsterData,
 }: {
-  monsterData: ViewDataBundle;
+  monsterData: CreatureDataBundle;
 }) {
-  const [data, setData] = useState<ViewDataBundle>(monsterData);
+  const [data, setData] = useState<CreatureDataBundle>(monsterData);
 
   const [, setOriginalSkillsBlocks] = useState(
     monsterData.kind === "dynamicterrain" ? [] : monsterData.skillsBlocks,
@@ -315,5 +315,43 @@ export default function MonsterView({
         </ScrollArea>
       </div>
     </HeroClassResourceNamesContext>
+  );
+}
+
+function ResourceBundleView({ bundle }: { bundle: DrawSteelResourceBundle }) {
+  return (
+    <div className="flex grow flex-col">
+      <ScrollArea className="grow basis-0">
+        <div className="bg-mirage-50 grid justify-items-center gap-y-8 p-4 text-sm text-black">
+          <ResourceTypeAdaptor resource={bundle.resource} />
+
+          <div className="grid h-fit w-full justify-items-center gap-8">
+            {bundle.append &&
+              bundle.append.length > 0 &&
+              bundle.append.map((item) => (
+                <ResourceTypeAdaptor
+                  key={item.name + item.level}
+                  resource={item}
+                />
+              ))}
+            {bundle.resource.type === "statblock" && (
+              <FeatureBlock featureBlock={parsedDefaultMaliceFeatures} />
+            )}
+          </div>
+        </div>
+      </ScrollArea>
+    </div>
+  );
+}
+
+export default function MonsterView({
+  bundle,
+}: {
+  bundle: CreatureDataBundle | DrawSteelResourceBundle;
+}) {
+  return "kind" in bundle ? (
+    <LegacyMonsterView monsterData={bundle} />
+  ) : (
+    <ResourceBundleView bundle={bundle} />
   );
 }

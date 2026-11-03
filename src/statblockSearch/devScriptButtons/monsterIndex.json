@@ -1,0 +1,5438 @@
+[
+  {
+    "id": "cf-AjaxsMalice",
+    "path": "Monsters/Ajax the Invincible/Features/Ajaxs Malice.json",
+    "name": "Ajax's Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-TacticalStanceAjax",
+    "path": "Monsters/Ajax the Invincible/Features/Tactical Stance.json",
+    "name": "Tactical Stance",
+    "type": "feature"
+  },
+  {
+    "id": "cf-AngulotlMalice",
+    "path": "Monsters/Angulotls/Features/Angulotl Malice.json",
+    "name": "Angulotl Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ArixxMalice",
+    "path": "Monsters/Arixx/Features/Arixx Malice.json",
+    "name": "Arixx Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-AshenHoarderMalice",
+    "path": "Monsters/Ashen Hoarder/Features/Ashen Hoarder Malice.json",
+    "name": "Ashen Hoarder Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-BasiliskMalice",
+    "path": "Monsters/Basilisks/Features/Basilisk Malice.json",
+    "name": "Basilisk Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-BredbeddleMalice",
+    "path": "Monsters/Bredbeddle/Features/Bredbeddle Malice.json",
+    "name": "Bredbeddle Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-BugbearMalice",
+    "path": "Monsters/Bugbears/Features/Bugbear Malice.json",
+    "name": "Bugbear Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ChimeraMalice",
+    "path": "Monsters/Chimera/Features/Chimera Malice.json",
+    "name": "Chimera Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-RhodarsMalice",
+    "path": "Monsters/Count Rhodar Von Glauer/Features/Rhodars Malice.json",
+    "name": "Rhodar's Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DemonMalice1",
+    "path": "Monsters/Demons/Features/Demon Malice Level 1 Malice Features.json",
+    "name": "Demon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DemonMalice10",
+    "path": "Monsters/Demons/Features/Demon Malice Level 10 Malice Features.json",
+    "name": "Demon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DemonMalice4",
+    "path": "Monsters/Demons/Features/Demon Malice Level 4 Malice Features.json",
+    "name": "Demon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DemonMalice7",
+    "path": "Monsters/Demons/Features/Demon Malice Level 7 Malice Features.json",
+    "name": "Demon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DevilMalice",
+    "path": "Monsters/Devils/Features/Devil Malice.json",
+    "name": "Devil Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DraconianMalice",
+    "path": "Monsters/Draconians/Features/Draconian Malice.json",
+    "name": "Draconian Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-CrucibleDragonMalice",
+    "path": "Monsters/Dragons/Features/Crucible Dragon Malice.json",
+    "name": "Crucible Dragon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-GloomDragonMalice",
+    "path": "Monsters/Dragons/Features/Gloom Dragon Malice.json",
+    "name": "Gloom Dragon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-MeteorDragonMalice",
+    "path": "Monsters/Dragons/Features/Meteor Dragon Malice.json",
+    "name": "Meteor Dragon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-OmenDragonMalice",
+    "path": "Monsters/Dragons/Features/Omen Dragon Malice.json",
+    "name": "Omen Dragon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ThornDragonMalice",
+    "path": "Monsters/Dragons/Features/Thorn Dragon Malice.json",
+    "name": "Thorn Dragon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-DwarfMalice",
+    "path": "Monsters/Dwarves/Features/Dwarf Malice.json",
+    "name": "Dwarf Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ElementalMalice",
+    "path": "Monsters/Elementals/Features/Elemental Malice.json",
+    "name": "Elemental Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-HighElfMalice",
+    "path": "Monsters/Elves High/Features/High Elf Malice.json",
+    "name": "High Elf Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ShadowElfMalice",
+    "path": "Monsters/Elves Shadow/Features/Shadow Elf Malice.json",
+    "name": "Shadow Elf Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WodeElfMalice",
+    "path": "Monsters/Elves Wode/Features/Wode Elf Malice.json",
+    "name": "Wode Elf Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-FossilCrypticMalice",
+    "path": "Monsters/Fossil Cryptic/Features/Fossil Cryptic Malice.json",
+    "name": "Fossil Cryptic Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-GiantMalice",
+    "path": "Monsters/Giants/Features/Giant Malice.json",
+    "name": "Giant Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-GnollMalice",
+    "path": "Monsters/Gnolls/Features/Gnoll Malice.json",
+    "name": "Gnoll Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-GoblinMalice",
+    "path": "Monsters/Goblins/Features/Goblin Malice.json",
+    "name": "Goblin Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-GriffonMalice",
+    "path": "Monsters/Griffons/Features/Griffon Malice.json",
+    "name": "Griffon Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-HagMalice",
+    "path": "Monsters/Hag/Features/Hag Malice.json",
+    "name": "Hag Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-HobgoblinMalice",
+    "path": "Monsters/Hobgoblins/Features/Hobgoblin Malice.json",
+    "name": "Hobgoblin Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-HumanMalice",
+    "path": "Monsters/Humans/Features/Human Malice.json",
+    "name": "Human Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-KingfissureWormMalice",
+    "path": "Monsters/Kingfissure Worm/Features/Kingfissure Worm Malice.json",
+    "name": "Kingfissure Worm Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-KoboldMalice",
+    "path": "Monsters/Kobolds/Features/Kobold Malice.json",
+    "name": "Kobold Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-LichMalice",
+    "path": "Monsters/Lich/Features/Lich Malice.json",
+    "name": "Lich Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-LightbenderMalice",
+    "path": "Monsters/Lightbenders/Features/Lightbender Malice.json",
+    "name": "Lightbender Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-LizardfolkMalice",
+    "path": "Monsters/Lizardfolks/Features/Lizardfolk Malice.json",
+    "name": "Lizardfolk Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-LordSyuulsMalice",
+    "path": "Monsters/Lord Syuul/Features/Lord Syuuls Malice.json",
+    "name": "Lord Syuul's Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ManticoreMalice",
+    "path": "Monsters/Manticores/Features/Manticore Malice.json",
+    "name": "Manticore Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-MedusaMalice",
+    "path": "Monsters/Medusas/Features/Medusa Malice.json",
+    "name": "Medusa Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-MinotaurMalice",
+    "path": "Monsters/Minotaurs/Features/Minotaur Malice.json",
+    "name": "Minotaur Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-OgreMalice",
+    "path": "Monsters/Ogres/Features/Ogre Malice.json",
+    "name": "Ogre Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-OlothecMalice",
+    "path": "Monsters/Olothec/Features/Olothec Malice.json",
+    "name": "Olothec Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-OrcMalice",
+    "path": "Monsters/Orcs/Features/Orc Malice.json",
+    "name": "Orc Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-RadenwightMalice",
+    "path": "Monsters/Radenwights/Features/Radenwight Malice.json",
+    "name": "Radenwight Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-RivalMalice1",
+    "path": "Monsters/Rivals/Features/Rival Malice Level 1 Malice Features.json",
+    "name": "Rival Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ShamblingMoundMalice",
+    "path": "Monsters/Shambling Mound/Features/Shambling Mound Malice.json",
+    "name": "Shambling Mound Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-TimeRaiderMalice",
+    "path": "Monsters/Time Raiders/Features/Time Raider Malice.json",
+    "name": "Time Raider Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-TrollMalice",
+    "path": "Monsters/Trolls/Features/Troll Malice.json",
+    "name": "Troll Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-UndeadMalice1",
+    "path": "Monsters/Undead/Features/Undead Malice Level 1 Malice Features.json",
+    "name": "Undead Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-UndeadMalice10",
+    "path": "Monsters/Undead/Features/Undead Malice Level 10 Malice Features.json",
+    "name": "Undead Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-UndeadMalice4",
+    "path": "Monsters/Undead/Features/Undead Malice Level 4 Malice Features.json",
+    "name": "Undead Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-UndeadMalice7",
+    "path": "Monsters/Undead/Features/Undead Malice Level 7 Malice Features.json",
+    "name": "Undead Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-ValokMalice",
+    "path": "Monsters/Valok/Features/Valok Malice.json",
+    "name": "Valok Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-VoicelessTalkerMalice",
+    "path": "Monsters/Voiceless Talkers/Features/Voiceless Talker Malice.json",
+    "name": "Voiceless Talker Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WarDogMalice1",
+    "path": "Monsters/War Dogs/Features/War Dog Malice Level 1 Malice Features.json",
+    "name": "War Dog Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WarDogMalice10",
+    "path": "Monsters/War Dogs/Features/War Dog Malice Level 10 Malice Features.json",
+    "name": "War Dog Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WarDogMalice4",
+    "path": "Monsters/War Dogs/Features/War Dog Malice Level 4 Malice Features.json",
+    "name": "War Dog Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WarDogMalice7",
+    "path": "Monsters/War Dogs/Features/War Dog Malice Level 7 Malice Features.json",
+    "name": "War Dog Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WerewolfMalice",
+    "path": "Monsters/Werewolf/Features/Werewolf Malice.json",
+    "name": "Werewolf Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-WyvernMalice",
+    "path": "Monsters/Wyverns/Features/Wyvern Malice.json",
+    "name": "Wyvern Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cf-XorannoxsMalice",
+    "path": "Monsters/Xorannox the Tyract/Features/Xorannoxs Malice.json",
+    "name": "Xorannox's Malice",
+    "type": "feature"
+  },
+  {
+    "id": "cs-AjaxtheInvincible",
+    "path": "Monsters/Ajax the Invincible/Statblocks/Ajax the Invincible.json",
+    "name": "Ajax the Invincible",
+    "type": "statblock",
+    "level": 11,
+    "ev": "156",
+    "roles": ["Solo"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-AjaxsMalice", "cf-TacticalStanceAjax"]
+  },
+  {
+    "id": "cs-AngulotlCleaver",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Cleaver.json",
+    "name": "Angulotl Cleaver",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Angulotl", "Humanoid"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AngulotlDart",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Dart.json",
+    "name": "Angulotl Dart",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Angulotl", "Humanoid"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AngulotlDaybringer",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Daybringer.json",
+    "name": "Angulotl Daybringer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Angulotl", "Humanoid"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AngulotlNeedler",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Needler.json",
+    "name": "Angulotl Needler",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Angulotl", "Humanoid"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AngulotlPollywog",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Pollywog.json",
+    "name": "Angulotl Pollywog",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Angulotl"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AngulotlSlink",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Slink.json",
+    "name": "Angulotl Slink",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Angulotl", "Humanoid"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AngulotlWave",
+    "path": "Monsters/Angulotls/Statblocks/Angulotl Wave.json",
+    "name": "Angulotl Wave",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Angulotl", "Humanoid"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-Clawfish",
+    "path": "Monsters/Angulotls/Statblocks/Clawfish.json",
+    "name": "Clawfish",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Angulotl", "Animal"],
+    "features": ["cf-AngulotlMalice"]
+  },
+  {
+    "id": "cs-AnimalSwarm",
+    "path": "Monsters/Animals/Statblocks/Animal Swarm.json",
+    "name": "Animal Swarm",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Animal", "Swarm"],
+    "features": []
+  },
+  {
+    "id": "cs-Animal",
+    "path": "Monsters/Animals/Statblocks/Animal.json",
+    "name": "Animal",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Animal"],
+    "features": []
+  },
+  {
+    "id": "cs-BigAnimalA",
+    "path": "Monsters/Animals/Statblocks/Big Animal A.json",
+    "name": "Big Animal A",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Mount"],
+    "ancestry": ["Animal"],
+    "features": []
+  },
+  {
+    "id": "cs-BigAnimalB",
+    "path": "Monsters/Animals/Statblocks/Big Animal B.json",
+    "name": "Big Animal B",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Mount"],
+    "ancestry": ["Animal"],
+    "features": []
+  },
+  {
+    "id": "cs-PredatorA",
+    "path": "Monsters/Animals/Statblocks/Predator A.json",
+    "name": "Predator A",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Animal"],
+    "features": []
+  },
+  {
+    "id": "cs-PredatorB",
+    "path": "Monsters/Animals/Statblocks/Predator B.json",
+    "name": "Predator B",
+    "type": "statblock",
+    "level": 3,
+    "ev": "16",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Animal"],
+    "features": []
+  },
+  {
+    "id": "cs-Arixx",
+    "path": "Monsters/Arixx/Statblocks/Arixx.json",
+    "name": "Arixx",
+    "type": "statblock",
+    "level": 1,
+    "ev": "36",
+    "roles": ["Solo"],
+    "ancestry": ["Arixx", "Beast"],
+    "features": ["cf-ArixxMalice"]
+  },
+  {
+    "id": "cs-AshenHoarder",
+    "path": "Monsters/Ashen Hoarder/Statblocks/Ashen Hoarder.json",
+    "name": "Ashen Hoarder",
+    "type": "statblock",
+    "level": 4,
+    "ev": "72",
+    "roles": ["Solo"],
+    "ancestry": ["Construct", "Undead"],
+    "features": ["cf-AshenHoarderMalice"]
+  },
+  {
+    "id": "cs-BasiliskTonguesnapper",
+    "path": "Monsters/Basilisks/Statblocks/Basilisk Tonguesnapper.json",
+    "name": "Basilisk Tonguesnapper",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Basilisk", "Beast"],
+    "features": ["cf-BasiliskMalice"]
+  },
+  {
+    "id": "cs-Basilisk",
+    "path": "Monsters/Basilisks/Statblocks/Basilisk.json",
+    "name": "Basilisk",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Basilisk", "Beast"],
+    "features": ["cf-BasiliskMalice"]
+  },
+  {
+    "id": "cs-Bredbeddle",
+    "path": "Monsters/Bredbeddle/Statblocks/Bredbeddle.json",
+    "name": "Bredbeddle",
+    "type": "statblock",
+    "level": 3,
+    "ev": "60",
+    "roles": ["Solo"],
+    "ancestry": ["Bredbeddle", "Giant"],
+    "features": ["cf-BredbeddleMalice"]
+  },
+  {
+    "id": "cs-BugbearChanneler",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Channeler.json",
+    "name": "Bugbear Channeler",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-BugbearCommander",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Commander.json",
+    "name": "Bugbear Commander",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-BugbearKnightmare",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Knightmare.json",
+    "name": "Bugbear Knightmare",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-BugbearMob",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Mob.json",
+    "name": "Bugbear Mob",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-BugbearRoughneck",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Roughneck.json",
+    "name": "Bugbear Roughneck",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-BugbearSnare",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Snare.json",
+    "name": "Bugbear Snare",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-BugbearSneak",
+    "path": "Monsters/Bugbears/Statblocks/Bugbear Sneak.json",
+    "name": "Bugbear Sneak",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Bugbear", "Fey", "Goblin", "Humanoid"],
+    "features": [
+      "cf-BugbearMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-Chimera",
+    "path": "Monsters/Chimera/Statblocks/Chimera.json",
+    "name": "Chimera",
+    "type": "statblock",
+    "level": 3,
+    "ev": "60",
+    "roles": ["Solo"],
+    "ancestry": ["Beast", "Chimera"],
+    "features": ["cf-ChimeraMalice"]
+  },
+  {
+    "id": "cs-CountRhodarvonGlauer",
+    "path": "Monsters/Count Rhodar Von Glauer/Statblocks/Count Rhodar von Glauer.json",
+    "name": "Count Rhodar von Glauer",
+    "type": "statblock",
+    "level": 10,
+    "ev": "144",
+    "roles": ["Solo"],
+    "ancestry": ["Undead", "Vampire"],
+    "features": ["cf-RhodarsMalice"]
+  },
+  {
+    "id": "cs-Aurumvas",
+    "path": "Monsters/Demons/Statblocks/Aurumvas.json",
+    "name": "Aurumvas",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Leader"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": [
+      "cf-DemonMalice1",
+      "cf-DemonMalice4",
+      "cf-DemonMalice7",
+      "cf-DemonMalice10"
+    ]
+  },
+  {
+    "id": "cs-BaleEye",
+    "path": "Monsters/Demons/Statblocks/Bale Eye.json",
+    "name": "Bale Eye",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Bendrak",
+    "path": "Monsters/Demons/Statblocks/Bendrak.json",
+    "name": "Bendrak",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-BlightPhage",
+    "path": "Monsters/Demons/Statblocks/Blight Phage.json",
+    "name": "Blight Phage",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-Chimeron",
+    "path": "Monsters/Demons/Statblocks/Chimeron.json",
+    "name": "Chimeron",
+    "type": "statblock",
+    "level": 9,
+    "ev": "9",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-Chorogaunt",
+    "path": "Monsters/Demons/Statblocks/Chorogaunt.json",
+    "name": "Chorogaunt",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Ensnarer",
+    "path": "Monsters/Demons/Statblocks/Ensnarer.json",
+    "name": "Ensnarer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Fangling",
+    "path": "Monsters/Demons/Statblocks/Fangling.json",
+    "name": "Fangling",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Fiktin",
+    "path": "Monsters/Demons/Statblocks/Fiktin.json",
+    "name": "Fiktin",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Frenzied",
+    "path": "Monsters/Demons/Statblocks/Frenzied.json",
+    "name": "Frenzied",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Grulqin",
+    "path": "Monsters/Demons/Statblocks/Grulqin.json",
+    "name": "Grulqin",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Gunge",
+    "path": "Monsters/Demons/Statblocks/Gunge.json",
+    "name": "Gunge",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Izyak",
+    "path": "Monsters/Demons/Statblocks/Izyak.json",
+    "name": "Izyak",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": [
+      "cf-DemonMalice1",
+      "cf-DemonMalice4",
+      "cf-DemonMalice7",
+      "cf-DemonMalice10"
+    ]
+  },
+  {
+    "id": "cs-LumberingEgress",
+    "path": "Monsters/Demons/Statblocks/Lumbering Egress.json",
+    "name": "Lumbering Egress",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Muceron",
+    "path": "Monsters/Demons/Statblocks/Muceron.json",
+    "name": "Muceron",
+    "type": "statblock",
+    "level": 3,
+    "ev": "5",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Optacus",
+    "path": "Monsters/Demons/Statblocks/Optacus.json",
+    "name": "Optacus",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": [
+      "cf-DemonMalice1",
+      "cf-DemonMalice4",
+      "cf-DemonMalice7",
+      "cf-DemonMalice10"
+    ]
+  },
+  {
+    "id": "cs-Orliq",
+    "path": "Monsters/Demons/Statblocks/Orliq.json",
+    "name": "Orliq",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Pitling",
+    "path": "Monsters/Demons/Statblocks/Pitling.json",
+    "name": "Pitling",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Remasch",
+    "path": "Monsters/Demons/Statblocks/Remasch.json",
+    "name": "Remasch",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Ruinant",
+    "path": "Monsters/Demons/Statblocks/Ruinant.json",
+    "name": "Ruinant",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-SoulrakerHandmaiden",
+    "path": "Monsters/Demons/Statblocks/Soulraker Handmaiden.json",
+    "name": "Soulraker Handmaiden",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Abyssal", "Demon", "Soulraker"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-SoulrakerHivequeen",
+    "path": "Monsters/Demons/Statblocks/Soulraker Hivequeen.json",
+    "name": "Soulraker Hivequeen",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Leader"],
+    "ancestry": ["Abyssal", "Demon", "Soulraker"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-SoulrakerPraetorian",
+    "path": "Monsters/Demons/Statblocks/Soulraker Praetorian.json",
+    "name": "Soulraker Praetorian",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Abyssal", "Demon", "Soulraker"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-SoulrakerScout",
+    "path": "Monsters/Demons/Statblocks/Soulraker Scout.json",
+    "name": "Soulraker Scout",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Abyssal", "Demon", "Soulraker"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-SoulrakerSoldier",
+    "path": "Monsters/Demons/Statblocks/Soulraker Soldier.json",
+    "name": "Soulraker Soldier",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Abyssal", "Demon", "Soulraker"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-SoulrakerStinger",
+    "path": "Monsters/Demons/Statblocks/Soulraker Stinger.json",
+    "name": "Soulraker Stinger",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Abyssal", "Demon", "Soulraker"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-Styrich",
+    "path": "Monsters/Demons/Statblocks/Styrich.json",
+    "name": "Styrich",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4", "cf-DemonMalice7"]
+  },
+  {
+    "id": "cs-Torlas",
+    "path": "Monsters/Demons/Statblocks/Torlas.json",
+    "name": "Torlas",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1"]
+  },
+  {
+    "id": "cs-Tormenauk",
+    "path": "Monsters/Demons/Statblocks/Tormenauk.json",
+    "name": "Tormenauk",
+    "type": "statblock",
+    "level": 6,
+    "ev": "8",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-Tyburaki",
+    "path": "Monsters/Demons/Statblocks/Tyburaki.json",
+    "name": "Tyburaki",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": [
+      "cf-DemonMalice1",
+      "cf-DemonMalice4",
+      "cf-DemonMalice7",
+      "cf-DemonMalice10"
+    ]
+  },
+  {
+    "id": "cs-Unguloid",
+    "path": "Monsters/Demons/Statblocks/Unguloid.json",
+    "name": "Unguloid",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": [
+      "cf-DemonMalice1",
+      "cf-DemonMalice4",
+      "cf-DemonMalice7",
+      "cf-DemonMalice10"
+    ]
+  },
+  {
+    "id": "cs-Vicisitator",
+    "path": "Monsters/Demons/Statblocks/Vicisitator.json",
+    "name": "Vicisitator",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": [
+      "cf-DemonMalice1",
+      "cf-DemonMalice4",
+      "cf-DemonMalice7",
+      "cf-DemonMalice10"
+    ]
+  },
+  {
+    "id": "cs-Wobalas",
+    "path": "Monsters/Demons/Statblocks/Wobalas.json",
+    "name": "Wobalas",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Abyssal", "Demon"],
+    "features": ["cf-DemonMalice1", "cf-DemonMalice4"]
+  },
+  {
+    "id": "cs-DevilAdjudicator",
+    "path": "Monsters/Devils/Statblocks/Devil Adjudicator.json",
+    "name": "Devil Adjudicator",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilClerk",
+    "path": "Monsters/Devils/Statblocks/Devil Clerk.json",
+    "name": "Devil Clerk",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilHighJudge",
+    "path": "Monsters/Devils/Statblocks/Devil High Judge.json",
+    "name": "Devil High Judge",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilJurist",
+    "path": "Monsters/Devils/Statblocks/Devil Jurist.json",
+    "name": "Devil Jurist",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilLegate",
+    "path": "Monsters/Devils/Statblocks/Devil Legate.json",
+    "name": "Devil Legate",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Defender"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilMagistrate",
+    "path": "Monsters/Devils/Statblocks/Devil Magistrate.json",
+    "name": "Devil Magistrate",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilNotary",
+    "path": "Monsters/Devils/Statblocks/Devil Notary.json",
+    "name": "Devil Notary",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-DevilScrivener",
+    "path": "Monsters/Devils/Statblocks/Devil Scrivener.json",
+    "name": "Devil Scrivener",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Devil", "Infernal"],
+    "features": ["cf-DevilMalice"]
+  },
+  {
+    "id": "cs-AeolyxriatheUncanny",
+    "path": "Monsters/Draconians/Statblocks/Aeolyxria the Uncanny.json",
+    "name": "Aeolyxria the Uncanny",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Draconian", "Dragon", "Humanoid"],
+    "features": ["cf-DraconianMalice"]
+  },
+  {
+    "id": "cs-DorzinuuththeBase",
+    "path": "Monsters/Draconians/Statblocks/Dorzinuuth the Base.json",
+    "name": "Dorzinuuth the Base",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Draconian", "Dragon", "Humanoid"],
+    "features": ["cf-DraconianMalice"]
+  },
+  {
+    "id": "cs-LocratixtheMorningstar",
+    "path": "Monsters/Draconians/Statblocks/Locratix the Morningstar.json",
+    "name": "Locratix the Morningstar",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Draconian", "Dragon", "Humanoid"],
+    "features": ["cf-DraconianMalice"]
+  },
+  {
+    "id": "cs-LydixavustheDeadeye",
+    "path": "Monsters/Draconians/Statblocks/Lydixavus the Deadeye.json",
+    "name": "Lydixavus the Deadeye",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Draconian", "Dragon", "Humanoid"],
+    "features": ["cf-DraconianMalice"]
+  },
+  {
+    "id": "cs-MyxovidantheSintaker",
+    "path": "Monsters/Draconians/Statblocks/Myxovidan the Sintaker.json",
+    "name": "Myxovidan the Sintaker",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Draconian", "Dragon", "Humanoid"],
+    "features": ["cf-DraconianMalice"]
+  },
+  {
+    "id": "cs-PhrrygalaxtheSubduer",
+    "path": "Monsters/Draconians/Statblocks/Phrrygalax the Subduer.json",
+    "name": "Phrrygalax the Subduer",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Draconian", "Dragon", "Humanoid"],
+    "features": ["cf-DraconianMalice"]
+  },
+  {
+    "id": "cs-CrucibleDragon",
+    "path": "Monsters/Dragons/Statblocks/Crucible Dragon.json",
+    "name": "Crucible Dragon",
+    "type": "statblock",
+    "level": 6,
+    "ev": "96",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Elemental"],
+    "features": []
+  },
+  {
+    "id": "cs-GloomDragon",
+    "path": "Monsters/Dragons/Statblocks/Gloom Dragon.json",
+    "name": "Gloom Dragon",
+    "type": "statblock",
+    "level": 4,
+    "ev": "72",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Elemental"],
+    "features": []
+  },
+  {
+    "id": "cs-MeteorDragon",
+    "path": "Monsters/Dragons/Statblocks/Meteor Dragon.json",
+    "name": "Meteor Dragon",
+    "type": "statblock",
+    "level": 10,
+    "ev": "144",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Elemental"],
+    "features": []
+  },
+  {
+    "id": "cs-OmenDragon",
+    "path": "Monsters/Dragons/Statblocks/Omen Dragon.json",
+    "name": "Omen Dragon",
+    "type": "statblock",
+    "level": 8,
+    "ev": "120",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Elemental"],
+    "features": []
+  },
+  {
+    "id": "cs-ThornDragon",
+    "path": "Monsters/Dragons/Statblocks/Thorn Dragon.json",
+    "name": "Thorn Dragon",
+    "type": "statblock",
+    "level": 2,
+    "ev": "48",
+    "roles": ["Solo"],
+    "ancestry": ["Dragon", "Elemental"],
+    "features": []
+  },
+  {
+    "id": "cs-DwarfAxethrower",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Axethrower.json",
+    "name": "Dwarf Axethrower",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Defender"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfCatchpole",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Catchpole.json",
+    "name": "Dwarf Catchpole",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfDriver",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Driver.json",
+    "name": "Dwarf Driver",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfGunner",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Gunner.json",
+    "name": "Dwarf Gunner",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfHunter",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Hunter.json",
+    "name": "Dwarf Hunter",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Support"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfLauncher",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Launcher.json",
+    "name": "Dwarf Launcher",
+    "type": "statblock",
+    "level": 1,
+    "ev": "8",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfMarauder",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Marauder.json",
+    "name": "Dwarf Marauder",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfReelWinch",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Reel Winch.json",
+    "name": "Dwarf Reel Winch",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfShieldwall",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Shieldwall.json",
+    "name": "Dwarf Shieldwall",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfStoneWhisperer",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Stone Whisperer.json",
+    "name": "Dwarf Stone Whisperer",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfTrapper",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Trapper.json",
+    "name": "Dwarf Trapper",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-DwarfWarden",
+    "path": "Monsters/Dwarves/Statblocks/Dwarf Warden.json",
+    "name": "Dwarf Warden",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-ServitorWarWalker",
+    "path": "Monsters/Dwarves/Statblocks/Servitor War Walker.json",
+    "name": "Servitor War Walker",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Mount"],
+    "ancestry": ["Dwarf", "Humanoid"],
+    "features": ["cf-DwarfMalice"]
+  },
+  {
+    "id": "cs-CruxofFire",
+    "path": "Monsters/Elementals/Statblocks/Crux of Fire.json",
+    "name": "Crux of Fire",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Elemental"],
+    "features": ["cf-ElementalMalice"]
+  },
+  {
+    "id": "cs-EssenceofStorms",
+    "path": "Monsters/Elementals/Statblocks/Essence of Storms.json",
+    "name": "Essence of Storms",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Elemental"],
+    "features": ["cf-ElementalMalice"]
+  },
+  {
+    "id": "cs-EssenceofTides",
+    "path": "Monsters/Elementals/Statblocks/Essence of Tides.json",
+    "name": "Essence of Tides",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Elemental"],
+    "features": ["cf-ElementalMalice"]
+  },
+  {
+    "id": "cs-FieldofGrowth",
+    "path": "Monsters/Elementals/Statblocks/Field of Growth.json",
+    "name": "Field of Growth",
+    "type": "statblock",
+    "level": 3,
+    "ev": "28",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Elemental"],
+    "features": ["cf-ElementalMalice"]
+  },
+  {
+    "id": "cs-ForceofEarth",
+    "path": "Monsters/Elementals/Statblocks/Force of Earth.json",
+    "name": "Force of Earth",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Elemental"],
+    "features": ["cf-ElementalMalice"]
+  },
+  {
+    "id": "cs-Brambleguard",
+    "path": "Monsters/Elves High/Statblocks/Brambleguard.json",
+    "name": "Brambleguard",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Elemental", "High Elf"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-CeramicHorse",
+    "path": "Monsters/Elves High/Statblocks/Ceramic Horse.json",
+    "name": "Ceramic Horse",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Mount"],
+    "ancestry": ["Elemental", "High Elf"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-ElementalMote",
+    "path": "Monsters/Elves High/Statblocks/Elemental Mote.json",
+    "name": "Elemental Mote",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Elemental", "High Elf", "Soulless"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfBloodletter",
+    "path": "Monsters/Elves High/Statblocks/High Elf Bloodletter.json",
+    "name": "High Elf Bloodletter",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfDawnMage",
+    "path": "Monsters/Elves High/Statblocks/High Elf Dawn Mage.json",
+    "name": "High Elf Dawn Mage",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Controller"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfDeathtouch",
+    "path": "Monsters/Elves High/Statblocks/High Elf Deathtouch.json",
+    "name": "High Elf Deathtouch",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfOrbweaver",
+    "path": "Monsters/Elves High/Statblocks/High Elf Orbweaver.json",
+    "name": "High Elf Orbweaver",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfOrdinator",
+    "path": "Monsters/Elves High/Statblocks/High Elf Ordinator.json",
+    "name": "High Elf Ordinator",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfPalinode",
+    "path": "Monsters/Elves High/Statblocks/High Elf Palinode.json",
+    "name": "High Elf Palinode",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfQuiver",
+    "path": "Monsters/Elves High/Statblocks/High Elf Quiver.json",
+    "name": "High Elf Quiver",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfWyrd",
+    "path": "Monsters/Elves High/Statblocks/High Elf Wyrd.json",
+    "name": "High Elf Wyrd",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-HighElfZephyr",
+    "path": "Monsters/Elves High/Statblocks/High Elf Zephyr.json",
+    "name": "High Elf Zephyr",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Fey", "High Elf", "Humanoid"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-SootCrow",
+    "path": "Monsters/Elves High/Statblocks/Soot Crow.json",
+    "name": "Soot Crow",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Elemental", "High Elf"],
+    "features": ["cf-HighElfMalice"]
+  },
+  {
+    "id": "cs-BrushStalker",
+    "path": "Monsters/Elves Shadow/Statblocks/Brush Stalker.json",
+    "name": "Brush Stalker",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Mount"],
+    "ancestry": ["Animal", "Fey", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfAssassin",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Assassin.json",
+    "name": "Shadow Elf Assassin",
+    "type": "statblock",
+    "level": 6,
+    "ev": "16",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfCloak",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Cloak.json",
+    "name": "Shadow Elf Cloak",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfDuskMage",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Dusk Mage.json",
+    "name": "Shadow Elf Dusk Mage",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfDuskcaller",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Duskcaller.json",
+    "name": "Shadow Elf Duskcaller",
+    "type": "statblock",
+    "level": 5,
+    "ev": "14",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfEclipse",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Eclipse.json",
+    "name": "Shadow Elf Eclipse",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfKnightfell",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Knightfell.json",
+    "name": "Shadow Elf Knightfell",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfLuminator",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Luminator.json",
+    "name": "Shadow Elf Luminator",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfMoondancer",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Moondancer.json",
+    "name": "Shadow Elf Moondancer",
+    "type": "statblock",
+    "level": 5,
+    "ev": "14",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfMournblade",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Mournblade.json",
+    "name": "Shadow Elf Mournblade",
+    "type": "statblock",
+    "level": 6,
+    "ev": "16",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfNightstrike",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Nightstrike.json",
+    "name": "Shadow Elf Nightstrike",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfNoctisMage",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Noctis Mage.json",
+    "name": "Shadow Elf Noctis Mage",
+    "type": "statblock",
+    "level": 6,
+    "ev": "16",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfPanther",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Panther.json",
+    "name": "Shadow Elf Panther",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-ShadowElfSniper",
+    "path": "Monsters/Elves Shadow/Statblocks/Shadow Elf Sniper.json",
+    "name": "Shadow Elf Sniper",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Fey", "Humanoid", "Shadow Elf"],
+    "features": ["cf-ShadowElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfChirurgeon",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Chirurgeon.json",
+    "name": "Wode Elf Chirurgeon",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfDruid",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Druid.json",
+    "name": "Wode Elf Druid",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfGreenSeer",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Green Seer.json",
+    "name": "Wode Elf Green Seer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfGreenskeeper",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Greenskeeper.json",
+    "name": "Wode Elf Greenskeeper",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfGuerrilla",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Guerrilla.json",
+    "name": "Wode Elf Guerrilla",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfGweiadur",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Gweiadur.json",
+    "name": "Wode Elf Gweiadur",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfLookout",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Lookout.json",
+    "name": "Wode Elf Lookout",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Support"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfRunner",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Runner.json",
+    "name": "Wode Elf Runner",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfScout",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Scout.json",
+    "name": "Wode Elf Scout",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfSentry",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Sentry.json",
+    "name": "Wode Elf Sentry",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfWarleader",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Warleader.json",
+    "name": "Wode Elf Warleader",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-WodeElfYeoman",
+    "path": "Monsters/Elves Wode/Statblocks/Wode Elf Yeoman.json",
+    "name": "Wode Elf Yeoman",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Fey", "Humanoid", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-Wodenelg",
+    "path": "Monsters/Elves Wode/Statblocks/Wodenelg.json",
+    "name": "Wodenelg",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Mount"],
+    "ancestry": ["Plant", "Wode Elf"],
+    "features": ["cf-WodeElfMalice"]
+  },
+  {
+    "id": "cs-FossilCryptic",
+    "path": "Monsters/Fossil Cryptic/Statblocks/Fossil Cryptic.json",
+    "name": "Fossil Cryptic",
+    "type": "statblock",
+    "level": 2,
+    "ev": "48",
+    "roles": ["Solo"],
+    "ancestry": ["Elemental"],
+    "features": ["cf-FossilCrypticMalice"]
+  },
+  {
+    "id": "cs-BasaltStoneGiant",
+    "path": "Monsters/Giants/Statblocks/Basalt Stone Giant.json",
+    "name": "Basalt Stone Giant",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Giant", "Stone Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FireGiantChief",
+    "path": "Monsters/Giants/Statblocks/Fire Giant Chief.json",
+    "name": "Fire Giant Chief",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Leader"],
+    "ancestry": ["Fire Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FireGiantFireballer",
+    "path": "Monsters/Giants/Statblocks/Fire Giant Fireballer.json",
+    "name": "Fire Giant Fireballer",
+    "type": "statblock",
+    "level": 9,
+    "ev": "11 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Fire Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FireGiantLightbearer",
+    "path": "Monsters/Giants/Statblocks/Fire Giant Lightbearer.json",
+    "name": "Fire Giant Lightbearer",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Fire Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FireGiantRedFist",
+    "path": "Monsters/Giants/Statblocks/Fire Giant Red Fist.json",
+    "name": "Fire Giant Red Fist",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Fire Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FrostGiantSnowblaster",
+    "path": "Monsters/Giants/Statblocks/Frost Giant Snowblaster.json",
+    "name": "Frost Giant Snowblaster",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Frost Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FrostGiantStormHurler",
+    "path": "Monsters/Giants/Statblocks/Frost Giant Storm Hurler.json",
+    "name": "Frost Giant Storm Hurler",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Frost Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-FrostGiantWindSprinter",
+    "path": "Monsters/Giants/Statblocks/Frost Giant Wind Sprinter.json",
+    "name": "Frost Giant Wind Sprinter",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Frost Giant", "Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-GraniteStoneGiant",
+    "path": "Monsters/Giants/Statblocks/Granite Stone Giant.json",
+    "name": "Granite Stone Giant",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Defender"],
+    "ancestry": ["Giant", "Stone Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-HillGiantClobberer",
+    "path": "Monsters/Giants/Statblocks/Hill Giant Clobberer.json",
+    "name": "Hill Giant Clobberer",
+    "type": "statblock",
+    "level": 7,
+    "ev": "36",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Giant", "Hill Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-HillGiantMosstooth",
+    "path": "Monsters/Giants/Statblocks/Hill Giant Mosstooth.json",
+    "name": "Hill Giant Mosstooth",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Giant", "Hill Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-MarbleStoneGiant",
+    "path": "Monsters/Giants/Statblocks/Marble Stone Giant.json",
+    "name": "Marble Stone Giant",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Giant", "Stone Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-SandStoneGiant",
+    "path": "Monsters/Giants/Statblocks/Sand Stone Giant.json",
+    "name": "Sand Stone Giant",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10 for four minions",
+    "roles": ["Minion", "Controller"],
+    "ancestry": ["Giant", "Stone Giant"],
+    "features": ["cf-GiantMalice"]
+  },
+  {
+    "id": "cs-AbyssalHyena",
+    "path": "Monsters/Gnolls/Statblocks/Abyssal Hyena.json",
+    "name": "Abyssal Hyena",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Abyssal", "Animal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollAbyssalArcher",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Abyssal Archer.json",
+    "name": "Gnoll Abyssal Archer",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollAbyssalSummoner",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Abyssal Summoner.json",
+    "name": "Gnoll Abyssal Summoner",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Support"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollBonesplitter",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Bonesplitter.json",
+    "name": "Gnoll Bonesplitter",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollCackler",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Cackler.json",
+    "name": "Gnoll Cackler",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollCarnage",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Carnage.json",
+    "name": "Gnoll Carnage",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Leader"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollChainflail",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Chainflail.json",
+    "name": "Gnoll Chainflail",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollMageMauler",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Mage Mauler.json",
+    "name": "Gnoll Mage Mauler",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollMarauder",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Marauder.json",
+    "name": "Gnoll Marauder",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GnollWildling",
+    "path": "Monsters/Gnolls/Statblocks/Gnoll Wildling.json",
+    "name": "Gnoll Wildling",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Abyssal", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-TuskerDemon",
+    "path": "Monsters/Gnolls/Statblocks/Tusker Demon.json",
+    "name": "Tusker Demon",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Abyssal", "Demon", "Gnoll"],
+    "features": ["cf-GnollMalice"]
+  },
+  {
+    "id": "cs-GoblinAssassin",
+    "path": "Monsters/Goblins/Statblocks/Goblin Assassin.json",
+    "name": "Goblin Assassin",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinCursespitter",
+    "path": "Monsters/Goblins/Statblocks/Goblin Cursespitter.json",
+    "name": "Goblin Cursespitter",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinMonarch",
+    "path": "Monsters/Goblins/Statblocks/Goblin Monarch.json",
+    "name": "Goblin Monarch",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinRunner",
+    "path": "Monsters/Goblins/Statblocks/Goblin Runner.json",
+    "name": "Goblin Runner",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinSniper",
+    "path": "Monsters/Goblins/Statblocks/Goblin Sniper.json",
+    "name": "Goblin Sniper",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinSpinecleaver",
+    "path": "Monsters/Goblins/Statblocks/Goblin Spinecleaver.json",
+    "name": "Goblin Spinecleaver",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinStinker",
+    "path": "Monsters/Goblins/Statblocks/Goblin Stinker.json",
+    "name": "Goblin Stinker",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinUnderboss",
+    "path": "Monsters/Goblins/Statblocks/Goblin Underboss.json",
+    "name": "Goblin Underboss",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Support"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-GoblinWarrior",
+    "path": "Monsters/Goblins/Statblocks/Goblin Warrior.json",
+    "name": "Goblin Warrior",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Goblin", "Humanoid"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-Skitterling",
+    "path": "Monsters/Goblins/Statblocks/Skitterling.json",
+    "name": "Skitterling",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Animal", "Goblin"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-WarSpider",
+    "path": "Monsters/Goblins/Statblocks/War Spider.json",
+    "name": "War Spider",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Mount"],
+    "ancestry": ["Animal", "Goblin"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-Worg",
+    "path": "Monsters/Goblins/Statblocks/Worg.json",
+    "name": "Worg",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Mount"],
+    "ancestry": ["Animal", "Goblin"],
+    "features": ["cf-GoblinMalice"]
+  },
+  {
+    "id": "cs-Griffon",
+    "path": "Monsters/Griffons/Statblocks/Griffon.json",
+    "name": "Griffon",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Mount"],
+    "ancestry": ["Beast", "Griffon"],
+    "features": ["cf-GriffonMalice"]
+  },
+  {
+    "id": "cs-StripedCondorGriffon",
+    "path": "Monsters/Griffons/Statblocks/Striped Condor Griffon.json",
+    "name": "Striped Condor Griffon",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Beast", "Griffon"],
+    "features": ["cf-GriffonMalice"]
+  },
+  {
+    "id": "cs-WodeHag",
+    "path": "Monsters/Hag/Statblocks/Wode Hag.json",
+    "name": "Wode Hag",
+    "type": "statblock",
+    "level": 3,
+    "ev": "60",
+    "roles": ["Solo"],
+    "ancestry": ["Fey", "Hag"],
+    "features": ["cf-HagMalice"]
+  },
+  {
+    "id": "cs-Grilp",
+    "path": "Monsters/Hobgoblins/Statblocks/Grilp.json",
+    "name": "Grilp",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Devil", "Hobgoblin", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinBloodlord",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Bloodlord.json",
+    "name": "Hobgoblin Bloodlord",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinBrandbearer",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Brandbearer.json",
+    "name": "Hobgoblin Brandbearer",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinBurningWitch",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Burning Witch.json",
+    "name": "Hobgoblin Burning Witch",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinDeathCaptain",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Death Captain.json",
+    "name": "Hobgoblin Death Captain",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinFirerunner",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Firerunner.json",
+    "name": "Hobgoblin Firerunner",
+    "type": "statblock",
+    "level": 5,
+    "ev": "14",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinGrandguard",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Grandguard.json",
+    "name": "Hobgoblin Grandguard",
+    "type": "statblock",
+    "level": 6,
+    "ev": "16",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinHellTrooper",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Hell Trooper.json",
+    "name": "Hobgoblin Hell Trooper",
+    "type": "statblock",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinIncendiarist",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Incendiarist.json",
+    "name": "Hobgoblin Incendiarist",
+    "type": "statblock",
+    "level": 5,
+    "ev": "14",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinLancer",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Lancer.json",
+    "name": "Hobgoblin Lancer",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinRecruit",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Recruit.json",
+    "name": "Hobgoblin Recruit",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinRedglare",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Redglare.json",
+    "name": "Hobgoblin Redglare",
+    "type": "statblock",
+    "level": 6,
+    "ev": "16",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinSmokebinder",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin Smokebinder.json",
+    "name": "Hobgoblin Smokebinder",
+    "type": "statblock",
+    "level": 5,
+    "ev": "14",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-HobgoblinWarMage",
+    "path": "Monsters/Hobgoblins/Statblocks/Hobgoblin War Mage.json",
+    "name": "Hobgoblin War Mage",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Goblin", "Hobgoblin", "Humanoid", "Infernal"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-SlaughterDemon",
+    "path": "Monsters/Hobgoblins/Statblocks/Slaughter Demon.json",
+    "name": "Slaughter Demon",
+    "type": "statblock",
+    "level": 4,
+    "ev": "24",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Abyssal", "Demon", "Hobgoblin"],
+    "features": [
+      "cf-HobgoblinMalice",
+      "Monsters/Goblins/Features/Goblin Malice.json"
+    ]
+  },
+  {
+    "id": "cs-GiantHawk",
+    "path": "Monsters/Humans/Statblocks/Giant Hawk.json",
+    "name": "Giant Hawk",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Mount"],
+    "ancestry": ["Animal", "Human"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanApprenticeMage",
+    "path": "Monsters/Humans/Statblocks/Human Apprentice Mage.json",
+    "name": "Human Apprentice Mage",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4 for four minions",
+    "roles": ["Minion", "Controller"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanArcher",
+    "path": "Monsters/Humans/Statblocks/Human Archer.json",
+    "name": "Human Archer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanBanditChief",
+    "path": "Monsters/Humans/Statblocks/Human Bandit Chief.json",
+    "name": "Human Bandit Chief",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanBlackguard",
+    "path": "Monsters/Humans/Statblocks/Human Blackguard.json",
+    "name": "Human Blackguard",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanBrawler",
+    "path": "Monsters/Humans/Statblocks/Human Brawler.json",
+    "name": "Human Brawler",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanDeathAcolyte",
+    "path": "Monsters/Humans/Statblocks/Human Death Acolyte.json",
+    "name": "Human Death Acolyte",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanDeathCultist",
+    "path": "Monsters/Humans/Statblocks/Human Death Cultist.json",
+    "name": "Human Death Cultist",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanGuard",
+    "path": "Monsters/Humans/Statblocks/Human Guard.json",
+    "name": "Human Guard",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanKnave",
+    "path": "Monsters/Humans/Statblocks/Human Knave.json",
+    "name": "Human Knave",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanRaider",
+    "path": "Monsters/Humans/Statblocks/Human Raider.json",
+    "name": "Human Raider",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanRogue",
+    "path": "Monsters/Humans/Statblocks/Human Rogue.json",
+    "name": "Human Rogue",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanScoundrel",
+    "path": "Monsters/Humans/Statblocks/Human Scoundrel.json",
+    "name": "Human Scoundrel",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanStormMage",
+    "path": "Monsters/Humans/Statblocks/Human Storm Mage.json",
+    "name": "Human Storm Mage",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-HumanTrickshot",
+    "path": "Monsters/Humans/Statblocks/Human Trickshot.json",
+    "name": "Human Trickshot",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Human", "Humanoid"],
+    "features": ["cf-HumanMalice"]
+  },
+  {
+    "id": "cs-KingfissureWorm",
+    "path": "Monsters/Kingfissure Worm/Statblocks/Kingfissure Worm.json",
+    "name": "Kingfissure Worm",
+    "type": "statblock",
+    "level": 7,
+    "ev": "108",
+    "roles": ["Solo"],
+    "ancestry": ["Beast", "Worm"],
+    "features": ["cf-KingfissureWormMalice"]
+  },
+  {
+    "id": "cs-KoboldAdeptus",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Adeptus.json",
+    "name": "Kobold Adeptus",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldArtifex",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Artifex.json",
+    "name": "Kobold Artifex",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldCenturion",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Centurion.json",
+    "name": "Kobold Centurion",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Kobold", "Humanoid"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldLegionary",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Legionary.json",
+    "name": "Kobold Legionary",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Defender"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldPrinceps",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Princeps.json",
+    "name": "Kobold Princeps",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Support"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldSagittarion",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Sagittarion.json",
+    "name": "Kobold Sagittarion",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldSignifer",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Signifer.json",
+    "name": "Kobold Signifer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Support"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldTiro",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Tiro.json",
+    "name": "Kobold Tiro",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Defender"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldVeles",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Veles.json",
+    "name": "Kobold Veles",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-KoboldVenator",
+    "path": "Monsters/Kobolds/Statblocks/Kobold Venator.json",
+    "name": "Kobold Venator",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Humanoid", "Kobold"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-ShieldscaleDrangolin",
+    "path": "Monsters/Kobolds/Statblocks/Shieldscale Drangolin.json",
+    "name": "Shieldscale Drangolin",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Kobold", "Beast"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-TrainedGummyBrick",
+    "path": "Monsters/Kobolds/Statblocks/Trained Gummy Brick.json",
+    "name": "Trained Gummy Brick",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Kobold", "Ooze", "Soulless"],
+    "features": ["cf-KoboldMalice"]
+  },
+  {
+    "id": "cs-Lich",
+    "path": "Monsters/Lich/Statblocks/Lich.json",
+    "name": "Lich",
+    "type": "statblock",
+    "level": 10,
+    "ev": "144",
+    "roles": ["Solo"],
+    "ancestry": ["Undead"],
+    "features": ["cf-LichMalice"]
+  },
+  {
+    "id": "cs-LightbenderPouncer",
+    "path": "Monsters/Lightbenders/Statblocks/Lightbender Pouncer.json",
+    "name": "Lightbender Pouncer",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Beast", "Lightbender"],
+    "features": ["cf-LightbenderMalice"]
+  },
+  {
+    "id": "cs-Lightbender",
+    "path": "Monsters/Lightbenders/Statblocks/Lightbender.json",
+    "name": "Lightbender",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Beast", "Lightbender"],
+    "features": ["cf-LightbenderMalice"]
+  },
+  {
+    "id": "cs-LizardfolkBloodeye",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Bloodeye.json",
+    "name": "Lizardfolk Bloodeye",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LizardfolkDeathrex",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Deathrex.json",
+    "name": "Lizardfolk Deathrex",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LizardfolkGrunt",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Grunt.json",
+    "name": "Lizardfolk Grunt",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LizardfolkScaletooth",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Scaletooth.json",
+    "name": "Lizardfolk Scaletooth",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LizardfolkShellguard",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Shellguard.json",
+    "name": "Lizardfolk Shellguard",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Defender"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LizardfolkSkyterror",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Skyterror.json",
+    "name": "Lizardfolk Skyterror",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LizardfolkTonguer",
+    "path": "Monsters/Lizardfolks/Statblocks/Lizardfolk Tonguer.json",
+    "name": "Lizardfolk Tonguer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Lizardfolk"],
+    "features": ["cf-LizardfolkMalice"]
+  },
+  {
+    "id": "cs-LordSyuul",
+    "path": "Monsters/Lord Syuul/Statblocks/Lord Syuul.json",
+    "name": "Lord Syuul",
+    "type": "statblock",
+    "level": 6,
+    "ev": "96",
+    "roles": ["Solo"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-LordSyuulsMalice"]
+  },
+  {
+    "id": "cs-Manticore",
+    "path": "Monsters/Manticores/Statblocks/Manticore.json",
+    "name": "Manticore",
+    "type": "statblock",
+    "level": 4,
+    "ev": "72",
+    "roles": ["Solo"],
+    "ancestry": ["Beast", "Manticore"],
+    "features": ["cf-ManticoreMalice"]
+  },
+  {
+    "id": "cs-Medusa",
+    "path": "Monsters/Medusas/Statblocks/Medusa.json",
+    "name": "Medusa",
+    "type": "statblock",
+    "level": 5,
+    "ev": "84",
+    "roles": ["Solo"],
+    "ancestry": ["Accursed", "Humanoid", "Medusa"],
+    "features": ["cf-MedusaMalice"]
+  },
+  {
+    "id": "cs-MinotaurBully",
+    "path": "Monsters/Minotaurs/Statblocks/Minotaur Bully.json",
+    "name": "Minotaur Bully",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Accursed", "Humanoid", "Minotaur"],
+    "features": ["cf-MinotaurMalice"]
+  },
+  {
+    "id": "cs-MinotaurLackey",
+    "path": "Monsters/Minotaurs/Statblocks/Minotaur Lackey.json",
+    "name": "Minotaur Lackey",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Accursed", "Humanoid", "Minotaur"],
+    "features": ["cf-MinotaurMalice"]
+  },
+  {
+    "id": "cs-MinotaurStampede",
+    "path": "Monsters/Minotaurs/Statblocks/Minotaur Stampede.json",
+    "name": "Minotaur Stampede",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Defender"],
+    "ancestry": ["Accursed", "Humanoid", "Minotaur", "Swarm"],
+    "features": ["cf-MinotaurMalice"]
+  },
+  {
+    "id": "cs-MinotaurSunderer",
+    "path": "Monsters/Minotaurs/Statblocks/Minotaur Sunderer.json",
+    "name": "Minotaur Sunderer",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Accursed", "Humanoid", "Minotaur"],
+    "features": ["cf-MinotaurMalice"]
+  },
+  {
+    "id": "cs-Minotaur",
+    "path": "Monsters/Minotaurs/Statblocks/Minotaur.json",
+    "name": "Minotaur",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Accursed", "Humanoid", "Minotaur"],
+    "features": ["cf-MinotaurMalice"]
+  },
+  {
+    "id": "cs-Noncombatant",
+    "path": "Monsters/Noncombatant/Statblocks/Noncombatant.json",
+    "name": "Noncombatant",
+    "type": "statblock",
+    "level": 0,
+    "ev": "-",
+    "roles": [],
+    "ancestry": ["Human or Animal"],
+    "features": []
+  },
+  {
+    "id": "cs-Cyclops",
+    "path": "Monsters/Ogres/Statblocks/Cyclops.json",
+    "name": "Cyclops",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Controller"],
+    "ancestry": ["Giant", "Ogre"],
+    "features": ["cf-OgreMalice"]
+  },
+  {
+    "id": "cs-OgreBlueBlood",
+    "path": "Monsters/Ogres/Statblocks/Ogre Blue Blood.json",
+    "name": "Ogre Blue Blood",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Giant", "Ogre"],
+    "features": ["cf-OgreMalice"]
+  },
+  {
+    "id": "cs-OgreGoon",
+    "path": "Monsters/Ogres/Statblocks/Ogre Goon.json",
+    "name": "Ogre Goon",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Giant", "Ogre"],
+    "features": ["cf-OgreMalice"]
+  },
+  {
+    "id": "cs-OgreJuggernaut",
+    "path": "Monsters/Ogres/Statblocks/Ogre Juggernaut.json",
+    "name": "Ogre Juggernaut",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Giant", "Ogre"],
+    "features": ["cf-OgreMalice"]
+  },
+  {
+    "id": "cs-OgreTantrum",
+    "path": "Monsters/Ogres/Statblocks/Ogre Tantrum.json",
+    "name": "Ogre Tantrum",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Giant", "Ogre"],
+    "features": ["cf-OgreMalice"]
+  },
+  {
+    "id": "cs-Olothec",
+    "path": "Monsters/Olothec/Statblocks/Olothec.json",
+    "name": "Olothec",
+    "type": "statblock",
+    "level": 6,
+    "ev": "96",
+    "roles": ["Solo"],
+    "ancestry": ["Horror", "Olothec"],
+    "features": ["cf-OlothecMalice"]
+  },
+  {
+    "id": "cs-Mohler",
+    "path": "Monsters/Orcs/Statblocks/Mohler.json",
+    "name": "Mohler",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Animal", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcBlitzer",
+    "path": "Monsters/Orcs/Statblocks/Orc Blitzer.json",
+    "name": "Orc Blitzer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcBloodrunner",
+    "path": "Monsters/Orcs/Statblocks/Orc Bloodrunner.json",
+    "name": "Orc Bloodrunner",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcBloodspark",
+    "path": "Monsters/Orcs/Statblocks/Orc Bloodspark.json",
+    "name": "Orc Bloodspark",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcChainlock",
+    "path": "Monsters/Orcs/Statblocks/Orc Chainlock.json",
+    "name": "Orc Chainlock",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcEyeofGrole",
+    "path": "Monsters/Orcs/Statblocks/Orc Eye of Grole.json",
+    "name": "Orc Eye of Grole",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcGarotter",
+    "path": "Monsters/Orcs/Statblocks/Orc Garotter.json",
+    "name": "Orc Garotter",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcGlorifier",
+    "path": "Monsters/Orcs/Statblocks/Orc Glorifier.json",
+    "name": "Orc Glorifier",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Controller"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcGodcaller",
+    "path": "Monsters/Orcs/Statblocks/Orc Godcaller.json",
+    "name": "Orc Godcaller",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcJuggernaut",
+    "path": "Monsters/Orcs/Statblocks/Orc Juggernaut.json",
+    "name": "Orc Juggernaut",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcRampart",
+    "path": "Monsters/Orcs/Statblocks/Orc Rampart.json",
+    "name": "Orc Rampart",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcRazor",
+    "path": "Monsters/Orcs/Statblocks/Orc Razor.json",
+    "name": "Orc Razor",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcTerranova",
+    "path": "Monsters/Orcs/Statblocks/Orc Terranova.json",
+    "name": "Orc Terranova",
+    "type": "statblock",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-OrcWarleader",
+    "path": "Monsters/Orcs/Statblocks/Orc Warleader.json",
+    "name": "Orc Warleader",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-Scyza",
+    "path": "Monsters/Orcs/Statblocks/Scyza.json",
+    "name": "Scyza",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Elite", "Mount"],
+    "ancestry": ["Animal", "Orc"],
+    "features": ["cf-OrcMalice"]
+  },
+  {
+    "id": "cs-RadenwightBruxer",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Bruxer.json",
+    "name": "Radenwight Bruxer",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Brute"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightMaestro",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Maestro.json",
+    "name": "Radenwight Maestro",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightMischiever",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Mischiever.json",
+    "name": "Radenwight Mischiever",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightPiper",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Piper.json",
+    "name": "Radenwight Piper",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightRatcrobat",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Ratcrobat.json",
+    "name": "Radenwight Ratcrobat",
+    "type": "statblock",
+    "level": 1,
+    "ev": "6",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightRedeye",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Redeye.json",
+    "name": "Radenwight Redeye",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightScrapper",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Scrapper.json",
+    "name": "Radenwight Scrapper",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Defender"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RadenwightSwiftpaw",
+    "path": "Monsters/Radenwights/Statblocks/Radenwight Swiftpaw.json",
+    "name": "Radenwight Swiftpaw",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for 4 minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Radenwight"],
+    "features": ["cf-RadenwightMalice"]
+  },
+  {
+    "id": "cs-RivalConduit2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Conduit.json",
+    "name": "Level 2 Rival Conduit",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalElementalist2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Elementalist.json",
+    "name": "Level 2 Rival Elementalist",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalFury2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Fury.json",
+    "name": "Level 2 Rival Fury",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalNull2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Null.json",
+    "name": "Level 2 Rival Null",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalShadow2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Shadow.json",
+    "name": "Level 2 Rival Shadow",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTactician2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Tactician.json",
+    "name": "Level 2 Rival Tactician",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTalent2",
+    "path": "Monsters/Rivals/1st Echelon/Statblocks/Rival Talent.json",
+    "name": "Level 2 Rival Talent",
+    "type": "statblock",
+    "level": 2,
+    "ev": "16",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalConduit5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Conduit.json",
+    "name": "Level 5 Rival Conduit",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalElementalist5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Elementalist.json",
+    "name": "Level 5 Rival Elementalist",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalFury5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Fury.json",
+    "name": "Level 5 Rival Fury",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalNull5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Null.json",
+    "name": "Level 5 Rival Null",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalShadow5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Shadow.json",
+    "name": "Level 5 Rival Shadow",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTactician5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Tactician.json",
+    "name": "Level 5 Rival Tactician",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTalent5",
+    "path": "Monsters/Rivals/2nd Echelon/Statblocks/Rival Talent.json",
+    "name": "Level 5 Rival Talent",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalConduit8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Conduit.json",
+    "name": "Level 8 Rival Conduit",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalElementalist8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Elementalist.json",
+    "name": "Level 8 Rival Elementalist",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalFury8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Fury.json",
+    "name": "Level 8 Rival Fury",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalNull8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Null.json",
+    "name": "Level 8 Rival Null",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalShadow8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Shadow.json",
+    "name": "Level 8 Rival Shadow",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTactician8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Tactician.json",
+    "name": "Level 8 Rival Tactician",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTalent8",
+    "path": "Monsters/Rivals/3rd Echelon/Statblocks/Rival Talent.json",
+    "name": "Level 8 Rival Talent",
+    "type": "statblock",
+    "level": 8,
+    "ev": "40",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalConduit10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Conduit.json",
+    "name": "Level 10 Rival Conduit",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalElementalist10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Elementalist.json",
+    "name": "Level 10 Rival Elementalist",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalFury10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Fury.json",
+    "name": "Level 10 Rival Fury",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalNull10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Null.json",
+    "name": "Level 10 Rival Null",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Harrier"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalShadow10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Shadow.json",
+    "name": "Level 10 Rival Shadow",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTactician10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Tactician.json",
+    "name": "Level 10 Rival Tactician",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-RivalTalent10",
+    "path": "Monsters/Rivals/4th Echelon/Statblocks/Rival Talent.json",
+    "name": "Level 10 Rival Talent",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Humanoid", "Rival"],
+    "features": ["cf-RivalMalice1"]
+  },
+  {
+    "id": "cs-ShamblingMound",
+    "path": "Monsters/Shambling Mound/Statblocks/Shambling Mound.json",
+    "name": "Shambling Mound",
+    "type": "statblock",
+    "level": 5,
+    "ev": "84",
+    "roles": ["Solo"],
+    "ancestry": ["Plant", "Shambling Mound"],
+    "features": ["cf-ShamblingMoundMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderArchon",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Archon.json",
+    "name": "Time Raider Archon",
+    "type": "statblock",
+    "level": 3,
+    "ev": "5 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderArmiger",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Armiger.json",
+    "name": "Time Raider Armiger",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Defender"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderCannonfall",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Cannonfall.json",
+    "name": "Time Raider Cannonfall",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Artillery"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderHelix",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Helix.json",
+    "name": "Time Raider Helix",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Controller"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderHijack",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Hijack.json",
+    "name": "Time Raider Hijack",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Ambusher"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderMindPunk",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Mind Punk.json",
+    "name": "Time Raider Mind Punk",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Hexer"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderMyriad",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Myriad.json",
+    "name": "Time Raider Myriad",
+    "type": "statblock",
+    "level": 3,
+    "ev": "5 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderNemesis",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Nemesis.json",
+    "name": "Time Raider Nemesis",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Harrier"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderTyrannis",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Tyrannis.json",
+    "name": "Time Raider Tyrannis",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TimeRaiderVertex",
+    "path": "Monsters/Time Raiders/Statblocks/Time Raider Vertex.json",
+    "name": "Time Raider Vertex",
+    "type": "statblock",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Platoon", "Support"],
+    "ancestry": ["Humanoid", "Time Raider"],
+    "features": ["cf-TimeRaiderMalice"]
+  },
+  {
+    "id": "cs-TrollButcher",
+    "path": "Monsters/Trolls/Statblocks/Troll Butcher.json",
+    "name": "Troll Butcher",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Giant", "Troll"],
+    "features": ["cf-TrollMalice"]
+  },
+  {
+    "id": "cs-TrollCrackTrooper",
+    "path": "Monsters/Trolls/Statblocks/Troll Crack Trooper.json",
+    "name": "Troll Crack Trooper",
+    "type": "statblock",
+    "level": 9,
+    "ev": "11 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Giant", "Troll"],
+    "features": ["cf-TrollMalice"]
+  },
+  {
+    "id": "cs-TrollGlutton",
+    "path": "Monsters/Trolls/Statblocks/Troll Glutton.json",
+    "name": "Troll Glutton",
+    "type": "statblock",
+    "level": 5,
+    "ev": "28",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Giant", "Troll"],
+    "features": ["cf-TrollMalice"]
+  },
+  {
+    "id": "cs-TrollLimbjumble",
+    "path": "Monsters/Trolls/Statblocks/Troll Limbjumble.json",
+    "name": "Troll Limbjumble",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Troll"],
+    "features": ["cf-TrollMalice"]
+  },
+  {
+    "id": "cs-TrollRavager",
+    "path": "Monsters/Trolls/Statblocks/Troll Ravager.json",
+    "name": "Troll Ravager",
+    "type": "statblock",
+    "level": 9,
+    "ev": "11 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Giant", "Troll"],
+    "features": ["cf-TrollMalice"]
+  },
+  {
+    "id": "cs-TrollWhelp",
+    "path": "Monsters/Trolls/Statblocks/Troll Whelp.json",
+    "name": "Troll Whelp",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Giant", "Troll"],
+    "features": ["cf-TrollMalice"]
+  },
+  {
+    "id": "cs-BloodStarvedVampire",
+    "path": "Monsters/Undead/Statblocks/Blood Starved Vampire.json",
+    "name": "Blood-Starved Vampire",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Undead", "Vampire"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-Bonecage",
+    "path": "Monsters/Undead/Statblocks/Bonecage.json",
+    "name": "Bonecage",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": [
+      "cf-UndeadMalice1",
+      "cf-UndeadMalice4",
+      "cf-UndeadMalice7",
+      "cf-UndeadMalice10"
+    ]
+  },
+  {
+    "id": "cs-CrawlingClaw",
+    "path": "Monsters/Undead/Statblocks/Crawling Claw.json",
+    "name": "Crawling Claw",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-DecrepitSkeleton",
+    "path": "Monsters/Undead/Statblocks/Decrepit Skeleton.json",
+    "name": "Decrepit Skeleton",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-DirtMournling",
+    "path": "Monsters/Undead/Statblocks/Dirt Mournling.json",
+    "name": "Dirt Mournling",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-FadedEchoSpirit",
+    "path": "Monsters/Undead/Statblocks/Faded Echo Spirit.json",
+    "name": "Faded Echo Spirit",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-FleshMournling",
+    "path": "Monsters/Undead/Statblocks/Flesh Mournling.json",
+    "name": "Flesh Mournling",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Defender"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-FleshflayedShamblerZombie",
+    "path": "Monsters/Undead/Statblocks/Fleshflayed Shambler Zombie.json",
+    "name": "Fleshflayed Shambler Zombie",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-Ghost",
+    "path": "Monsters/Undead/Statblocks/Ghost.json",
+    "name": "Ghost",
+    "type": "statblock",
+    "level": 1,
+    "ev": "12",
+    "roles": ["Leader"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-GhoulCraver",
+    "path": "Monsters/Undead/Statblocks/Ghoul Craver.json",
+    "name": "Ghoul Craver",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-Ghoul",
+    "path": "Monsters/Undead/Statblocks/Ghoul.json",
+    "name": "Ghoul",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-GiantShamblerZombie",
+    "path": "Monsters/Undead/Statblocks/Giant Shambler Zombie.json",
+    "name": "Giant Shambler Zombie",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": [
+      "cf-UndeadMalice1",
+      "cf-UndeadMalice4",
+      "cf-UndeadMalice7",
+      "cf-UndeadMalice10"
+    ]
+  },
+  {
+    "id": "cs-GiantZombie",
+    "path": "Monsters/Undead/Statblocks/Giant Zombie.json",
+    "name": "Giant Zombie",
+    "type": "statblock",
+    "level": 4,
+    "ev": "24",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-Haunt",
+    "path": "Monsters/Undead/Statblocks/Haunt.json",
+    "name": "Haunt",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-HollowboneLauncher",
+    "path": "Monsters/Undead/Statblocks/Hollowbone Launcher.json",
+    "name": "Hollowbone Launcher",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-Koptourok",
+    "path": "Monsters/Undead/Statblocks/Koptourok.json",
+    "name": "Koptourok",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-Lithgekh",
+    "path": "Monsters/Undead/Statblocks/Lithgekh.json",
+    "name": "Lithgekh",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": [
+      "cf-UndeadMalice1",
+      "cf-UndeadMalice4",
+      "cf-UndeadMalice7",
+      "cf-UndeadMalice10"
+    ]
+  },
+  {
+    "id": "cs-MummyLord",
+    "path": "Monsters/Undead/Statblocks/Mummy Lord.json",
+    "name": "Mummy Lord",
+    "type": "statblock",
+    "level": 4,
+    "ev": "24",
+    "roles": ["Leader"],
+    "ancestry": ["Mummy", "Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-MummyRotwrap",
+    "path": "Monsters/Undead/Statblocks/Mummy Rotwrap.json",
+    "name": "Mummy Rotwrap",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Mummy", "Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-Mummy",
+    "path": "Monsters/Undead/Statblocks/Mummy.json",
+    "name": "Mummy",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Mummy", "Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-RottingZombie",
+    "path": "Monsters/Undead/Statblocks/Rotting Zombie.json",
+    "name": "Rotting Zombie",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-Shade",
+    "path": "Monsters/Undead/Statblocks/Shade.json",
+    "name": "Shade",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-SkeletonKnight",
+    "path": "Monsters/Undead/Statblocks/Skeleton Knight.json",
+    "name": "Skeleton Knight",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Defender"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": [
+      "cf-UndeadMalice1",
+      "cf-UndeadMalice4",
+      "cf-UndeadMalice7",
+      "cf-UndeadMalice10"
+    ]
+  },
+  {
+    "id": "cs-Skeleton",
+    "path": "Monsters/Undead/Statblocks/Skeleton.json",
+    "name": "Skeleton",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-Soulwight",
+    "path": "Monsters/Undead/Statblocks/Soulwight.json",
+    "name": "Soulwight",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-Specter",
+    "path": "Monsters/Undead/Statblocks/Specter.json",
+    "name": "Specter",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-UmbralStalker",
+    "path": "Monsters/Undead/Statblocks/Umbral Stalker.json",
+    "name": "Umbral Stalker",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-VampireLord",
+    "path": "Monsters/Undead/Statblocks/Vampire Lord.json",
+    "name": "Vampire Lord",
+    "type": "statblock",
+    "level": 7,
+    "ev": "36",
+    "roles": ["Leader"],
+    "ancestry": ["Undead", "Vampire"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-VampireSpawn",
+    "path": "Monsters/Undead/Statblocks/Vampire Spawn.json",
+    "name": "Vampire Spawn",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Undead", "Vampire"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-Vampire",
+    "path": "Monsters/Undead/Statblocks/Vampire.json",
+    "name": "Vampire",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Undead", "Vampire"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-Waxen",
+    "path": "Monsters/Undead/Statblocks/Waxen.json",
+    "name": "Waxen",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4", "cf-UndeadMalice7"]
+  },
+  {
+    "id": "cs-WraithSkulker",
+    "path": "Monsters/Undead/Statblocks/Wraith Skulker.json",
+    "name": "Wraith Skulker",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Undead"],
+    "features": [
+      "cf-UndeadMalice1",
+      "cf-UndeadMalice4",
+      "cf-UndeadMalice7",
+      "cf-UndeadMalice10"
+    ]
+  },
+  {
+    "id": "cs-Wraith",
+    "path": "Monsters/Undead/Statblocks/Wraith.json",
+    "name": "Wraith",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Undead"],
+    "features": ["cf-UndeadMalice1", "cf-UndeadMalice4"]
+  },
+  {
+    "id": "cs-Zombie",
+    "path": "Monsters/Undead/Statblocks/Zombie.json",
+    "name": "Zombie",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Undead", "Soulless"],
+    "features": ["cf-UndeadMalice1"]
+  },
+  {
+    "id": "cs-MultivokBodyguard",
+    "path": "Monsters/Valok/Statblocks/Multivok Bodyguard.json",
+    "name": "Multivok Bodyguard",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Elite", "Defender"],
+    "ancestry": ["Construct", "Multivok", "Soulless", "Valok"],
+    "features": ["cf-ValokMalice"]
+  },
+  {
+    "id": "cs-MultivokChief",
+    "path": "Monsters/Valok/Statblocks/Multivok Chief.json",
+    "name": "Multivok Chief",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Elite", "Support"],
+    "ancestry": ["Construct", "Multivok", "Soulless", "Valok"],
+    "features": ["cf-ValokMalice"]
+  },
+  {
+    "id": "cs-ServokBuilder",
+    "path": "Monsters/Valok/Statblocks/Servok Builder.json",
+    "name": "Servok Builder",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Construct", "Servok", "Soulless", "Valok"],
+    "features": ["cf-ValokMalice"]
+  },
+  {
+    "id": "cs-ServokMiner",
+    "path": "Monsters/Valok/Statblocks/Servok Miner.json",
+    "name": "Servok Miner",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Construct", "Servok", "Soulless", "Valok"],
+    "features": ["cf-ValokMalice"]
+  },
+  {
+    "id": "cs-ServokWarEngine",
+    "path": "Monsters/Valok/Statblocks/Servok War Engine.json",
+    "name": "Servok War Engine",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Construct", "Servok", "Soulless", "Valok"],
+    "features": ["cf-ValokMalice"]
+  },
+  {
+    "id": "cs-HulkingBrain",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Hulking Brain.json",
+    "name": "Hulking Brain",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-MindkillerWhelp",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Mindkiller Whelp.json",
+    "name": "Mindkiller Whelp",
+    "type": "statblock",
+    "level": 6,
+    "ev": "8 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-Mindkiller",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Mindkiller.json",
+    "name": "Mindkiller",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-VoicelessTalkerArtillerist",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Voiceless Talker Artillerist.json",
+    "name": "Voiceless Talker Artillerist",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Artillery"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-VoicelessTalkerEvolutionist",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Voiceless Talker Evolutionist.json",
+    "name": "Voiceless Talker Evolutionist",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-VoicelessTalkerGraywarper",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Voiceless Talker Graywarper.json",
+    "name": "Voiceless Talker Graywarper",
+    "type": "statblock",
+    "level": 6,
+    "ev": "8 for four minions",
+    "roles": ["Minion", "Controller"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-VoicelessTalkerInvader",
+    "path": "Monsters/Voiceless Talkers/Statblocks/Voiceless Talker Invader.json",
+    "name": "Voiceless Talker Invader",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Horror", "Voiceless Talker"],
+    "features": ["cf-VoicelessTalkerMalice"]
+  },
+  {
+    "id": "cs-CastellanHoplon",
+    "path": "Monsters/War Dogs/Statblocks/Castellan Hoplon.json",
+    "name": "Castellan Hoplon",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Defender"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-IronChampionDoru",
+    "path": "Monsters/War Dogs/Statblocks/Iron Champion Doru.json",
+    "name": "Iron Champion Doru",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-LogosticianVesper",
+    "path": "Monsters/War Dogs/Statblocks/Logostician Vesper.json",
+    "name": "Logostician Vesper",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Controller"],
+    "ancestry": ["Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-SoulbinderPsyche",
+    "path": "Monsters/War Dogs/Statblocks/Soulbinder Psyche.json",
+    "name": "Soulbinder Psyche",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Elite", "Hexer"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-StrategosAlkestis",
+    "path": "Monsters/War Dogs/Statblocks/Strategos Alkestis.json",
+    "name": "Strategos Alkestis",
+    "type": "statblock",
+    "level": 10,
+    "ev": "48",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-WarDogAerocite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Aerocite.json",
+    "name": "War Dog Aerocite",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogAmalgamite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Amalgamite.json",
+    "name": "War Dog Amalgamite",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogArachnite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Arachnite.json",
+    "name": "War Dog Arachnite",
+    "type": "statblock",
+    "level": 6,
+    "ev": "8",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogBallistite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Ballistite.json",
+    "name": "War Dog Ballistite",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogBlackcap",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Blackcap.json",
+    "name": "War Dog Blackcap",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogBloodJumper",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Blood Jumper.json",
+    "name": "War Dog Blood Jumper",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-WarDogBreaker",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Breaker.json",
+    "name": "War Dog Breaker",
+    "type": "statblock",
+    "level": 7,
+    "ev": "36",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogCommando",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Commando.json",
+    "name": "War Dog Commando",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogConscript",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Conscript.json",
+    "name": "War Dog Conscript",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogCrucibite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Crucibite.json",
+    "name": "War Dog Crucibite",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Artillery"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogDoomthief",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Doomthief.json",
+    "name": "War Dog Doomthief",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Horde", "Defender"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogDraconite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Draconite.json",
+    "name": "War Dog Draconite",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogEquivite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Equivite.json",
+    "name": "War Dog Equivite",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Brute"],
+    "ancestry": ["Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogEviscerite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Eviscerite.json",
+    "name": "War Dog Eviscerite",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogFirestarter",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Firestarter.json",
+    "name": "War Dog Firestarter",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogGeomancer",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Geomancer.json",
+    "name": "War Dog Geomancer",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogGroundCommander",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Ground Commander.json",
+    "name": "War Dog Ground Commander",
+    "type": "statblock",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogHunterKiller",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Hunter Killer.json",
+    "name": "War Dog Hunter-Killer",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-WarDogHypokrite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Hypokrite.json",
+    "name": "War Dog Hypokrite",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogIronPriest",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Iron Priest.json",
+    "name": "War Dog Iron Priest",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Support"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogMischievite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Mischievite.json",
+    "name": "War Dog Mischievite",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Horde", "Harrier"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogNeuronite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Neuronite.json",
+    "name": "War Dog Neuronite",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Defender"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogPestilite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Pestilite.json",
+    "name": "War Dog Pestilite",
+    "type": "statblock",
+    "level": 3,
+    "ev": "5",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogPhosphorite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Phosphorite.json",
+    "name": "War Dog Phosphorite",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogPrismite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Prismite.json",
+    "name": "War Dog Prismite",
+    "type": "statblock",
+    "level": 8,
+    "ev": "10",
+    "roles": ["Horde", "Defender"],
+    "ancestry": ["Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogSaboteur",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Saboteur.json",
+    "name": "War Dog Saboteur",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogSharpshooter",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Sharpshooter.json",
+    "name": "War Dog Sharpshooter",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogShriketroop",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Shriketroop.json",
+    "name": "War Dog Shriketroop",
+    "type": "statblock",
+    "level": 7,
+    "ev": "9 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogSocialite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Socialite.json",
+    "name": "War Dog Socialite",
+    "type": "statblock",
+    "level": 10,
+    "ev": "12 for four minions",
+    "roles": ["Minion", "Hexer"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": [
+      "cf-WarDogMalice1",
+      "cf-WarDogMalice4",
+      "cf-WarDogMalice7",
+      "cf-WarDogMalice10"
+    ]
+  },
+  {
+    "id": "cs-WarDogSparkslinger",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Sparkslinger.json",
+    "name": "War Dog Sparkslinger",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Artillery"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogSubcommander",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Subcommander.json",
+    "name": "War Dog Subcommander",
+    "type": "statblock",
+    "level": 2,
+    "ev": "4",
+    "roles": ["Horde", "Support"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogSweeper",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Sweeper.json",
+    "name": "War Dog Sweeper",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Harrier"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogTaxiarch",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Taxiarch.json",
+    "name": "War Dog Taxiarch",
+    "type": "statblock",
+    "level": 9,
+    "ev": "44",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4", "cf-WarDogMalice7"]
+  },
+  {
+    "id": "cs-WarDogTeletalite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Teletalite.json",
+    "name": "War Dog Teletalite",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3",
+    "roles": ["Horde", "Ambusher"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogTetherite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Tetherite.json",
+    "name": "War Dog Tetherite",
+    "type": "statblock",
+    "level": 1,
+    "ev": "3 for four minions",
+    "roles": ["Minion", "Brute"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1"]
+  },
+  {
+    "id": "cs-WarDogTetrarch",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Tetrarch.json",
+    "name": "War Dog Tetrarch",
+    "type": "statblock",
+    "level": 6,
+    "ev": "32",
+    "roles": ["Leader"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogThanatite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Thanatite.json",
+    "name": "War Dog Thanatite",
+    "type": "statblock",
+    "level": 6,
+    "ev": "8",
+    "roles": ["Horde", "Controller"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogTormentite",
+    "path": "Monsters/War Dogs/Statblocks/War Dog Tormentite.json",
+    "name": "War Dog Tormentite",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Horde", "Hexer"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogWarDoc",
+    "path": "Monsters/War Dogs/Statblocks/War Dog War Doc.json",
+    "name": "War Dog War Doc",
+    "type": "statblock",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Horde", "Support"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-WarDogWarFrog",
+    "path": "Monsters/War Dogs/Statblocks/War Dog War Frog.json",
+    "name": "War Dog War Frog",
+    "type": "statblock",
+    "level": 4,
+    "ev": "6 for four minions",
+    "roles": ["Minion", "Ambusher"],
+    "ancestry": ["Humanoid", "Soulless", "War Dog"],
+    "features": ["cf-WarDogMalice1", "cf-WarDogMalice4"]
+  },
+  {
+    "id": "cs-Werewolf",
+    "path": "Monsters/Werewolf/Statblocks/Werewolf.json",
+    "name": "Werewolf",
+    "type": "statblock",
+    "level": 1,
+    "ev": "36",
+    "roles": ["Solo"],
+    "ancestry": ["Accursed", "Humanoid", "Werebeast"],
+    "features": ["cf-WerewolfMalice"]
+  },
+  {
+    "id": "cs-WyvernLurker",
+    "path": "Monsters/Wyverns/Statblocks/Wyvern Lurker.json",
+    "name": "Wyvern Lurker",
+    "type": "statblock",
+    "level": 4,
+    "ev": "24",
+    "roles": ["Elite", "Ambusher"],
+    "ancestry": ["Beast", "Wyvern"],
+    "features": ["cf-WyvernMalice"]
+  },
+  {
+    "id": "cs-WyvernPredator",
+    "path": "Monsters/Wyverns/Statblocks/Wyvern Predator.json",
+    "name": "Wyvern Predator",
+    "type": "statblock",
+    "level": 4,
+    "ev": "24",
+    "roles": ["Elite", "Brute"],
+    "ancestry": ["Beast", "Wyvern"],
+    "features": ["cf-WyvernMalice"]
+  },
+  {
+    "id": "cs-CompulsionEye",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Compulsion Eye.json",
+    "name": "Compulsion Eye",
+    "type": "statblock",
+    "level": 6,
+    "ev": "-",
+    "roles": ["Controller"],
+    "ancestry": ["Eyestalk", "Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "cs-Demolition",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Demolition.json",
+    "name": "Demolition",
+    "type": "statblock",
+    "level": 6,
+    "ev": "-",
+    "roles": ["Artillery"],
+    "ancestry": ["Eyestalk", "Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "cs-MoverEye",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Mover Eye.json",
+    "name": "Mover Eye",
+    "type": "statblock",
+    "level": 6,
+    "ev": "-",
+    "roles": ["Controller"],
+    "ancestry": ["Eyestalk", "Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "cs-NecroticEye",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Necrotic Eye.json",
+    "name": "Necrotic Eye",
+    "type": "statblock",
+    "level": 6,
+    "ev": "-",
+    "roles": ["Hexer"],
+    "ancestry": ["Eyestalk", "Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "cs-ToxicEye",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Toxic Eye.json",
+    "name": "Toxic Eye",
+    "type": "statblock",
+    "level": 6,
+    "ev": "-",
+    "roles": ["Hexer"],
+    "ancestry": ["Eyestalk", "Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "cs-XorannoxtheTyract",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Xorannox the Tyract.json",
+    "name": "Xorannox the Tyract",
+    "type": "statblock",
+    "level": 6,
+    "ev": "96",
+    "roles": ["Solo"],
+    "ancestry": ["Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "cs-ZapperEye",
+    "path": "Monsters/Xorannox the Tyract/Statblocks/Zapper Eye.json",
+    "name": "Zapper Eye",
+    "type": "statblock",
+    "level": 6,
+    "ev": "-",
+    "roles": ["Artillery"],
+    "ancestry": ["Eyestalk", "Horror", "Overmind"],
+    "features": ["cf-XorannoxsMalice"]
+  },
+  {
+    "id": "ct-AngryBeehive",
+    "path": "Dynamic Terrain/Environmental Hazards/Angry Beehive.json",
+    "name": "Angry Beehive",
+    "type": "terrain",
+    "level": 2,
+    "ev": "2",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-Brambles",
+    "path": "Dynamic Terrain/Environmental Hazards/Brambles.json",
+    "name": "Brambles",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1 per 10 x 10 thicket",
+    "roles": ["Hazard", "Defender"]
+  },
+  {
+    "id": "ct-CorrosivePool",
+    "path": "Dynamic Terrain/Environmental Hazards/Corrosive Pool.json",
+    "name": "Corrosive Pool",
+    "type": "terrain",
+    "level": 2,
+    "ev": "3 per 10 x 10 pool",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-FrozenPond",
+    "path": "Dynamic Terrain/Environmental Hazards/Frozen Pond.json",
+    "name": "Frozen Pond",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1 per 10 x 10 pond",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-Lava",
+    "path": "Dynamic Terrain/Environmental Hazards/Lava.json",
+    "name": "Lava",
+    "type": "terrain",
+    "level": 3,
+    "ev": "4 per 10 x 10 patch",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-Quicksand",
+    "path": "Dynamic Terrain/Environmental Hazards/Quicksand.json",
+    "name": "Quicksand",
+    "type": "terrain",
+    "level": 3,
+    "ev": "3 per 10 x 10 patch",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-ToxicPlants",
+    "path": "Dynamic Terrain/Environmental Hazards/Toxic Plants.json",
+    "name": "Toxic Plants",
+    "type": "terrain",
+    "level": 2,
+    "ev": "2 per 10 x 10 field",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-ArchersStakes",
+    "path": "Dynamic Terrain/Fieldworks/Archers Stakes.json",
+    "name": "Archer's Stakes",
+    "type": "terrain",
+    "level": 1,
+    "ev": "2",
+    "roles": ["Fortification", "Defender"]
+  },
+  {
+    "id": "ct-BearTrap",
+    "path": "Dynamic Terrain/Fieldworks/Bear Trap.json",
+    "name": "Bear Trap",
+    "type": "terrain",
+    "level": 1,
+    "ev": "2",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-FlammableOil",
+    "path": "Dynamic Terrain/Fieldworks/Flammable Oil.json",
+    "name": "Flammable Oil",
+    "type": "terrain",
+    "level": 1,
+    "ev": "2 per 10 x 10 patch",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-HideyHole",
+    "path": "Dynamic Terrain/Fieldworks/Hidey Hole.json",
+    "name": "Hidey-Hole",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1",
+    "roles": ["Fortification", "Ambusher"]
+  },
+  {
+    "id": "ct-PaviseShield",
+    "path": "Dynamic Terrain/Fieldworks/Pavise Shield.json",
+    "name": "Pavise Shield",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1",
+    "roles": ["Fortification", "Defender"]
+  },
+  {
+    "id": "ct-SnareTrap",
+    "path": "Dynamic Terrain/Fieldworks/Snare Trap.json",
+    "name": "Snare Trap",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-SpikeTrap",
+    "path": "Dynamic Terrain/Fieldworks/Spike Trap.json",
+    "name": "Spike Trap",
+    "type": "terrain",
+    "level": 2,
+    "ev": "3",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-ColumnofBlades",
+    "path": "Dynamic Terrain/Mechanisms/Column of Blades.json",
+    "name": "Column of Blades",
+    "type": "terrain",
+    "level": 3,
+    "ev": "3",
+    "roles": ["Fortification", "Defender"]
+  },
+  {
+    "id": "ct-DartTrap",
+    "path": "Dynamic Terrain/Mechanisms/Dart Trap.json",
+    "name": "Dart Trap",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-Pillar",
+    "path": "Dynamic Terrain/Mechanisms/Pillar.json",
+    "name": "Pillar",
+    "type": "terrain",
+    "level": 2,
+    "ev": "3",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-Portcullis",
+    "path": "Dynamic Terrain/Mechanisms/Portcullis.json",
+    "name": "Portcullis",
+    "type": "terrain",
+    "level": 3,
+    "ev": "4",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-PressurePlate",
+    "path": "Dynamic Terrain/Mechanisms/Pressure Plate.json",
+    "name": "Pressure Plate",
+    "type": "terrain",
+    "level": 1,
+    "ev": "2",
+    "roles": ["Trigger", "Support"]
+  },
+  {
+    "id": "ct-Pulley",
+    "path": "Dynamic Terrain/Mechanisms/Pulley.json",
+    "name": "Pulley",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1",
+    "roles": ["Trigger", "Support"]
+  },
+  {
+    "id": "ct-Ram",
+    "path": "Dynamic Terrain/Mechanisms/Ram.json",
+    "name": "Ram",
+    "type": "terrain",
+    "level": 2,
+    "ev": "3",
+    "roles": ["Trap", "Ambusher"]
+  },
+  {
+    "id": "ct-Switch",
+    "path": "Dynamic Terrain/Mechanisms/Switch.json",
+    "name": "Switch",
+    "type": "terrain",
+    "level": 1,
+    "ev": "1",
+    "roles": ["Trigger", "Support"]
+  },
+  {
+    "id": "ct-HolyIdol",
+    "path": "Dynamic Terrain/Power Fixtures/Holy Idol.json",
+    "name": "Holy Idol",
+    "type": "terrain",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Relic", "Support"]
+  },
+  {
+    "id": "ct-PsionicShard",
+    "path": "Dynamic Terrain/Power Fixtures/Psionic Shard.json",
+    "name": "Psionic Shard",
+    "type": "terrain",
+    "level": 5,
+    "ev": "7",
+    "roles": ["Fortification", "Defender"]
+  },
+  {
+    "id": "ct-TreeofMight",
+    "path": "Dynamic Terrain/Power Fixtures/Tree of Might.json",
+    "name": "Tree of Might",
+    "type": "terrain",
+    "level": 5,
+    "ev": "14",
+    "roles": ["Hazard", "Hexer"]
+  },
+  {
+    "id": "ct-ArrowLauncher",
+    "path": "Dynamic Terrain/Siege Engines/Arrow Launcher.json",
+    "name": "Arrow Launcher",
+    "type": "terrain",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Siege", "Engine", "Artillery"]
+  },
+  {
+    "id": "ct-BoilingOilCauldron",
+    "path": "Dynamic Terrain/Siege Engines/Boiling Oil Cauldron.json",
+    "name": "Boiling Oil Cauldron",
+    "type": "terrain",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Fortification", "Defender"]
+  },
+  {
+    "id": "ct-Catapult",
+    "path": "Dynamic Terrain/Siege Engines/Catapult.json",
+    "name": "Catapult",
+    "type": "terrain",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Siege", "Engine", "Artillery"]
+  },
+  {
+    "id": "ct-ExplodingMillWheel",
+    "path": "Dynamic Terrain/Siege Engines/Exploding Mill Wheel.json",
+    "name": "Exploding Mill Wheel",
+    "type": "terrain",
+    "level": 3,
+    "ev": "10",
+    "roles": ["Siege", "Engine", "Artillery"]
+  },
+  {
+    "id": "ct-FieldBallista",
+    "path": "Dynamic Terrain/Siege Engines/Field Ballista.json",
+    "name": "Field Ballista",
+    "type": "terrain",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Siege", "Engine", "Artillery"]
+  },
+  {
+    "id": "ct-IronDragon",
+    "path": "Dynamic Terrain/Siege Engines/Iron Dragon.json",
+    "name": "Iron Dragon",
+    "type": "terrain",
+    "level": 4,
+    "ev": "12",
+    "roles": ["Siege", "Engine", "Artillery"]
+  },
+  {
+    "id": "ct-Watchtower",
+    "path": "Dynamic Terrain/Siege Engines/Watchtower.json",
+    "name": "Watchtower",
+    "type": "terrain",
+    "level": 2,
+    "ev": "8",
+    "roles": ["Fortification", "Defender"]
+  },
+  {
+    "id": "ct-TheBlackObelisk",
+    "path": "Dynamic Terrain/Supernatural Objects/The Black Obelisk.json",
+    "name": "The Black Obelisk",
+    "type": "terrain",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Relic", "Controller"]
+  },
+  {
+    "id": "ct-TheChronalHypercube",
+    "path": "Dynamic Terrain/Supernatural Objects/The Chronal Hypercube.json",
+    "name": "The Chronal Hypercube",
+    "type": "terrain",
+    "level": 3,
+    "ev": "20",
+    "roles": ["Relic", "Controller"]
+  },
+  {
+    "id": "ct-TheThroneofAAn",
+    "path": "Dynamic Terrain/Supernatural Objects/The Throne of A An.json",
+    "name": "The Throne of A'An",
+    "type": "terrain",
+    "level": 4,
+    "ev": "24",
+    "roles": ["Relic", "Controller"]
+  }
+]

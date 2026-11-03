@@ -1,26 +1,39 @@
-import {
-  MinionTokenDataZod,
-  type MinionTokenData,
-} from "../../types/tokenDataZod";
+import { MinionTokenDataZod } from "../../types/tokenDataZod";
 import Button from "../../components/ui/Button";
-import { getPluginId } from "../../helpers/getPluginId";
 import { removeCreatureData } from "../../helpers/removeCreatureData";
-import { generateGroupId } from "../../helpers/generateGroupId";
 import { TOKEN_METADATA_KEY } from "../../helpers/tokenHelpers";
 import OBR from "@owlbear-rodeo/sdk";
 import type { MinionGroup } from "../../types/minionGroup";
+import { Minimize2Icon } from "lucide-react";
+import { ContextMenuButton } from "./ContextMenuButton";
+import { openStatblockSearch } from "../../helpers/openStatblockSearch";
 
 export function MinionGroupFallback({
   minionGroups,
   groupId,
+  handleMinimize,
+  showMinimize = false,
 }: {
   minionGroups: MinionGroup[] | undefined;
   groupId: string;
+
+  handleMinimize: () => void;
+  showMinimize?: boolean;
 }) {
   return (
     <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <div className="font-semibold">Group Not Found</div>
+        {showMinimize && (
+          <ContextMenuButton
+            className="ml-1.5 aspect-square"
+            onClick={handleMinimize}
+          >
+            <Minimize2Icon />
+          </ContextMenuButton>
+        )}
+      </div>
       <div>
-        <div className="text-sm">Group Not Found</div>
         <div className="text-foreground-secondary text-sm">
           Minion group data is not transferred between scenes.
         </div>
@@ -55,37 +68,7 @@ export function MinionGroupFallback({
       </Button>
       <Button
         className="w-full text-sm"
-        onClick={async () => {
-          const newGroupId = generateGroupId();
-          OBR.scene.items.updateItems(
-            (item) => {
-              const itemData = item.metadata[TOKEN_METADATA_KEY];
-              const parsedData = MinionTokenDataZod.safeParse(itemData);
-              return parsedData.success && parsedData.data.groupId === groupId;
-            },
-            (items) =>
-              items.forEach(
-                (item) =>
-                  (item.metadata[TOKEN_METADATA_KEY] = {
-                    type: "MINION",
-                    groupId: newGroupId as string,
-                  } satisfies MinionTokenData),
-              ),
-          );
-
-          const themeMode = (await OBR.theme.getTheme()).mode;
-          OBR.popover.open({
-            id: getPluginId("statblockSearch"),
-            url: `/statblockSearch?themeMode=${themeMode}&groupId=${newGroupId}`,
-            height: 1000,
-            width: 800,
-            anchorOrigin: { horizontal: "CENTER", vertical: "CENTER" },
-            transformOrigin: {
-              horizontal: "CENTER",
-              vertical: "CENTER",
-            },
-          });
-        }}
+        onClick={() => openStatblockSearch({ groupId, organization: "MINION" })}
       >
         Replace Group
       </Button>

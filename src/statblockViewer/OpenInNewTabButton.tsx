@@ -1,11 +1,18 @@
 import { ExternalLinkIcon } from "lucide-react";
 import Button from "../components/ui/Button";
 
-export function OpenInNewTab({ statblockName }: { statblockName?: string }) {
-  if (!statblockName) return <></>;
+export function OpenInNewTab({
+  resourceId,
+  statblockName,
+}: {
+  resourceId?: string;
+  statblockName?: string;
+}) {
+  if (!resourceId && !statblockName) return <></>;
 
   const url = new URL("/statblockViewer", window.location.origin);
-  url.searchParams.set("statblockName", statblockName);
+  if (resourceId) url.searchParams.set("resourceId", resourceId);
+  if (statblockName) url.searchParams.set("statblockName", statblockName);
   url.searchParams.delete("obrref");
 
   return (

@@ -9,7 +9,7 @@ import type {
   IndexBundle,
   HeroDataBundle,
 } from "../../types/heroDataBundlesZod.ts";
-import fetchTypedData from "./getTypedData";
+import fetchTypedData from "../devScriptButtons/helpers/fetchTypedData";
 import getImageUrl from "./getImageUrl";
 
 export async function getHeroDataBundle(

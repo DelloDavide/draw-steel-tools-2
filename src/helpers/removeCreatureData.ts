@@ -8,8 +8,8 @@ export function removeCreatureData(items: Item[]) {
     items.map((item) => item.id),
     (items) => {
       items.forEach((item) => {
-        item.metadata[TOKEN_METADATA_KEY] = undefined;
-        item.metadata[getPluginId("name")] = undefined;
+        delete item.metadata[TOKEN_METADATA_KEY];
+        delete item.metadata[getPluginId("name")];
       });
     },
   );

@@ -8,6 +8,7 @@ export const MinionGroupZod = z.object({
   currentStamina: z.number(),
   individualStamina: z.number(),
   statblock: z.string().optional(),
+  resourceId: z.string().optional(),
   gmOnly: z.boolean().optional(),
 });
 

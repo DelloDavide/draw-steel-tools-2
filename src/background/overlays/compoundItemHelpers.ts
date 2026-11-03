@@ -7,7 +7,7 @@ import {
   buildShape,
   buildText,
 } from "@owlbear-rodeo/sdk";
-import { createRoundedRectangle, getFillPortion } from "../mathHelpers";
+import { createRoundedRectangle, getFillPortion } from "./mathHelpers";
 
 // Constants used in multiple functions
 const FONT_SIZE = 22;

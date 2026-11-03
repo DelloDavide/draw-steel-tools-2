@@ -1,27 +1,35 @@
 import OBR from "@owlbear-rodeo/sdk";
 import { XIcon, PlusIcon } from "lucide-react";
-import Button from "../../components/ui/Button";
 import { getPluginId } from "../../helpers/getPluginId";
 import { Label } from "../trackerInputs/Label";
 import { cn } from "../../helpers/utils";
+import { ContextMenuButton } from "./ContextMenuButton";
+import { openStatblockSearch } from "../../helpers/openStatblockSearch";
 
 export default function StatblockControls({
   label = "Statblock",
   statblockName,
-  setStatblockName,
+  resourceId,
+  removeStatblock,
   groupId,
   playerRole,
   mode = "monster",
   itemId,
+  organization,
 }: {
   label?: string;
   statblockName: string;
-  setStatblockName: (statblockName: string) => void;
+  resourceId: string;
+  removeStatblock: () => void;
   groupId?: string;
   playerRole: "PLAYER" | "GM";
   mode?: "monster" | "hero";
   itemId?: string;
+  organization?: "CREATURE" | "MINION" | "TERRAIN";
 }) {
+  const useNameAsId = resourceId === "" && statblockName !== "";
+  if (useNameAsId) resourceId = statblockName;
+
   return (
     <div className="text-foreground col-span-2 w-full">
       <div
@@ -35,13 +43,12 @@ export default function StatblockControls({
         {statblockName !== "" ? (
           <>
             <div className="grow">
-              <Button
-                variant={"secondary"}
-                className="bg-mirage-400/30 dark:bg-mirage-500/30 hover:bg-mirage-400/30 hover:dark:bg-mirage-500/30 group w-full basis-40 overflow-clip p-0 focus-visible:ring-0"
+              <ContextMenuButton
+                className="w-full"
                 onClick={async () => {
                   OBR.broadcast.sendMessage(
                     getPluginId("set-viewer-statblock"),
-                    { statblockName },
+                    { resourceId },
                     { destination: "LOCAL" },
                   );
                   OBR.popover.open({
@@ -51,6 +58,7 @@ export default function StatblockControls({
                         "/statblockViewer",
                         window.location.origin,
                       );
+                      url.searchParams.set("resourceId", resourceId);
                       url.searchParams.set("statblockName", statblockName);
                       if (itemId) url.searchParams.set("itemId", itemId);
                       return url.toString();
@@ -71,52 +79,32 @@ export default function StatblockControls({
                   if (selection) OBR.player.select(selection, true);
                 }}
               >
-                <div className="group-hover:bg-foreground/7 flex size-full grow items-center-safe justify-center text-sm duration-150">
-                  {statblockName}
-                </div>
-              </Button>
+                {statblockName}
+              </ContextMenuButton>
             </div>
             {playerRole === "GM" && (
-              <Button
-                variant={"secondary"}
-                className="bg-mirage-400/30 dark:bg-mirage-500/30 hover:bg-mirage-400/30 hover:dark:bg-mirage-500/30 group aspect-square shrink-0 overflow-clip p-0 focus-visible:ring-0"
-                onClick={() => setStatblockName("")}
+              <ContextMenuButton
+                className="aspect-square shrink-0"
+                onClick={removeStatblock}
               >
-                <div className="group-hover:bg-foreground/7 flex size-full items-center-safe justify-center text-sm duration-150">
-                  <XIcon />
-                </div>
-              </Button>
+                <XIcon />
+              </ContextMenuButton>
             )}
           </>
         ) : (
-          <Button
+          <ContextMenuButton
             disabled={playerRole === "PLAYER"}
-            variant={"secondary"}
-            className="bg-mirage-400/30 dark:bg-mirage-500/30 hover:bg-mirage-400/30 hover:dark:bg-mirage-500/30 group w-full overflow-clip p-0 focus-visible:ring-0"
-            onClick={async () => {
-              const themeMode = (await OBR.theme.getTheme()).mode;
-              const searchParams = new URLSearchParams();
-              searchParams.set("themeMode", themeMode);
-              if (groupId) searchParams.set("groupId", groupId);
-              if (mode === "hero") searchParams.set("type", "hero");
-
-              OBR.popover.open({
-                id: getPluginId("statblockSearch"),
-                url: `/statblockSearch?${searchParams.toString()}`,
-                height: 1000,
-                width: 800,
-                anchorOrigin: { horizontal: "CENTER", vertical: "CENTER" },
-                transformOrigin: {
-                  horizontal: "CENTER",
-                  vertical: "CENTER",
-                },
-              });
-            }}
+            className="w-full"
+            onClick={() =>
+              openStatblockSearch({
+                groupId,
+                organization,
+                type: mode === "hero" ? "hero" : undefined,
+              })
+            }
           >
-            <div className="group-hover:bg-foreground/7 flex size-full items-center-safe justify-center text-sm duration-150">
-              <PlusIcon />
-            </div>
-          </Button>
+            <PlusIcon />
+          </ContextMenuButton>
         )}
       </div>
     </div>

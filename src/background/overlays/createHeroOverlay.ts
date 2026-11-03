@@ -1,4 +1,4 @@
-import type { Image, Item } from "@owlbear-rodeo/sdk";
+import type { Item } from "@owlbear-rodeo/sdk";
 import type { DefinedHeroTokenData } from "../../types/tokenDataZod";
 
 import type { DefinedSettings } from "../../types/settingsZod";
@@ -9,7 +9,7 @@ import {
 } from "../../helpers/classResourceHelpers";
 
 export function createHeroOverlay(
-  image: Image,
+  item: Item,
   token: DefinedHeroTokenData,
   role: "PLAYER" | "GM",
   dpi: number,
@@ -65,7 +65,7 @@ export function createHeroOverlay(
         },
       ],
     },
-    image,
+    item,
     dpi,
     settings,
   );

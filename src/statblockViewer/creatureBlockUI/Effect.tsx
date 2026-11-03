@@ -56,6 +56,9 @@ export function Effect({
         {effect.name && (
           <span className="font-semibold">{`${effect.name}`}</span>
         )}
+        {effect.name && effect.cost && (
+          <span className="font-semibold"> (</span>
+        )}
         {effect.cost && (
           <PluginReadyGate
             alternate={
@@ -72,6 +75,7 @@ export function Effect({
             />
           </PluginReadyGate>
         )}
+        {effect.name && effect.cost && <span className="font-semibold">)</span>}
         {(effect.name || effect.cost) && (
           <span className="font-semibold">{": "}</span>
         )}

@@ -1,11 +1,11 @@
-import type { Image, Item } from "@owlbear-rodeo/sdk";
+import type { Item } from "@owlbear-rodeo/sdk";
 import type { DefinedMonsterTokenData } from "../../types/tokenDataZod";
 
 import type { DefinedSettings } from "../../types/settingsZod";
 import { createTokenOverlay } from "./createTokenOverlay";
 
 export function createMonsterOverlay(
-  image: Image,
+  item: Item,
   token: DefinedMonsterTokenData,
   role: "PLAYER" | "GM",
   dpi: number,
@@ -46,7 +46,7 @@ export function createMonsterOverlay(
         },
       ],
     },
-    image,
+    item,
     dpi,
     settings,
   );

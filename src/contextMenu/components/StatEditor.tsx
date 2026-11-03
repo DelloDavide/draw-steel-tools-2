@@ -24,6 +24,7 @@ import { ToggleGroup, ToggleGroupItem } from "../../components/ui/toggleGroup";
 import Input from "../../components/ui/Input";
 import { updateClassResourcePool } from "../../helpers/classResourceHelpers";
 import FreeWheelInput from "../../components/logic/FreeWheelInput";
+import { cn } from "../../helpers/utils";
 
 const params = new URLSearchParams(document.location.search);
 const detailedVale = params.get("detailed");
@@ -39,13 +40,21 @@ export default function StatEditor({
   const [heroicResourceSettingsOpen, setHeroicResourceSettingsOpen] =
     useState(false);
 
-  if (token.type !== "HERO" && token.type !== "MONSTER")
+  if (
+    token.type !== "HERO" &&
+    token.type !== "MONSTER" &&
+    token.type !== "TERRAIN"
+  )
     throw new Error("Expected hero or monster token type");
 
   return (
     <div className="space-y-2">
       <div className="grid grid-cols-4 gap-2">
-        <div className="col-span-2">
+        <div
+          className={cn("col-span-2", {
+            "col-span-4": token.type === "TERRAIN",
+          })}
+        >
           <div className="flex items-end gap-2">
             <BarTrackerInput
               label={"Stamina"}
@@ -77,35 +86,37 @@ export default function StatEditor({
           </div>
         </div>
 
-        <div className="col-span-2">
-          <ValueButtonTrackerInput
-            label={"Temporary Stamina"}
-            color="GREEN"
-            parentValue={token.temporaryStamina}
-            updateHandler={(target) =>
-              updateToken({
-                temporaryStamina: parseNumber(target.value, {
-                  min: -999,
-                  max: 999,
-                  truncate: true,
-                  inlineMath: { previousValue: token.temporaryStamina },
-                }),
-              })
-            }
-            buttonProps={{
-              title: "Apply to Stamina",
-              children: <HeartCrackIcon />,
-              className: token.temporaryStamina < 0 ? "" : "hidden",
-              onClick: () => {
-                if (token.temporaryStamina >= 0) return;
+        {(token.type === "HERO" || token.type === "MONSTER") && (
+          <div className="col-span-2">
+            <ValueButtonTrackerInput
+              label={"Temporary Stamina"}
+              color="GREEN"
+              parentValue={token.temporaryStamina}
+              updateHandler={(target) =>
                 updateToken({
-                  stamina: token.stamina + token.temporaryStamina,
-                  temporaryStamina: 0,
-                });
-              },
-            }}
-          />
-        </div>
+                  temporaryStamina: parseNumber(target.value, {
+                    min: -999,
+                    max: 999,
+                    truncate: true,
+                    inlineMath: { previousValue: token.temporaryStamina },
+                  }),
+                })
+              }
+              buttonProps={{
+                title: "Apply to Stamina",
+                children: <HeartCrackIcon />,
+                className: token.temporaryStamina < 0 ? "" : "hidden",
+                onClick: () => {
+                  if (token.temporaryStamina >= 0) return;
+                  updateToken({
+                    stamina: token.stamina + token.temporaryStamina,
+                    temporaryStamina: 0,
+                  });
+                },
+              }}
+            />
+          </div>
+        )}
         {token.type === "HERO" && (
           <>
             <ClassResourceTrackers token={token} updateToken={updateToken} />
@@ -252,7 +263,6 @@ export default function StatEditor({
               value={token.heroicResourceButton}
               onValueChange={(value) => {
                 if (!["D3", "D3+1", "+2", "+3"].includes(value)) return;
-                console.log(value);
                 updateToken({
                   heroicResourceButton: value as "D3" | "D3+1" | "+2" | "+3",
                 });

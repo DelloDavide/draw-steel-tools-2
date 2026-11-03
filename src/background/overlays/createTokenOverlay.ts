@@ -1,5 +1,5 @@
-import type { Image, Item } from "@owlbear-rodeo/sdk";
-import { getOriginAndBounds } from "../mathHelpers";
+import { isCurve, isImage, isShape, type Item } from "@owlbear-rodeo/sdk";
+import { getOriginAndBounds } from "./mathHelpers";
 import type { DefinedSettings } from "../../types/settingsZod";
 import {
   bubbleBackgroundId,
@@ -44,11 +44,14 @@ export function createTokenOverlay(
     bars?: Bar[];
     nameTags?: NameTag[];
   },
-  image: Image,
+  item: Item,
   dpi: number,
   settings: DefinedSettings,
 ) {
-  const { origin, bounds } = getOriginAndBounds(settings, image, dpi);
+  if (!isImage(item) && !isShape(item) && !isCurve(item))
+    throw new Error(`Support for item type ${item.type} is not implemented.`);
+
+  const { origin, bounds } = getOriginAndBounds(settings, item, dpi);
   const overlayAttachments: Item[] = [];
 
   const bubblePosition = {
@@ -61,13 +64,13 @@ export function createTokenOverlay(
     y: origin.y,
   };
 
-  if (bars) {
+  if (!!bars) {
     for (let i = 0; i < bars.length; i++) {
       const bar = bars[i];
       if (bar.display) {
         overlayAttachments.push(
           ...createHealthBar(
-            image,
+            item,
             bounds,
             bar.value,
             bar.maximum,
@@ -94,18 +97,18 @@ export function createTokenOverlay(
     bubblePosition.y += -shortBars.length * (SHORT_BAR_HEIGHT + MARGIN);
   }
 
-  if (bubbles) {
+  if (!!bubbles) {
     for (let i = 0; i < bubbles.length; i++) {
       const bubble = bubbles[i];
       if (bubble.display) {
         overlayAttachments.push(
           ...createStatBubble(
-            image,
+            item,
             bubble.value,
             bubble.color,
             bubblePosition,
-            bubbleBackgroundId(image.id, i),
-            bubbleTextId(image.id, i),
+            bubbleBackgroundId(item.id, i),
+            bubbleTextId(item.id, i),
           ),
         );
 
@@ -126,13 +129,13 @@ export function createTokenOverlay(
     nameTagPosition.y -= shortBars.length * (SHORT_BAR_HEIGHT + MARGIN);
   }
 
-  if (nameTags) {
+  if (!!nameTags) {
     for (let i = 0; i < nameTags.length; i++) {
       const nameTag = nameTags[i];
       if (nameTags[i].display) {
         overlayAttachments.push(
           ...createNameTag(
-            image,
+            item,
             dpi,
             nameTag.text,
             nameTagPosition,
