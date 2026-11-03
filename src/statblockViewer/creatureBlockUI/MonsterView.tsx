@@ -18,7 +18,7 @@ import {
   type DrawSteelSkillBlock,
   type DrawSteelStatblock,
 } from "../../types/DrawSteelZod";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { capitalizeFirstLetter } from "../../helpers/others";
 import {
   saveHeroProjectsToGitHub,
@@ -44,18 +44,20 @@ function LegacyMonsterView({
   readonly monsterData: CreatureDataBundle;
 }) {
   const [data, setData] = useState<CreatureDataBundle>(monsterData);
+  const [previousMonsterData, setPreviousMonsterData] = useState(monsterData);
 
   const [originalProjectBlocks, setOriginalProjectBlocks] = useState(
     monsterData.kind === "dynamicterrain" ? [] : monsterData.projectBlocks,
   );
 
-  useEffect(() => {
+  if (previousMonsterData !== monsterData) {
+    setPreviousMonsterData(monsterData);
     setData(monsterData);
 
     if (monsterData.kind !== "dynamicterrain") {
       setOriginalProjectBlocks(monsterData.projectBlocks);
     }
-  }, [monsterData]);
+  }
 
   const heroClassResourceNames = useMemo(
     () =>
@@ -295,7 +297,7 @@ function LegacyMonsterView({
 
                   {data.projectBlocks.length > 0 && data.kind === "hero" && (
                     <button
-                      onClick={saveProjectsPoints}
+                      onClick={() => void saveProjectsPoints()}
                       disabled={!hasProjectChanges}
                       className={`rounded px-3 py-2 text-white ${
                         hasProjectChanges

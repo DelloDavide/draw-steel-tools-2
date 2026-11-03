@@ -80,9 +80,6 @@ importers:
       lucide-react:
         specifier: ^0.542.0
         version: 0.542.0(react@19.3.1)
-      pnpm:
-        specifier: ^11.28.10
-        version: 11.28.10
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -1995,11 +1992,6 @@ packages:
   picomatch@4.0.7:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
-
-  pnpm@11.28.10:
-    resolution: {integrity: sha512-ZyIW8G4VwQm4VHHUnT++0X5vA+rSWN8Iwr9bSlwzMh6/v1lHa86BMl762has4Kx4VI/Qv816UTaek5GCo91Q5A==}
-    engines: {node: '>=22.13'}
-    hasBin: true
 
   postcss@8.5.32:
     resolution: {integrity: sha512-LJlKCCAUFKOuZxipUdYw1NzIITEsPcgyOG9LkvRJvuKj/bRzbuRY0ARXvL0pWGpsZvn8jku+LMep2eU0seHp8g==}
@@ -4159,8 +4151,6 @@ snapshots:
   picocolors@1.1.1: {}
 
   picomatch@4.0.7: {}
-
-  pnpm@11.28.10: {}
 
   postcss@8.5.32:
     dependencies:
