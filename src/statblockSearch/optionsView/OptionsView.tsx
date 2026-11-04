@@ -20,11 +20,11 @@ export function OptionsView({
   targetItems,
   settings,
 }: {
-  appState: AppState;
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
-  playerRole: "PLAYER" | "GM";
-  targetItems: Item[];
-  settings: DefinedSettings;
+  readonly appState: AppState;
+  readonly setAppState: React.Dispatch<React.SetStateAction<AppState>>;
+  readonly playerRole: "PLAYER" | "GM";
+  readonly targetItems: Item[];
+  readonly settings: DefinedSettings;
 }) {
   const setupOptions = appState.setupOptions;
   const selectedIndexBundle = appState.selectedIndexBundle;
@@ -39,6 +39,12 @@ export function OptionsView({
   }
 
   const disableConfirm = !setupOptions || validTargets.length === 0;
+  let noMonsterVariant: "MINION" | "TERRAIN" | "BASIC" = "BASIC";
+  if (setupOptions?.type === "MINION") {
+    noMonsterVariant = "MINION";
+  } else if (setupOptions?.type === "TERRAIN") {
+    noMonsterVariant = "TERRAIN";
+  }
 
   const returnToSearch = () =>
     setAppState({
@@ -55,13 +61,7 @@ export function OptionsView({
             <h1 className="mb-1">Selected Statblock</h1>
             {selectedIndexBundle === "NONE" ? (
               <NoMonsterCard
-                variant={
-                  setupOptions?.type === "MINION"
-                    ? "MINION"
-                    : setupOptions?.type === "TERRAIN"
-                      ? "TERRAIN"
-                      : "BASIC"
-                }
+                variant={noMonsterVariant}
                 onActionClick={returnToSearch}
                 icon={<XIcon />}
               />
@@ -128,11 +128,15 @@ export function OptionsView({
             className="grow"
             onClick={() => {
               if (disableConfirm) return;
-              ApplyToTokens(
+              void ApplyToTokens(
                 setupOptions,
                 selectedIndexBundle,
                 validTargets,
-              ).then(() => OBR.popover.close(getPluginId("statblockSearch")));
+              )
+                .then(() => OBR.popover.close(getPluginId("statblockSearch")))
+                .catch((error: unknown) =>
+                  console.error("Failed to apply options:", error),
+                );
             }}
           >
             Confirm

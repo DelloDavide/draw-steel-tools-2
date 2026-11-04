@@ -60,7 +60,7 @@ export default function SearchView({
         >
           <div
             data-visible={checkFiltersApplied(search)}
-            className="bg-accent pointer-events-none absolute size-3.5 translate-x-[15px] -translate-y-[15px] scale-0 rounded-full duration-100 ease-in data-[visible=true]:scale-100 pointer-fine:translate-x-[13px]"
+            className="bg-accent pointer-events-none absolute size-3.5 translate-x-3.75 -translate-y-3.75 scale-0 rounded-full duration-100 ease-in data-[visible=true]:scale-100 pointer-fine:translate-x-3.25"
           />
           <ListFilterIcon />
         </Toggle>
@@ -97,7 +97,9 @@ export default function SearchView({
           <Button
             variant={"accentOutline"}
             className="grow"
-            onClick={() => OBR.popover.close(getPluginId("statblockSearch"))}
+            onClick={() => {
+              void OBR.popover.close(getPluginId("statblockSearch"));
+            }}
           >
             Close
           </Button>

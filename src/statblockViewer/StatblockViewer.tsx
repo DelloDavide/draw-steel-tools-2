@@ -2,7 +2,7 @@ import "./../index.css";
 import MonsterView from "./creatureBlockUI/MonsterView.tsx";
 import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "../helpers/getPluginId.ts";
-import { Maximize2Icon, Minimize2Icon } from "lucide-react";
+import { Maximize2Icon, Minimize2Icon, XIcon } from "lucide-react";
 import { StatBlockSwitcher } from "./StatblockSwitcher.tsx";
 import { useEffect, useMemo, useState } from "react";
 import { dataFromBestiaryIndexId } from "../helpers/monsterDataFromStatblockName.ts";
@@ -13,6 +13,7 @@ import HeightMatch from "../components/logic/HeightMatch.tsx";
 import { PluginReadyGate } from "../components/logic/PluginReadyGate.tsx";
 import { DiceDrawer } from "./DiceDrawer.tsx";
 import { ClassResourceBar } from "./ClassResourceBar.tsx";
+import Button from "../components/ui/Button.tsx";
 import { HeroTokenProvider } from "./context/HeroTokenProvider.tsx";
 import { HeroClassResourceNamesContext } from "./context/HeroClassResourceNamesContext.ts";
 import { extractClassResourceNamesFromHeroBundle } from "../helpers/classResourceHelpers.ts";
@@ -47,15 +48,14 @@ function isHeroData(
 
 export function StatblockViewer() {
   const [collapsed, setCollapsed] = useState(false);
-  const [monsterData, setMonsterData] = useState<ViewerData | null>();
+  const [monsterData, setMonsterData] = useState<
+    ViewerData | null | undefined
+  >(() => (initialResourceId || initialStatblockName ? undefined : null));
   const [height, setHeight] = useState(57);
 
   useEffect(() => {
     const id = initialResourceId || initialStatblockName;
-    if (!id) {
-      setMonsterData(null);
-      return;
-    }
+    if (!id) return;
 
     dataFromBestiaryIndexId(id)
       .then((data) => {
@@ -154,31 +154,45 @@ export function StatblockViewer() {
                       size={"icon"}
                       pressed={collapsed}
                       className="data-[state=on]:bg-mirage-100 data-[state=on]:text-foreground hover:data-[state=on]:bg-mirage-200 grow"
-                      onClick={async () => {
-                        if (collapsed) {
-                          await OBR.popover.setHeight(
-                            getPluginId("statblockViewer"),
-                            5000,
-                          );
-                          await OBR.popover.setWidth(
-                            getPluginId("statblockViewer"),
-                            500,
-                          );
-                        } else {
-                          await OBR.popover.setHeight(
-                            getPluginId("statblockViewer"),
-                            56,
-                          );
-                          await OBR.popover.setWidth(
-                            getPluginId("statblockViewer"),
-                            300,
-                          );
-                        }
-                        setCollapsed(!collapsed);
+                      onClick={() => {
+                        void (async () => {
+                          if (collapsed) {
+                            await OBR.popover.setHeight(
+                              getPluginId("statblockViewer"),
+                              5000,
+                            );
+                            await OBR.popover.setWidth(
+                              getPluginId("statblockViewer"),
+                              500,
+                            );
+                          } else {
+                            await OBR.popover.setHeight(
+                              getPluginId("statblockViewer"),
+                              56,
+                            );
+                            await OBR.popover.setWidth(
+                              getPluginId("statblockViewer"),
+                              300,
+                            );
+                          }
+                          setCollapsed(!collapsed);
+                        })();
                       }}
                     >
                       {collapsed ? <Maximize2Icon /> : <Minimize2Icon />}
                     </Toggle>
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="shrink-0"
+                      aria-label="Close statblock"
+                      title="Close statblock"
+                      onClick={() => {
+                        void OBR.popover.close(getPluginId("statblockViewer"));
+                      }}
+                    >
+                      <XIcon />
+                    </Button>
                   </div>
                 </div>
               </HeightMatch>
